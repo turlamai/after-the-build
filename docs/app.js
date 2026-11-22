@@ -2,6 +2,7 @@
 (function () {
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var REPO = 'turlamai/after-the-build';
   var ROOT = document.body.dataset.root || '';
   var PAGE = document.body.dataset.page || '';
   var PREV = document.body.dataset.prev || '';
@@ -159,6 +160,51 @@
       thanks(btn.closest('.feedback'));
     });
   });
+
+  /* SelectionPill: floating 反馈这段 while the reader selects text in the article */
+  if (PAGE) {
+    var pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'selection-pill';
+    pill.textContent = '反馈这段';
+    pill.style.display = 'none';
+    document.body.appendChild(pill);
+    var pillQuote = '';
+    var pillRaf = 0;
+    var updatePill = function () {
+      pillRaf = 0;
+      var article = document.querySelector('article.chapter');
+      var s = window.getSelection();
+      var text = s && !s.isCollapsed ? s.toString().replace(/\s+/g, ' ').trim() : '';
+      var ok = text.length >= 2 && text.length <= 500 && !!s && !!article && article.contains(s.anchorNode);
+      var rect = ok ? s.getRangeAt(0).getBoundingClientRect() : null;
+      ok = !!(ok && rect && (rect.width || rect.height) && rect.bottom > 0 && rect.top < window.innerHeight);
+      if (!ok) { pill.style.display = 'none'; pillQuote = ''; return; }
+      pillQuote = text;
+      pill.style.display = 'block';
+      pill.style.top = Math.max(8, rect.top - 44) + 'px';
+      pill.style.left = (rect.left + rect.width / 2) + 'px';
+    };
+    var schedulePill = function () {
+      if (pillRaf) cancelAnimationFrame(pillRaf);
+      pillRaf = requestAnimationFrame(updatePill);
+    };
+    document.addEventListener('selectionchange', schedulePill);
+    window.addEventListener('scroll', function () { if (pill.style.display === 'block') schedulePill(); }, { passive: true });
+    window.addEventListener('resize', schedulePill);
+    pill.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    pill.addEventListener('click', function () {
+      if (!pillQuote) return;
+      var t = (document.querySelector('h1') || {}).textContent || PAGE;
+      var u = 'https://github.com/' + REPO + '/issues/new?' + new URLSearchParams({
+        title: '【反馈】' + t + '——选中段落',
+        body: '章节链接：' + location.href + '\n\n> ' + pillQuote + '\n\n问题描述：\n',
+      }).toString();
+      window.open(u, '_blank', 'noopener,noreferrer');
+      window.getSelection().removeAllRanges();
+      pill.style.display = 'none';
+    });
+  }
 
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {

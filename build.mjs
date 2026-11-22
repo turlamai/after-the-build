@@ -87,11 +87,13 @@ const pageUrlOf = (target) => (target ? `ch/${target.slug}.html` : 'index.html')
 
 const bodyFor = (e) => {
   const md = readFileSync(join('chapters', e.file), 'utf8');
-  return marked.parse(md).replace(
-    /<img src="\.\.\/assets\/([\w-]+\.svg)" alt="([^"]*)"\s*\/?>/g,
-    (m, file, alt) =>
-      readFileSync(join('assets', file), 'utf8').replace('<svg ', `<svg role="img" aria-label="${alt}" `),
-  );
+  return marked.parse(md)
+    .replace(/^<h1>[\s\S]*?<\/h1>\n/, '') // chapter title comes from the page template, not the body
+    .replace(
+      /<img src="\.\.\/assets\/([\w-]+\.svg)" alt="([^"]*)"\s*\/?>/g,
+      (m, file, alt) =>
+        readFileSync(join('assets', file), 'utf8').replace('<svg ', `<svg role="img" aria-label="${alt}" `),
+    );
 };
 
 // Shared sidebar: the full book tree, current chapter marked (family invariant).
@@ -283,6 +285,14 @@ section.chapter svg { display: block; max-width: 100%; height: auto; margin: 24p
 .chapter-nav a:hover { color: var(--accent); text-decoration: none; }
 .chapter-nav .is-disabled { color: var(--faint); opacity: 0.5; }
 
+.selection-pill {
+  position: fixed; z-index: 55; transform: translateX(-50%);
+  border: 1px solid var(--ink); background: var(--ink); color: var(--bg);
+  border-radius: 6px; padding: 5px 12px; font-size: 12px; cursor: pointer;
+  font-family: inherit;
+}
+.selection-pill:hover { background: var(--ink-2); }
+
 @media (max-width: 960px) {
   .topbar {
     display: flex; position: sticky; top: 0; z-index: 30; align-items: center; gap: 12px;
@@ -323,6 +333,7 @@ const appJs = `
 (function () {
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var REPO = '${REPO}';
   var ROOT = document.body.dataset.root || '';
   var PAGE = document.body.dataset.page || '';
   var PREV = document.body.dataset.prev || '';
@@ -480,6 +491,51 @@ const appJs = `
       thanks(btn.closest('.feedback'));
     });
   });
+
+  /* SelectionPill: floating 反馈这段 while the reader selects text in the article */
+  if (PAGE) {
+    var pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'selection-pill';
+    pill.textContent = '反馈这段';
+    pill.style.display = 'none';
+    document.body.appendChild(pill);
+    var pillQuote = '';
+    var pillRaf = 0;
+    var updatePill = function () {
+      pillRaf = 0;
+      var article = document.querySelector('article.chapter');
+      var s = window.getSelection();
+      var text = s && !s.isCollapsed ? s.toString().replace(/\\s+/g, ' ').trim() : '';
+      var ok = text.length >= 2 && text.length <= 500 && !!s && !!article && article.contains(s.anchorNode);
+      var rect = ok ? s.getRangeAt(0).getBoundingClientRect() : null;
+      ok = !!(ok && rect && (rect.width || rect.height) && rect.bottom > 0 && rect.top < window.innerHeight);
+      if (!ok) { pill.style.display = 'none'; pillQuote = ''; return; }
+      pillQuote = text;
+      pill.style.display = 'block';
+      pill.style.top = Math.max(8, rect.top - 44) + 'px';
+      pill.style.left = (rect.left + rect.width / 2) + 'px';
+    };
+    var schedulePill = function () {
+      if (pillRaf) cancelAnimationFrame(pillRaf);
+      pillRaf = requestAnimationFrame(updatePill);
+    };
+    document.addEventListener('selectionchange', schedulePill);
+    window.addEventListener('scroll', function () { if (pill.style.display === 'block') schedulePill(); }, { passive: true });
+    window.addEventListener('resize', schedulePill);
+    pill.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    pill.addEventListener('click', function () {
+      if (!pillQuote) return;
+      var t = (document.querySelector('h1') || {}).textContent || PAGE;
+      var u = 'https://github.com/' + REPO + '/issues/new?' + new URLSearchParams({
+        title: '【反馈】' + t + '——选中段落',
+        body: '章节链接：' + location.href + '\\n\\n> ' + pillQuote + '\\n\\n问题描述：\\n',
+      }).toString();
+      window.open(u, '_blank', 'noopener,noreferrer');
+      window.getSelection().removeAllRanges();
+      pill.style.display = 'none';
+    });
+  }
 
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
