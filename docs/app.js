@@ -2,7 +2,7 @@
 (function () {
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-  var REPO = 'turlamai/after-the-build';
+  var REPO = 'turlamai/fundamentals';
   var ROOT = document.body.dataset.root || '';
   var PAGE = document.body.dataset.page || '';
   var PREV = document.body.dataset.prev || '';
@@ -148,7 +148,7 @@
     q.dataset.done = '1';
     q.textContent = '谢谢！已记下你的反馈。';
     var s = box.querySelector('.fb-sub');
-    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/turlamai/after-the-build" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
+    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/turlamai/fundamentals" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
     var act = box.querySelector('.fb-actions');
     if (act) act.remove();
   }

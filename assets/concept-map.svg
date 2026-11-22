@@ -25,7 +25,7 @@
 
   <!-- band 2: operations -->
   <rect x="40" y="434" width="900" height="186" rx="12" fill="#9dd4c7" fill-opacity="0.25" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="64" y="460" font-size="11" font-weight="600" fill="#1a1a1a">第二部 造完之后（第 12-17 章）——踩着世界观长出的六件手艺</text>
+  <text x="64" y="460" font-size="11" font-weight="600" fill="#1a1a1a">第二部 六件手艺（第 12-17 章）——踩着世界观长出的手艺</text>
   <text x="64" y="488" font-size="9" fill="#1a1a1a">第 12 章 部署：托管 / 仓库 / 域名 / 上线五步（地基：第 8、9 章）</text>
   <text x="64" y="512" font-size="9" fill="#1a1a1a">第 13 章 验收与排错：复现 / 报错 / 回归 / 缓存（地基：第 5 章）</text>
   <text x="64" y="536" font-size="9" fill="#1a1a1a">第 14 章 密钥：API Key / 环境变量 / 最小权限（地基：第 8、10 章）</text>

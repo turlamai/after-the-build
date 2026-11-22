@@ -8,14 +8,15 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { marked } from 'marked';
 
-const REPO = 'turlamai/after-the-build';
-const SITE = 'https://afterthebuild.jrtx.site';
+const REPO = 'turlamai/fundamentals';
+const SITE = 'https://fundamentals.jrtx.site';
+const BOOK = 'AI 时代的基本功';
 
 const TOC = [
   { part: '', files: ['00-prologue.md'] },
   { part: '第一部 · 世界观', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-os.md', '07-data-shapes.md', '08-network.md', '09-cloud.md', '10-ai-landscape.md', '11-ai-collab.md'] },
-  { part: '第二部 · 造完之后', files: ['12-deploy.md', '13-debug.md', '14-secrets.md', '15-cost.md', '16-data.md', '17-versions.md'] },
-  { part: '第三部 · 拿住之后', files: ['18-security.md', '19-crypto.md', '20-privacy.md', '21-ask-for-help.md', '22-maintenance.md'] },
+  { part: '第二部 · 六件手艺', files: ['12-deploy.md', '13-debug.md', '14-secrets.md', '15-cost.md', '16-data.md', '17-versions.md'] },
+  { part: '第三部 · 判断', files: ['18-security.md', '19-crypto.md', '20-privacy.md', '21-ask-for-help.md', '22-maintenance.md'] },
   { part: '第四部 · 一页纸与工具箱', files: ['23-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
 
@@ -104,8 +105,8 @@ const sidebar = (activeSlug, root) => {
     return `${label}<ul>${files.map((f) => a(entryOf(f))).join('')}</ul>`;
   }).join('');
   return `<nav id="toc" aria-label="目录">
-  <a class="book" href="${root}index.html">造完之后</a>
-  <div class="book-sub">AI 时代普通人的技术通识课</div>
+  <a class="book" href="${root}index.html">${BOOK}</a>
+  <div class="book-sub">普通人开发缺失的一课</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
@@ -556,7 +557,7 @@ const head = (title, root) => `<meta charset="utf-8">
 <meta property="og:type" content="book">
 <meta property="og:url" content="${SITE}">
 <meta property="og:image" content="${SITE}/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23FAF9F6' font-family='PingFang SC, sans-serif' font-weight='600'%3E造%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="${root}style.css">`;
 
 const pageShell = ({ title, root, activeSlug, page, prevUrl, nextUrl, main }) => `<!doctype html>
@@ -568,7 +569,7 @@ ${head(title, root)}
 <div id="progress" aria-hidden="true"></div>
 <header class="topbar">
   <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
-  <span class="tb-title">造完之后</span>
+  <span class="tb-title">${BOOK}</span>
 </header>
 <div class="toc-overlay" aria-hidden="true"></div>
 ${sidebar(activeSlug, root)}
@@ -583,8 +584,8 @@ ${main}
 // Home page
 const homeMain = `<div id="cover">
   <div id="resume-top"></div>
-  <h1>造完之后</h1>
-  <div class="sub">AI 时代普通人的技术通识课</div>
+  <h1>${BOOK}</h1>
+  <div class="sub">普通人开发缺失的一课</div>
   <div class="tagline">答案免费，问题稀缺。<br>AI 替你造出了东西，这本书教你把它真正拿在手里。</div>
   <div class="author">吉人</div>
   <div class="cover-links">
@@ -621,7 +622,7 @@ const chapterPages = entries.map((e, i) => {
   return {
     path: join('docs', 'ch', `${e.slug}.html`),
     html: pageShell({
-      title: `${e.title} · 造完之后`,
+      title: `${e.title} · ${BOOK}`,
       root: '../',
       activeSlug: e.slug,
       page: e.slug,
@@ -633,7 +634,7 @@ const chapterPages = entries.map((e, i) => {
 });
 
 const homeHtml = pageShell({
-  title: '造完之后 — AI 时代普通人的技术通识课',
+  title: `${BOOK} — 普通人开发缺失的一课`,
   root: '',
   activeSlug: '',
   page: '',
