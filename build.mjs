@@ -9,7 +9,7 @@ const TOC = [
   { part: '第一部 · 世界观', files: ['01-platforms.md', '02-files.md', '03-cli-gui.md', '04-language.md', '05-network.md'] },
   { part: '第二部 · 造完之后', files: ['06-deploy.md', '07-debug.md', '08-secrets.md', '09-cost.md', '10-data.md', '11-versions.md'] },
   { part: '第三部 · 拿住之后', files: ['12-security.md', '13-ask-for-help.md', '14-maintenance.md'] },
-  { part: '第四部 · 一页纸与工具箱', files: ['15-40-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md'] },
+  { part: '第四部 · 一页纸与工具箱', files: ['15-40-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
 
 const slug = (name) => name.replace(/\.md$/, '');
