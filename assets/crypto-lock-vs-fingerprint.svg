@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 440" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="440" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">加密是可逆的锁，哈希是不可逆的指纹</text>
+
+  <line x1="500" y1="60" x2="500" y2="380" stroke="#EBE8E0" stroke-width="1.5"/>
+
+  <text x="255" y="70" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">加密：寄密封信（HTTPS 就是它）</text>
+
+  <rect x="60" y="100" width="150" height="56" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="135" y="134" font-size="10" fill="#1a1a1a" text-anchor="middle">原文「你好」</text>
+
+  <rect x="260" y="100" width="150" height="56" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="335" y="128" font-size="10" fill="#1a1a1a" text-anchor="middle">上锁（公钥）</text>
+  <text x="335" y="146" font-size="8" fill="#6a6a6a" text-anchor="middle">谁都能锁上寄给你</text>
+
+  <rect x="260" y="200" width="150" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="335" y="234" font-size="10" fill="#1a1a1a" text-anchor="middle">密文 ×！#?￥…</text>
+
+  <rect x="260" y="300" width="150" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="335" y="328" font-size="10" fill="#1a1a1a" text-anchor="middle">开锁（私钥）</text>
+  <text x="335" y="346" font-size="8" fill="#6a6a6a" text-anchor="middle">只有你有这把钥匙</text>
+
+  <rect x="60" y="300" width="150" height="56" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="135" y="334" font-size="10" fill="#1a1a1a" text-anchor="middle">原文「你好」</text>
+
+  <line x1="210" y1="128" x2="256" y2="128" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="335" y1="156" x2="335" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="335" y1="256" x2="335" y2="296" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="256" y1="328" x2="214" y2="328" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="755" y="70" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">哈希：单向指纹（密码只该存它）</text>
+
+  <rect x="560" y="100" width="150" height="56" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="635" y="134" font-size="10" fill="#1a1a1a" text-anchor="middle">你的密码</text>
+
+  <rect x="760" y="100" width="150" height="56" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="835" y="128" font-size="10" fill="#1a1a1a" text-anchor="middle">指纹机（哈希）</text>
+  <text x="835" y="146" font-size="8" fill="#6a6a6a" text-anchor="middle">同密码永远同指纹</text>
+
+  <rect x="560" y="200" width="150" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="635" y="234" font-size="10" fill="#1a1a1a" text-anchor="middle">指纹 a1b2c3…</text>
+
+  <rect x="760" y="200" width="150" height="80" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="835" y="232" font-size="10" font-weight="600" fill="#ffffff" text-anchor="middle">从指纹回不去原文</text>
+  <text x="835" y="254" font-size="8" fill="#ffffff" text-anchor="middle">所以网站只能「重置」密码</text>
+
+  <rect x="560" y="300" width="150" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="635" y="328" font-size="10" fill="#1a1a1a" text-anchor="middle">登录时再算一次</text>
+  <text x="635" y="346" font-size="8" fill="#6a6a6a" text-anchor="middle">指纹对得上就放行</text>
+
+  <line x1="710" y1="128" x2="756" y2="128" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="835" y1="156" x2="835" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="756" y1="228" x2="714" y2="228" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="635" y1="256" x2="635" y2="296" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="414" font-size="9" fill="#6a6a6a">泄露后果因此不同：「加密存储」被破还能解，「哈希存储」被破也登不了录。读懂这个分叉，就读得懂安全声明。</text>
+</svg>

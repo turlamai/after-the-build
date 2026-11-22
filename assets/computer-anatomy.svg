@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="980" height="400" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">一台电脑的解剖：仓库、工作台和工人</text>
+
+  <rect x="40" y="140" width="200" height="100" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="140" y="176" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">存储（仓库）</text>
+  <text x="140" y="200" font-size="9" fill="#6a6a6a" text-anchor="middle">硬盘 / SSD</text>
+  <text x="140" y="220" font-size="9" fill="#6a6a6a" text-anchor="middle">慢，断电不丢</text>
+
+  <rect x="340" y="140" width="200" height="100" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="440" y="176" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">内存（工作台）</text>
+  <text x="440" y="200" font-size="9" fill="#6a6a6a" text-anchor="middle">正在干的活全摊在台面</text>
+  <text x="440" y="220" font-size="9" fill="#6a6a6a" text-anchor="middle">快，断电清空</text>
+
+  <rect x="660" y="80" width="160" height="80" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="740" y="112" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">CPU（工人）</text>
+  <text x="740" y="134" font-size="9" fill="#6a6a6a" text-anchor="middle">每秒几十亿个简单动作</text>
+
+  <rect x="660" y="220" width="160" height="80" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="740" y="252" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">GPU（人海班组）</text>
+  <text x="740" y="274" font-size="9" fill="#ffffff" text-anchor="middle">画面与 AI 的海量算术</text>
+
+  <line x1="240" y1="190" x2="336" y2="190" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="288" y="178" font-size="9" fill="#6a6a6a" text-anchor="middle">搬上台面</text>
+
+  <path d="M 540 170 Q 610 140 656 130" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 656 210 Q 610 220 540 212" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 715 160 Q 690 188 715 216" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <path d="M 765 216 Q 790 188 765 160" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="830" y="196" font-size="9" fill="#6a6a6a">海量小任务外包</text>
+
+  <text x="40" y="360" font-size="9" fill="#6a6a6a">断电那一刻：工作台清空，仓库原封不动——这就是重启有效的物理原理，也是「内存」和「存储」必须分清的原因。</text>
+</svg>

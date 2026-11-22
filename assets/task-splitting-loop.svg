@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 500" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="500" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">和 AI 分工：拆到一次一件事，每件事跑一个闭环</text>
+
+  <rect x="330" y="60" width="340" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="500" y="94" font-size="11" fill="#1a1a1a" text-anchor="middle">大目标：「帮我做一个完整的网站」</text>
+
+  <line x1="500" y1="116" x2="500" y2="140" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="516" y="134" font-size="9" fill="#6a6a6a">拆成独立小块，一次交一件</text>
+
+  <rect x="100" y="146" width="220" height="56" rx="12" fill="#9dd4c7" stroke="#d97757" stroke-width="2"/>
+  <text x="210" y="180" font-size="10" fill="#1a1a1a" text-anchor="middle">任务 1：先做首页的样子</text>
+  <rect x="390" y="146" width="220" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="500" y="180" font-size="10" fill="#1a1a1a" text-anchor="middle">任务 2：加提交和存储</text>
+  <rect x="680" y="146" width="220" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="790" y="180" font-size="10" fill="#1a1a1a" text-anchor="middle">任务 3：上线和分享</text>
+
+  <path d="M 210 202 L 210 240 Q 210 262 240 262" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="330" y="250" font-size="9" fill="#6a6a6a" text-anchor="middle">把任务 1 放到餐桌上，配齐四句话：目标 / 材料 / 约束 / 验收</text>
+
+  <rect x="80" y="300" width="180" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="170" y="326" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">计划</text>
+  <text x="170" y="348" font-size="8" fill="#6a6a6a" text-anchor="middle">目标与验收标准</text>
+
+  <rect x="320" y="300" width="180" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="410" y="326" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">做</text>
+  <text x="410" y="348" font-size="8" fill="#6a6a6a" text-anchor="middle">AI 生成，你看着</text>
+
+  <rect x="560" y="300" width="180" height="64" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="650" y="326" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">查</text>
+  <text x="650" y="348" font-size="8" fill="#6a6a6a" text-anchor="middle">按验收标准逐条试</text>
+
+  <rect x="800" y="300" width="180" height="64" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="890" y="326" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">改</text>
+  <text x="890" y="348" font-size="8" fill="#ffffff" text-anchor="middle">贴回问题，只修这处</text>
+
+  <line x1="260" y1="332" x2="316" y2="332" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="500" y1="332" x2="556" y2="332" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="740" y1="332" x2="796" y2="332" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 890 368 Q 890 430 490 430 Q 150 430 130 372" fill="none" stroke="#d97757" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="500" y="452" font-size="9" fill="#d97757" text-anchor="middle">查完不达标就带着现象回到计划，修完达标才轮到任务 2</text>
+
+  <text x="40" y="484" font-size="9" fill="#6a6a6a">判断「独立」的标准：下一步不需要再解释前一步的来龙去脉。会话开始变乱，就开新的——它只记得这顿饭。</text>
+</svg>

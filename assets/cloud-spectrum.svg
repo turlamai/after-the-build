@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="400" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">程序住处的光谱：从全权控制到全托付</text>
+
+  <rect x="40" y="90" width="170" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="125" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">你的电脑</text>
+  <text x="125" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">全权控制，自己维护</text>
+  <text x="125" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">关机 = 世界找不到你</text>
+
+  <rect x="240" y="90" width="170" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="325" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">虚拟机</text>
+  <text x="325" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">大机器切出的隔间</text>
+  <text x="325" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">想装什么装什么</text>
+
+  <rect x="440" y="90" width="170" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="525" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">容器</text>
+  <text x="525" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">程序+行李打包成箱</text>
+  <text x="525" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">搬到哪都能原样运行</text>
+
+  <rect x="640" y="90" width="170" height="110" rx="12" fill="#9dd4c7" stroke="#d97757" stroke-width="2"/>
+  <text x="725" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">托管平台</text>
+  <text x="725" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">隔间配好管家</text>
+  <text x="725" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">你只管交代码（第 12 章）</text>
+
+  <rect x="840" y="90" width="120" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="900" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">Serverless</text>
+  <text x="900" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">看不见隔间</text>
+  <text x="900" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">按次付费</text>
+
+  <line x1="212" y1="145" x2="236" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="412" y1="145" x2="436" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="612" y1="145" x2="636" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="812" y1="145" x2="836" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="60" y1="260" x2="940" y2="260" stroke="#d97757" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="120" y="288" font-size="10" fill="#6a6a6a" text-anchor="middle">← 控制多、操心多</text>
+  <text x="880" y="288" font-size="10" fill="#6a6a6a" text-anchor="middle">省心多、控制少 →</text>
+
+  <rect x="380" y="310" width="240" height="44" rx="8" fill="#f4e4c1" stroke="#d97757" stroke-width="1.5"/>
+  <text x="500" y="338" font-size="10" fill="#1a1a1a" text-anchor="middle">本地 AI 与云端 AI 也在同一条光谱上</text>
+
+  <text x="40" y="382" font-size="9" fill="#6a6a6a">选位置只问三件事：数据敏不敏感、要多少控制、愿意维护多少——三个答案的交集就是你的位置。</text>
+</svg>

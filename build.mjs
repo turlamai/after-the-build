@@ -12,10 +12,10 @@ const SITE = 'https://afterthebuild.jrtx.site';
 
 const TOC = [
   { part: '', files: ['00-prologue.md'] },
-  { part: '第一部 · 世界观', files: ['01-platforms.md', '02-files.md', '03-cli-gui.md', '04-language.md', '05-network.md'] },
-  { part: '第二部 · 造完之后', files: ['06-deploy.md', '07-debug.md', '08-secrets.md', '09-cost.md', '10-data.md', '11-versions.md'] },
-  { part: '第三部 · 拿住之后', files: ['12-security.md', '13-ask-for-help.md', '14-maintenance.md'] },
-  { part: '第四部 · 一页纸与工具箱', files: ['15-40-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
+  { part: '第一部 · 世界观', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-os.md', '07-data-shapes.md', '08-network.md', '09-cloud.md', '10-ai-landscape.md', '11-ai-collab.md'] },
+  { part: '第二部 · 造完之后', files: ['12-deploy.md', '13-debug.md', '14-secrets.md', '15-cost.md', '16-data.md', '17-versions.md'] },
+  { part: '第三部 · 拿住之后', files: ['18-security.md', '19-crypto.md', '20-privacy.md', '21-ask-for-help.md', '22-maintenance.md'] },
+  { part: '第四部 · 一页纸与工具箱', files: ['23-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
 
 const slug = (name) => name.replace(/\.md$/, '');
