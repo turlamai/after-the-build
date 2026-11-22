@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 2 章 机器的解剖：比特、CPU、内存与硬盘 · 造完之后</title>
+<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="第 2 章 机器的解剖：比特、CPU、内存与硬盘 · 造完之后">
+<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://afterthebuild.jrtx.site">
+<meta property="og:image" content="https://afterthebuild.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23FAF9F6' font-family='PingFang SC, sans-serif' font-weight='600'%3E造%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" data-root="../" data-page="02-machine" data-prev="ch/01-platforms.html" data-next="ch/03-files.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">造完之后</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">造完之后</a>
+  <div class="book-sub">AI 时代普通人的技术通识课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part">开篇</div><ul><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><div class="part">第一部 · 世界观</div><ul><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html" class="active">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 3 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-os.html">第 6 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/07-data-shapes.html">第 7 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/08-network.html">第 8 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/09-cloud.html">第 9 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/10-ai-landscape.html">第 10 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/11-ai-collab.html">第 11 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><div class="part">第二部 · 造完之后</div><ul><li><a href="../ch/12-deploy.html">第 12 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/13-debug.html">第 13 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/14-secrets.html">第 14 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/15-cost.html">第 15 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/16-data.html">第 16 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/17-versions.html">第 17 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><div class="part">第三部 · 拿住之后</div><ul><li><a href="../ch/18-security.html">第 18 章 它安全吗：把门关好</a></li><li><a href="../ch/19-crypto.html">第 19 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/20-privacy.html">第 20 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/21-ask-for-help.html">第 21 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/22-maintenance.html">第 22 章 让它活过三个月：维护的日课</a></li></ul><div class="part">第四部 · 一页纸与工具箱</div><ul><li><a href="../ch/23-50-questions.html">第 23 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%80%A0%E5%AE%8C%E4%B9%8B%E5%90%8E" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第一部 · 世界观</p>
+  <h1>第 2 章 机器的解剖：比特、CPU、内存与硬盘</h1>
+  <h1>第 2 章 机器的解剖：比特、CPU、内存与硬盘</h1>
+<blockquote>
+<p>你不需要会修机器，只需要知道里面住着几位工人、各自管什么——排错和买电脑的判断力都从这里来。</p>
+</blockquote>
+<h2>一、翻车现场</h2>
+<p>AI 排错时问你：「确认一下内存够不够。」你愣住了——内存？它说的会不会其实是「存储空间不足」？这两个词你一直混着用，反正都是「电脑满了」。</p>
+<p>买电脑的时候，参数表写着 8GB 内存、256GB 存储、几核 CPU，每个字都认识，连起来完全不懂。导购说「这个带独立显卡，跑 AI 快」，你点头，心里毫无概念。</p>
+<p>还有那个经典的玄学：电脑越用越卡，重启立刻丝滑。没人给你讲过为什么，你也懒得深究——直到 AI 造的东西也卡了，你需要判断「卡在我这边还是它那边」。</p>
+<h2>二、为什么会这样</h2>
+<h3>一切都是开关：比特与字节</h3>
+<p>计算机的全部世界里只有两种状态：开和关，记作 1 和 0。一个开关叫比特，八个比特捆成一组叫字节。你看到的一切——文字、照片、音乐、AI 的回答——本质上都是天文数字个开关的组合。所谓「数字化」，就是把这个世界的某个东西翻译成开关序列。</p>
+<p>这个视角能解开一类困惑：为什么计算机如此较真（第 5 章），因为它只认识开关，不懂弦外之音；为什么文件能被精确复制，因为开关序列一模一样才是复制。</p>
+<h3>CPU：一个快到不真实的简单工人</h3>
+<p>CPU 是干活的工人，但它只会极少数简单动作：读一个数、加一下、比大小、把结果搬走。它厉害的地方不在聪明，在快——每秒几十亿个动作。你所有的软件，最终都被翻译成这些简单动作的流水账，快到肉眼以为它「会思考」。</p>
+<p>行话里的几核，意思是几个工人同时干活；主频，意思是每个工人多快。核多活多（同时开很多程序、很多浏览器标签），频快活利索（单个任务反应快）。AI 造东西的人不需要买顶级配置，但需要看懂这两个词在说什么。</p>
+<h3>内存与硬盘：工作台和仓库</h3>
+<p>内存是工作台：大、极快、正在干的活全摊在台面上，断电就清空。硬盘（存储）是仓库：慢、断电后东西原封不动。程序运行时，管家（第 6 章）把仓库里的文件搬到台面上干活。</p>
+<p>「内存不足」是台面摆满了——程序互相挤，表现是卡；「存储不足」是仓库堆满了——新东西装不进来，表现是报错。两种「满」的解法完全不同：前者关程序或重启，后者删文件或扩容。AI 模型的文件动辄几个 GB，运行时整个搬上台面——这就是为什么 AI 应用吃内存。</p>
+<h3>GPU：AI 时代的汽油</h3>
+<p>GPU 是一群只会做同一种简单算术的工人，单独看不强，胜在成千上万人海战术。画面渲染和 AI 计算，恰好都是「海量同款小任务」——所以 GPU 既是打游戏的心脏，也是 AI 的心脏。你按 token 付的算力费（第 15 章），买的本质是租 GPU 的时间。</p>
+<p><svg role="img" aria-label="配图：一台电脑的解剖——仓库、工作台和工人" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="980" height="400" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">一台电脑的解剖：仓库、工作台和工人</text>
+
+  <rect x="40" y="140" width="200" height="100" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="140" y="176" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">存储（仓库）</text>
+  <text x="140" y="200" font-size="9" fill="#6a6a6a" text-anchor="middle">硬盘 / SSD</text>
+  <text x="140" y="220" font-size="9" fill="#6a6a6a" text-anchor="middle">慢，断电不丢</text>
+
+  <rect x="340" y="140" width="200" height="100" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="440" y="176" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">内存（工作台）</text>
+  <text x="440" y="200" font-size="9" fill="#6a6a6a" text-anchor="middle">正在干的活全摊在台面</text>
+  <text x="440" y="220" font-size="9" fill="#6a6a6a" text-anchor="middle">快，断电清空</text>
+
+  <rect x="660" y="80" width="160" height="80" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="740" y="112" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">CPU（工人）</text>
+  <text x="740" y="134" font-size="9" fill="#6a6a6a" text-anchor="middle">每秒几十亿个简单动作</text>
+
+  <rect x="660" y="220" width="160" height="80" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="740" y="252" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">GPU（人海班组）</text>
+  <text x="740" y="274" font-size="9" fill="#ffffff" text-anchor="middle">画面与 AI 的海量算术</text>
+
+  <line x1="240" y1="190" x2="336" y2="190" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="288" y="178" font-size="9" fill="#6a6a6a" text-anchor="middle">搬上台面</text>
+
+  <path d="M 540 170 Q 610 140 656 130" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 656 210 Q 610 220 540 212" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 715 160 Q 690 188 715 216" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <path d="M 765 216 Q 790 188 765 160" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="830" y="196" font-size="9" fill="#6a6a6a">海量小任务外包</text>
+
+  <text x="40" y="360" font-size="9" fill="#6a6a6a">断电那一刻：工作台清空，仓库原封不动——这就是重启有效的物理原理，也是「内存」和「存储」必须分清的原因。</text>
+</svg>
+</p>
+<h2>三、怎么办</h2>
+<p>分辨两种「满」。卡：关掉吃资源的程序、重启；装不下：删旧文件、清缓存、扩容。AI 排错时把现象对号：「打开就慢」多半是台面，「保存失败」多半是仓库。</p>
+<p>重启为什么有效，现在你可以说出原理了：清空工作台、把挤在一起的程序请走、让管家重新排班。它不是玄学，是物理。同时记住它的边界：重启解决「台面乱」，解决不了「仓库坏」和网络那头的问题——重启后还坏，说明要往别的方向查。</p>
+<p>买电脑的四件套口诀：内存看台面（同时干多少活）、CPU 看手速（单个任务多快）、存储看仓库（装多少东西）、GPU 看外包班组（跑 AI、剪视频、打游戏才关键）。给 AI 造东西的人，内存和存储优先。</p>
+<h2>四、带走的问题</h2>
+<ul>
+<li>内存和存储的区别，我能一句话讲给别人听吗？</li>
+<li>这次卡顿，是台面满了还是仓库满了？</li>
+<li>重启解决不了的问题，说明问题不在台面——下一步往哪查？</li>
+<li>我付的 AI 费用里，哪一部分是 GPU 的时间？</li>
+<li>买下一台电脑时，四个参数我知道优先看什么了吗？</li>
+</ul>
+<p>本章顺便获得的概念：比特、字节、CPU、内存、存储、GPU、重启。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="02-machine">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+2+%E7%AB%A0+%E6%9C%BA%E5%99%A8%E7%9A%84%E8%A7%A3%E5%89%96%EF%BC%9A%E6%AF%94%E7%89%B9%E3%80%81CPU%E3%80%81%E5%86%85%E5%AD%98%E4%B8%8E%E7%A1%AC%E7%9B%98&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2Fch%2F02-machine.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/02-machine.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/01-platforms.html" class="nav-prev">← 第 1 章 手机软件、桌面软件和网页，不是一回事</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/03-files.html" class="nav-next">第 3 章 你的东西住在哪里：文件与文件夹 →</a>
+</nav>
+</article>
+</main>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
-// Build a self-contained one-page book site from chapters/*.md into docs/index.html.
+// Build a multi-page book site from chapters/*.md into docs/.
 // Family design tokens follow turlamai/racket-programming design/DESIGN.md (2026-11-11 contract)
 // and tlai-product design-standard.md (2026-11-20-minimal-family) — do not fork values here.
+// Architecture: one page per chapter (like the racket book site) + a home page.
 // Reader features (search / progress / resume / copy / drawer / font size / keyboard nav)
 // each map to a real reader task; all vanilla JS, no external dependencies.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -21,6 +22,10 @@ const TOC = [
 const slug = (name) => name.replace(/\.md$/, '');
 const titleOf = (f) => readFileSync(join('chapters', f), 'utf8').match(/^# (.+)$/m)?.[1] ?? f;
 
+const entries = TOC.flatMap(({ part, files }) => files.map((f) => ({ file: f, slug: slug(f), title: titleOf(f), part })));
+const entryOf = (f) => entries.find((e) => e.file === f);
+const partShort = (part) => (part ? part.split(' · ')[0] : '开篇');
+
 // Plain-text extraction for the client-side search index.
 const stripMd = (md) =>
   md
@@ -33,25 +38,23 @@ const stripMd = (md) =>
     .trim();
 
 const SEARCH_INDEX = JSON.stringify(
-  TOC.flatMap(({ files }) =>
-    files.map((f) => ({ slug: slug(f), title: titleOf(f), text: stripMd(readFileSync(join('chapters', f), 'utf8')) }))
-  )
+  entries.map((e) => ({ slug: e.slug, title: e.title, url: `ch/${e.slug}.html`, text: stripMd(readFileSync(join('chapters', e.file), 'utf8')) }))
 );
 
 // Family FeedbackBox semantics, ported from racket-programming components/PageFeedback.tsx.
-const feedbackBox = (f) => {
-  const t = titleOf(f);
+const feedbackBox = (e) => {
+  const pageUrl = `${SITE}/ch/${e.slug}.html`;
   const issueUrl = `https://github.com/${REPO}/issues/new?` + new URLSearchParams({
-    title: `【反馈】${t}`,
-    body: `章节链接：${SITE}#${slug(f)}\n\n问题描述：\n`,
+    title: `【反馈】${e.title}`,
+    body: `章节链接：${pageUrl}\n\n问题描述：\n`,
   }).toString();
-  const editUrl = `https://github.com/${REPO}/edit/main/chapters/${f}`;
+  const editUrl = `https://github.com/${REPO}/edit/main/chapters/${e.file}`;
   const issuesUrl = `https://github.com/${REPO}/issues?q=is%3Aissue`;
   return `<div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
-    <button type="button" class="fb-helpful" data-key="${slug(f)}">有帮助</button>
+    <button type="button" class="fb-helpful" data-key="${e.slug}">有帮助</button>
     <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="${issueUrl}">反馈问题或建议</a>
   </div>
   <div class="fb-links">
@@ -61,43 +64,60 @@ const feedbackBox = (f) => {
 </div>`;
 };
 
-// Family ChapterNav semantics: prev / back to TOC / next, always at the end of the article.
-const chapterNav = (f) => {
-  const all = TOC.flatMap((p) => p.files);
-  const i = all.indexOf(f);
-  const prev = all[i - 1];
-  const next = all[i + 1];
-  const link = (target, cls, fmt) =>
-    target
-      ? `<a href="#${slug(target)}" class="${cls}">${fmt(titleOf(target))}</a>`
-      : `<span class="${cls} is-disabled" aria-hidden="true"></span>`;
+// Family ChapterNav semantics: prev / back to home / next, always at the end of the article.
+// Crossing a part boundary, the target's part is stated (family invariant).
+const chapterNav = (e) => {
+  const i = entries.indexOf(e);
+  const prev = entries[i - 1];
+  const next = entries[i + 1];
+  const link = (target, cls, fmt) => {
+    if (!target) return `<span class="${cls} is-disabled" aria-hidden="true"></span>`;
+    const cross = target.part !== e.part ? `${partShort(target.part)} · ` : '';
+    return `<a href="${rel(e, pageUrlOf(target))}" class="${cls}">${fmt(cross + target.title)}</a>`;
+  };
   return `<nav class="chapter-nav" aria-label="章节导航">
   ${link(prev, 'nav-prev', (t) => '← ' + t)}
-  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="${rel(e, 'index.html')}" class="nav-toc">返回目录</a>
   ${link(next, 'nav-next', (t) => t + ' →')}
 </nav>`;
 };
 
-const navHtml = TOC.map(({ part, files }) => {
-  const items = files
-    .map((f) => `<li><a href="#${slug(f)}">${titleOf(f)}</a></li>`)
-    .join('');
-  const label = part ? `<div class="part">${part}</div>` : '<div class="part">开篇</div>';
-  return `${label}<ul>${items}</ul>`;
-}).join('');
+const rel = (e, path) => (e ? `../${path}` : path); // chapter pages live one level down
+const pageUrlOf = (target) => (target ? `ch/${target.slug}.html` : 'index.html');
 
-const sectionsHtml = TOC.flatMap(({ files }) =>
-  files.map((f) => {
-    const md = readFileSync(join('chapters', f), 'utf8');
-    // Inline chapter SVGs so the built site stays a single self-contained file.
-    const body = marked.parse(md).replace(
-      /<img src="\.\.\/assets\/([\w-]+\.svg)" alt="([^"]*)"\s*\/?>/g,
-      (m, file, alt) =>
-        readFileSync(join('assets', file), 'utf8').replace('<svg ', `<svg role="img" aria-label="${alt}" `),
-    );
-    return `<section class="chapter" id="${slug(f)}" data-file="${f}">\n${body}\n${feedbackBox(f)}\n${chapterNav(f)}\n</section>`;
-  })
-).join('\n');
+const bodyFor = (e) => {
+  const md = readFileSync(join('chapters', e.file), 'utf8');
+  return marked.parse(md).replace(
+    /<img src="\.\.\/assets\/([\w-]+\.svg)" alt="([^"]*)"\s*\/?>/g,
+    (m, file, alt) =>
+      readFileSync(join('assets', file), 'utf8').replace('<svg ', `<svg role="img" aria-label="${alt}" `),
+  );
+};
+
+// Shared sidebar: the full book tree, current chapter marked (family invariant).
+const sidebar = (activeSlug, root) => {
+  const a = (e) => `<li><a href="${root}ch/${e.slug}.html"${e.slug === activeSlug ? ' class="active"' : ''}>${e.title}</a></li>`;
+  const navHtml = TOC.map(({ part, files }) => {
+    const label = part ? `<div class="part">${part}</div>` : '<div class="part">开篇</div>';
+    return `${label}<ul>${files.map((f) => a(entryOf(f))).join('')}</ul>`;
+  }).join('');
+  return `<nav id="toc" aria-label="目录">
+  <a class="book" href="${root}index.html">造完之后</a>
+  <div class="book-sub">AI 时代普通人的技术通识课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  ${navHtml}
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/${REPO}/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%80%A0%E5%AE%8C%E4%B9%8B%E5%90%8E" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>`;
+};
 
 const css = `
 :root {
@@ -144,7 +164,8 @@ button { font-family: inherit; }
   padding: 32px 24px 40px; background: var(--surface); border-right: 1px solid var(--line);
   font-size: 13px; line-height: 1.6; display: flex; flex-direction: column;
 }
-#toc .book { font-weight: 600; color: var(--ink); font-size: 15px; margin-bottom: 4px; }
+#toc .book { font-weight: 600; color: var(--ink); font-size: 15px; margin-bottom: 4px; display: block; }
+#toc a.book:hover { text-decoration: none; color: var(--accent); }
 #toc .book-sub { color: var(--faint); font-size: 11px; letter-spacing: 0.05em; margin-bottom: 20px; }
 #toc .search { margin-bottom: 8px; }
 #toc .search input {
@@ -178,13 +199,9 @@ button { font-family: inherit; }
 #toc .toc-foot button:hover { border-color: var(--mute); color: var(--ink); }
 #toc .toc-foot a { color: var(--mute); }
 #toc .toc-foot a:hover { color: var(--ink); }
-#toc .resume { display: none; margin: 16px -6px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--accent-soft); }
-#toc .resume.show { display: block; }
-#toc .resume .r-label { color: var(--faint); font-size: 11px; letter-spacing: 0.05em; }
-#toc .resume a { display: block; color: var(--accent-strong); font-weight: 500; margin-top: 2px; padding: 0; margin: 2px 0 0; }
 
 main { margin-left: 280px; padding: 0 24px; }
-#cover { max-width: 72ch; margin: 0 auto; padding: 88px 0 64px; text-align: center; }
+#cover { max-width: 72ch; margin: 0 auto; padding: 72px 0 56px; text-align: center; }
 #cover h1 { font-size: 40px; line-height: 1.25; margin: 0 0 12px; color: var(--ink); letter-spacing: 0.06em; }
 #cover .sub { color: var(--ink-2); font-size: 18px; margin-bottom: 28px; }
 #cover .tagline { color: var(--mute); font-size: 15px; line-height: 1.9; }
@@ -196,8 +213,19 @@ main { margin-left: 280px; padding: 0 24px; }
 #resume-top.show { display: block; }
 #resume-top a { color: var(--accent-strong); }
 
-section.chapter { max-width: 72ch; margin: 0 auto; padding: 64px 0; border-top: 1px solid var(--line); }
+.home-toc { max-width: 72ch; margin: 0 auto 64px; }
+.home-toc .ht-part { margin: 40px 0 0; }
+.home-toc .ht-eyebrow { color: var(--faint); font-size: 12px; letter-spacing: 0.05em; }
+.home-toc .ht-title { color: var(--ink); font-size: 18px; font-weight: 600; margin: 4px 0 12px; }
+.home-toc ul { list-style: none; margin: 0; padding: 0; }
+.home-toc li { border-top: 1px solid var(--line); }
+.home-toc li a { display: flex; gap: 16px; padding: 12px 4px; color: var(--ink-2); }
+.home-toc li a:hover { background: var(--raised); text-decoration: none; }
+.home-toc .ht-num { color: var(--faint); font: 500 13px/1.8 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+section.chapter { max-width: 72ch; margin: 0 auto; padding: 56px 0 64px; }
 section.chapter h1 { font-size: 36px; line-height: 1.25; margin: 0 0 8px; color: var(--ink); }
+section.chapter .eyebrow { color: var(--faint); font-size: 12px; letter-spacing: 0.05em; margin: 0 0 8px; }
 section.chapter > blockquote {
   margin: 20px 0 40px; padding: 14px 20px; border-left: 3px solid var(--accent);
   background: var(--accent-soft); color: var(--ink-2); border-radius: 0 8px 8px 0; font-size: 15.5px;
@@ -286,17 +314,20 @@ section.chapter svg { display: block; max-width: 100%; height: auto; margin: 24p
   #toc, .topbar, #progress, .toc-overlay { display: none; }
   main { margin: 0; }
   .feedback, .chapter-nav, .copy-btn { display: none; }
-  section.chapter { border-top: none; page-break-before: always; padding: 24px 0; }
   #cover { page-break-after: always; }
 }
 `;
 
-const script = `
+// Shared runtime: progress, drawer, search, font size, copy, helpful, keyboard paging, resume memory.
+const appJs = `
 (function () {
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var ROOT = document.body.dataset.root || '';
+  var PAGE = document.body.dataset.page || '';
+  var PREV = document.body.dataset.prev || '';
+  var NEXT = document.body.dataset.next || '';
 
-  /* Reading progress bar */
   var bar = $('#progress');
   var ticking = false;
   function updateBar() {
@@ -310,108 +341,80 @@ const script = `
   }, { passive: true });
   updateBar();
 
-  /* TOC current-chapter highlight + resume-reading memory */
-  var links = $$('#toc a[href^="#"]');
-  var byId = {};
-  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
-  var current = null;
-  var currentId = null;
-  function setCurrent(id) {
-    if (current) current.classList.remove('active');
-    current = byId[id] || null;
-    currentId = current ? id : null;
-    if (current) {
-      current.classList.add('active');
-      history.replaceState(null, '', '#' + id);
-      try { localStorage.setItem('atb:last', JSON.stringify({ id: id, title: current.textContent })); } catch (e) {}
-    }
+  /* Resume memory: chapter pages remember themselves; home offers the way back. */
+  if (PAGE && PAGE !== '00-prologue') {
+    var t = document.querySelector('h1');
+    try { localStorage.setItem('atb:last', JSON.stringify({ url: ROOT + 'ch/' + PAGE + '.html', title: t ? t.textContent : PAGE })); } catch (e) {}
   }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) { if (entry.isIntersecting) setCurrent(entry.target.id); });
-  }, { rootMargin: '-15% 0px -75% 0px' });
-  $$('.chapter').forEach(function (s) { obs.observe(s); });
-
-  /* Resume reading */
   var last = null;
   try { last = JSON.parse(localStorage.getItem('atb:last') || 'null'); } catch (e) {}
-  if (last && last.id && document.getElementById(last.id) && last.id !== '00-prologue') {
+  if (!PAGE && last && last.url) {
     var rt = $('#resume-top');
-    rt.innerHTML = '上次读到：<a href="#' + last.id + '">' + last.title + ' →</a>';
-    rt.classList.add('show');
-    var rs = $('#resume');
-    rs.querySelector('a').setAttribute('href', '#' + last.id);
-    rs.querySelector('a').textContent = last.title + ' →';
-    rs.classList.add('show');
+    if (rt) { rt.innerHTML = '上次读到：<a href="' + last.url + '">' + last.title + ' →</a>'; rt.classList.add('show'); }
   }
 
   /* Search */
-  var INDEX = ${SEARCH_INDEX};
   var input = $('#search-input');
-  var results = $('#search-results');
-  var items = [];
-  var sel = -1;
-  function closeResults() { results.innerHTML = ''; items = []; sel = -1; }
-  function openResult(it) {
-    closeResults(); input.blur();
-    var el = document.getElementById(it.slug);
-    if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
-  }
-  function renderResults(q) {
-    var lq = q.toLowerCase();
-    var hits = [];
-    if (lq.length >= 1) {
-      INDEX.forEach(function (it) {
-        var hay = (it.title + ' ' + it.text).toLowerCase();
-        var pos = hay.indexOf(lq);
-        if (pos !== -1) {
-          var start = Math.max(0, pos - 34);
-          var snip = (start > 0 ? '…' : '') + (it.title + ' ' + it.text).slice(start, pos + 66) + '…';
-          hits.push({ slug: it.slug, title: it.title, snip: snip });
-        }
+  if (input) {
+    var results = $('#search-results');
+    var items = [];
+    var sel = -1;
+    var closeResults = function () { results.innerHTML = ''; items = []; sel = -1; };
+    var openResult = function (it) {
+      closeResults(); input.blur();
+      window.location.href = ROOT + it.url;
+    };
+    var renderResults = function (q) {
+      var lq = q.toLowerCase();
+      var hits = [];
+      if (lq.length >= 1) {
+        (window.SEARCH_INDEX || []).forEach(function (it) {
+          var hay = (it.title + ' ' + it.text).toLowerCase();
+          var pos = hay.indexOf(lq);
+          if (pos !== -1) {
+            var start = Math.max(0, pos - 34);
+            var snip = (start > 0 ? '…' : '') + (it.title + ' ' + it.text).slice(start, pos + 66) + '…';
+            hits.push({ slug: it.slug, title: it.title, url: it.url, snip: snip });
+          }
+        });
+        hits = hits.slice(0, 8);
+      }
+      results.innerHTML = hits.length
+        ? hits.map(function (h, i) {
+            var esc = h.snip.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+            var idx = esc.toLowerCase().indexOf(lq);
+            if (idx !== -1) esc = esc.slice(0, idx) + '<mark>' + esc.slice(idx, idx + lq.length) + '</mark>' + esc.slice(idx + lq.length);
+            return '<div class="sr-item" data-i="' + i + '" role="button" tabindex="0"><div class="sr-title">' + h.title + '</div><div class="sr-snippet">' + esc + '</div></div>';
+          }).join('')
+        : (lq ? '<div class="sr-empty">没有找到「' + q.replace(/</g, '&lt;') + '」</div>' : '');
+      items = hits; sel = -1;
+      $$('.sr-item', results).forEach(function (el) {
+        el.addEventListener('click', function () { openResult(items[+el.dataset.i]); });
       });
-      hits = hits.slice(0, 8);
-    }
-    results.innerHTML = hits.length
-      ? hits.map(function (h, i) {
-          var esc = h.snip.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-          var idx = esc.toLowerCase().indexOf(lq);
-          if (idx !== -1) esc = esc.slice(0, idx) + '<mark>' + esc.slice(idx, idx + lq.length) + '</mark>' + esc.slice(idx + lq.length);
-          return '<div class="sr-item" data-i="' + i + '" role="button" tabindex="0"><div class="sr-title">' + h.title + '</div><div class="sr-snippet">' + esc + '</div></div>';
-        }).join('')
-      : (lq ? '<div class="sr-empty">没有找到「' + q.replace(/</g, '&lt;') + '」</div>' : '');
-    items = hits;
-    sel = -1;
-    $$('.sr-item', results).forEach(function (el) {
-      el.addEventListener('click', function () { openResult(items[+el.dataset.i]); });
+    };
+    input.addEventListener('input', function () { renderResults(input.value.trim()); });
+    input.addEventListener('keydown', function (e) {
+      var els = $$('.sr-item', results);
+      if (e.key === 'Escape') { closeResults(); input.blur(); return; }
+      if (!els.length) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        sel = e.key === 'ArrowDown' ? Math.min(sel + 1, els.length - 1) : Math.max(sel - 1, 0);
+        els.forEach(function (el, i) { el.classList.toggle('sel', i === sel); });
+      } else if (e.key === 'Enter' && sel >= 0) {
+        openResult(items[sel]);
+      }
     });
   }
-  input.addEventListener('input', function () { renderResults(input.value.trim()); });
-  input.addEventListener('keydown', function (e) {
-    var els = $$('.sr-item', results);
-    if (e.key === 'Escape') { closeResults(); input.blur(); return; }
-    if (!els.length) return;
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      sel = e.key === 'ArrowDown' ? Math.min(sel + 1, els.length - 1) : Math.max(sel - 1, 0);
-      els.forEach(function (el, i) { el.classList.toggle('sel', i === sel); });
-    } else if (e.key === 'Enter' && sel >= 0) {
-      openResult(items[sel]);
-    }
-  });
+
   document.addEventListener('keydown', function (e) {
     var t = e.target;
     var typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); input.focus(); input.select(); return; }
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k' && input) { e.preventDefault(); input.focus(); input.select(); return; }
     if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key === '/') { e.preventDefault(); input.focus(); return; }
-    var all = ${JSON.stringify(TOC.flatMap((p) => p.files.map(slug)))};
-    if (e.key === 'ArrowRight' && currentId) {
-      var i = all.indexOf(currentId);
-      if (i >= 0 && i + 1 < all.length) location.hash = '#' + all[i + 1];
-    } else if (e.key === 'ArrowLeft' && currentId) {
-      var j = all.indexOf(currentId);
-      if (j > 0) location.hash = '#' + all[j - 1];
-    }
+    if (e.key === '/' && input) { e.preventDefault(); input.focus(); return; }
+    if (e.key === 'ArrowRight' && NEXT) window.location.href = ROOT + NEXT;
+    if (e.key === 'ArrowLeft' && PREV) window.location.href = ROOT + PREV;
   });
 
   /* Mobile drawer */
@@ -421,7 +424,8 @@ const script = `
       var open = document.body.classList.toggle('toc-open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    $('.toc-overlay').addEventListener('click', function () { document.body.classList.remove('toc-open'); });
+    var ov = $('.toc-overlay');
+    if (ov) ov.addEventListener('click', function () { document.body.classList.remove('toc-open'); });
     $$('#toc a').forEach(function (a) {
       a.addEventListener('click', function () { document.body.classList.remove('toc-open'); });
     });
@@ -436,8 +440,9 @@ const script = `
     try { localStorage.setItem('atb:fs', String(fsIdx)); } catch (e) {}
   }
   applyFs();
-  $('#fs-dec').addEventListener('click', function () { fsIdx = Math.max(0, fsIdx - 1); applyFs(); });
-  $('#fs-inc').addEventListener('click', function () { fsIdx = Math.min(2, fsIdx + 1); applyFs(); });
+  var dec = $('#fs-dec'); var inc = $('#fs-inc');
+  if (dec) dec.addEventListener('click', function () { fsIdx = Math.max(0, fsIdx - 1); applyFs(); });
+  if (inc) inc.addEventListener('click', function () { fsIdx = Math.min(2, fsIdx + 1); applyFs(); });
 
   /* Copy buttons on code blocks */
   $$('.chapter pre').forEach(function (pre) {
@@ -455,54 +460,72 @@ const script = `
     });
     pre.appendChild(btn);
   });
+
+  /* Helpful */
+  function thanks(box) {
+    var q = box.querySelector('.fb-q');
+    if (!q || q.dataset.done) return;
+    q.dataset.done = '1';
+    q.textContent = '谢谢！已记下你的反馈。';
+    var s = box.querySelector('.fb-sub');
+    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/${REPO}" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
+    var act = box.querySelector('.fb-actions');
+    if (act) act.remove();
+  }
+  $$('.fb-helpful').forEach(function (btn) {
+    var key = 'atb:helpful:' + btn.dataset.key;
+    try { if (localStorage.getItem(key) === '1') thanks(btn.closest('.feedback')); } catch (e) {}
+    btn.addEventListener('click', function () {
+      try { localStorage.setItem(key, '1'); } catch (e) {}
+      thanks(btn.closest('.feedback'));
+    });
+  });
+
+  /* Home: deep links from the old single-page era -> chapter pages */
+  if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
+    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === location.hash; }))[0];
+    if (target) location.replace(ROOT + target.url);
+  }
 })();
 `;
 
-const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
+const head = (title, root) => `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>造完之后 — AI 时代普通人的技术通识课</title>
+<title>${title}</title>
 <meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="造完之后 — AI 时代普通人的技术通识课">
+<meta property="og:title" content="${title}">
 <meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="${SITE}">
 <meta property="og:image" content="${SITE}/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23FAF9F6' font-family='PingFang SC, sans-serif' font-weight='600'%3E造%3C/text%3E%3C/svg%3E">
-<style>${css}</style>
+<link rel="stylesheet" href="${root}style.css">`;
+
+const pageShell = ({ title, root, activeSlug, page, prevUrl, nextUrl, main }) => `<!doctype html>
+<html lang="zh-CN">
+<head>
+${head(title, root)}
 </head>
-<body id="top">
+<body id="top" data-root="${root}" data-page="${page}" data-prev="${prevUrl}" data-next="${nextUrl}">
 <div id="progress" aria-hidden="true"></div>
 <header class="topbar">
   <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
   <span class="tb-title">造完之后</span>
 </header>
 <div class="toc-overlay" aria-hidden="true"></div>
-<nav id="toc" aria-label="目录">
-  <div class="book">造完之后</div>
-  <div class="book-sub">AI 时代普通人的技术通识课</div>
-  <div class="search">
-    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
-    <div id="search-results" aria-live="polite"></div>
-  </div>
-  ${navHtml}
-  <div id="resume" class="resume"><div class="r-label">继续上次阅读</div><a href="#top">上次读到：…</a></div>
-  <div class="toc-foot">
-    <div class="fs-ctl">
-      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
-      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
-    </div>
-    <a href="https://github.com/${REPO}/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%80%A0%E5%AE%8C%E4%B9%8B%E5%90%8E" target="_blank" rel="noopener noreferrer">问题反馈</a>
-  </div>
-</nav>
+${sidebar(activeSlug, root)}
 <main>
-<div id="cover">
+${main}
+</main>
+<script src="${root}search.js"></script>
+<script src="${root}app.js"></script>
+</body>
+</html>`;
+
+// Home page
+const homeMain = `<div id="cover">
   <div id="resume-top"></div>
   <h1>造完之后</h1>
   <div class="sub">AI 时代普通人的技术通识课</div>
@@ -513,13 +536,60 @@ const html = `<!doctype html>
     <a href="https://github.com/${REPO}/issues" target="_blank" rel="noopener noreferrer">读者反馈</a>
   </div>
 </div>
-${sectionsHtml}
-</main>
-<script>${script}</script>
-</body>
-</html>
-`;
+<div class="home-toc">
+${TOC.map(({ part, files }) => {
+  const seg = part ? part.split(' · ') : ['开篇', '序章'];
+  return `<div class="ht-part">
+  <div class="ht-eyebrow">${seg[0]}</div>
+  <div class="ht-title">${seg[1]}</div>
+  <ul>${files.map((f) => {
+    const e = entryOf(f);
+    const num = String(TOC.flatMap((p) => p.files).indexOf(f) + 1).padStart(2, '0');
+    return `<li><a href="ch/${e.slug}.html"><span class="ht-num">${num}</span><span>${e.title}</span></a></li>`;
+  }).join('')}</ul>
+</div>`;
+}).join('\n')}
+</div>`;
 
-mkdirSync('docs', { recursive: true });
-writeFileSync(join('docs', 'index.html'), html);
-console.log(`docs/index.html written (${html.length} chars)`);
+// Chapter pages
+const chapterPages = entries.map((e, i) => {
+  const prev = entries[i - 1];
+  const next = entries[i + 1];
+  const main = `<article class="chapter">
+  <p class="eyebrow">${e.part ? e.part : '开篇'}</p>
+  <h1>${e.title}</h1>
+  ${bodyFor(e)}
+  ${feedbackBox(e)}
+  ${chapterNav(e)}
+</article>`;
+  return {
+    path: join('docs', 'ch', `${e.slug}.html`),
+    html: pageShell({
+      title: `${e.title} · 造完之后`,
+      root: '../',
+      activeSlug: e.slug,
+      page: e.slug,
+      prevUrl: prev ? `ch/${prev.slug}.html` : '',
+      nextUrl: next ? `ch/${next.slug}.html` : '',
+      main,
+    }),
+  };
+});
+
+const homeHtml = pageShell({
+  title: '造完之后 — AI 时代普通人的技术通识课',
+  root: '',
+  activeSlug: '',
+  page: '',
+  prevUrl: '',
+  nextUrl: `ch/${entries[0].slug}.html`,
+  main: homeMain,
+});
+
+mkdirSync(join('docs', 'ch'), { recursive: true });
+writeFileSync(join('docs', 'style.css'), css);
+writeFileSync(join('docs', 'app.js'), appJs);
+writeFileSync(join('docs', 'search.js'), `window.SEARCH_INDEX = ${SEARCH_INDEX};\n`);
+writeFileSync(join('docs', 'index.html'), homeHtml);
+chapterPages.forEach((p) => writeFileSync(p.path, p.html));
+console.log(`site written: index.html + ${chapterPages.length} chapter pages (style.css, app.js, search.js)`);
