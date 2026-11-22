@@ -27,11 +27,11 @@ npm run build   # 生成 docs/index.html（单文件、无运行时 JS、含深�
 
 ## 部署
 
-站点是纯静态单文件，任意静态托管皆可。GitHub Pages 路线：
+站点是纯静态单文件，任意静态托管皆可。GitHub Pages 路线（已配置）：
 
-1. 推送到 GitHub 仓库；
-2. Settings → Pages → Source 选「Deploy from a branch」→ main → `/docs`；
-3. 自定义域名：在 `docs/` 下放 `CNAME` 文件（内容为域名），并到域名服务商配 DNS——这一步按约定由仓库主人完成。
+1. 仓库 `turlamai/after-the-build`，Pages 源为 main + `/docs`；
+2. 自定义域名 `afterthebuild.jrtx.site`：`docs/CNAME` 文件 + DNS CNAME 记录（`afterthebuild` → `turlamai.github.io`）；
+3. DNS 生效后 GitHub 自动签发证书，开启 Enforce HTTPS。
 
 ## 写作规范
 
