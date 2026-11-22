@@ -7,94 +7,152 @@
 <meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
 <style>
 :root {
-  --paper: #f7f5f1; --ink: #2a2a28; --muted: #8a857c;
-  --accent: #9a5b2d; --accent-soft: #efe4d8; --line: #e3ded6;
-  --code-bg: #efece6; --quote-bg: #f2ede4;
+  --bg: #FAF9F6; --surface: #FFFFFF; --raised: #F5F3EE;
+  --line: #EBE8E0; --line-strong: #E0DCD2;
+  --ink: #2A2820; --ink-2: #4A4740; --mute: #878278; --faint: #A39E93;
+  --accent: #C4683F; --accent-strong: #A8532D; --accent-soft: #FFF4EE;
+  --code-bg: #2A2820; --code-ink: #F5F3EE; --ok: #3E7D4E;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #17181c; --ink: #d9d6cf; --muted: #8f8b83;
-    --accent: #d0a06a; --accent-soft: #26242a; --line: #2c2e34;
-    --code-bg: #212329; --quote-bg: #1e2025;
+    --bg: #1C1A16; --surface: #24221D; --raised: #2C2A24;
+    --line: #35322B; --line-strong: #3F3B33;
+    --ink: #EDEAE3; --ink-2: #C9C3B6; --mute: #9A9485; --faint: #7C766A;
+    --accent: #E08A67; --accent-strong: #FFA98C; --accent-soft: #382A20;
+    --code-bg: #14120E; --code-ink: #EDEAE3; --ok: #7FB88A;
   }
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--paper); color: var(--ink);
-  font: 17px/1.95 -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+  margin: 0; background: var(--bg); color: var(--ink-2);
+  font: 400 16px/1.8 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   text-rendering: optimizeLegibility;
 }
+::selection { background: var(--accent-soft); color: var(--ink); }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--mute); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--accent-strong); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
 #toc {
   position: fixed; inset: 0 auto 0 0; width: 264px; overflow-y: auto;
-  padding: 40px 24px 60px; border-right: 1px solid var(--line);
-  font-size: 13.5px; line-height: 1.6;
+  padding: 32px 24px 40px; background: var(--surface); border-right: 1px solid var(--line);
+  font-size: 13px; line-height: 1.6; display: flex; flex-direction: column;
 }
-#toc .part { color: var(--accent); font-weight: 600; margin: 22px 0 8px; letter-spacing: .04em; }
-#toc .part:first-child { margin-top: 0; }
+#toc .book { font-weight: 600; color: var(--ink); font-size: 15px; margin-bottom: 4px; }
+#toc .book-sub { color: var(--faint); font-size: 11px; letter-spacing: 0.05em; margin-bottom: 20px; }
+#toc .part { color: var(--faint); font-weight: 600; font-size: 12px; letter-spacing: 0.05em; margin: 20px 0 8px; }
 #toc ul { list-style: none; margin: 0; padding: 0; }
-#toc li { margin: 7px 0; }
-#toc a { color: var(--muted); text-decoration: none; }
-#toc a:hover { color: var(--ink); }
+#toc li { margin: 6px 0; }
+#toc a { display: block; padding: 4px 10px; margin: -4px -10px; border-radius: 6px; color: var(--mute); }
+#toc a:hover { color: var(--ink); background: var(--raised); }
+#toc a.active { color: var(--accent); background: var(--accent-soft); font-weight: 500; }
+#toc .toc-feedback { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line); }
+#toc .toc-feedback a { color: var(--mute); }
+
 main { margin-left: 264px; padding: 0 24px; }
-#cover { max-width: 680px; margin: 0 auto; padding: 96px 0 72px; text-align: center; }
-#cover h1 { font-size: 44px; margin: 0 0 10px; letter-spacing: .06em; }
-#cover .sub { color: var(--accent); font-size: 18px; margin-bottom: 26px; }
-#cover .tagline { color: var(--muted); font-size: 15px; }
-#cover .author { color: var(--muted); margin-top: 34px; font-size: 14px; letter-spacing: .3em; }
-section.chapter {
-  max-width: 680px; margin: 0 auto; padding: 72px 0;
-  border-top: 1px solid var(--line);
-}
-section.chapter h1 {
-  font-size: 27px; line-height: 1.5; margin: 0 0 6px;
-  letter-spacing: .02em;
-}
+#cover { max-width: 72ch; margin: 0 auto; padding: 88px 0 64px; text-align: center; }
+#cover h1 { font-size: 40px; line-height: 1.25; margin: 0 0 12px; color: var(--ink); letter-spacing: 0.06em; }
+#cover .sub { color: var(--ink-2); font-size: 18px; margin-bottom: 28px; }
+#cover .tagline { color: var(--mute); font-size: 15px; line-height: 1.9; }
+#cover .author { color: var(--faint); margin-top: 32px; font-size: 14px; letter-spacing: 0.3em; }
+#cover .cover-links { margin-top: 20px; font-size: 12px; }
+#cover .cover-links a { color: var(--mute); margin: 0 8px; }
+#cover .cover-links a:hover { color: var(--ink); }
+
+section.chapter { max-width: 72ch; margin: 0 auto; padding: 64px 0; border-top: 1px solid var(--line); }
+section.chapter h1 { font-size: 36px; line-height: 1.25; margin: 0 0 8px; color: var(--ink); }
 section.chapter > blockquote {
-  margin: 18px 0 34px; padding: 14px 20px; border-left: 3px solid var(--accent);
-  background: var(--quote-bg); color: var(--muted); border-radius: 0 8px 8px 0;
-  font-size: 15.5px;
+  margin: 20px 0 40px; padding: 14px 20px; border-left: 3px solid var(--accent);
+  background: var(--accent-soft); color: var(--ink-2); border-radius: 0 8px 8px 0; font-size: 15.5px;
 }
 section.chapter > blockquote p { margin: 0; }
-h2 { font-size: 20px; margin: 44px 0 14px; color: var(--accent); letter-spacing: .02em; }
-h3 { font-size: 17px; margin: 30px 0 10px; }
-p { margin: 14px 0; }
-ul, ol { margin: 14px 0; padding-left: 26px; }
-li { margin: 9px 0; }
+h2 { font-size: 28px; line-height: 1.3; margin: 40px 0 16px; color: var(--ink); }
+h3 { font-size: 21.6px; margin: 32px 0 12px; color: var(--ink); }
+p { margin: 16px 0; }
+ul, ol { margin: 16px 0; padding-left: 26px; }
+li { margin: 8px 0; }
 hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
 code {
-  background: var(--code-bg); padding: 2px 7px; border-radius: 5px;
-  font: 0.85em/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--raised); color: var(--accent); padding: 0.15em 0.375em; border-radius: 4px;
+  font: 400 0.875em/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
-pre { background: var(--code-bg); border-radius: 10px; padding: 18px 20px; overflow-x: auto; }
-pre code { background: none; padding: 0; }
-section.chapter svg { display: block; max-width: 100%; height: auto; margin: 26px auto; border-radius: 10px; }
-a { color: var(--accent); }
+pre { background: var(--code-bg); color: var(--code-ink); border-radius: 8px; padding: 16px 20px; overflow-x: auto; }
+pre code { background: none; color: var(--code-ink); padding: 0; font-size: 0.875rem; line-height: 1.7; }
 strong { color: var(--ink); }
+section.chapter svg { display: block; max-width: 100%; height: auto; margin: 24px auto; border: 1px solid var(--line); border-radius: 8px; }
+
+.feedback {
+  margin-top: 64px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
+  font-size: 14px;
+}
+.fb-q { margin: 0; font-weight: 500; color: var(--ink); }
+.fb-sub { margin: 4px 0 0; color: var(--mute); }
+.fb-actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; }
+.fb-actions button, .fb-actions .fb-issue {
+  display: inline-flex; align-items: center; cursor: pointer;
+  border-radius: 6px; padding: 7px 14px; font-size: 14px; line-height: 1.5; font-family: inherit;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.fb-actions button { border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-2); }
+.fb-actions button:hover { border-color: var(--mute); color: var(--ink); }
+.fb-actions .fb-issue { border: 1px solid var(--ink); background: var(--ink); color: var(--bg); }
+.fb-actions .fb-issue:hover { background: var(--ink-2); border-color: var(--ink-2); text-decoration: none; }
+.fb-links { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; column-gap: 16px; row-gap: 4px; font-size: 12px; }
+.fb-links a { color: var(--mute); }
+.fb-links a:hover { color: var(--ink); }
+.fb-sub a { color: var(--accent-strong); }
+
+.chapter-nav {
+  margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  font-size: 13px;
+}
+.chapter-nav .nav-prev, .chapter-nav .nav-next { color: var(--mute); max-width: 40%; }
+.chapter-nav .nav-toc { color: var(--faint); flex-shrink: 0; }
+.chapter-nav a:hover { color: var(--accent); text-decoration: none; }
+.chapter-nav .is-disabled { color: var(--faint); opacity: 0.5; }
+
 @media (max-width: 960px) {
-  #toc { position: static; width: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 28px 24px; }
+  #toc { position: static; width: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 24px; }
   main { margin-left: 0; }
   #cover { padding-top: 48px; }
-  #cover h1 { font-size: 34px; }
+  #cover h1 { font-size: 32px; }
+  section.chapter h1 { font-size: 28px; }
+  .chapter-nav { flex-wrap: wrap; }
 }
 @media print {
-  #toc, #cover .author-note { display: none; }
+  #toc { display: none; }
   main { margin: 0; }
+  .feedback, .chapter-nav { display: none; }
   section.chapter { border-top: none; page-break-before: always; padding: 24px 0; }
   #cover { page-break-after: always; }
 }
 </style>
 </head>
-<body>
-<nav id="toc" aria-label="目录"><div class="part">开篇</div><ul><li><a href="#00-prologue">序章 一个只有你自己能打开的网页</a></li></ul><div class="part">第一部 · 世界观</div><ul><li><a href="#01-platforms">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="#02-files">第 2 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="#03-cli-gui">第 3 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="#04-language">第 4 章 编程语言：AI 的母语</a></li><li><a href="#05-network">第 5 章 一次点击的旅程：网络是什么</a></li></ul><div class="part">第二部 · 造完之后</div><ul><li><a href="#06-deploy">第 6 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="#07-debug">第 7 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="#08-secrets">第 8 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="#09-cost">第 9 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="#10-data">第 10 章 数据丢了怎么办：备份与搬家</a></li><li><a href="#11-versions">第 11 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><div class="part">第三部 · 拿住之后</div><ul><li><a href="#12-security">第 12 章 它安全吗：把门关好</a></li><li><a href="#13-ask-for-help">第 13 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="#14-maintenance">第 14 章 让它活过三个月：维护的日课</a></li></ul><div class="part">第四部 · 一页纸与工具箱</div><ul><li><a href="#15-40-questions">第 15 章 四十个问题：把这本书装进一页纸</a></li><li><a href="#appendix-a-glossary">附录 A 黑话词典</a></li><li><a href="#appendix-b-ai-templates">附录 B 问 AI 的模板库</a></li><li><a href="#appendix-c-concept-map">附录 C 全书概念地图</a></li></ul></nav>
+<body id="top">
+<nav id="toc" aria-label="目录">
+  <div class="book">造完之后</div>
+  <div class="book-sub">AI 时代普通人的技术通识课</div>
+  <div class="part">开篇</div><ul><li><a href="#00-prologue">序章 一个只有你自己能打开的网页</a></li></ul><div class="part">第一部 · 世界观</div><ul><li><a href="#01-platforms">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="#02-files">第 2 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="#03-cli-gui">第 3 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="#04-language">第 4 章 编程语言：AI 的母语</a></li><li><a href="#05-network">第 5 章 一次点击的旅程：网络是什么</a></li></ul><div class="part">第二部 · 造完之后</div><ul><li><a href="#06-deploy">第 6 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="#07-debug">第 7 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="#08-secrets">第 8 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="#09-cost">第 9 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="#10-data">第 10 章 数据丢了怎么办：备份与搬家</a></li><li><a href="#11-versions">第 11 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><div class="part">第三部 · 拿住之后</div><ul><li><a href="#12-security">第 12 章 它安全吗：把门关好</a></li><li><a href="#13-ask-for-help">第 13 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="#14-maintenance">第 14 章 让它活过三个月：维护的日课</a></li></ul><div class="part">第四部 · 一页纸与工具箱</div><ul><li><a href="#15-40-questions">第 15 章 四十个问题：把这本书装进一页纸</a></li><li><a href="#appendix-a-glossary">附录 A 黑话词典</a></li><li><a href="#appendix-b-ai-templates">附录 B 问 AI 的模板库</a></li><li><a href="#appendix-c-concept-map">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-feedback"><a href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%80%A0%E5%AE%8C%E4%B9%8B%E5%90%8E" target="_blank" rel="noopener noreferrer">问题反馈</a></div>
+</nav>
 <main>
 <div id="cover">
   <h1>造完之后</h1>
   <div class="sub">AI 时代普通人的技术通识课</div>
   <div class="tagline">答案免费，问题稀缺。<br>AI 替你造出了东西，这本书教你把它真正拿在手里。</div>
   <div class="author">吉人</div>
+  <div class="cover-links">
+    <a href="https://github.com/turlamai/after-the-build" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
+    <a href="https://github.com/turlamai/after-the-build/issues" target="_blank" rel="noopener noreferrer">读者反馈</a>
+  </div>
 </div>
-<section class="chapter" id="00-prologue">
+<section class="chapter" id="00-prologue" data-file="00-prologue.md">
 <h1>序章 一个只有你自己能打开的网页</h1>
 <blockquote>
 <p>答案免费，问题稀缺。你永远无法问出你不知道的东西，这本书的全部工作，就是把那些问题提前装进你的口袋。</p>
@@ -125,8 +183,25 @@ strong { color: var(--ink); }
 <hr>
 <p>本章顺便获得的概念：localhost、部署（第 6 章展开）。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="00-prologue">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E5%BA%8F%E7%AB%A0+%E4%B8%80%E4%B8%AA%E5%8F%AA%E6%9C%89%E4%BD%A0%E8%87%AA%E5%B7%B1%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E7%BD%91%E9%A1%B5&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2300-prologue%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/00-prologue.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <span class="nav-prev is-disabled" aria-hidden="true"></span>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#01-platforms" class="nav-next">第 1 章 手机软件、桌面软件和网页，不是一回事 →</a>
+</nav>
 </section>
-<section class="chapter" id="01-platforms">
+<section class="chapter" id="01-platforms" data-file="01-platforms.md">
 <h1>第 1 章 手机软件、桌面软件和网页，不是一回事</h1>
 <blockquote>
 <p>当 AI 默认递给你一个网页时，它其实替你做了一个重要的决定。你至少要知道，它替你决定了什么。</p>
@@ -234,8 +309,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：原生应用、桌面软件、网页应用、服务器、应用商店、分发、安装包、响应式。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="01-platforms">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+1+%E7%AB%A0+%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6%E3%80%81%E6%A1%8C%E9%9D%A2%E8%BD%AF%E4%BB%B6%E5%92%8C%E7%BD%91%E9%A1%B5%EF%BC%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E5%9B%9E%E4%BA%8B&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2301-platforms%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/01-platforms.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#00-prologue" class="nav-prev">← 序章 一个只有你自己能打开的网页</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#02-files" class="nav-next">第 2 章 你的东西住在哪里：文件与文件夹 →</a>
+</nav>
 </section>
-<section class="chapter" id="02-files">
+<section class="chapter" id="02-files" data-file="02-files.md">
 <h1>第 2 章 你的东西住在哪里：文件与文件夹</h1>
 <blockquote>
 <p>所有软件问题，追到最底下都是一个问题：它是一个文件，文件在文件夹里，文件夹在某个磁盘上。</p>
@@ -323,8 +415,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：文件、文件夹、文件系统、根目录、路径、扩展名。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="02-files">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+2+%E7%AB%A0+%E4%BD%A0%E7%9A%84%E4%B8%9C%E8%A5%BF%E4%BD%8F%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9A%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2302-files%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/02-files.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#01-platforms" class="nav-prev">← 第 1 章 手机软件、桌面软件和网页，不是一回事</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#03-cli-gui" class="nav-next">第 3 章 黑底白字的窗口：GUI 与命令行 →</a>
+</nav>
 </section>
-<section class="chapter" id="03-cli-gui">
+<section class="chapter" id="03-cli-gui" data-file="03-cli-gui.md">
 <h1>第 3 章 黑底白字的窗口：GUI 与命令行</h1>
 <blockquote>
 <p>命令行不是黑客工具，只是另一扇跟电脑说话的窗户。你会用鼠标，就一定会用键盘跟它说话。</p>
@@ -395,8 +504,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：GUI、命令行、终端、命令、输出、管理员权限、sudo。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="03-cli-gui">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+3+%E7%AB%A0+%E9%BB%91%E5%BA%95%E7%99%BD%E5%AD%97%E7%9A%84%E7%AA%97%E5%8F%A3%EF%BC%9AGUI+%E4%B8%8E%E5%91%BD%E4%BB%A4%E8%A1%8C&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2303-cli-gui%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/03-cli-gui.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#02-files" class="nav-prev">← 第 2 章 你的东西住在哪里：文件与文件夹</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#04-language" class="nav-next">第 4 章 编程语言：AI 的母语 →</a>
+</nav>
 </section>
-<section class="chapter" id="04-language">
+<section class="chapter" id="04-language" data-file="04-language.md">
 <h1>第 4 章 编程语言：AI 的母语</h1>
 <blockquote>
 <p>机器听不懂「随便」「差不多」「大概那样」。它只认无歧义的指令——这既是 AI 会写错的原因，也是你能管住它的杠杆。</p>
@@ -431,8 +557,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：编程语言、源代码、歧义、变量、条件、循环、牵连。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="04-language">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+4+%E7%AB%A0+%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9AAI+%E7%9A%84%E6%AF%8D%E8%AF%AD&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2304-language%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/04-language.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#03-cli-gui" class="nav-prev">← 第 3 章 黑底白字的窗口：GUI 与命令行</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#05-network" class="nav-next">第 5 章 一次点击的旅程：网络是什么 →</a>
+</nav>
 </section>
-<section class="chapter" id="05-network">
+<section class="chapter" id="05-network" data-file="05-network.md">
 <h1>第 5 章 一次点击的旅程：网络是什么</h1>
 <blockquote>
 <p>序章那扇打不开的门，谜底在这一章。你不需要懂协议，只需要记住一张地图：谁在敲门，谁住在门后。</p>
@@ -505,8 +648,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：客户端、服务器、IP 地址、域名、DNS、localhost、HTTPS、明信片与密封信。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="05-network">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+5+%E7%AB%A0+%E4%B8%80%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%97%85%E7%A8%8B%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%98%AF%E4%BB%80%E4%B9%88&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2305-network%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/05-network.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#04-language" class="nav-prev">← 第 4 章 编程语言：AI 的母语</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#06-deploy" class="nav-next">第 6 章 上线：把 localhost 变成一个真正的网址 →</a>
+</nav>
 </section>
-<section class="chapter" id="06-deploy">
+<section class="chapter" id="06-deploy" data-file="06-deploy.md">
 <h1>第 6 章 上线：把 localhost 变成一个真正的网址</h1>
 <blockquote>
 <p>部署听起来像专业术语，本质就一句话：把程序从你的电脑，搬进全世界都能敲门的服务器，再给它一个好记的地址。</p>
@@ -576,8 +736,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：部署、托管平台、域名、仓库、GitHub、无痕验收。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="06-deploy">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+6+%E7%AB%A0+%E4%B8%8A%E7%BA%BF%EF%BC%9A%E6%8A%8A+localhost+%E5%8F%98%E6%88%90%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%BD%91%E5%9D%80&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2306-deploy%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/06-deploy.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#05-network" class="nav-prev">← 第 5 章 一次点击的旅程：网络是什么</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#07-debug" class="nav-next">第 7 章 AI 说改好了，为什么还是坏的：验收与排错 →</a>
+</nav>
 </section>
-<section class="chapter" id="07-debug">
+<section class="chapter" id="07-debug" data-file="07-debug.md">
 <h1>第 7 章 AI 说改好了，为什么还是坏的：验收与排错</h1>
 <blockquote>
 <p>AI 说「已修复」，意思是「按它的理解改完了」。理解可以错，改也可以错——所以最后一道验收，永远是你的眼睛。</p>
@@ -611,8 +788,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：验收、回归、复现、报错、缓存。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="07-debug">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+7+%E7%AB%A0+AI+%E8%AF%B4%E6%94%B9%E5%A5%BD%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%98%AF%E5%9D%8F%E7%9A%84%EF%BC%9A%E9%AA%8C%E6%94%B6%E4%B8%8E%E6%8E%92%E9%94%99&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2307-debug%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/07-debug.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#06-deploy" class="nav-prev">← 第 6 章 上线：把 localhost 变成一个真正的网址</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#08-secrets" class="nav-next">第 8 章 打死不能发出去的东西：密钥与隐私 →</a>
+</nav>
 </section>
-<section class="chapter" id="08-secrets">
+<section class="chapter" id="08-secrets" data-file="08-secrets.md">
 <h1>第 8 章 打死不能发出去的东西：密钥与隐私</h1>
 <blockquote>
 <p>有些东西发出去的瞬间不响，过几天才会炸。密钥就是这类东西的典型：泄露是安静的，损失是延时的。</p>
@@ -686,8 +880,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：密钥、API、API Key、环境变量、.env、公开仓库、最小权限。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="08-secrets">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+8+%E7%AB%A0+%E6%89%93%E6%AD%BB%E4%B8%8D%E8%83%BD%E5%8F%91%E5%87%BA%E5%8E%BB%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%9A%E5%AF%86%E9%92%A5%E4%B8%8E%E9%9A%90%E7%A7%81&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2308-secrets%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/08-secrets.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#07-debug" class="nav-prev">← 第 7 章 AI 说改好了，为什么还是坏的：验收与排错</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#09-cost" class="nav-next">第 9 章 这个月为什么扣了我两百块：钱都花在哪 →</a>
+</nav>
 </section>
-<section class="chapter" id="09-cost">
+<section class="chapter" id="09-cost" data-file="09-cost.md">
 <h1>第 9 章 这个月为什么扣了我两百块：钱都花在哪</h1>
 <blockquote>
 <p>免费的门槛最低，付费的坑最深。中间那条线，是「你知不知道自己在为什么付钱」。</p>
@@ -721,8 +932,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：算力、存储、流量、订阅、token、计费、免费额度、预付与后付。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="09-cost">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+9+%E7%AB%A0+%E8%BF%99%E4%B8%AA%E6%9C%88%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A3%E4%BA%86%E6%88%91%E4%B8%A4%E7%99%BE%E5%9D%97%EF%BC%9A%E9%92%B1%E9%83%BD%E8%8A%B1%E5%9C%A8%E5%93%AA&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2309-cost%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/09-cost.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#08-secrets" class="nav-prev">← 第 8 章 打死不能发出去的东西：密钥与隐私</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#10-data" class="nav-next">第 10 章 数据丢了怎么办：备份与搬家 →</a>
+</nav>
 </section>
-<section class="chapter" id="10-data">
+<section class="chapter" id="10-data" data-file="10-data.md">
 <h1>第 10 章 数据丢了怎么办：备份与搬家</h1>
 <blockquote>
 <p>东西坏了可以重造，数据丢了就是丢了。全书的优先级里，数据永远排第一。</p>
@@ -794,8 +1022,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：数据、数据库、缓存与正本、平台锁定、数据导出、3-2-1 备份。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="10-data">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+10+%E7%AB%A0+%E6%95%B0%E6%8D%AE%E4%B8%A2%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9A%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%90%AC%E5%AE%B6&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2310-data%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/10-data.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#09-cost" class="nav-prev">← 第 9 章 这个月为什么扣了我两百块：钱都花在哪</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#11-versions" class="nav-next">第 11 章 昨天还能用，今天怎么就坏了：版本与依赖 →</a>
+</nav>
 </section>
-<section class="chapter" id="11-versions">
+<section class="chapter" id="11-versions" data-file="11-versions.md">
 <h1>第 11 章 昨天还能用，今天怎么就坏了：版本与依赖</h1>
 <blockquote>
 <p>后悔药是真实存在的，它的行话叫版本控制。学会它之前，你每次「就改一点」都是在走钢丝。</p>
@@ -875,8 +1120,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：依赖、版本控制、Git、提交（commit）、回滚、仓库。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="11-versions">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+11+%E7%AB%A0+%E6%98%A8%E5%A4%A9%E8%BF%98%E8%83%BD%E7%94%A8%EF%BC%8C%E4%BB%8A%E5%A4%A9%E6%80%8E%E4%B9%88%E5%B0%B1%E5%9D%8F%E4%BA%86%EF%BC%9A%E7%89%88%E6%9C%AC%E4%B8%8E%E4%BE%9D%E8%B5%96&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2311-versions%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/11-versions.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#10-data" class="nav-prev">← 第 10 章 数据丢了怎么办：备份与搬家</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#12-security" class="nav-next">第 12 章 它安全吗：把门关好 →</a>
+</nav>
 </section>
-<section class="chapter" id="12-security">
+<section class="chapter" id="12-security" data-file="12-security.md">
 <h1>第 12 章 它安全吗：把门关好</h1>
 <blockquote>
 <p>你的东西一上线，就开了一扇面向全世界的门。进来的不全是朋友——互联网上永远有一群机器人在挨家挨户试门锁。</p>
@@ -910,8 +1172,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：密码管理器、两步验证、安全审查、用户数据、红线。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="12-security">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+12+%E7%AB%A0+%E5%AE%83%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9A%E6%8A%8A%E9%97%A8%E5%85%B3%E5%A5%BD&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2312-security%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/12-security.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#11-versions" class="nav-prev">← 第 11 章 昨天还能用，今天怎么就坏了：版本与依赖</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#13-ask-for-help" class="nav-next">第 13 章 什么时候该花钱找人：自己做的边界 →</a>
+</nav>
 </section>
-<section class="chapter" id="13-ask-for-help">
+<section class="chapter" id="13-ask-for-help" data-file="13-ask-for-help.md">
 <h1>第 13 章 什么时候该花钱找人：自己做的边界</h1>
 <blockquote>
 <p>「自己动手」有一个隐藏的计价器：你的时间、你的挫败、和你手里东西的风险。这个计价器响的时候，找人不是失败，是止损。</p>
@@ -942,8 +1221,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：赌注、外包、付费咨询、需求说明书、产权。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="13-ask-for-help">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+13+%E7%AB%A0+%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%AF%A5%E8%8A%B1%E9%92%B1%E6%89%BE%E4%BA%BA%EF%BC%9A%E8%87%AA%E5%B7%B1%E5%81%9A%E7%9A%84%E8%BE%B9%E7%95%8C&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2313-ask-for-help%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/13-ask-for-help.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#12-security" class="nav-prev">← 第 12 章 它安全吗：把门关好</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#14-maintenance" class="nav-next">第 14 章 让它活过三个月：维护的日课 →</a>
+</nav>
 </section>
-<section class="chapter" id="14-maintenance">
+<section class="chapter" id="14-maintenance" data-file="14-maintenance.md">
 <h1>第 14 章 让它活过三个月：维护的日课</h1>
 <blockquote>
 <p>造出来只需要一个晚上，让它活着需要每个星期十分钟。软件不是在完成的那一刻最值钱，是在活着的每一天里值钱。</p>
@@ -976,8 +1272,25 @@ strong { color: var(--ink); }
 </ul>
 <p>本章顺便获得的概念：维护、证书续期、监控、下线、生命周期。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="14-maintenance">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+14+%E7%AB%A0+%E8%AE%A9%E5%AE%83%E6%B4%BB%E8%BF%87%E4%B8%89%E4%B8%AA%E6%9C%88%EF%BC%9A%E7%BB%B4%E6%8A%A4%E7%9A%84%E6%97%A5%E8%AF%BE&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2314-maintenance%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/14-maintenance.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#13-ask-for-help" class="nav-prev">← 第 13 章 什么时候该花钱找人：自己做的边界</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#15-40-questions" class="nav-next">第 15 章 四十个问题：把这本书装进一页纸 →</a>
+</nav>
 </section>
-<section class="chapter" id="15-40-questions">
+<section class="chapter" id="15-40-questions" data-file="15-40-questions.md">
 <h1>第 15 章 四十个问题：把这本书装进一页纸</h1>
 <blockquote>
 <p>全书十五个章节，浓缩下来是四十个问题。答案 AI 免费送你，问题才是稀缺品——这一章就是把稀缺品一次性交给你。</p>
@@ -1053,8 +1366,25 @@ strong { color: var(--ink); }
 <p>打印这一章贴在墙上，或者把八组问题抄进你的备忘录，每月体检日（第 14 章）过一遍。它还是一份活的文档：每经历一次事故，往里加一条你自己的问题——那一条往往比这四十条都值钱。</p>
 <p>四十个问题背后，站着四十多个概念，从 localhost 到版本控制。你已经把它们全部见过一遍了。这本书到此交还给你：机器写代码，人负责判断——而判断的第一步，永远是问出正确的问题。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="15-40-questions">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+15+%E7%AB%A0+%E5%9B%9B%E5%8D%81%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A%E6%8A%8A%E8%BF%99%E6%9C%AC%E4%B9%A6%E8%A3%85%E8%BF%9B%E4%B8%80%E9%A1%B5%E7%BA%B8&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%2315-40-questions%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/15-40-questions.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#14-maintenance" class="nav-prev">← 第 14 章 让它活过三个月：维护的日课</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#appendix-a-glossary" class="nav-next">附录 A 黑话词典 →</a>
+</nav>
 </section>
-<section class="chapter" id="appendix-a-glossary">
+<section class="chapter" id="appendix-a-glossary" data-file="appendix-a-glossary.md">
 <h1>附录 A 黑话词典</h1>
 <blockquote>
 <p>技术人嘴里那些词，翻成普通话只需要一两句话。按主题分组，按需查阅。</p>
@@ -1131,8 +1461,25 @@ strong { color: var(--ink); }
 <li>最小权限：能只读就别全权，能限内就别放开，对人对服务都成立。</li>
 </ul>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="appendix-a-glossary">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%99%84%E5%BD%95+A+%E9%BB%91%E8%AF%9D%E8%AF%8D%E5%85%B8&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%23appendix-a-glossary%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/appendix-a-glossary.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#15-40-questions" class="nav-prev">← 第 15 章 四十个问题：把这本书装进一页纸</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#appendix-b-ai-templates" class="nav-next">附录 B 问 AI 的模板库 →</a>
+</nav>
 </section>
-<section class="chapter" id="appendix-b-ai-templates">
+<section class="chapter" id="appendix-b-ai-templates" data-file="appendix-b-ai-templates.md">
 <h1>附录 B 问 AI 的模板库</h1>
 <blockquote>
 <p>全书教过的「怎么问」，收拢成八个可以直接复制的模板。填空，发送，省掉大半的来回。</p>
@@ -1206,8 +1553,25 @@ strong { color: var(--ink); }
 <p>一次只发一个模板对应一件事。排错的信里夹一个新需求，等于让医生一边看病一边听你讲装修计划。</p>
 <p>答不上来就追问。AI 的第一次回答常常不是最好的那个，说「再具体一点」「给我分步操作」，它不会烦。</p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="appendix-b-ai-templates">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%99%84%E5%BD%95+B+%E9%97%AE+AI+%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%BA%93&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%23appendix-b-ai-templates%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/appendix-b-ai-templates.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#appendix-a-glossary" class="nav-prev">← 附录 A 黑话词典</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <a href="#appendix-c-concept-map" class="nav-next">附录 C 全书概念地图 →</a>
+</nav>
 </section>
-<section class="chapter" id="appendix-c-concept-map">
+<section class="chapter" id="appendix-c-concept-map" data-file="appendix-c-concept-map.md">
 <h1>附录 C 全书概念地图</h1>
 <blockquote>
 <p>体系先于细节。这张图是全书的骨架——四十多个概念不是散落的名词，是一座四层建筑的房间号。</p>
@@ -1272,7 +1636,65 @@ strong { color: var(--ink); }
 </svg>
 </p>
 
+<div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="appendix-c-concept-map">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%99%84%E5%BD%95+C+%E5%85%A8%E4%B9%A6%E6%A6%82%E5%BF%B5%E5%9C%B0%E5%9B%BE&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Fafterthebuild.jrtx.site%23appendix-c-concept-map%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/edit/main/chapters/appendix-c-concept-map.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/after-the-build/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+<nav class="chapter-nav" aria-label="章节导航">
+  <a href="#appendix-b-ai-templates" class="nav-prev">← 附录 B 问 AI 的模板库</a>
+  <a href="#top" class="nav-toc">返回目录</a>
+  <span class="nav-next is-disabled" aria-hidden="true"></span>
+</nav>
 </section>
 </main>
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a[href^="#"]'));
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var current = null;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      if (current) current.classList.remove('active');
+      current = byId[entry.target.id] || null;
+      if (current) {
+        current.classList.add('active');
+        history.replaceState(null, '', '#' + entry.target.id);
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  document.querySelectorAll('section.chapter').forEach(function (s) { obs.observe(s); });
+
+  function thanks(box) {
+    var q = box.querySelector('.fb-q');
+    if (!q || q.dataset.done) return;
+    q.dataset.done = '1';
+    q.textContent = '谢谢！已记下你的反馈。';
+    var s = box.querySelector('.fb-sub');
+    if (s) {
+      s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/turlamai/after-the-build" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
+    }
+    var act = box.querySelector('.fb-actions');
+    if (act) act.remove();
+  }
+  document.querySelectorAll('.fb-helpful').forEach(function (btn) {
+    var key = 'atb:helpful:' + btn.dataset.key;
+    try { if (localStorage.getItem(key) === '1') thanks(btn.closest('.feedback')); } catch (e) {}
+    btn.addEventListener('click', function () {
+      try { localStorage.setItem(key, '1'); } catch (e) {}
+      thanks(btn.closest('.feedback'));
+    });
+  });
+})();
+</script>
 </body>
 </html>

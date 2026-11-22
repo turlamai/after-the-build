@@ -33,6 +33,12 @@ npm run build   # 生成 docs/index.html（单文件、无运行时 JS、含深�
 2. 自定义域名 `afterthebuild.jrtx.site`：`docs/CNAME` 文件 + DNS CNAME 记录（`afterthebuild` → `turlamai.github.io`）；
 3. DNS 生效后 GitHub 自动签发证书，开启 Enforce HTTPS。
 
+## 设计契约
+
+- 视觉令牌对齐家族标准：`tlai-product/references/design-standard.md`（修订 2026-11-minimal-family）与 `turlamai/racket-programming` 的 `design/DESIGN.md`（2026-11-11 契约）。令牌值单一真源是 `build.mjs` 内的 CSS（亮暗成对），不在文档复制数值表。
+- 组件语义沿用家族词汇：FeedbackBox（有帮助/反馈问题/编辑本章/读者反馈）、ChapterNav（上一章/返回目录/下一章，正文末尾固定）、侧栏当前章 accent 标亮、代码块双主题深底「展品」式。
+- 已记录例外：单文件静态站无构建框架；内联最小 JS 仅两处（TOC 当前章高亮、有帮助态的 localStorage 记忆）；SelectionPill（选中浮出反馈）暂未移植，见 racket 站 components/PageFeedback.tsx；无自托管字体（系统栈）。
+
 ## 写作规范
 
 - 排版遵循 tlai-note 共享创作规范（盘古之白、段落 50-160 字、标题层级、加粗与 CJK 边界等）；
