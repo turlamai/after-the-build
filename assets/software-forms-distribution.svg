@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 480" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="980" height="480" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">软件的三种形态与分发</text>
+
+  <text x="115" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">形态</text>
+  <text x="345" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">谁做的</text>
+  <text x="605" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">怎么交出去</text>
+  <text x="850" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">到用户手里</text>
+
+  <!-- row 1: native app -->
+  <rect x="40" y="90" width="150" height="80" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="115" y="124" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">原生应用</text>
+  <text x="115" y="146" font-size="9" fill="#1a1a1a" text-anchor="middle">长在手机里</text>
+
+  <rect x="240" y="90" width="210" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="345" y="136" font-size="10" fill="#1a1a1a" text-anchor="middle">开发者写好、申请上架</text>
+
+  <rect x="500" y="90" width="210" height="80" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="605" y="124" font-size="10" fill="#1a1a1a" text-anchor="middle">应用商店</text>
+  <text x="605" y="146" font-size="9" fill="#6a6a6a" text-anchor="middle">统一安检门，替你把关</text>
+
+  <rect x="760" y="90" width="180" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="850" y="136" font-size="10" fill="#1a1a1a" text-anchor="middle">用户从商店安装</text>
+
+  <line x1="194" y1="130" x2="236" y2="130" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="454" y1="130" x2="496" y2="130" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="714" y1="130" x2="756" y2="130" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- row 2: desktop software -->
+  <rect x="40" y="220" width="150" height="80" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="115" y="254" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">桌面软件</text>
+  <text x="115" y="276" font-size="9" fill="#1a1a1a" text-anchor="middle">长在电脑里</text>
+
+  <rect x="240" y="220" width="210" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="345" y="266" font-size="10" fill="#1a1a1a" text-anchor="middle">开发者官网发布</text>
+
+  <rect x="500" y="220" width="210" height="80" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="605" y="254" font-size="10" fill="#1a1a1a" text-anchor="middle">安装包</text>
+  <text x="605" y="276" font-size="9" fill="#6a6a6a" text-anchor="middle">.exe / .dmg，来路要正</text>
+
+  <rect x="760" y="220" width="180" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="850" y="266" font-size="10" fill="#1a1a1a" text-anchor="middle">用户下载安装</text>
+
+  <line x1="194" y1="260" x2="236" y2="260" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="454" y1="260" x2="496" y2="260" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="714" y1="260" x2="756" y2="260" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- row 3: web app -->
+  <rect x="40" y="350" width="150" height="80" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="2"/>
+  <text x="115" y="384" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">网页</text>
+  <text x="115" y="406" font-size="9" fill="#1a1a1a" text-anchor="middle">长在别人的服务器上</text>
+
+  <rect x="240" y="350" width="210" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="345" y="396" font-size="10" fill="#1a1a1a" text-anchor="middle">部署到托管平台</text>
+
+  <rect x="500" y="350" width="210" height="80" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="2"/>
+  <text x="605" y="384" font-size="10" fill="#1a1a1a" text-anchor="middle">一个网址</text>
+  <text x="605" y="406" font-size="9" fill="#6a6a6a" text-anchor="middle">无需安装、更新即时生效</text>
+
+  <rect x="760" y="350" width="180" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="850" y="396" font-size="10" fill="#1a1a1a" text-anchor="middle">浏览器打开就能用</text>
+
+  <line x1="194" y1="390" x2="236" y2="390" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="454" y1="390" x2="496" y2="390" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="714" y1="390" x2="756" y2="390" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="464" font-size="9" fill="#6a6a6a">网页最通用、当天就能给朋友看——这就是 AI 默认给你网页的原因。</text>
+</svg>

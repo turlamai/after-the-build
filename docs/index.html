@@ -68,6 +68,7 @@ code {
 }
 pre { background: var(--code-bg); border-radius: 10px; padding: 18px 20px; overflow-x: auto; }
 pre code { background: none; padding: 0; }
+section.chapter svg { display: block; max-width: 100%; height: auto; margin: 26px auto; border-radius: 10px; }
 a { color: var(--accent); }
 strong { color: var(--ink); }
 @media (max-width: 960px) {
@@ -137,6 +138,80 @@ strong { color: var(--ink); }
 <p>原生应用：安装在手机里的 App，比如微信、支付宝。它的本质是一个安装包，通过应用商店这条「安检通道」送到每个人的手机里。它贴近硬件，能拍照、能推送通知、能离线用；代价是上架要审核，每次更新也要走一遍商店。</p>
 <p>桌面软件：装在电脑里的程序，交付物是一个安装包，Windows 上常见 .exe，苹果电脑上是 .dmg。它没有全网统一的安检门，官网直接发安装包是常态，所以系统见到来路不明的安装包会拉响警报。那是保护，不是刁难。</p>
 <p>网页：不用安装，打开浏览器输入网址就能用。它不住在你的设备里，而是住在另一台电脑（行话叫服务器）上，你的浏览器每次都去那台电脑取最新的一页。更新即时生效，手机电脑通用；代价是依赖网络，能力被浏览器这个框框约束着。</p>
+<p><svg role="img" aria-label="配图：三种软件形态的分发路径对比" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 480" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="980" height="480" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">软件的三种形态与分发</text>
+
+  <text x="115" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">形态</text>
+  <text x="345" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">谁做的</text>
+  <text x="605" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">怎么交出去</text>
+  <text x="850" y="70" font-size="9" fill="#6a6a6a" text-anchor="middle">到用户手里</text>
+
+  <!-- row 1: native app -->
+  <rect x="40" y="90" width="150" height="80" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="115" y="124" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">原生应用</text>
+  <text x="115" y="146" font-size="9" fill="#1a1a1a" text-anchor="middle">长在手机里</text>
+
+  <rect x="240" y="90" width="210" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="345" y="136" font-size="10" fill="#1a1a1a" text-anchor="middle">开发者写好、申请上架</text>
+
+  <rect x="500" y="90" width="210" height="80" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="605" y="124" font-size="10" fill="#1a1a1a" text-anchor="middle">应用商店</text>
+  <text x="605" y="146" font-size="9" fill="#6a6a6a" text-anchor="middle">统一安检门，替你把关</text>
+
+  <rect x="760" y="90" width="180" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="850" y="136" font-size="10" fill="#1a1a1a" text-anchor="middle">用户从商店安装</text>
+
+  <line x1="194" y1="130" x2="236" y2="130" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="454" y1="130" x2="496" y2="130" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="714" y1="130" x2="756" y2="130" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- row 2: desktop software -->
+  <rect x="40" y="220" width="150" height="80" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="115" y="254" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">桌面软件</text>
+  <text x="115" y="276" font-size="9" fill="#1a1a1a" text-anchor="middle">长在电脑里</text>
+
+  <rect x="240" y="220" width="210" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="345" y="266" font-size="10" fill="#1a1a1a" text-anchor="middle">开发者官网发布</text>
+
+  <rect x="500" y="220" width="210" height="80" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="605" y="254" font-size="10" fill="#1a1a1a" text-anchor="middle">安装包</text>
+  <text x="605" y="276" font-size="9" fill="#6a6a6a" text-anchor="middle">.exe / .dmg，来路要正</text>
+
+  <rect x="760" y="220" width="180" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="850" y="266" font-size="10" fill="#1a1a1a" text-anchor="middle">用户下载安装</text>
+
+  <line x1="194" y1="260" x2="236" y2="260" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="454" y1="260" x2="496" y2="260" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="714" y1="260" x2="756" y2="260" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- row 3: web app -->
+  <rect x="40" y="350" width="150" height="80" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="2"/>
+  <text x="115" y="384" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">网页</text>
+  <text x="115" y="406" font-size="9" fill="#1a1a1a" text-anchor="middle">长在别人的服务器上</text>
+
+  <rect x="240" y="350" width="210" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="345" y="396" font-size="10" fill="#1a1a1a" text-anchor="middle">部署到托管平台</text>
+
+  <rect x="500" y="350" width="210" height="80" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="2"/>
+  <text x="605" y="384" font-size="10" fill="#1a1a1a" text-anchor="middle">一个网址</text>
+  <text x="605" y="406" font-size="9" fill="#6a6a6a" text-anchor="middle">无需安装、更新即时生效</text>
+
+  <rect x="760" y="350" width="180" height="80" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="850" y="396" font-size="10" fill="#1a1a1a" text-anchor="middle">浏览器打开就能用</text>
+
+  <line x1="194" y1="390" x2="236" y2="390" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="454" y1="390" x2="496" y2="390" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="714" y1="390" x2="756" y2="390" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="464" font-size="9" fill="#6a6a6a">网页最通用、当天就能给朋友看——这就是 AI 默认给你网页的原因。</text>
+</svg>
+</p>
 <h3>「分发」究竟是什么</h3>
 <p>你把软件「给别人用」，这个动作的正式名字叫分发。拆开看永远是两步：把程序的拷贝送到对方的设备上，再让对方设备允许它运行。三种形态的区别，就是这两步的填法不同。</p>
 <p>网页把两步都省了——对方设备上跑的其实不是你的程序本身，而是浏览器代跑的一个副本。原生应用把两步都做足——安装包落进设备，商店替你完成「信任」这一步。理解了这两步，你就理解了后面几乎所有的问题：为什么有的东西打不开，为什么有的东西装不上，为什么有的更新立刻生效、有的要等。</p>
@@ -171,6 +246,61 @@ strong { color: var(--ink); }
 <h3>文件系统就是一棵树</h3>
 <p>你的电脑里所有东西都是文件：文档是文件，照片是文件，程序本身也是一堆文件。文件装在文件夹里，文件夹装在更大的文件夹里，一层套一层，最顶上叫根目录——所以整个结构是一棵倒着长的树。</p>
 <p>树结构带来一个推论：每个文件都有唯一的地址，行话叫路径。比如 <code>桌面/invoices/quote-2026.pdf</code>，就是从树根走到那个文件的路线。AI 跟你说「放到项目目录」，意思是放到某一个特定文件夹里——文件夹是约定好的家，放错家，程序就找不到它的东西。</p>
+<p><svg role="img" aria-label="配图：文件树与路径，橙色链路即完整路径" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 920 560" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="920" height="560" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">文件住在一棵树上</text>
+
+  <!-- root -->
+  <rect x="340" y="60" width="240" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="460" y="94" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">电脑的磁盘（根目录）</text>
+
+  <!-- level 2 -->
+  <rect x="100" y="180" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <text x="190" y="214" font-size="11" fill="#1a1a1a" text-anchor="middle">桌面</text>
+  <rect x="370" y="180" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="460" y="214" font-size="11" fill="#1a1a1a" text-anchor="middle">下载</text>
+  <rect x="640" y="180" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="730" y="214" font-size="11" fill="#1a1a1a" text-anchor="middle">文档</text>
+
+  <!-- level 3 -->
+  <rect x="100" y="300" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <text x="190" y="334" font-size="11" fill="#1a1a1a" text-anchor="middle">invoices（项目文件夹）</text>
+
+  <!-- level 4 -->
+  <rect x="40" y="420" width="190" height="56" rx="12" fill="#9dd4c7" stroke="#d97757" stroke-width="2"/>
+  <text x="135" y="454" font-size="10" fill="#1a1a1a" text-anchor="middle">quote-2026.pdf</text>
+  <rect x="270" y="420" width="200" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="370" y="454" font-size="10" fill="#1a1a1a" text-anchor="middle">quote-2025-旧版.pdf</text>
+
+  <!-- tree connectors -->
+  <line x1="460" y1="116" x2="460" y2="148" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="190" y1="148" x2="730" y2="148" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="190" y1="148" x2="190" y2="176" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="460" y1="148" x2="460" y2="176" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="730" y1="148" x2="730" y2="176" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="190" y1="236" x2="190" y2="296" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="190" y1="356" x2="190" y2="390" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="135" y1="390" x2="370" y2="390" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="135" y1="390" x2="135" y2="416" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="370" y1="390" x2="370" y2="416" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- path annotation -->
+  <rect x="640" y="300" width="240" height="110" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="760" y="330" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">路径就是这个文件的地址</text>
+  <text x="760" y="356" font-size="10" fill="#d97757" text-anchor="middle">桌面/invoices/quote-2026.pdf</text>
+  <text x="760" y="380" font-size="8" fill="#6a6a6a" text-anchor="middle">从树根走到它的路线，全球唯一</text>
+  <path d="M 135 476 L 135 505 L 700 505 L 700 414" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+
+  <text x="40" y="540" font-size="9" fill="#6a6a6a">橙色描边的那条链，就是这个文件从根目录走下来的完整路径。</text>
+</svg>
+</p>
 <h3>扩展名是类型的标签</h3>
 <p>文件名最后那个点后面的部分，比如 .pdf、.png、.exe，叫扩展名，作用是告诉系统「我是哪种文件，该用什么程序打开」。它不是装饰，是标签。改掉扩展名不改变文件内容，但会让系统认不出它；反过来，有些坏东西会把危险的安装包伪装成图片，就看扩展名。</p>
 <h3>「删除」和「覆盖」比你想的更彻底</h3>
@@ -210,6 +340,42 @@ strong { color: var(--ink); }
 <p>黑底白字不等于危险。它危险与否，取决于里面跑的那行字是什么，就像刀危险与否取决于谁拿、往哪切。</p>
 <h3>那些红色文字，多数不是骂你</h3>
 <p>终端输出哗哗滚动的白字，是正常的工作汇报。红色文字有两种：一种是报错，一种是进度提示（有些工具用红色写「正在下载」）。判断办法很简单：把最后一行复制给 AI，问「这是报错吗」。永远不要自己对着满屏英文吓自己。</p>
+<p><svg role="img" aria-label="配图：GUI 与命令行是同一台机器的两条话路" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 900 380" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="900" height="380" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">两种说法，同一台机器</text>
+
+  <rect x="40" y="80" width="230" height="80" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="155" y="112" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">GUI 图形界面</text>
+  <text x="155" y="136" font-size="9" fill="#1a1a1a" text-anchor="middle">按钮、图标，看得见摸得着</text>
+
+  <rect x="40" y="230" width="230" height="80" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="155" y="262" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">命令行</text>
+  <text x="155" y="286" font-size="9" fill="#1a1a1a" text-anchor="middle">黑底白字窗口，打字下指令</text>
+
+  <rect x="430" y="140" width="200" height="100" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="530" y="182" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">电脑的核心</text>
+  <text x="530" y="206" font-size="9" fill="#1a1a1a" text-anchor="middle">只认真指令，不认语境</text>
+
+  <rect x="700" y="140" width="160" height="100" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="780" y="182" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">结果</text>
+  <text x="780" y="206" font-size="9" fill="#6a6a6a" text-anchor="middle">机器做完给你看</text>
+
+  <path d="M 270 120 L 350 120 L 350 172 L 426 172" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="310" y="108" font-size="9" fill="#6a6a6a" text-anchor="middle">点击 = 一条指令</text>
+
+  <path d="M 270 270 L 350 270 L 350 208 L 426 208" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="310" y="296" font-size="9" fill="#6a6a6a" text-anchor="middle">打字 = 一条指令</text>
+
+  <line x1="630" y1="190" x2="696" y2="190" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="356" font-size="9" fill="#6a6a6a">GUI 好懂但有天花板：没有按钮的事它做不了。AI 给你的很多指令，恰好是没有按钮的事。</text>
+</svg>
+</p>
 <h2>三、怎么办</h2>
 <p>找到你的终端。苹果电脑：按 Command 加空格，输入「终端」，回车。Windows：点击开始菜单，输入 PowerShell 或「终端」，回车。记住这个打开方式，你接下来和 AI 协作的一切都从这里开始。</p>
 <p>你只需要会五个动作：打开终端、粘贴命令、回车、看最后一行输出、把输出复制走。就这五个，没有第六个。AI 让你运行什么，你粘贴、回车、把结果原样带回来给它——你就是 AI 的手，AI 是你的嘴，这个配合方式会贯穿全书。</p>
@@ -277,6 +443,43 @@ strong { color: var(--ink); }
 <h3>IP、域名和 DNS：门牌、名字和查号台</h3>
 <p>每台联网的电脑都有一个门牌号，叫 IP 地址，长这样：142.250.71.14。机器认门牌号没问题，人不认——你记不住几万个门牌号。所以有了域名（比如 google.com，好记的名字）和 DNS（一个遍布世界的查号台，负责把名字翻译成门牌号）。</p>
 <p>你在浏览器输入网址后发生的事：先去查号台查这个名字对应的门牌号，再按门牌号去敲门。理解了这条链，你就理解了一大类故障：查号台被劫持、门牌号变了、门牌号对应的服务器没开机——任何一个环节断掉，表现都是「打不开」。</p>
+<p><svg role="img" aria-label="配图：一次点击的旅程，从客户端到 DNS 到服务器再寄回" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 430" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="430" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">一次点击的旅程</text>
+
+  <rect x="40" y="90" width="210" height="90" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="145" y="126" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">你的浏览器</text>
+  <text x="145" y="148" font-size="9" fill="#1a1a1a" text-anchor="middle">客户端：敲门的一方</text>
+
+  <rect x="350" y="90" width="210" height="90" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="455" y="126" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">DNS 查号台</text>
+  <text x="455" y="148" font-size="9" fill="#1a1a1a" text-anchor="middle">把名字翻译成门牌号</text>
+
+  <rect x="660" y="90" width="240" height="90" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="780" y="126" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">服务器</text>
+  <text x="780" y="148" font-size="9" fill="#1a1a1a" text-anchor="middle">开门的一方：不关机的电脑</text>
+
+  <line x1="250" y1="135" x2="346" y2="135" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="300" y="122" font-size="9" fill="#6a6a6a" text-anchor="middle">① 输入网址</text>
+
+  <line x1="560" y1="135" x2="656" y2="135" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="610" y="122" font-size="9" fill="#6a6a6a" text-anchor="middle">② 查到 IP 门牌号</text>
+
+  <path d="M 780 180 L 780 270 L 145 270 L 145 184" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="462" y="262" font-size="9" fill="#6a6a6a" text-anchor="middle">③ 网页内容寄回来，浏览器负责把它画出来</text>
+
+  <rect x="350" y="320" width="320" height="60" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="510" y="345" font-size="10" fill="#1a1a1a" text-anchor="middle">localhost：只指向设备自己</text>
+  <text x="510" y="366" font-size="9" fill="#d97757" text-anchor="middle">发给别人 = 让朋友去敲他自己家的门</text>
+
+  <text x="40" y="414" font-size="9" fill="#6a6a6a">序章悬案的谜底：那个地址从来不是「你的网页的地址」，而是每台设备自己的地址。</text>
+</svg>
+</p>
 <h3>localhost：自言自语的门牌号</h3>
 <p>localhost 是一个特殊的名字，翻译过来是「本机」。它的门牌号指向设备自己。你在自己电脑上访问 localhost，敲的是自己家的门，AI 写的程序就住在里面，所以你这边一切正常。朋友在他的设备上访问同一个地址，敲的是他自己家的门——他家门后什么都没有。</p>
 <p>这就是序章悬案的全部谜底：那个地址从来不是「你的网页的地址」，而是「每台设备自己的地址」。你要给朋友的，是一个全世界都能查到门牌号、门后住着你的程序的名字。这件事怎么做到，第 6 章讲。</p>
@@ -310,6 +513,43 @@ strong { color: var(--ink); }
 <h3>部署的两半</h3>
 <p>把「上线」拆开，是两个动作。第一半，搬家：把程序连同它的家当，从你的电脑复制到一台二十四小时开机、有公网门牌号的服务器上。第二半，上牌：给这台服务器上的程序一个稳定、好记的地址，比如 myapp.example.com。</p>
 <p>序章的问题出在第二半都没有。程序住在你电脑里，地址又是 localhost 这个自言自语的门牌号——两头都不通向「别人能访问」。</p>
+<p><svg role="img" aria-label="配图：从 localhost 到全世界的部署五步" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 760 660" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="760" height="660" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">从 localhost 到全世界的五步</text>
+
+  <rect x="230" y="70" width="300" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="380" y="96" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">① 你的电脑</text>
+  <text x="380" y="118" font-size="9" fill="#1a1a1a" text-anchor="middle">程序只活在本地，别人敲不到门</text>
+
+  <rect x="230" y="190" width="300" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="380" y="216" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">② GitHub 仓库</text>
+  <text x="380" y="238" font-size="9" fill="#1a1a1a" text-anchor="middle">代码有了云端的窝，还顺手成了备份</text>
+
+  <rect x="230" y="310" width="300" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="380" y="336" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">③ 托管平台</text>
+  <text x="380" y="358" font-size="9" fill="#1a1a1a" text-anchor="middle">监听仓库，拿到最新代码自动构建</text>
+
+  <rect x="230" y="430" width="300" height="64" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="380" y="456" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">④ 服务器 + 网址</text>
+  <text x="380" y="478" font-size="9" fill="#1a1a1a" text-anchor="middle">搬进机房，发一个全世界能查到的地址</text>
+
+  <rect x="230" y="550" width="300" height="64" rx="12" fill="#a8c5e6" stroke="#d97757" stroke-width="2"/>
+  <text x="380" y="576" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">⑤ 全世界</text>
+  <text x="380" y="598" font-size="9" fill="#1a1a1a" text-anchor="middle">任何人打开网址就能用——序章问题的正面解</text>
+
+  <line x1="380" y1="134" x2="380" y2="186" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="254" x2="380" y2="306" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="374" x2="380" y2="426" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="494" x2="380" y2="546" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="644" font-size="9" fill="#6a6a6a">全程你只需要点几次按钮——十年前的专业活，已经被托管平台封装好了。</text>
+</svg>
+</p>
 <h3>托管平台：把专业活变成几次点击</h3>
 <p>十年前，部署是专业运维的活：租服务器、装系统、配防火墙，每一步都能出错。现在有一类服务叫托管平台（如 Vercel、Netlify、Cloudflare Pages 这类），它们把整套专业操作封装起来：你把项目交出去，点几次按钮，它替你完成搬家、上牌、续命（自动重启、自动加密）。</p>
 <p>它的商业模式也顺手讲清：免费档限制流量和功能，用的人多了或要求高了再付费。对你早期能造的东西，免费档通常绰绰有余。平台不是慈善，但你的规模确实在它的免单线以下，这是双赢。</p>
@@ -383,6 +623,46 @@ strong { color: var(--ink); }
 <h3>会说话的地方比你想的多</h3>
 <p>你以为秘密只有「发给别人」才算泄露，实际远不止。聊天记录（你和 AI 的对话、群里的消息）、截图（图里的每一行字都看得清）、公开的代码仓库（GitHub 上所有人可搜）、语音和环境里的录音，都是「会说话的地方」。文件里那串乱码，一旦进入以上任何一处，就等于把签好名的空白支票放在了公开桌上。</p>
 <p>更隐蔽的是：你不知道谁在看。爬虫每天自动扫描公开仓库找泄露的密钥，通常在泄露后几分钟内就会被人或机器捡走。几分钟后，你可能还在等 AI 回复你那条求助消息。</p>
+<p><svg role="img" aria-label="配图：密钥泄进「会说话的地方」的三条路径" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 440" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="440" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">密钥去过的每个地方，都算数</text>
+
+  <rect x="40" y="180" width="230" height="90" rx="12" fill="#a8c5e6" stroke="#d97757" stroke-width="2"/>
+  <text x="155" y="216" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">密钥（API Key）</text>
+  <text x="155" y="240" font-size="9" fill="#1a1a1a" text-anchor="middle">你账号的手写签名</text>
+
+  <rect x="390" y="60" width="280" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="530" y="86" font-size="10" fill="#1a1a1a" text-anchor="middle">聊天记录</text>
+  <text x="530" y="106" font-size="8" fill="#6a6a6a" text-anchor="middle">包括你和 AI 的对话、群聊</text>
+
+  <rect x="390" y="190" width="280" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="530" y="216" font-size="10" fill="#1a1a1a" text-anchor="middle">截图</text>
+  <text x="530" y="236" font-size="8" fill="#6a6a6a" text-anchor="middle">图里每一行字都看得清</text>
+
+  <rect x="390" y="320" width="280" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="530" y="346" font-size="10" fill="#1a1a1a" text-anchor="middle">公开代码仓库</text>
+  <text x="530" y="366" font-size="8" fill="#6a6a6a" text-anchor="middle">爬虫几分钟内自动扫到</text>
+
+  <rect x="760" y="180" width="210" height="90" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="865" y="212" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">陌生人捡到 = 冒充你</text>
+  <text x="865" y="236" font-size="9" fill="#ffffff" text-anchor="middle">用你的额度，算你的账</text>
+
+  <path d="M 270 200 L 330 200 L 330 92 L 386 92" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 270 225 L 386 225" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 270 250 L 330 250 L 330 352 L 386 352" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 670 92 L 720 92 L 720 205 L 756 205" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 670 222 L 756 222" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 670 352 L 720 352 L 720 240 L 756 240" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="424" font-size="9" fill="#6a6a6a">泄露是安静的，损失是延时的。三条纪律：不发聊天、不进截图、不上仓库。</text>
+</svg>
+</p>
 <h3>环境变量：把秘密放在代码外面</h3>
 <p>行话里有个词叫环境变量，听着吓人，意思很简单：把秘密写在代码旁边的配置文件里（常见名字叫 .env），而不是直接写死在代码里。这样代码可以随便给人看、随便上传，秘密留在本机。AI 生成的项目通常已经这么组织了，你只需要知道：那个 .env 文件是保险柜，别把它搬出去。</p>
 <h2>三、怎么办</h2>
@@ -457,6 +737,44 @@ strong { color: var(--ink); }
 <p>你搭在平台上的东西，方便是真的方便，但它长在别人的地基上。平台可能涨价、改版、被收购、停止运营——每一次变化你都无法阻止，唯一能做的是「走的时候带得走东西」。行话叫数据可导出：平台提供一种格式，让你把所有数据打包下载。这是选择平台时权重最高的一条标准，比免费额度重要得多。</p>
 <h2>三、怎么办</h2>
 <p>3-2-1 备份法，翻译成普通话：重要数据存三份，放在两种不同的地方，其中一份不在同一屋檐下——放在云端、别的设备、或者干脆异地。对一个记账工具来说，落地动作就是：每月导出一次，存到两个不同的地方。</p>
+<p><svg role="img" aria-label="配图：3-2-1 备份法的普通话版" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 950 430" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="950" height="430" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">3-2-1，翻译成普通话</text>
+
+  <rect x="40" y="180" width="220" height="90" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="150" y="212" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">你的数据（正本）</text>
+  <text x="150" y="236" font-size="9" fill="#1a1a1a" text-anchor="middle">只有一份的时候，等于没有</text>
+
+  <rect x="430" y="60" width="260" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="560" y="86" font-size="10" fill="#1a1a1a" text-anchor="middle">第 2 份：本机另一个位置</text>
+  <text x="560" y="106" font-size="8" fill="#6a6a6a" text-anchor="middle">防手滑误删、覆盖保存</text>
+
+  <rect x="430" y="190" width="260" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="560" y="216" font-size="10" fill="#1a1a1a" text-anchor="middle">第 3 份：云端</text>
+  <text x="560" y="236" font-size="8" fill="#6a6a6a" text-anchor="middle">防电脑本身出事</text>
+
+  <rect x="430" y="320" width="260" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="560" y="346" font-size="10" fill="#1a1a1a" text-anchor="middle">其中一份：不在同一屋檐下</text>
+  <text x="560" y="366" font-size="8" fill="#6a6a6a" text-anchor="middle">防一场事故端掉所有副本</text>
+
+  <path d="M 260 200 L 340 200 L 340 92 L 426 92" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 260 225 L 426 225" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 260 250 L 340 250 L 340 352 L 426 352" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="740" y="140" width="180" height="150" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="1.5"/>
+  <text x="830" y="172" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">3-2-1 口诀</text>
+  <text x="830" y="202" font-size="9" fill="#1a1a1a" text-anchor="middle">3＝存三份</text>
+  <text x="830" y="228" font-size="9" fill="#1a1a1a" text-anchor="middle">2＝两种不同的地方</text>
+  <text x="830" y="254" font-size="9" fill="#1a1a1a" text-anchor="middle">1＝一份在别处</text>
+
+  <text x="40" y="414" font-size="9" fill="#6a6a6a">没验证过能打开的备份，等于没有备份——每季度真的导出一次、打开看一次。</text>
+</svg>
+</p>
 <p>导出要演练。备好份不是存了就算，每季度真的把导出文件打开看一次：能打开吗？内容对吗？是最新的吗？没验证过的备份等于没有备份——很多人在真丢了数据的那天，才发现备份文件根本打不开。</p>
 <p>数据分三级管理。命根子：丢了会真正伤到人的，比如家人照片、长期账目——3-2-1 全套伺候。重要：丢了麻烦但能重建的，比如活动名单——双份即可。可再生：AI 十分钟能重造的，比如代码、页面——不用备，仓库里本来就有。</p>
 <p>搬家预案一句话：选平台时先问「数据能不能成批导出、什么格式」，最好在你把大量数据搬进去之前问。格式越通用（CSV、JSON 这类文本格式，附录 A 有词条）越好，越私有的格式越难搬走。</p>
@@ -488,6 +806,51 @@ strong { color: var(--ink); }
 <h3>版本控制：给整个项目拍快照</h3>
 <p>备份保的是数据，版本控制保的是「工作过程」：每次改动完成，给整个项目拍一张快照，写一句「这次改了什么」。想回任何时刻，翻出那张快照恢复即可。行话叫 Git，听起来吓人，对普通人的用法其实就一个动作：改完，拍一张。</p>
 <p>快照和「另存为」的区别：另存为复制整个文件，快照记录整个项目的完整历史，而且只存差异，几乎不占地方。「最终版 2」「打死不改版」这种文件名，就是没有版本控制时人肉发明的快照——你其实早就需要它了，只是用了最疼的方式在实现。</p>
+<p><svg role="img" aria-label="配图：提交快照时间线与回滚" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="400" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">每次提交，都是一张能回去的照片</text>
+
+  <rect x="60" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="145" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">提交一</text>
+  <text x="145" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">完好，可回退</text>
+
+  <rect x="300" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <text x="385" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">提交二</text>
+  <text x="385" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">最后一个好版本</text>
+
+  <rect x="540" y="155" width="170" height="70" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="625" y="184" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">提交三</text>
+  <text x="625" y="206" font-size="8" fill="#ffffff" text-anchor="middle">就改一点，结果坏了</text>
+
+  <rect x="780" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="865" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">现在</text>
+  <text x="865" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">越修越乱中</text>
+
+  <line x1="145" y1="225" x2="145" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="385" y1="225" x2="385" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="625" y1="225" x2="625" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="865" y1="225" x2="865" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+
+  <circle cx="145" cy="250" r="9" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <circle cx="385" cy="250" r="9" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <circle cx="625" cy="250" r="9" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <circle cx="865" cy="250" r="9" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+
+  <line x1="156" y1="250" x2="374" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="396" y1="250" x2="614" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="636" y1="250" x2="854" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 865 261 C 820 330 430 330 385 261" fill="none" stroke="#d97757" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="625" y="322" font-size="10" fill="#d97757" text-anchor="middle">回滚：整个项目退回提交二，服务先活着</text>
+
+  <text x="40" y="374" font-size="9" fill="#6a6a6a">规矩：大改动之前先提交一次，改完验收通过再提交一次——任何一次翻车，损失最多是一步。</text>
+</svg>
+</p>
 <h3>为什么 AI 时代更需要它</h3>
 <p>AI 改东西又快又猛，一分钟可以改十处。快，意味着你手动「另存为」永远追不上它；猛，意味着回滚的需求比人肉时代高得多。解法很自然：让 AI 替你拍快照。改完一处，让它「提交一次」（行话 commit），一秒钟的事。快照系统的门槛曾经拦住了普通人，现在 AI 把门槛替你踩平了。</p>
 <h2>三、怎么办</h2>

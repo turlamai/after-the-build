@@ -28,7 +28,12 @@ const navHtml = TOC.map(({ part, files }) => {
 const sectionsHtml = TOC.flatMap(({ files }) =>
   files.map((f) => {
     const md = readFileSync(join('chapters', f), 'utf8');
-    const body = marked.parse(md);
+    // Inline chapter SVGs so the built site stays a single self-contained file.
+    const body = marked.parse(md).replace(
+      /<img src="\.\.\/assets\/([\w-]+\.svg)" alt="([^"]*)"\s*\/?>/g,
+      (m, file, alt) =>
+        readFileSync(join('assets', file), 'utf8').replace('<svg ', `<svg role="img" aria-label="${alt}" `),
+    );
     return `<section class="chapter" id="${slug(f)}">\n${body}\n</section>`;
   })
 ).join('\n');
@@ -96,6 +101,7 @@ code {
 }
 pre { background: var(--code-bg); border-radius: 10px; padding: 18px 20px; overflow-x: auto; }
 pre code { background: none; padding: 0; }
+section.chapter svg { display: block; max-width: 100%; height: auto; margin: 26px auto; border-radius: 10px; }
 a { color: var(--accent); }
 strong { color: var(--ink); }
 @media (max-width: 960px) {

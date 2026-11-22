@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="400" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">每次提交，都是一张能回去的照片</text>
+
+  <rect x="60" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="145" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">提交一</text>
+  <text x="145" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">完好，可回退</text>
+
+  <rect x="300" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <text x="385" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">提交二</text>
+  <text x="385" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">最后一个好版本</text>
+
+  <rect x="540" y="155" width="170" height="70" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="625" y="184" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">提交三</text>
+  <text x="625" y="206" font-size="8" fill="#ffffff" text-anchor="middle">就改一点，结果坏了</text>
+
+  <rect x="780" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="865" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">现在</text>
+  <text x="865" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">越修越乱中</text>
+
+  <line x1="145" y1="225" x2="145" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="385" y1="225" x2="385" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="625" y1="225" x2="625" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="865" y1="225" x2="865" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
+
+  <circle cx="145" cy="250" r="9" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <circle cx="385" cy="250" r="9" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <circle cx="625" cy="250" r="9" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <circle cx="865" cy="250" r="9" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+
+  <line x1="156" y1="250" x2="374" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="396" y1="250" x2="614" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="636" y1="250" x2="854" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 865 261 C 820 330 430 330 385 261" fill="none" stroke="#d97757" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="625" y="322" font-size="10" fill="#d97757" text-anchor="middle">回滚：整个项目退回提交二，服务先活着</text>
+
+  <text x="40" y="374" font-size="9" fill="#6a6a6a">规矩：大改动之前先提交一次，改完验收通过再提交一次——任何一次翻车，损失最多是一步。</text>
+</svg>

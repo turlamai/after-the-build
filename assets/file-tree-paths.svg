@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 920 560" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="920" height="560" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">文件住在一棵树上</text>
+
+  <!-- root -->
+  <rect x="340" y="60" width="240" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="460" y="94" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">电脑的磁盘（根目录）</text>
+
+  <!-- level 2 -->
+  <rect x="100" y="180" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <text x="190" y="214" font-size="11" fill="#1a1a1a" text-anchor="middle">桌面</text>
+  <rect x="370" y="180" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="460" y="214" font-size="11" fill="#1a1a1a" text-anchor="middle">下载</text>
+  <rect x="640" y="180" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="730" y="214" font-size="11" fill="#1a1a1a" text-anchor="middle">文档</text>
+
+  <!-- level 3 -->
+  <rect x="100" y="300" width="180" height="56" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
+  <text x="190" y="334" font-size="11" fill="#1a1a1a" text-anchor="middle">invoices（项目文件夹）</text>
+
+  <!-- level 4 -->
+  <rect x="40" y="420" width="190" height="56" rx="12" fill="#9dd4c7" stroke="#d97757" stroke-width="2"/>
+  <text x="135" y="454" font-size="10" fill="#1a1a1a" text-anchor="middle">quote-2026.pdf</text>
+  <rect x="270" y="420" width="200" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="370" y="454" font-size="10" fill="#1a1a1a" text-anchor="middle">quote-2025-旧版.pdf</text>
+
+  <!-- tree connectors -->
+  <line x1="460" y1="116" x2="460" y2="148" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="190" y1="148" x2="730" y2="148" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="190" y1="148" x2="190" y2="176" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="460" y1="148" x2="460" y2="176" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="730" y1="148" x2="730" y2="176" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="190" y1="236" x2="190" y2="296" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="190" y1="356" x2="190" y2="390" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="135" y1="390" x2="370" y2="390" stroke="#4a4a4a" stroke-width="1.5"/>
+  <line x1="135" y1="390" x2="135" y2="416" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="370" y1="390" x2="370" y2="416" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- path annotation -->
+  <rect x="640" y="300" width="240" height="110" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="760" y="330" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">路径就是这个文件的地址</text>
+  <text x="760" y="356" font-size="10" fill="#d97757" text-anchor="middle">桌面/invoices/quote-2026.pdf</text>
+  <text x="760" y="380" font-size="8" fill="#6a6a6a" text-anchor="middle">从树根走到它的路线，全球唯一</text>
+  <path d="M 135 476 L 135 505 L 700 505 L 700 414" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+
+  <text x="40" y="540" font-size="9" fill="#6a6a6a">橙色描边的那条链，就是这个文件从根目录走下来的完整路径。</text>
+</svg>
