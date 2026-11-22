@@ -1,0 +1,12 @@
+{
+  "name": "after-the-build",
+  "private": true,
+  "type": "module",
+  "description": "造完之后 — AI 时代普通人的技术通识课",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "marked": "^18.2.1"
+  }
+}
