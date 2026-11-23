@@ -303,7 +303,21 @@ pre code { background: none; color: var(--code-ink); padding: 0; font-size: 0.87
 .copy-btn:hover { background: rgba(250, 249, 246, 0.22); }
 .copy-btn.done { color: #7FB88A; border-color: #3E7D4E; }
 strong { color: var(--ink); }
-article.chapter svg { display: block; max-width: 100%; height: auto; margin: 24px auto; border: 1px solid var(--line); border-radius: 8px; }
+article.chapter svg { display: block; max-width: 100%; height: auto; margin: 24px auto; border: 1px solid var(--line); border-radius: 8px; cursor: zoom-in; }
+
+/* Lightbox: click a diagram to enlarge it to the viewport limit. */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 80;
+  background: rgba(26, 24, 20, 0.72);
+  align-items: center; justify-content: center; flex-direction: column;
+  padding: 24px; cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox svg {
+  display: block; border: none; border-radius: 8px; margin: 0 auto;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35); background: #f8f6f3;
+}
+.lightbox .lb-caption { margin-top: 14px; color: #EDEAE3; font-size: 13px; text-align: center; max-width: 80vw; }
 
 .feedback {
   margin-top: 64px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
@@ -625,6 +639,53 @@ const appJs = `
     });
   }
 
+  /* Lightbox: click a diagram to enlarge; Esc or click anywhere to close. */
+  var box = $('#lightbox');
+  if (box) {
+    var holder = box.querySelector('.lb-holder');
+    var caption = box.querySelector('.lb-caption');
+    var source = null;
+    function renderBox() {
+      if (!source) return;
+      var vb = (source.getAttribute('viewBox') || '').split(/\\s+/);
+      clone_ = holder.querySelector('svg');
+      if (vb.length === 4) {
+        var ratio = vb[2] / vb[3];
+        var maxW = window.innerWidth * 0.94;
+        var maxH = (window.innerHeight - 70) * 0.96;
+        var w = maxH * ratio <= maxW ? maxH * ratio : maxW;
+        clone_.style.width = Math.round(w) + 'px';
+        clone_.style.height = Math.round(w / ratio) + 'px';
+      }
+    }
+    function openBox(svg) {
+      source = svg;
+      holder.innerHTML = '';
+      var clone = svg.cloneNode(true);
+      clone.removeAttribute('width');
+      clone.removeAttribute('height');
+      clone.style.cursor = 'zoom-out';
+      holder.appendChild(clone);
+      caption.textContent = svg.getAttribute('aria-label') || '';
+      renderBox();
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+    }
+    function closeBox() {
+      source = null;
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+    }
+    $$('article.chapter svg').forEach(function (svg) {
+      svg.addEventListener('click', function () { openBox(svg); });
+    });
+    box.addEventListener('click', closeBox);
+    window.addEventListener('resize', function () { if (source) renderBox(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && box.classList.contains('open')) closeBox();
+    });
+  }
+
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
     var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === location.hash; }))[0];
@@ -664,6 +725,7 @@ ${home ? '' : '<button type="button" id="toc-collapse" class="toc-toggle-btn" ar
 <main>
 ${main}
 </main>
+<div id="lightbox" class="lightbox" aria-hidden="true"><div class="lb-holder"></div><p class="lb-caption"></p></div>
 <script src="${root}search.js"></script>
 <script src="${root}app.js"></script>
 </body>

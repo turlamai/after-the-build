@@ -241,6 +241,53 @@
     });
   }
 
+  /* Lightbox: click a diagram to enlarge; Esc or click anywhere to close. */
+  var box = $('#lightbox');
+  if (box) {
+    var holder = box.querySelector('.lb-holder');
+    var caption = box.querySelector('.lb-caption');
+    var source = null;
+    function renderBox() {
+      if (!source) return;
+      var vb = (source.getAttribute('viewBox') || '').split(/\s+/);
+      clone_ = holder.querySelector('svg');
+      if (vb.length === 4) {
+        var ratio = vb[2] / vb[3];
+        var maxW = window.innerWidth * 0.94;
+        var maxH = (window.innerHeight - 70) * 0.96;
+        var w = maxH * ratio <= maxW ? maxH * ratio : maxW;
+        clone_.style.width = Math.round(w) + 'px';
+        clone_.style.height = Math.round(w / ratio) + 'px';
+      }
+    }
+    function openBox(svg) {
+      source = svg;
+      holder.innerHTML = '';
+      var clone = svg.cloneNode(true);
+      clone.removeAttribute('width');
+      clone.removeAttribute('height');
+      clone.style.cursor = 'zoom-out';
+      holder.appendChild(clone);
+      caption.textContent = svg.getAttribute('aria-label') || '';
+      renderBox();
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+    }
+    function closeBox() {
+      source = null;
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+    }
+    $$('article.chapter svg').forEach(function (svg) {
+      svg.addEventListener('click', function () { openBox(svg); });
+    });
+    box.addEventListener('click', closeBox);
+    window.addEventListener('resize', function () { if (source) renderBox(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && box.classList.contains('open')) closeBox();
+    });
+  }
+
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
     var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === location.hash; }))[0];
