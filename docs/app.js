@@ -33,6 +33,33 @@
     if (rt) { rt.innerHTML = '上次读到：<a href="' + last.url + '">' + last.title + ' →</a>'; rt.classList.add('show'); }
   }
 
+  /* Sidebar collapse (desktop, chapter pages) — racket parity. */
+  var collapseBtn = $('#toc-collapse');
+  if (collapseBtn) {
+    try { if (localStorage.getItem('atb:toc') === 'hidden') document.body.classList.add('toc-hidden'); } catch (e) {}
+    collapseBtn.setAttribute('aria-expanded', document.body.classList.contains('toc-hidden') ? 'false' : 'true');
+    if (document.body.classList.contains('toc-hidden')) collapseBtn.textContent = '›';
+    collapseBtn.addEventListener('click', function () {
+      var hidden = document.body.classList.toggle('toc-hidden');
+      collapseBtn.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      collapseBtn.textContent = hidden ? '›' : '‹';
+      try { localStorage.setItem('atb:toc', hidden ? 'hidden' : 'open'); } catch (e) {}
+    });
+  }
+
+  /* Per-part collapse in the sidebar (racket parity). */
+  $$('.part-toggle').forEach(function (btn) {
+    var key = 'atb:part:' + btn.dataset.part;
+    var ul = document.querySelector('[data-part-ul="' + btn.dataset.part + '"]');
+    if (!ul) return;
+    try { if (localStorage.getItem(key) === 'collapsed') { ul.classList.add('collapsed'); btn.setAttribute('aria-expanded', 'false'); } } catch (e) {}
+    btn.addEventListener('click', function () {
+      var collapsed = ul.classList.toggle('collapsed');
+      btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      try { localStorage.setItem(key, collapsed ? 'collapsed' : 'open'); } catch (e) {}
+    });
+  });
+
   /* Search */
   var input = $('#search-input');
   if (input) {
@@ -148,7 +175,7 @@
     q.dataset.done = '1';
     q.textContent = '谢谢！已记下你的反馈。';
     var s = box.querySelector('.fb-sub');
-    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/turlamai/fundamentals" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
+    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/' + REPO + '" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
     var act = box.querySelector('.fb-actions');
     if (act) act.remove();
   }

@@ -1,9 +1,8 @@
 // Build a multi-page book site from chapters/*.md into docs/.
 // Family design tokens follow turlamai/racket-programming design/DESIGN.md (2026-11-11 contract)
-// and tlai-product design-standard.md (2026-11-20-minimal-family) — do not fork values here.
-// Architecture: one page per chapter (like the racket book site) + a home page.
-// Reader features (search / progress / resume / copy / drawer / font size / keyboard nav)
-// each map to a real reader task; all vanilla JS, no external dependencies.
+// and tlai-product design-standard.md (2026-11-20-minimal-family, §8 book-site baseline).
+// Layout parity with the racket book site (2026-11-23): home = no sidebar, centered;
+// chapter pages = collapsible sidebar + per-part collapse; content column 65ch.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { marked } from 'marked';
@@ -14,10 +13,10 @@ const BOOK = 'AI 时代的基本功';
 
 const TOC = [
   { part: '', files: ['00-prologue.md'] },
-  { part: '第一部 · 世界观', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-os.md', '07-data-shapes.md', '08-network.md', '09-cloud.md', '10-ai-landscape.md', '11-ai-collab.md'] },
-  { part: '第二部 · 六件手艺', files: ['12-deploy.md', '13-debug.md', '14-secrets.md', '15-cost.md', '16-data.md', '17-versions.md'] },
-  { part: '第三部 · 判断', files: ['18-security.md', '19-crypto.md', '20-privacy.md', '21-ask-for-help.md', '22-maintenance.md'] },
-  { part: '第四部 · 一页纸与工具箱', files: ['23-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
+  { part: '第一部 · 世界观', desc: '从比特与字节到 AI——动手之前先看见机器世界的全景', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-os.md', '07-data-shapes.md', '08-network.md', '09-cloud.md', '10-ai-landscape.md', '11-ai-collab.md'] },
+  { part: '第二部 · 六件手艺', desc: '踩着世界观长出的手艺：部署、验收、密钥、成本、数据、版本', files: ['12-deploy.md', '13-debug.md', '14-secrets.md', '15-cost.md', '16-data.md', '17-versions.md'] },
+  { part: '第三部 · 判断', desc: '以动手为前提的判断力：安全、加密、隐私、找人、维护', files: ['18-security.md', '19-crypto.md', '20-privacy.md', '21-ask-for-help.md', '22-maintenance.md'] },
+  { part: '第四部 · 一页纸与工具箱', desc: '五十个问题、黑话词典、问 AI 模板与全书概念地图', files: ['23-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
 
 const slug = (name) => name.replace(/\.md$/, '');
@@ -83,7 +82,7 @@ const chapterNav = (e) => {
 </nav>`;
 };
 
-const rel = (e, path) => (e ? `../${path}` : path); // chapter pages live one level down
+const rel = (e, path) => (e ? `../${path}` : path);
 const pageUrlOf = (target) => (target ? `ch/${target.slug}.html` : 'index.html');
 
 const bodyFor = (e) => {
@@ -98,11 +97,15 @@ const bodyFor = (e) => {
 };
 
 // Shared sidebar: the full book tree, current chapter marked (family invariant).
+// Part headers are collapsible (racket parity); state persisted per part.
 const sidebar = (activeSlug, root) => {
   const a = (e) => `<li><a href="${root}ch/${e.slug}.html"${e.slug === activeSlug ? ' class="active"' : ''}>${e.title}</a></li>`;
-  const navHtml = TOC.map(({ part, files }) => {
-    const label = part ? `<div class="part">${part}</div>` : '<div class="part">开篇</div>';
-    return `${label}<ul>${files.map((f) => a(entryOf(f))).join('')}</ul>`;
+  const navHtml = TOC.map(({ part, files }, gi) => {
+    const key = `p${gi}`;
+    const chevron = part
+      ? `<button type="button" class="part-toggle" data-part="${key}" aria-expanded="true"><span class="chev">‹</span><span class="part-name">${part}</span></button>`
+      : `<div class="part"><span class="part-name">开篇</span></div>`;
+    return `${chevron}<ul data-part-ul="${key}">${files.map((f) => a(entryOf(f))).join('')}</ul>`;
   }).join('');
   return `<nav id="toc" aria-label="目录">
   <a class="book" href="${root}index.html">${BOOK}</a>
@@ -117,7 +120,7 @@ const sidebar = (activeSlug, root) => {
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
       <button id="fs-inc" aria-label="放大正文字号">A＋</button>
     </div>
-    <a href="https://github.com/${REPO}/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E9%80%A0%E5%AE%8C%E4%B9%8B%E5%90%8E" target="_blank" rel="noopener noreferrer">问题反馈</a>
+    <a href="https://github.com/${REPO}/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
   </div>
 </nav>`;
 };
@@ -163,13 +166,13 @@ button { font-family: inherit; }
 .toc-overlay { display: none; }
 
 #toc {
-  position: fixed; inset: 0 auto 0 0; width: 280px; overflow-y: auto;
-  padding: 32px 24px 40px; background: var(--surface); border-right: 1px solid var(--line);
+  position: fixed; inset: 0 auto 0 0; width: 250px; overflow-y: auto;
+  padding: 20px 18px 32px; background: var(--surface); border-right: 1px solid var(--line);
   font-size: 13px; line-height: 1.6; display: flex; flex-direction: column;
 }
-#toc .book { font-weight: 600; color: var(--ink); font-size: 15px; margin-bottom: 4px; display: block; }
+#toc .book { font-weight: 600; color: var(--ink); font-size: 15px; margin-bottom: 2px; display: block; }
 #toc a.book:hover { text-decoration: none; color: var(--accent); }
-#toc .book-sub { color: var(--faint); font-size: 11px; letter-spacing: 0.05em; margin-bottom: 20px; }
+#toc .book-sub { color: var(--faint); font-size: 11px; letter-spacing: 0.05em; margin-bottom: 16px; }
 #toc .search { margin-bottom: 8px; }
 #toc .search input {
   width: 100%; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 6px;
@@ -184,14 +187,25 @@ button { font-family: inherit; }
 #toc .sr-item .sr-snippet { color: var(--mute); font-size: 12px; line-height: 1.6; margin-top: 2px; overflow: hidden; }
 #toc .sr-item mark { background: var(--accent-soft); color: var(--accent-strong); padding: 0 2px; border-radius: 3px; }
 #toc .sr-empty { color: var(--faint); padding: 8px 10px; }
-#toc .part { color: var(--faint); font-weight: 600; font-size: 12px; letter-spacing: 0.05em; margin: 20px 0 8px; }
-#toc ul { list-style: none; margin: 0; padding: 0; }
-#toc li { margin: 6px 0; }
-#toc a { display: block; padding: 4px 10px; margin: -4px -10px; border-radius: 6px; color: var(--mute); }
-#toc a:hover { color: var(--ink); background: var(--raised); }
-#toc a.active { color: var(--accent); background: var(--accent-soft); font-weight: 500; }
+#toc .part, #toc .part-toggle {
+  color: var(--faint); font-weight: 600; font-size: 12px; letter-spacing: 0.02em;
+  margin: 18px 0 6px; display: flex; align-items: center; gap: 6px; width: 100%;
+  background: none; border: none; padding: 0; cursor: pointer; text-align: left;
+}
+#toc .part-toggle:hover .part-name { color: var(--mute); }
+#toc .part-toggle .chev { display: inline-block; transition: transform 0.15s ease; color: var(--line-strong); }
+#toc .part-toggle[aria-expanded="false"] .chev { transform: rotate(180deg); }
+#toc ul { list-style: none; margin: 0; padding: 0 0 0 14px; }
+#toc ul[data-part-ul].collapsed { display: none; }
+#toc li { margin: 4px 0; }
+#toc li a {
+  display: block; padding: 4px 10px; margin: 0 -10px; border-radius: 6px; color: var(--mute);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#toc li a:hover { color: var(--ink); background: var(--raised); }
+#toc li a.active { color: var(--accent); background: var(--accent-soft); font-weight: 500; }
 #toc .toc-foot {
-  margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line);
+  margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line);
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
 #toc .toc-foot .fs-ctl { display: flex; align-items: center; gap: 6px; }
@@ -203,32 +217,68 @@ button { font-family: inherit; }
 #toc .toc-foot a { color: var(--mute); }
 #toc .toc-foot a:hover { color: var(--ink); }
 
-main { margin-left: 280px; padding: 0 24px; }
-#cover { max-width: 72ch; margin: 0 auto; padding: 72px 0 56px; text-align: center; }
-#cover h1 { font-size: 40px; line-height: 1.25; margin: 0 0 12px; color: var(--ink); letter-spacing: 0.06em; }
-#cover .sub { color: var(--ink-2); font-size: 18px; margin-bottom: 28px; }
-#cover .tagline { color: var(--mute); font-size: 15px; line-height: 1.9; }
-#cover .author { color: var(--faint); margin-top: 32px; font-size: 14px; letter-spacing: 0.3em; }
-#cover .cover-links { margin-top: 20px; font-size: 12px; }
-#cover .cover-links a { color: var(--mute); margin: 0 8px; }
-#cover .cover-links a:hover { color: var(--ink); }
-#resume-top { display: none; max-width: 72ch; margin: 24px auto 0; text-align: center; font-size: 13px; }
+/* Desktop sidebar collapse (racket parity): tab sits on the sidebar edge; content re-centers. */
+.toc-toggle-btn {
+  position: fixed; top: 10px; left: 252px; z-index: 55;
+  width: 18px; height: 34px; border: 1px solid var(--line); border-left: none;
+  border-radius: 0 8px 8px 0; background: var(--surface); color: var(--faint);
+  font-size: 12px; line-height: 1; cursor: pointer; padding: 0;
+  transition: left 0.15s ease;
+}
+.toc-toggle-btn:hover { color: var(--ink); }
+body.toc-hidden .toc-toggle-btn { left: 0; border-left: 1px solid var(--line); }
+@media (min-width: 961px) {
+  #toc { transition: transform 0.15s ease; }
+  body.toc-hidden #toc { transform: translateX(-100%); }
+}
+
+main { margin-left: 250px; padding: 0 24px; transition: margin-left 0.15s ease; }
+body.toc-hidden main { margin-left: 0; }
+
+/* Home: no sidebar at all — everything centered (racket parity). */
+body.home main { margin-left: 0; }
+
+#cover { max-width: 65ch; margin: 0 auto; padding: 96px 0 48px; text-align: center; }
+#cover .eyebrow { color: var(--faint); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 20px; }
+#cover h1 { font-size: 44px; line-height: 1.2; margin: 0 0 16px; color: var(--ink); letter-spacing: 0.04em; }
+#cover .lead { color: var(--ink-2); font-size: 17px; margin: 0 0 10px; }
+#cover .tagline { color: var(--mute); font-size: 14px; line-height: 1.9; }
+#cover .author { color: var(--faint); margin-top: 24px; font-size: 14px; }
+#cover .cta { margin-top: 28px; display: flex; justify-content: center; gap: 12px; }
+#cover .btn {
+  display: inline-flex; align-items: center; gap: 6px; border-radius: 6px; padding: 10px 18px;
+  font-size: 14px; line-height: 1.5; transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+#cover .btn-primary { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); }
+#cover .btn-primary:hover { background: var(--ink-2); text-decoration: none; }
+#cover .btn-secondary { background: var(--surface); color: var(--ink-2); border: 1px solid var(--line-strong); }
+#cover .btn-secondary:hover { border-color: var(--mute); color: var(--ink); text-decoration: none; }
+#resume-top { display: none; max-width: 65ch; margin: 24px auto 0; text-align: center; font-size: 13px; }
 #resume-top.show { display: block; }
 #resume-top a { color: var(--accent-strong); }
 
-.home-toc { max-width: 72ch; margin: 0 auto 64px; }
-.home-toc .ht-part { margin: 40px 0 0; }
-.home-toc .ht-eyebrow { color: var(--faint); font-size: 12px; letter-spacing: 0.05em; }
-.home-toc .ht-title { color: var(--ink); font-size: 18px; font-weight: 600; margin: 4px 0 12px; }
-.home-toc ul { list-style: none; margin: 0; padding: 0; }
-.home-toc li { border-top: 1px solid var(--line); }
-.home-toc li a { display: flex; gap: 16px; padding: 12px 4px; color: var(--ink-2); }
-.home-toc li a:hover { background: var(--raised); text-decoration: none; }
-.home-toc .ht-num { color: var(--faint); font: 500 13px/1.8 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+/* Home TOC: part groups with chapter rows (racket parity). */
+.home-rule { max-width: 65ch; margin: 0 auto; border-top: 1px solid var(--line); }
+.home-toc { max-width: 65ch; margin: 0 auto 72px; }
+.ht-part { margin: 40px 0 0; }
+.ht-eyebrow { color: var(--faint); font-size: 12px; letter-spacing: 0.08em; }
+.ht-title { color: var(--ink); font-size: 18px; font-weight: 600; margin: 4px 0 4px; }
+.ht-desc { color: var(--mute); font-size: 13px; margin: 0 0 12px; }
+.ht-part ul { list-style: none; margin: 0; padding: 0; }
+.ht-part li { border-top: 1px solid var(--line); }
+.ht-part li:last-child { border-bottom: 1px solid var(--line); }
+.ht-part li a { display: flex; gap: 16px; padding: 12px 4px; color: var(--ink-2); align-items: baseline; }
+.ht-part li a:hover { background: var(--raised); text-decoration: none; }
+.ht-part li a .ht-arrow { margin-left: auto; color: var(--faint); }
+.ht-part li a:hover .ht-arrow { color: var(--accent); }
+.ht-num { color: var(--faint); font: 500 13px/1.8 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
-section.chapter { max-width: 72ch; margin: 0 auto; padding: 56px 0 64px; }
+section.chapter { max-width: 65ch; margin: 0 auto; padding: 48px 0 64px; }
+section.chapter .eyebrow {
+  color: var(--faint); font-size: 12px; letter-spacing: 0.05em;
+  padding-bottom: 16px; border-bottom: 1px solid var(--line); margin: 0 0 32px;
+}
 section.chapter h1 { font-size: 36px; line-height: 1.25; margin: 0 0 8px; color: var(--ink); }
-section.chapter .eyebrow { color: var(--faint); font-size: 12px; letter-spacing: 0.05em; margin: 0 0 8px; }
 section.chapter > blockquote {
   margin: 20px 0 40px; padding: 14px 20px; border-left: 3px solid var(--accent);
   background: var(--accent-soft); color: var(--ink-2); border-radius: 0 8px 8px 0; font-size: 15.5px;
@@ -304,6 +354,7 @@ section.chapter svg { display: block; max-width: 100%; height: auto; margin: 24p
     border-radius: 6px; padding: 6px 10px; font-size: 15px; cursor: pointer; line-height: 1;
   }
   .topbar .tb-title { font-weight: 600; color: var(--ink); font-size: 14px; }
+  .toc-toggle-btn { display: none; }
   .toc-overlay { display: none; position: fixed; inset: 0; background: rgba(26, 24, 20, 0.4); z-index: 40; }
   body.toc-open .toc-overlay { display: block; }
   #toc {
@@ -312,24 +363,25 @@ section.chapter svg { display: block; max-width: 100%; height: auto; margin: 24p
   }
   body.toc-open #toc { transform: translateX(0); }
   main { margin-left: 0; padding-top: 0; }
-  #cover { padding-top: 48px; }
+  #cover { padding-top: 40px; }
   #cover h1 { font-size: 32px; }
   section.chapter h1 { font-size: 28px; }
   .chapter-nav { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  #toc { transition: none; }
+  #toc, main, .toc-toggle-btn { transition: none; }
 }
 @media print {
-  #toc, .topbar, #progress, .toc-overlay { display: none; }
+  #toc, .topbar, #progress, .toc-overlay, .toc-toggle-btn { display: none; }
   main { margin: 0; }
   .feedback, .chapter-nav, .copy-btn { display: none; }
   #cover { page-break-after: always; }
 }
 `;
 
-// Shared runtime: progress, drawer, search, font size, copy, helpful, keyboard paging, resume memory.
+// Shared runtime: progress, drawer, sidebar collapse, search, font size, copy, helpful,
+// selection pill, keyboard paging, resume memory, deep-link redirect.
 const appJs = `
 (function () {
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -364,6 +416,33 @@ const appJs = `
     var rt = $('#resume-top');
     if (rt) { rt.innerHTML = '上次读到：<a href="' + last.url + '">' + last.title + ' →</a>'; rt.classList.add('show'); }
   }
+
+  /* Sidebar collapse (desktop, chapter pages) — racket parity. */
+  var collapseBtn = $('#toc-collapse');
+  if (collapseBtn) {
+    try { if (localStorage.getItem('atb:toc') === 'hidden') document.body.classList.add('toc-hidden'); } catch (e) {}
+    collapseBtn.setAttribute('aria-expanded', document.body.classList.contains('toc-hidden') ? 'false' : 'true');
+    if (document.body.classList.contains('toc-hidden')) collapseBtn.textContent = '›';
+    collapseBtn.addEventListener('click', function () {
+      var hidden = document.body.classList.toggle('toc-hidden');
+      collapseBtn.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      collapseBtn.textContent = hidden ? '›' : '‹';
+      try { localStorage.setItem('atb:toc', hidden ? 'hidden' : 'open'); } catch (e) {}
+    });
+  }
+
+  /* Per-part collapse in the sidebar (racket parity). */
+  $$('.part-toggle').forEach(function (btn) {
+    var key = 'atb:part:' + btn.dataset.part;
+    var ul = document.querySelector('[data-part-ul="' + btn.dataset.part + '"]');
+    if (!ul) return;
+    try { if (localStorage.getItem(key) === 'collapsed') { ul.classList.add('collapsed'); btn.setAttribute('aria-expanded', 'false'); } } catch (e) {}
+    btn.addEventListener('click', function () {
+      var collapsed = ul.classList.toggle('collapsed');
+      btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      try { localStorage.setItem(key, collapsed ? 'collapsed' : 'open'); } catch (e) {}
+    });
+  });
 
   /* Search */
   var input = $('#search-input');
@@ -480,7 +559,7 @@ const appJs = `
     q.dataset.done = '1';
     q.textContent = '谢谢！已记下你的反馈。';
     var s = box.querySelector('.fb-sub');
-    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/${REPO}" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
+    if (s) s.innerHTML = '如果这本书对你有帮助，欢迎到 <a href="https://github.com/' + REPO + '" target="_blank" rel="noopener noreferrer">GitHub 点个 Star</a>，让更多读者看到它。';
     var act = box.querySelector('.fb-actions');
     if (act) act.remove();
   }
@@ -560,19 +639,20 @@ const head = (title, root) => `<meta charset="utf-8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="${root}style.css">`;
 
-const pageShell = ({ title, root, activeSlug, page, prevUrl, nextUrl, main }) => `<!doctype html>
+const pageShell = ({ title, root, activeSlug, page, prevUrl, nextUrl, main, home }) => `<!doctype html>
 <html lang="zh-CN">
 <head>
 ${head(title, root)}
 </head>
-<body id="top" data-root="${root}" data-page="${page}" data-prev="${prevUrl}" data-next="${nextUrl}">
+<body id="top" class="${home ? 'home' : ''}" data-root="${root}" data-page="${page}" data-prev="${prevUrl}" data-next="${nextUrl}">
 <div id="progress" aria-hidden="true"></div>
 <header class="topbar">
   <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
   <span class="tb-title">${BOOK}</span>
 </header>
 <div class="toc-overlay" aria-hidden="true"></div>
-${sidebar(activeSlug, root)}
+${home ? '' : sidebar(activeSlug, root)}
+${home ? '' : '<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>'}
 <main>
 ${main}
 </main>
@@ -581,28 +661,31 @@ ${main}
 </body>
 </html>`;
 
-// Home page
+// Home page: no sidebar — centered hero + part-grouped chapter rows (racket parity).
 const homeMain = `<div id="cover">
   <div id="resume-top"></div>
+  <p class="eyebrow">An online book</p>
   <h1>${BOOK}</h1>
-  <div class="sub">普通人开发缺失的一课</div>
-  <div class="tagline">答案免费，问题稀缺。<br>AI 替你造出了东西，这本书教你把它真正拿在手里。</div>
-  <div class="author">吉人</div>
-  <div class="cover-links">
-    <a href="https://github.com/${REPO}" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
-    <a href="https://github.com/${REPO}/issues" target="_blank" rel="noopener noreferrer">读者反馈</a>
+  <p class="lead">AI 替你造出了东西，这本书教你把它真正拿在手里。</p>
+  <p class="tagline">写给用 AI 造东西的非程序员：机器、网络、云与 AI 的常识，<br>加上动手之前就该有的判断力。免费在线阅读，无需注册。</p>
+  <p class="author">吉人 著</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="ch/00-prologue.html">开始阅读 →</a>
+    <a class="btn btn-secondary" href="https://github.com/${REPO}" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
   </div>
 </div>
+<div class="home-rule" aria-hidden="true"></div>
 <div class="home-toc">
-${TOC.map(({ part, files }) => {
+${TOC.map(({ part, desc, files }, gi) => {
   const seg = part ? part.split(' · ') : ['开篇', '序章'];
   return `<div class="ht-part">
   <div class="ht-eyebrow">${seg[0]}</div>
   <div class="ht-title">${seg[1]}</div>
+  ${desc ? `<p class="ht-desc">${desc}</p>` : ''}
   <ul>${files.map((f) => {
     const e = entryOf(f);
     const num = String(TOC.flatMap((p) => p.files).indexOf(f) + 1).padStart(2, '0');
-    return `<li><a href="ch/${e.slug}.html"><span class="ht-num">${num}</span><span>${e.title}</span></a></li>`;
+    return `<li><a href="ch/${e.slug}.html"><span class="ht-num">${num}</span><span>${e.title}</span><span class="ht-arrow">→</span></a></li>`;
   }).join('')}</ul>
 </div>`;
 }).join('\n')}
@@ -629,6 +712,7 @@ const chapterPages = entries.map((e, i) => {
       prevUrl: prev ? `ch/${prev.slug}.html` : '',
       nextUrl: next ? `ch/${next.slug}.html` : '',
       main,
+      home: false,
     }),
   };
 });
@@ -641,6 +725,7 @@ const homeHtml = pageShell({
   prevUrl: '',
   nextUrl: `ch/${entries[0].slug}.html`,
   main: homeMain,
+  home: true,
 });
 
 mkdirSync(join('docs', 'ch'), { recursive: true });
