@@ -47,6 +47,14 @@
     });
   }
 
+  /* Anchor the sidebar on the active chapter: load -> scroll it into view, centered. */
+  var activeLink = $('#toc a.active');
+  var tocEl = $('#toc');
+  if (activeLink && tocEl) {
+    var target = activeLink.offsetTop - tocEl.clientHeight / 2 + activeLink.offsetHeight / 2;
+    tocEl.scrollTop = Math.max(0, target);
+  }
+
   /* Per-part collapse in the sidebar (racket parity). */
   $$('.part-toggle').forEach(function (btn) {
     var key = 'atb:part:' + btn.dataset.part;
