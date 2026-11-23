@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 21 章 隐私与追踪：谁在看你 · AI 时代的基本功</title>
+<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="第 21 章 隐私与追踪：谁在看你 · AI 时代的基本功">
+<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="21-privacy" data-prev="ch/20-crypto.html" data-next="ch/22-ask-for-help.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html" class="active">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第三部 · 判断</p>
+  <h1>第 21 章 隐私与追踪：谁在看你</h1>
+  <blockquote>
+<p>你刚和朋友聊完某样东西，购物软件就推荐了它。答案多半不是窃听——是有一群陌生人一直在光明正大地看你。</p>
+</blockquote>
+<h2>一、翻车现场</h2>
+<p>昨晚和朋友聊天提到某个商品，今天购物 App 的首页赫然推荐着它。你后背发凉：手机在窃听吗？用「微信登录」登进一个小网站，它请求你的头像、昵称、手机号——你全部给了。每个 App 首次打开都让你点「同意隐私政策」，一万字，你从没读完过。</p>
+<p>你用 AI 造的东西也在收集用户数据（第 13 章上线后）——你的用户面对那一万字的感受，和你一模一样。</p>
+<h2>二、为什么会这样</h2>
+<h3>不需要窃听：追踪器一直在明处</h3>
+<p>互联网的商业模式建立在「看你」之上，而且都是光明正大的：每张网页里埋着几个到几十个追踪器，你访问了什么、停了多久、从哪来、点了什么，全被记下。这些碎片从无数个网站汇到一起，拼出一张比你想象中完整得多的画像——你聊完天去搜索了那个词（哪怕只搜了一次），画像立刻更新。窃听既冒险又多余，明处的追踪好用得多。</p>
+<h3>Cookie：网站发你的身份牌</h3>
+<p>Cookie 是网站发给你浏览器的一张小牌，下次访问你自动出示。它本是好发明：购物车靠它记住你放了什么（第一方 Cookie，只在本店有效）。被玩坏的是第三方 Cookie——你逛 A 店，A 店页面里埋着 B 广告商的牌子，B 拿着牌记录你在所有埋过它牌的店里的足迹，跨店跟单。现代浏览器已经开始限制它，但「设备指纹」这类新玩法（用你的屏幕、字体、时区拼出独一无二的你）仍在继续。禁令和玩法一直在赛跑，你的默认姿势应该是：假设自己被追踪，除非主动做点什么。</p>
+<p><svg role="img" aria-label="配图：第三方追踪如何拼出你的画像" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 460" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="460" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">不需要窃听：同一块牌子埋在无数网页里，画像自己拼出来</text>
+
+  <rect x="60" y="70" width="330" height="90" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="225" y="100" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">网站 A（购物）</text>
+  <rect x="200" y="118" width="160" height="30" rx="6" fill="#d97757"/>
+  <text x="280" y="138" font-size="9" fill="#ffffff" text-anchor="middle">第三方追踪器（B 家的牌）</text>
+
+  <rect x="60" y="180" width="330" height="90" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="225" y="210" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">网站 B（新闻）</text>
+  <rect x="200" y="228" width="160" height="30" rx="6" fill="#d97757"/>
+  <text x="280" y="248" font-size="9" fill="#ffffff" text-anchor="middle">第三方追踪器（B 家的牌）</text>
+
+  <rect x="60" y="290" width="330" height="90" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="225" y="320" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">网站 C（论坛）</text>
+  <rect x="200" y="338" width="160" height="30" rx="6" fill="#d97757"/>
+  <text x="280" y="358" font-size="9" fill="#ffffff" text-anchor="middle">第三方追踪器（B 家的牌）</text>
+
+  <rect x="560" y="180" width="200" height="100" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="660" y="222" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">广告商 B</text>
+  <text x="660" y="248" font-size="8" fill="#6a6a6a" text-anchor="middle">收回同一块牌：你到过 A、B、C</text>
+
+  <rect x="800" y="170" width="170" height="120" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="885" y="214" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">你的画像</text>
+  <text x="885" y="238" font-size="8" fill="#ffffff" text-anchor="middle">去过哪、停多久、点了什么</text>
+  <text x="885" y="256" font-size="8" fill="#ffffff" text-anchor="middle">拼图比窃听好用</text>
+
+  <line x1="390" y1="115" x2="556" y2="205" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="390" y1="225" x2="556" y2="225" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="390" y1="335" x2="556" y2="245" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="760" y1="230" x2="796" y2="230" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="428" font-size="9" fill="#6a6a6a">你聊完天只是去搜索了一次那个词，画像立刻更新。默认姿势：假设自己被追踪，除非主动做点什么。</text>
+</svg>
+</p>
+<h3>OAuth 登录：把信任外包的便利与代价</h3>
+<p>「用微信登录」「用 Google 登录」这套机制行话叫 OAuth。它免去了再注册一个账号，但也签了一份授权：第三方拿到了你授权的那部分信息（头像、昵称、手机号），并且获得了你账号的一部分入口。便利是真的，代价也要看清楚：授权给它什么、它拿去干什么、你注销时它删不删。授权是可以收回的（微信和 Google 的账号安全设置里都有「授权管理」），收回要记得去做。</p>
+<h3>隐私政策：不读全文，读三问</h3>
+<p>一万字的隐私政策，普通人读三问就够了：收我什么（收集范围）、给谁（共享与第三方清单）、我怎么删（删除与导出）。三问找不到答案的服务，本身就是一个信号。第 17 章讲过选平台先问「数据能不能搬走」——隐私三问是同一件事的另一面：数据进来之前就问清楚。</p>
+<h2>三、怎么办</h2>
+<p>授权三查。每次用微信、Google 或其他账号登录第三方，看清楚它要的清单：只要头像昵称，给；要通讯录或支付能力，想三秒——一个记账工具要通讯录干什么？</p>
+<p>浏览器隐私三件套。第一，限制第三方 Cookie（主流浏览器设置里都有开关）。第二，扩展只装必要和可信的——浏览器扩展拥有你所有网页的读取权限，是权限最高的软件品类，来路不明的扩展等于把家门钥匙给了陌生人（这条给你的用户也一样，第 19 章）。第三，搜索和浏览要分账号的话，用浏览器自带的独立窗口。</p>
+<p>给你的东西列数据出口清单。你上线的工具收集了用户什么（第 19 章）、存在哪、谁能看到——写下来，一页纸。它既是你的隐私政策的草稿，也是出事时的应对底稿。</p>
+<p>对 AI 产品同理。你和 AI 的对话会留下（第 15 章）；喂给它的敏感数据可能进训练或被人工复核——发之前过一遍第 15 章的三条纪律。</p>
+<h2>四、带走的问题</h2>
+<ul>
+<li>我手机里授权过的第三方登录，最近一次清理是什么时候？</li>
+<li>我的浏览器扩展清单里，有没有来路不明的？</li>
+<li>我上线的工具收集的用户数据，我能列出出口清单吗？</li>
+<li>我用的 AI 服务，对话数据会怎么处理？我看三问了吗？</li>
+<li>下次「同意并继续」之前，我会点开那三问吗？</li>
+</ul>
+<p>本章顺便获得的概念：第三方追踪、Cookie、设备指纹、OAuth、隐私政策、数据主权。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="21-privacy">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+21+%E7%AB%A0+%E9%9A%90%E7%A7%81%E4%B8%8E%E8%BF%BD%E8%B8%AA%EF%BC%9A%E8%B0%81%E5%9C%A8%E7%9C%8B%E4%BD%A0&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F21-privacy.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/21-privacy.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/20-crypto.html" class="nav-prev">← 第 20 章 加密与哈希：锁和指纹</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/22-ask-for-help.html" class="nav-next">第 22 章 什么时候该花钱找人：自己做的边界 →</a>
+</nav>
+</article>
+</main>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 14 章 AI 说改好了，为什么还是坏的：验收与排错 · AI 时代的基本功</title>
+<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="第 14 章 AI 说改好了，为什么还是坏的：验收与排错 · AI 时代的基本功">
+<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="14-debug" data-prev="ch/13-deploy.html" data-next="ch/15-secrets.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html" class="active">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第二部 · 六件手艺</p>
+  <h1>第 14 章 AI 说改好了，为什么还是坏的：验收与排错</h1>
+  <blockquote>
+<p>AI 说「已修复」，意思是「按它的理解改完了」。理解可以错，改也可以错——所以最后一道验收，永远是你的眼睛。</p>
+</blockquote>
+<h2>一、翻车现场</h2>
+<p>你报了一个 bug，AI 回复「已修复，请刷新查看」。你刷新，问题还在。你再报，AI 再说「这次真的修复了」。第三次之后，你开始自我怀疑：是不是我描述得不对？是不是我的操作有问题？</p>
+<p>另一个现场：AI 给你一屏报错分析，讲了三层原因，每层听起来都有道理，你按它说的全改了，结果引入了两个新问题。</p>
+<p>这两个现场背后是同一个认知缺口：你把 AI 当成了「改完就会自查的人」，而它不是。</p>
+<h2>二、为什么会这样</h2>
+<h3>AI 没有运行过它给你的答案</h3>
+<p>这句话值得展开。AI 写代码、给方案，本质上是在生成「看起来对」的文字。它看不到你的屏幕，跑不了你的项目，验证不了它自己说的话。「已修复」的准确翻译是：「按我的理解，我改了。」至于改完之后真实世界里发生了什么，它并不知道。</p>
+<p>这不是 AI 的缺陷被人抓住了尾巴，而是分工的一部分：机器负责产出，人负责验收。第 5 章说过，验收的本质不是看懂代码，是看懂「它以为它在做什么」——这一章讲的是验收的另一面：看懂「真实世界发生了什么」。</p>
+<h3>报错信息是求助信，不是指责</h3>
+<p>程序出错时吐出来的那段红字（报错信息），普通人的反应是害怕，因为它长得像责骂。正确的读法恰恰相反：那是程序在按格式呼救，里面写明了「哪一行、什么类型、什么原因」。它是一封格式化的求助信，收信人写的是修它的人——现在，修它的人是 AI，而你负责把信原封不动送到。</p>
+<h3>复现：先让坏事在眼前发生一次</h3>
+<p>排错的第一步永远是复现：用固定的步骤让这个 bug 在你眼前再发生一次。做不到复现的问题没法修，因为修完你也不知道有没有修好。能稳定复现的 bug 已经修好了一半——剩下的半边是让 AI 看到你复现的全过程。</p>
+<h2>三、怎么办</h2>
+<p>验收清单：目标逐条试，外加回归。AI 说改好了，你先试你报的那条，然后再把主要功能整体点一遍——因为第 5 章讲过牵连，改按钮可能塌排版。这个「顺手把别处也点一遍」的动作有专业名字，叫回归测试，你别被名字吓到，就是「确认没改坏别的东西」。</p>
+<p>读报错只读三样。第一行（它说什么类型的错）、报错里出现的文件名和数字（它指认的现场）、然后整段复制。剩下的交给 AI，你的任务是送信完整，不是自己诊断。</p>
+<p>喂 AI 的黄金模板。「我在做：……。我做了：第一步、第二步。我期望：……。实际发生：……。完整报错：原样贴上。我试过：……。」这六栏填满，AI 的定位速度和准确率会完全不同。你每天排错的质量，取决于这个模板填得全不全。</p>
+<p>一次只改一件事。AI 一次给你三个建议时，只采纳一个，验证，再下一个。三个一起上，好了不知道谁的功，坏了不知道谁的过。「我是在修问题，还是在制造新问题」，这个自问要养成条件反射。</p>
+<p>「清缓存重试」到底在清什么。缓存是浏览器或程序偷存的副本，为的是下次快一点。但它存旧副本，就可能拿着过期的东西当新的用。清缓存等于强制它重新去取最新的一份——所以很多玄学问题，「清一下再试」真的有用，这不是敷衍，是有物理意义的动作。</p>
+<h2>四、带走的问题</h2>
+<ul>
+<li>我报 bug 时，六栏模板填全了吗？</li>
+<li>我验收的是「改的那个点」，还是「整个东西加回归」？</li>
+<li>这个问题能稳定复现吗？步骤是什么？</li>
+<li>报错的完整原文，我复制了吗？</li>
+<li>我现在同时在改几件事？</li>
+<li>AI 这个回答，它验证过吗？</li>
+</ul>
+<p>本章顺便获得的概念：验收、回归、复现、报错、缓存。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="14-debug">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+14+%E7%AB%A0+AI+%E8%AF%B4%E6%94%B9%E5%A5%BD%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%98%AF%E5%9D%8F%E7%9A%84%EF%BC%9A%E9%AA%8C%E6%94%B6%E4%B8%8E%E6%8E%92%E9%94%99&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F14-debug.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/14-debug.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/13-deploy.html" class="nav-prev">← 第 13 章 上线：把 localhost 变成一个真正的网址</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/15-secrets.html" class="nav-next">第 15 章 打死不能发出去的东西：密钥与隐私 →</a>
+</nav>
+</article>
+</main>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 7 章 操作系统：住在电脑里的管家 · AI 时代的基本功</title>
+<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="第 7 章 操作系统：住在电脑里的管家 · AI 时代的基本功">
+<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="07-os" data-prev="ch/06-efficiency.html" data-next="ch/08-data-shapes.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html" class="active">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第一部 · 世界观</p>
+  <h1>第 7 章 操作系统：住在电脑里的管家</h1>
+  <blockquote>
+<p>你从来没直接操作过 CPU 和内存——所有请求都经过一位管家。读懂管家，就读懂了电脑一半的脾气。</p>
+</blockquote>
+<h2>一、翻车现场</h2>
+<p>装了一个新软件之后，整台电脑都变慢了——明明你只开了它一个。某个程序转着圈死掉了，你发现其他程序也跟着遭殃。屏幕弹出「此应用想访问你的相机」，你不记得自己请求过任何东西。</p>
+<p>另一个现场：听说服务器上跑的都是 Linux，可你从来没在任何服务器上见过它的影子。AI 的机房里也全是它。一个你从未见过的系统，统治着你看不见的世界。</p>
+<h2>二、为什么会这样</h2>
+<h3>管家的三件差事</h3>
+<p>操作系统（苹果的 macOS、Windows 电脑的 Windows、服务器的 Linux）是所有程序和硬件之间的管家。它的差事有三件：分时间——几十个程序抢一个 CPU，管家排班，每个轮一小段，轮换快到像同时进行；分台面——给每个程序划一块内存，不许越界（第 2 章的工作台）；管硬件——相机、键盘、网络、硬盘，所有硬件都由管家统一调度。</p>
+<p>「所有程序不能直接摸硬件」是整台电脑最重要的一条规矩。它带来两个后果：程序之间互相隔离（一个崩了不掀桌子）；硬件权限可以被管家把关——所以会有权限弹窗，那是管家在替你把门。</p>
+<h3>进程：程序活着的样子</h3>
+<p>程序是躺在仓库（硬盘）里的一堆文件；进程是管家把它叫起来、摆上工作台干活的样子。一个软件可以同时开好几个进程——浏览器每个标签页一个，出事时你能定位到具体哪一个。程序删除了进程自然消失；进程崩了，程序文件还在仓库里毫发无损。</p>
+<p>你用 AI 造的东西，上线后也以进程的方式活在服务器上（第 13 章）。「我的程序死了」的准确含义是：那个进程没了，得重新叫起来。</p>
+<h3>为什么一个程序卡，全家都卡</h3>
+<p>卡的本质是管家排不开班：某个进程吃光了 CPU 时间片，或者把台面（内存）占满，别的进程挤在门外。强制退出，就是请管家把闹事的工人请出去——注意，它没保存的工作会丢，所以退之前先想想有没有要保存的东西。</p>
+<p>这也是重启有效（第 2 章）的管家视角：把所有进程清场，台面归零，重新排班。</p>
+<h3>Linux：看不见的普通话</h3>
+<p>你服务器上的程序、各大网站、AI 的训练机房，绝大多数跑在 Linux 上。你没见过它，因为服务器通常没有屏幕——它只通过命令行和网络跟世界对话（第 4 章的终端就是它的日常）。你用托管平台部署（第 13 章）时，Linux 的部分平台全替你管了；但知道「我的东西跑在 Linux 上」，读文档和排错时会少很多困惑。</p>
+<p><svg role="img" aria-label="配图：操作系统是所有程序和硬件之间的管家" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 430" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="980" height="430" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">操作系统：所有程序和硬件之间的管家</text>
+
+  <rect x="60" y="70" width="220" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="170" y="96" font-size="10" fill="#1a1a1a" text-anchor="middle">进程 A（浏览器）</text>
+  <text x="170" y="116" font-size="8" fill="#6a6a6a" text-anchor="middle">一个软件可能开好几个进程</text>
+
+  <rect x="380" y="70" width="220" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="490" y="96" font-size="10" fill="#1a1a1a" text-anchor="middle">进程 B（你造的应用）</text>
+  <text x="490" y="116" font-size="8" fill="#6a6a6a" text-anchor="middle">上线后也是服务器上的一个进程</text>
+
+  <rect x="700" y="70" width="220" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="810" y="96" font-size="10" fill="#1a1a1a" text-anchor="middle">进程 C（音乐播放器）</text>
+  <text x="810" y="116" font-size="8" fill="#6a6a6a" text-anchor="middle">闹事的进程会被管家请出去</text>
+
+  <rect x="60" y="200" width="860" height="40" rx="8" fill="#d97757"/>
+  <text x="490" y="226" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">操作系统 · 分时间片，分内存，替你把关所有权限</text>
+
+  <rect x="60" y="320" width="200" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="160" y="358" font-size="10" fill="#1a1a1a" text-anchor="middle">CPU</text>
+  <rect x="290" y="320" width="200" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="390" y="358" font-size="10" fill="#1a1a1a" text-anchor="middle">内存</text>
+  <rect x="520" y="320" width="200" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="620" y="358" font-size="10" fill="#1a1a1a" text-anchor="middle">相机 / 麦克风 / 网络</text>
+  <rect x="750" y="320" width="170" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="835" y="358" font-size="10" fill="#1a1a1a" text-anchor="middle">硬盘</text>
+
+  <line x1="170" y1="134" x2="170" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="490" y1="134" x2="490" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="810" y1="134" x2="810" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="160" y1="240" x2="160" y2="316" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="390" y1="240" x2="390" y2="316" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="620" y1="240" x2="620" y2="316" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="835" y1="240" x2="835" y2="316" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="40" y="412" font-size="9" fill="#6a6a6a">权限弹窗就是管家在把关：程序不能直接摸硬件。拒绝一个可疑权限，软件一般还能用。</text>
+</svg>
+</p>
+<h2>三、怎么办</h2>
+<p>看谁在吃资源。苹果电脑打开活动监视器，Windows 打开任务管理器（找法同第 4 章的终端：搜索名字即可）。按 CPU 或内存排个序，最上面那个就是当下最忙的工人——卡的时候先看它。</p>
+<p>强制退出要付的代价。先保存正在用的东西，再退出闹事的进程；找不到保存键就截图现场，退出后照着恢复。</p>
+<p>权限弹窗的三秒检查，把第 4 章的三问搬过来：是不是我主动发起的动作？这个权限合理吗——计算器要相机、输入法要定位，都可疑？不合理的直接拒绝，软件一般还能用。</p>
+<p>排错的第一站。你自己造的东西卡了打不开了，先开进程清单看一眼：它还在不在跑？在跑但没反应，和根本不在，是两种完全不同的病——第 14 章的排错会用到这个分叉。</p>
+<h2>四、带走的问题</h2>
+<ul>
+<li>我的电脑管家叫什么名字？资源监视工具在哪里？</li>
+<li>进程和程序的区别，我能举出一个例子吗？</li>
+<li>最近一次权限弹窗，我要的权限合理吗？</li>
+<li>我造的东西上线后，它是一个进程吗？死了怎么重新叫起来？</li>
+<li>服务器上的 Linux，我需要在什么场合面对它？</li>
+</ul>
+<p>本章顺便获得的概念：操作系统、进程、时间片、权限、Linux。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="07-os">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+7+%E7%AB%A0+%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%BD%8F%E5%9C%A8%E7%94%B5%E8%84%91%E9%87%8C%E7%9A%84%E7%AE%A1%E5%AE%B6&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F07-os.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/07-os.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/06-efficiency.html" class="nav-prev">← 第 6 章 效率与瓶颈：为什么程序会变慢</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/08-data-shapes.html" class="nav-next">第 8 章 数据的样子：字节、编码与格式 →</a>
+</nav>
+</article>
+</main>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

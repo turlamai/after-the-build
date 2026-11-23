@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 12 章 和 AI 分工：把活拆成它接得住的小块 · AI 时代的基本功</title>
+<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="第 12 章 和 AI 分工：把活拆成它接得住的小块 · AI 时代的基本功">
+<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="12-ai-collab" data-prev="ch/11-ai-landscape.html" data-next="ch/13-deploy.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html" class="active">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第一部 · 世界观</p>
+  <h1>第 12 章 和 AI 分工：把活拆成它接得住的小块</h1>
+  <blockquote>
+<p>你雇的这位工人聪明、飞快、记性差、偶尔自信过头。管理它的全部手艺，都从这四条脾气里推出来。</p>
+</blockquote>
+<h2>一、翻车现场</h2>
+<p>你对它说：「帮我做一个完整的网站。」三轮改动之后，页面越改越乱，你已说不清哪里是对的。它解释得头头是道，每一步听起来都对，合起来就是不对。</p>
+<p>另一个现场：同一个提示词，昨天效果惊艳，今天平平无奇。你开始怀疑自己不会「提问」，到处找「万能提示词」，收藏了十几篇，一篇都没用上。</p>
+<h2>二、为什么会这样</h2>
+<h3>上下文窗口决定活的大小</h3>
+<p>第 11 章说过，它只记得这顿饭（上下文窗口）。一个大而含糊的任务「做个完整网站」，需要它在一张餐桌上同时记住几十个互相牵连的细节——超出了它的注意力，早期决定被撤下桌，后期的修改就开始打架。把活拆成独立小块，每块都在一张干净的餐桌上完成，这是全部手艺的第一条，也是被验证最多的一条。</p>
+<h3>一次一件事：别让它同时想三件事</h3>
+<p>多个任务挤在一次对话里，它的「思维」会互相打架——任务之间的共同点让它混淆边界，差异点让它来回横跳。第 5 章的「一次只提一个改动」在协作层面同样成立，而且更严格：不是一次只改一处，是一次只谈一件事。</p>
+<h3>验证螺旋：计划、做、查、改</h3>
+<p>把每件事跑成一个闭环：先用一句话说清这件小事的目标和验收标准（计划）；让它做（做）；你按标准检查（查）；有问题贴回去让它修（改）。这个循环来自工程界几十年的沉淀，名字很多，本质一样：小步快跑，每步有验收。普通人版的要点是——你检查的永远是「效果」，不是代码；跑不跑得起来、对不对，按你定的验收标准来。</p>
+<h3>负空间：识别它接不住的活</h3>
+<p>比「怎么用好」更值钱的知识是「什么时候不用」。三类活交给它要格外小心：必须精确的（数字计算、法律条文原文）、必须新鲜的（知识截止日之后的事）、必须私密的（你的敏感数据，第 15 章）。识别出来之后，三条路：自己来、换工具、或用完必须核验。省下的时间和坑，就是负空间的收益。</p>
+<p><svg role="img" aria-label="配图：任务拆分与验证螺旋" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 500" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="500" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">和 AI 分工：拆到一次一件事，每件事跑一个闭环</text>
+
+  <rect x="330" y="60" width="340" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="500" y="94" font-size="11" fill="#1a1a1a" text-anchor="middle">大目标：「帮我做一个完整的网站」</text>
+
+  <line x1="500" y1="116" x2="500" y2="140" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="516" y="134" font-size="9" fill="#6a6a6a">拆成独立小块，一次交一件</text>
+
+  <rect x="100" y="146" width="220" height="56" rx="12" fill="#9dd4c7" stroke="#d97757" stroke-width="2"/>
+  <text x="210" y="180" font-size="10" fill="#1a1a1a" text-anchor="middle">任务 1：先做首页的样子</text>
+  <rect x="390" y="146" width="220" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="500" y="180" font-size="10" fill="#1a1a1a" text-anchor="middle">任务 2：加提交和存储</text>
+  <rect x="680" y="146" width="220" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="790" y="180" font-size="10" fill="#1a1a1a" text-anchor="middle">任务 3：上线和分享</text>
+
+  <path d="M 210 202 L 210 240 Q 210 262 240 262" fill="none" stroke="#4a4a4a" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="330" y="250" font-size="9" fill="#6a6a6a" text-anchor="middle">把任务 1 放到餐桌上，配齐四句话：目标 / 材料 / 约束 / 验收</text>
+
+  <rect x="80" y="300" width="180" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="170" y="326" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">计划</text>
+  <text x="170" y="348" font-size="8" fill="#6a6a6a" text-anchor="middle">目标与验收标准</text>
+
+  <rect x="320" y="300" width="180" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="410" y="326" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">做</text>
+  <text x="410" y="348" font-size="8" fill="#6a6a6a" text-anchor="middle">AI 生成，你看着</text>
+
+  <rect x="560" y="300" width="180" height="64" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="650" y="326" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">查</text>
+  <text x="650" y="348" font-size="8" fill="#6a6a6a" text-anchor="middle">按验收标准逐条试</text>
+
+  <rect x="800" y="300" width="180" height="64" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="890" y="326" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">改</text>
+  <text x="890" y="348" font-size="8" fill="#ffffff" text-anchor="middle">贴回问题，只修这处</text>
+
+  <line x1="260" y1="332" x2="316" y2="332" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="500" y1="332" x2="556" y2="332" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="740" y1="332" x2="796" y2="332" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <path d="M 890 368 Q 890 430 490 430 Q 150 430 130 372" fill="none" stroke="#d97757" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+  <text x="500" y="452" font-size="9" fill="#d97757" text-anchor="middle">查完不达标就带着现象回到计划，修完达标才轮到任务 2</text>
+
+  <text x="40" y="484" font-size="9" fill="#6a6a6a">判断「独立」的标准：下一步不需要再解释前一步的来龙去脉。会话开始变乱，就开新的——它只记得这顿饭。</text>
+</svg>
+</p>
+<h2>三、怎么办</h2>
+<p>拆活模板。大目标先拆成独立小任务的清单，一次给一个。判断「独立」的标准：这一步做完，下一步不需要再解释前一步的来龙去脉。</p>
+<p>每个小任务的四句话。目标：一句话说清要什么。材料：把它需要的文件、数据、报错原文贴上桌。约束：不要动别的部分（第 5 章）。验收：怎么算做好——手机上打开不横滚、点提交出现「已收到」。四句话给完，它几乎不需要猜。</p>
+<p>会话卫生。新任务开新对话；旧对话里翻出来的上下文，一半是干扰。开新对话时把必要背景一次性贴齐（它只记得这顿饭），而不是指望它「应该知道」。感觉它开始答非所问、反复纠不住，多数时候不是它变笨了，是餐桌满了——开新的。</p>
+<p>验收前先想好正确答案的样子。发任务之前，先自己写下「做好了是什么样」的两三条标准。有了标尺，它的产出你一眼能判；没有标尺，你只能被它的流畅带着走（第 11 章）。</p>
+<h2>四、带走的问题</h2>
+<ul>
+<li>我现在这个任务，拆到「一次一件事」的颗粒度了吗？</li>
+<li>它的餐桌上有不该在的东西吗？我的材料贴齐了吗？</li>
+<li>这一步的验收标准，我发任务之前写了吗？</li>
+<li>这件活，属于它接不住的三类之一吗？</li>
+<li>这个会话，是不是该开新的了？</li>
+</ul>
+<p>本章顺便获得的概念：上下文管理、任务拆分、验证螺旋、负空间、提示词。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="12-ai-collab">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+12+%E7%AB%A0+%E5%92%8C+AI+%E5%88%86%E5%B7%A5%EF%BC%9A%E6%8A%8A%E6%B4%BB%E6%8B%86%E6%88%90%E5%AE%83%E6%8E%A5%E5%BE%97%E4%BD%8F%E7%9A%84%E5%B0%8F%E5%9D%97&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F12-ai-collab.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/12-ai-collab.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/11-ai-landscape.html" class="nav-prev">← 第 11 章 AI 全景：认识你雇来的工人</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/13-deploy.html" class="nav-next">第二部 · 第 13 章 上线：把 localhost 变成一个真正的网址 →</a>
+</nav>
+</article>
+</main>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 19 章 它安全吗：把门关好 · AI 时代的基本功</title>
+<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="第 19 章 它安全吗：把门关好 · AI 时代的基本功">
+<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="19-security" data-prev="ch/18-versions.html" data-next="ch/20-crypto.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html" class="active">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第三部 · 判断</p>
+  <h1>第 19 章 它安全吗：把门关好</h1>
+  <blockquote>
+<p>你的东西一上线，就开了一扇面向全世界的门。进来的不全是朋友——互联网上永远有一群机器人在挨家挨户试门锁。</p>
+</blockquote>
+<h2>一、翻车现场</h2>
+<p>一个朋友忽然问你：「你那个网站为什么在收集我们的信息？」你一头雾水——你根本没想过「收集信息」这回事，你只是做了个报名页。</p>
+<p>另一个现场：某天你的邮箱收到一封提醒：「您的账号在新设备登录，地点：境外。」你想了半天，想起自己从来没在境外登录过。</p>
+<p>第三个现场最冤：AI 帮你写的代码，功能全对，界面漂亮，但里面有个洞——所有用户的名单，猜对网址就能直接看到。AI 没有恶意，它只是优先满足了「能跑」，安全从来不是「能跑」的一部分。</p>
+<h2>二、为什么会这样</h2>
+<h3>门一开，机器人就来了</h3>
+<p>本地运行的东西，风险约等于零——只有你能访问。一上线，性质就变了：全世界任何设备都能敲你的门，包括人，也包括自动化程序。机器人不做别的事，专做一件事：挨个网址试常见漏洞。它不针对你，它的逻辑是广撒网——一百个门里总有一扇没锁。</p>
+<p>这意味着一个心态上的转变：安全不是「我这么小，没人会盯上我」，而是「机器人不挑人，它只是路过」。</p>
+<h3>三种最常见的破门</h3>
+<p>弱密码和重复密码：你在十个平台用同一个密码，一处泄露，十处沦陷。这至今是普通人账号失守的第一大原因，远比什么高级黑客常见。</p>
+<p>密钥泄露：上一章讲过了，回顾一句——那串字符就是你的签名，进了任何公开场合都算泄露。</p>
+<p>代码里的洞：AI 写的代码满足「能跑」，不满足「安全」。典型例子：管理页面没有设登录门槛、用户数据存成了谁都能访问的模式、表单允许提交任意内容。这些洞不炸则已，一炸就是用户数据的泄露——丢的不只是数据，还有信任。</p>
+<h3>AI 不是安全员</h3>
+<p>指望 AI「自觉」写出安全的代码是不现实的，因为它在回答你的问题时，眼里只有你的问题。但换个问法，它就是合格的安全审查员——安全的活，从来是「专门派个人去当坏人试试」。这个思路你后面马上能用。</p>
+<h2>三、怎么办</h2>
+<p>账号两件套，今天就去办。第一件，密码管理器：用一个专门管理密码的工具，每个平台一个不同的、你不用记的密码，你只需要记住它这一个主密码。第二件，两步验证：在支持的平台全部打开（行话 2FA），以后登录除了密码还要多一步验证码——密码被偷了，门还是进不来。</p>
+<p>管住自己比管住黑客更重要。大部分事故来自内部：密钥随手发、密码图省事、后台入口图方便设成「无需登录」。第 15 章的密钥三条纪律和最小权限原则，在这一章再念一遍咒语：能只读就别全权，能限内就别放开，能少一个人知道就少一个。</p>
+<p>让 AI 扮演坏人。上线前，让 AI 换一个角色自查：「假设你是一个安全测试员，想偷走这个网站的用户数据。列出你最先尝试的五条路，然后告诉我每条路现在通不通。」这个问法的效果远好于「帮我把代码写安全」——前者是审查，后者是顺嘴。它答完之后，把发现的问题逐条让它修，修完再跑一遍同样的问法。</p>
+<p>什么数据坚决不上线。身份证号、支付密码、未成年人信息——这三类在本书里是硬红线，任何「先做着玩玩」的理由都不成立。其他个人信息，能不收就不收，能少收就少收：你收的每一项，都是你欠的一份保管责任。</p>
+<h2>四、带走的问题</h2>
+<ul>
+<li>我重要的账号，密码都是不同的吗？密码管理器用了吗？</li>
+<li>两步验证开了几个平台？</li>
+<li>上线之前，我让 AI 扮演过坏人吗？</li>
+<li>我收集了哪些用户信息？每一样都必要吗？</li>
+<li>身份证、支付、未成年人这三条红线，我碰了吗？</li>
+</ul>
+<p>本章顺便获得的概念：密码管理器、两步验证、安全审查、用户数据、红线。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="19-security">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+19+%E7%AB%A0+%E5%AE%83%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9A%E6%8A%8A%E9%97%A8%E5%85%B3%E5%A5%BD&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F19-security.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/19-security.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/18-versions.html" class="nav-prev">← 第二部 · 第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/20-crypto.html" class="nav-next">第 20 章 加密与哈希：锁和指纹 →</a>
+</nav>
+</article>
+</main>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

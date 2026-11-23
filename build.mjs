@@ -13,10 +13,10 @@ const BOOK = 'AI 时代的基本功';
 
 const TOC = [
   { part: '', files: ['00-prologue.md'] },
-  { part: '第一部 · 世界观', desc: '从比特与字节到 AI——动手之前先看见机器世界的全景', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-os.md', '07-data-shapes.md', '08-network.md', '09-cloud.md', '10-ai-landscape.md', '11-ai-collab.md'] },
-  { part: '第二部 · 六件手艺', desc: '踩着世界观长出的手艺：部署、验收、密钥、成本、数据、版本', files: ['12-deploy.md', '13-debug.md', '14-secrets.md', '15-cost.md', '16-data.md', '17-versions.md'] },
-  { part: '第三部 · 判断', desc: '以动手为前提的判断力：安全、加密、隐私、找人、维护', files: ['18-security.md', '19-crypto.md', '20-privacy.md', '21-ask-for-help.md', '22-maintenance.md'] },
-  { part: '第四部 · 一页纸与工具箱', desc: '五十个问题、黑话词典、问 AI 模板与全书概念地图', files: ['23-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
+  { part: '第一部 · 世界观', desc: '从比特与字节到 AI——动手之前先看见机器世界的全景', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-efficiency.md', '07-os.md', '08-data-shapes.md', '09-network.md', '10-cloud.md', '11-ai-landscape.md', '12-ai-collab.md'] },
+  { part: '第二部 · 六件手艺', desc: '踩着世界观长出的手艺：部署、验收、密钥、成本、数据、版本', files: ['13-deploy.md', '14-debug.md', '15-secrets.md', '16-cost.md', '17-data.md', '18-versions.md'] },
+  { part: '第三部 · 判断', desc: '以动手为前提的判断力：安全、加密、隐私、找人、维护', files: ['19-security.md', '20-crypto.md', '21-privacy.md', '22-ask-for-help.md', '23-maintenance.md'] },
+  { part: '第四部 · 一页纸与工具箱', desc: '五十个问题、黑话词典、问 AI 模板与全书概念地图', files: ['24-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
 
 const slug = (name) => name.replace(/\.md$/, '');

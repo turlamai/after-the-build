@@ -1,60 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 1000" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 980 1020" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
     </marker>
   </defs>
-  <rect width="980" height="1000" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">全书概念地图：六十多个概念的住址</text>
+  <rect width="980" height="1020" fill="#f8f6f3"/>
+  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">全书概念地图：七十多个概念的住址</text>
   <text x="40" y="56" font-size="9" fill="#6a6a6a">四层结构，每一层踩在上一层的地基上——章节顺序是依赖的顺序，不是目录的排法</text>
 
   <!-- band 1: worldview -->
-  <rect x="40" y="80" width="900" height="314" rx="12" fill="#a8c5e6" fill-opacity="0.25" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="64" y="106" font-size="11" font-weight="600" fill="#1a1a1a">第一部 世界观（第 1-11 章）——从比特到 AI，机器世界的全景</text>
+  <rect x="40" y="80" width="900" height="338" rx="12" fill="#a8c5e6" fill-opacity="0.25" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="64" y="106" font-size="11" font-weight="600" fill="#1a1a1a">第一部 世界观（第 1-12 章）——从比特到 AI，机器世界的全景</text>
   <text x="64" y="134" font-size="9" fill="#1a1a1a">第 1 章 平台形态：原生应用 / 桌面软件 / 网页 / 分发 / 应用商店</text>
   <text x="64" y="158" font-size="9" fill="#1a1a1a">第 2 章 机器解剖：比特 / 字节 / CPU / 内存 / 存储 / GPU</text>
   <text x="64" y="182" font-size="9" fill="#1a1a1a">第 3 章 文件与路径：文件 / 文件夹 / 路径 / 扩展名 / 盘符与目录树</text>
   <text x="64" y="206" font-size="9" fill="#1a1a1a">第 4 章 两种接口：GUI / 命令行 / 终端 / 权限</text>
   <text x="64" y="230" font-size="9" fill="#1a1a1a">第 5 章 编程语言：源代码 / 歧义 / 变量·条件·循环 / 牵连</text>
-  <text x="64" y="254" font-size="9" fill="#1a1a1a">第 6 章 操作系统：进程 / 时间片 / Linux（地基：第 2 章）</text>
-  <text x="64" y="278" font-size="9" fill="#1a1a1a">第 7 章 数据的样子：编码 / UTF-8 / 位图·矢量 / CSV·JSON（地基：第 2、3 章）</text>
-  <text x="64" y="302" font-size="9" fill="#1a1a1a">第 8 章 网络：客户端 / 服务器 / IP / 域名 / DNS / localhost / HTTPS（地基：第 6 章）</text>
-  <text x="64" y="326" font-size="9" fill="#1a1a1a">第 9 章 云的地图：虚拟机 / 容器 / Serverless / 本地模型（地基：第 6、8 章）</text>
-  <text x="64" y="350" font-size="9" fill="#1a1a1a">第 10 章 AI 全景：大模型 / 训练与推理 / 幻觉 / 上下文窗口 / Agent</text>
-  <text x="64" y="374" font-size="9" fill="#1a1a1a">第 11 章 和 AI 分工：任务拆分 / 验证螺旋 / 负空间（地基：第 10 章）</text>
+  <text x="64" y="254" font-size="9" fill="#1a1a1a">第 6 章 效率与瓶颈：次数 / 线性 / 索引（地基：第 2、5 章）</text>
+  <text x="64" y="278" font-size="9" fill="#1a1a1a">第 7 章 操作系统：进程 / 时间片 / Linux（地基：第 2 章）</text>
+  <text x="64" y="302" font-size="9" fill="#1a1a1a">第 8 章 数据的样子：编码 / UTF-8 / 位图·矢量 / CSV·JSON（地基：第 2、3 章）</text>
+  <text x="64" y="326" font-size="9" fill="#1a1a1a">第 9 章 网络：客户端 / 服务器 / IP / 域名 / DNS / localhost / HTTPS（地基：第 7 章）</text>
+  <text x="64" y="350" font-size="9" fill="#1a1a1a">第 10 章 云的地图：虚拟机 / 容器 / Serverless / 本地模型（地基：第 7、9 章）</text>
+  <text x="64" y="374" font-size="9" fill="#1a1a1a">第 11 章 AI 全景：大模型 / 训练与推理 / 幻觉 / 上下文窗口 / Agent</text>
+  <text x="64" y="398" font-size="9" fill="#1a1a1a">第 12 章 和 AI 分工：任务拆分 / 验证螺旋 / 负空间（地基：第 11 章）</text>
 
   <!-- band 2: operations -->
-  <rect x="40" y="434" width="900" height="186" rx="12" fill="#9dd4c7" fill-opacity="0.25" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="64" y="460" font-size="11" font-weight="600" fill="#1a1a1a">第二部 六件手艺（第 12-17 章）——踩着世界观长出的手艺</text>
-  <text x="64" y="488" font-size="9" fill="#1a1a1a">第 12 章 部署：托管 / 仓库 / 域名 / 上线五步（地基：第 8、9 章）</text>
-  <text x="64" y="512" font-size="9" fill="#1a1a1a">第 13 章 验收与排错：复现 / 报错 / 回归 / 缓存（地基：第 5 章）</text>
-  <text x="64" y="536" font-size="9" fill="#1a1a1a">第 14 章 密钥：API Key / 环境变量 / 最小权限（地基：第 8、10 章）</text>
-  <text x="64" y="560" font-size="9" fill="#1a1a1a">第 15 章 成本：算力 / 存储 / 流量 / 订阅 / token（地基：第 2、12 章）</text>
-  <text x="64" y="584" font-size="9" fill="#1a1a1a">第 16 章 数据：数据库 / 备份 / 导出 / 平台锁定（地基：第 3、7 章）</text>
-  <text x="64" y="608" font-size="9" fill="#1a1a1a">第 17 章 版本：依赖 / Git / 提交 / 回滚（地基：第 5 章）</text>
+  <rect x="40" y="458" width="900" height="200" rx="12" fill="#9dd4c7" fill-opacity="0.25" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="64" y="484" font-size="11" font-weight="600" fill="#1a1a1a">第二部 六件手艺（第 13-18 章）——踩着世界观长出的手艺</text>
+  <text x="64" y="512" font-size="9" fill="#1a1a1a">第 13 章 部署：托管 / 仓库 / 域名 / 上线五步（地基：第 9、10 章）</text>
+  <text x="64" y="536" font-size="9" fill="#1a1a1a">第 14 章 验收与排错：复现 / 报错 / 回归 / 缓存（地基：第 5 章）</text>
+  <text x="64" y="560" font-size="9" fill="#1a1a1a">第 15 章 密钥：API Key / 环境变量 / 最小权限（地基：第 9、11 章）</text>
+  <text x="64" y="584" font-size="9" fill="#1a1a1a">第 16 章 成本：算力 / 存储 / 流量 / 订阅 / token（地基：第 2、13 章）</text>
+  <text x="64" y="608" font-size="9" fill="#1a1a1a">第 17 章 数据：数据库 / 备份 / 导出 / 平台锁定（地基：第 3、8 章）</text>
+  <text x="64" y="632" font-size="9" fill="#1a1a1a">第 18 章 版本：依赖 / Git / 提交 / 回滚（地基：第 5 章）</text>
 
   <!-- band 3: judgment -->
-  <rect x="40" y="660" width="900" height="162" rx="12" fill="#f4e4c1" fill-opacity="0.5" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="64" y="686" font-size="11" font-weight="600" fill="#1a1a1a">第三部 拿住之后（第 18-22 章）——判断力，以动手为前提</text>
-  <text x="64" y="714" font-size="9" fill="#1a1a1a">第 18 章 安全：密码管理器 / 两步验证 / 红线（地基：第 14 章）</text>
-  <text x="64" y="738" font-size="9" fill="#1a1a1a">第 19 章 加密与哈希：锁 / 指纹 / 端到端（地基：第 8、14 章）</text>
-  <text x="64" y="762" font-size="9" fill="#1a1a1a">第 20 章 隐私与追踪：Cookie / OAuth / 数据主权（地基：第 16、18 章）</text>
-  <text x="64" y="786" font-size="9" fill="#1a1a1a">第 21 章 找人：赌注 / 求助说明书 / 产权（地基：第 13 章）</text>
-  <text x="64" y="810" font-size="9" fill="#1a1a1a">第 22 章 维护：体检 / 证书 / 下线（地基：第 15、16 章）</text>
+  <rect x="40" y="698" width="900" height="146" rx="12" fill="#f4e4c1" fill-opacity="0.5" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="64" y="724" font-size="11" font-weight="600" fill="#1a1a1a">第三部 判断（第 19-23 章）——以动手为前提</text>
+  <text x="64" y="752" font-size="9" fill="#1a1a1a">第 19 章 安全：密码管理器 / 两步验证 / 红线（地基：第 15 章）</text>
+  <text x="64" y="776" font-size="9" fill="#1a1a1a">第 20 章 加密与哈希：锁 / 指纹 / 端到端（地基：第 9、15 章）</text>
+  <text x="64" y="800" font-size="9" fill="#1a1a1a">第 21 章 隐私与追踪：Cookie / OAuth / 数据主权（地基：第 17、19 章）</text>
+  <text x="64" y="824" font-size="9" fill="#1a1a1a">第 22 章 找人：赌注 / 求助说明书 / 产权（地基：第 14 章）</text>
+
+  <!-- band 3.5: maintenance -->
+  <rect x="40" y="856" width="900" height="44" rx="12" fill="#f4e4c1" fill-opacity="0.35" stroke="#4a4a4a" stroke-width="1.5"/>
+  <text x="64" y="884" font-size="9" fill="#1a1a1a">第 23 章 维护：体检 / 证书 / 下线（地基：第 16、17 章）——判断力的日常形态</text>
 
   <!-- band 4: one page -->
-  <rect x="40" y="862" width="900" height="90" rx="12" fill="#d97757" fill-opacity="0.15" stroke="#d97757" stroke-width="1.5"/>
-  <text x="64" y="888" font-size="11" font-weight="600" fill="#1a1a1a">第四部 一页纸（第 23 章 + 附录）——全部判断压成随身清单</text>
-  <text x="64" y="916" font-size="9" fill="#1a1a1a">第 23 章 五十个问题：用 AI / 上线前 / 分享前 / 每月 / 出事时</text>
-  <text x="64" y="940" font-size="9" fill="#1a1a1a">附录 A 黑话词典 / 附录 B 问 AI 模板库 / 附录 C 本图</text>
+  <rect x="40" y="912" width="900" height="76" rx="12" fill="#d97757" fill-opacity="0.15" stroke="#d97757" stroke-width="1.5"/>
+  <text x="64" y="938" font-size="11" font-weight="600" fill="#1a1a1a">第四部 一页纸（第 24 章 + 附录）——全部判断压成随身清单</text>
+  <text x="64" y="962" font-size="9" fill="#1a1a1a">第 24 章 五十个问题：用 AI / 上线前 / 分享前 / 每月 / 出事时</text>
+  <text x="64" y="978" font-size="9" fill="#1a1a1a">附录 A 黑话词典 / 附录 B 问 AI 模板库 / 附录 C 本图</text>
 
   <!-- dependency arrows -->
-  <line x1="490" y1="398" x2="490" y2="430" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="510" y="418" font-size="9" fill="#6a6a6a">世界观给了操作的地基</text>
-  <line x1="490" y1="624" x2="490" y2="656" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="510" y="644" font-size="9" fill="#6a6a6a">操作给了判断的底气</text>
-  <line x1="490" y1="826" x2="490" y2="858" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="510" y="846" font-size="9" fill="#6a6a6a">判断最后压成一页纸</text>
+  <line x1="490" y1="422" x2="490" y2="454" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="510" y="442" font-size="9" fill="#6a6a6a">世界观给了操作的地基</text>
+  <line x1="490" y1="662" x2="490" y2="694" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="510" y="682" font-size="9" fill="#6a6a6a">操作给了判断的底气</text>
 
-  <text x="40" y="978" font-size="9" fill="#6a6a6a">刨根问底的路径藏在这里：每个概念都可以再往下问一层为什么——答案就在它所属章节的「为什么会这样」一节。</text>
+  <text x="40" y="1010" font-size="9" fill="#6a6a6a">刨根问底的路径藏在这里：每个概念都可以再往下问一层为什么——答案就在它所属章节的「为什么会这样」一节。</text>
 </svg>
