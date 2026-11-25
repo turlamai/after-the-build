@@ -44,6 +44,8 @@ GROUP BY event_id;
 
 恢复点目标（Recovery Point Objective，RPO）表示可容忍的数据丢失时间范围；恢复时间目标（Recovery Time Objective，RTO）表示可容忍的恢复时间。每天备份一次通常无法保证只丢失五分钟的数据。
 
+![配图：数据保护与恢复流程](../assets/database-recovery.svg)
+
 ## 五、导出与迁移
 
 导出 CSV 或 JSON 可以提高数据可移植性，但不一定保留完整的数据模型、约束、附件、权限和事务状态。数据库逻辑备份、物理备份及增量日志各有适用范围。

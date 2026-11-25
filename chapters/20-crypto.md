@@ -16,6 +16,8 @@
 
 哈希本身不能证明数据来源。如果攻击者能同时替换文件与摘要，仅比较摘要不能建立可信来源。
 
+![配图：密码学原语及其安全属性](../assets/crypto-properties.svg)
+
 ## 二、对称加密与公钥机制
 
 对称加密（Symmetric Encryption）使用共享秘密密钥。现代应用通常采用认证加密（Authenticated Encryption with Associated Data，AEAD），同时提供机密性和完整性保护。

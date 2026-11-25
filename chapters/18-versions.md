@@ -10,6 +10,8 @@ Git 提交（Commit）记录所跟踪文件的快照、父提交和相关元数�
 
 工作区（Working Tree）包含当前文件，暂存区（Staging Area 或 Index）记录准备提交的内容，本地仓库（Repository）保存提交及其他 Git 对象。远程仓库（Remote Repository）是用于交换提交的另一仓库。
 
+![配图：Git 的工作状态与远程协作](../assets/git-object-flow.svg)
+
 ## 二、分支与协作
 
 分支（Branch）是指向提交的可移动引用。开发者在独立分支上完成工作后，可以通过合并（Merge）整合历史。变基（Rebase）则通常将提交重新应用到新的基点上，产生新的提交标识。
