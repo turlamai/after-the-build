@@ -19,6 +19,27 @@ const TOC = [
   { part: '第四部 · 综合验证与参考', desc: '五十个知识与验收问题、技术术语索引、Agent 协作模板及学习路线', files: ['24-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
 
+const LEGACY = {
+  "06-os": "07-os",
+  "07-data-shapes": "08-data-shapes",
+  "08-network": "09-network",
+  "09-cloud": "10-cloud",
+  "10-ai-landscape": "11-ai-landscape",
+  "11-ai-collab": "12-ai-collab",
+  "12-deploy": "13-deploy",
+  "13-debug": "14-debug",
+  "14-secrets": "15-secrets",
+  "15-cost": "16-cost",
+  "16-data": "17-data",
+  "17-versions": "18-versions",
+  "18-security": "19-security",
+  "19-crypto": "20-crypto",
+  "20-privacy": "21-privacy",
+  "21-ask-for-help": "22-ask-for-help",
+  "22-maintenance": "23-maintenance",
+  "23-50-questions": "24-50-questions"
+};
+
 const slug = (name) => name.replace(/\.md$/, '');
 const titleOf = (f) => readFileSync(join('chapters', f), 'utf8').match(/^# (.+)$/m)?.[1] ?? f;
 
@@ -696,7 +717,8 @@ const appJs = `
 
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
-    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === location.hash; }))[0];
+    var legacy = ${JSON.stringify(LEGACY)};
+    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === (legacy[location.hash.slice(1)] ? '#' + legacy[location.hash.slice(1)] : location.hash); }))[0];
     if (target) location.replace(ROOT + target.url);
   }
 })();
@@ -812,4 +834,9 @@ writeFileSync(join('docs', 'app.js'), appJs);
 writeFileSync(join('docs', 'search.js'), `window.SEARCH_INDEX = ${SEARCH_INDEX};\n`);
 writeFileSync(join('docs', 'index.html'), homeHtml);
 chapterPages.forEach((p) => writeFileSync(p.path, p.html));
+for (const [oldSlug, newSlug] of Object.entries(LEGACY)) {
+  if (entries.some((e) => e.slug === oldSlug) || !entries.some((e) => e.slug === newSlug)) throw new Error('Invalid legacy chapter alias: ' + oldSlug);
+  const target = newSlug + '.html';
+  writeFileSync(join('docs', 'ch', oldSlug + '.html'), '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=' + target + '"><link rel="canonical" href="' + SITE + '/ch/' + target + '"><title>章节已迁移</title></head><body><p>章节已迁移：<a href="' + target + '">阅读新版章节</a></p></body></html>\n');
+}
 console.log(`site written: index.html + ${chapterPages.length} chapter pages (style.css, app.js, search.js)`);
