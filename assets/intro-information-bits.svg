@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="600" height="180">
+<title>三个二进制位分别记录三个问题的回答</title>
+<g font-family="system-ui,sans-serif" fill="currentColor" text-anchor="middle">
+<g stroke="currentColor" stroke-opacity=".45" fill="none"><rect x="25" y="16" width="170" height="145" rx="8"/><rect x="215" y="16" width="170" height="145" rx="8"/><rect x="405" y="16" width="170" height="145" rx="8"/></g>
+<g font-size="16"><text x="110" y="43">是否下雨</text><text x="300" y="43">是否刮风</text><text x="490" y="43">是否开灯</text></g>
+<g font-size="39" font-weight="600"><text x="110" y="99">1</text><text x="300" y="99">0</text><text x="490" y="99">1</text></g>
+<g font-size="16"><text x="110" y="137">是</text><text x="300" y="137">否</text><text x="490" y="137">是</text></g></g></svg>
