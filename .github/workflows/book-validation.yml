@@ -2,7 +2,7 @@ name: Book validation
 on:
   pull_request:
   push:
-    branches: [editorial/technical-foundations]
+    branches: [main, editorial/technical-foundations]
   workflow_dispatch:
 permissions:
   contents: read
@@ -17,34 +17,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Verify generated files are committed
+        run: git diff --exit-code -- docs/ && test -z "$(git ls-files --others --exclude-standard docs/)"
       - run: node scripts/verify.mjs
       - run: python3 scripts/verify-examples.py
       - uses: actions/upload-artifact@v4
         with:
           name: book-site
           path: docs/
-  synchronize:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/editorial/technical-foundations'
-    needs: validate
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-      - uses: actions/download-artifact@v4
-        with:
-          name: book-site
-          path: docs/
-      - name: Commit verified generated site
-        run: |
-          git add docs/
-          if git diff --cached --quiet; then
-            echo "Generated site already synchronized"
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'build: synchronize verified book site'
-          git push origin HEAD:refs/heads/editorial/technical-foundations
