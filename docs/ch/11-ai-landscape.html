@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 11 章 AI 全景：认识你雇来的工人 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 11 章 人工智能基础：模型、推理与应用架构 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 11 章 AI 全景：认识你雇来的工人 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 11 章 人工智能基础：模型、推理与应用架构 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html" class="active">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html" class="active">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,79 +41,53 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第一部 · 世界观</p>
-  <h1>第 11 章 AI 全景：认识你雇来的工人</h1>
+  <p class="eyebrow">第一部 · 计算机技术基础</p>
+  <h1>第 11 章 人工智能基础：模型、推理与应用架构</h1>
   <blockquote>
-<p>它不是在「知道」，它是在预测。理解这一件事，幻觉、健忘、时好时坏就全部有了答案。</p>
+<p>区分模型参数、输入上下文、检索数据和外部工具，才能理解 AI 系统能力及限制。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>你让 AI 帮忙写代码，它调了一个函数——名字煞有介事，参数整齐，运行时报错：这个函数根本不存在。它一本正经，毫无愧色。你开始怀疑：它到底知不知道自己在说什么？</p>
-<p>同一个问题，昨天答得漂亮，今天答得平庸。你换个说法又好了。它时好时坏，你找不到规律。还有：它说不出昨天刚发生的新闻，却对三年前的事如数家珍。</p>
-<h2>二、为什么会这样</h2>
-<h3>它的本质：预测下一个字</h3>
-<p>大模型的全部工作，是给你这句话预测最合理的下一个字，然后一个字接一个字滚出整段回答。它读过的文本量超过一个人几百辈子能读完的规模，把语言的模式——哪些字跟在哪些字后面是合理的——刻进了几千亿个参数（第 2 章的开关）里。</p>
-<p>这个本质解释了一切。它博学，因为模式来自全世界的文本；它流畅，因为预测连接毫无停顿；它会编造，因为「编一个听起来合理的函数名」和「说出真实存在的函数名」在预测上都是合法路径——它没有「知道」和「不知道」的开关，只有概率的高低。行话管编造叫幻觉，名字起得准：它不是在撒谎，它只是在接龙。</p>
-<p><svg role="img" aria-label="配图：大模型的全部工作是预测下一个字" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="1000" height="400" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">大模型的全部工作：预测下一个字，再接龙下去</text>
-
-  <rect x="40" y="160" width="200" height="90" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="140" y="196" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">你的输入</text>
-  <text x="140" y="222" font-size="11" fill="#1a1a1a" text-anchor="middle">今天天气真……</text>
-
-  <rect x="400" y="150" width="220" height="100" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="510" y="192" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">大模型</text>
-  <text x="510" y="216" font-size="9" fill="#ffffff" text-anchor="middle">预测最合理的下一个字</text>
-
-  <rect x="740" y="120" width="220" height="160" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="850" y="150" font-size="10" fill="#1a1a1a" text-anchor="middle">候选（概率从高到低）</text>
-  <text x="850" y="180" font-size="11" fill="#1a1a1a" text-anchor="middle">好　87%</text>
-  <text x="850" y="208" font-size="11" fill="#6a6a6a" text-anchor="middle">不错　9%</text>
-  <text x="850" y="236" font-size="11" fill="#6a6a6a" text-anchor="middle">冷　3%</text>
-
-  <line x1="240" y1="205" x2="396" y2="205" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="620" y1="200" x2="736" y2="200" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <path d="M 850 116 Q 850 40 500 40 Q 150 40 140 156" fill="none" stroke="#d97757" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="500" y="60" font-size="10" fill="#d97757" text-anchor="middle">选中「好」，拼回输入，再预测下一个字……一个字一个字滚出整段回答</text>
-
-  <text x="40" y="330" font-size="9" fill="#6a6a6a">读懂这张图，三个现象全部有了答案：幻觉是接龙接错了但语气笃定；知识截止是书只读到某一天；时好时坏是概率本来就不保证。</text>
-  <text x="40" y="354" font-size="9" fill="#6a6a6a">它不是在「知道」，它是在预测——重要的事实，永远出口对证一次。</text>
-</svg>
+<h2>一、机器学习与大语言模型</h2>
+<p>机器学习（Machine Learning，ML）利用数据调整模型参数，使模型在特定任务上形成有效的输入输出映射。深度学习（Deep Learning）使用多层神经网络学习表示。</p>
+<p>大语言模型（Large Language Model，LLM）是一类处理语言及相关序列任务的模型。常见生成式模型使用 Transformer 架构，通过注意力机制（Attention）处理序列内部的关系，并逐步预测后续 Token。</p>
+<p>参数（Parameter）是模型内部参与计算的数值，例如矩阵中的权重。参数通常使用浮点数或量化表示，不应将它们理解为单个二进制开关，也不能将每个参数对应到一条独立知识。</p>
+<h2>二、Token 与生成过程</h2>
+<p>分词器（Tokenizer）将输入转换为 Token 序列。Token 可以对应一个字符、多个字符、词的一部分或其他符号，具体由分词器决定。中文字符数量与 Token 数量并非固定比例。</p>
+<p>自回归生成（Autoregressive Generation）根据已有序列计算下一个 Token 的概率分布，再按照解码策略选择 Token 并继续生成。温度（Temperature）等参数可能改变采样分布，但不能保证事实正确。</p>
+<p>幻觉（Hallucination）指生成内容看似合理却缺乏事实依据或与证据冲突。流畅性不能作为准确性的证明；模型还可能产生错误推导或遗漏条件。</p>
+<h2>三、训练与推理</h2>
+<p>训练（Training）根据数据和目标函数调整模型参数。预训练（Pretraining）建立广泛的表示和生成能力，后训练（Post-training）可能进一步改善指令遵循、任务表现和安全行为。</p>
+<p>推理（Inference）使用已有参数处理输入并生成结果。普通对话不意味着模型参数即时更新。上下文窗口（Context Window）限定模型单次处理的 Token 范围，产品还可能通过摘要、检索或持久化记忆提供其他历史信息。</p>
+<p>知识截止时间、训练数据覆盖范围与当前能否查询外部资料是不同概念。具有检索能力的系统可以取得训练后发布的信息，但仍需要核验来源。</p>
+<h2>四、Embedding 与 RAG</h2>
+<p>嵌入向量（Embedding）是将文本等数据映射为数值向量的表示。语义检索利用向量相似度等方法寻找相关内容，而不是只匹配文字。</p>
+<p>检索增强生成（Retrieval-Augmented Generation，RAG）通常包含资料切分、索引、检索和将相关材料加入生成上下文的过程。它可以帮助模型使用项目文档或更新资料，无须为每次文档变动重新训练模型。</p>
+<p>RAG 并不保证正确：检索可能漏掉关键段落、返回过时材料或忽略访问权限。向量数据库是可选基础设施之一，不等于 RAG 本身。</p>
+<p><svg role="img" aria-label="配图：检索增强生成（RAG）" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="system-ui, sans-serif"><rect width="760" height="460" rx="12" fill="#FAF9F6"/><text x="32" y="42" font-size="22" font-weight="600" fill="#2A2820">检索增强生成（RAG）</text><rect x="32" y="66" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="91" font-size="17" font-weight="600" fill="#2A2820">文档索引</text><text x="49" y="113" font-size="15" fill="#4A4740">切分 → 向量表示 → 索引</text><path d="M380 128 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="149" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="174" font-size="17" font-weight="600" fill="#2A2820">检索</text><text x="49" y="196" font-size="15" fill="#4A4740">问题 → 查询表示 → 相关片段</text><path d="M380 211 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="232" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="257" font-size="17" font-weight="600" fill="#2A2820">生成上下文</text><text x="49" y="279" font-size="15" fill="#4A4740">问题 + 检索证据 + 指令</text><path d="M380 294 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="315" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="340" font-size="17" font-weight="600" fill="#2A2820">LLM 推理</text><text x="49" y="362" font-size="15" fill="#4A4740">生成回答 → 核验来源</text><text x="32" y="428" font-size="13" fill="#4A4740">检索使用外部数据，不要求修改模型参数；相关性不等于真实性。</text></svg>
 </p>
-<h3>训练与推理：读书的过去和答题的现在</h3>
-<p>训练是它读书的过去：把海量文本喂进去，反复调整那几千亿个开关，让预测越来越准。训练一次要烧掉天文数字的算力（第 2 章的 GPU），所以模型的知识有一个「截止日期」——你问它截止日之后的世界，它只能靠猜。推理是它答题的现在：你每问一句，它都在跑一遍预测。你付的 token 费（第 16 章）就是推理的钱。</p>
-<h3>上下文窗口：它只记得这顿饭</h3>
-<p>它没有记忆。每次回答，系统把你们这轮对话的全部历史重新发一遍给它看。能发的总量有上限，行话叫上下文窗口——像一张固定大小的餐桌，聊得越久，最早的话就被撤下桌。第 12 章的会话卫生全从这个事实推出来。</p>
-<h3>多模态与 Agent：会看、会听、会动手</h3>
-<p>早期的模型只认文字。多模态模型学会了看图、听声音——你给它截图它也能读（但第 15 章的纪律不变：截图里别有密钥）。Agent 是更进一步的方向：给它工具——读文件、跑程序、发请求——让它按计划自己动手，而不只是动嘴。你用 AI 造东西的整套工作流，就是一个 Agent 加一个你。</p>
-<h3>本地与云端：同一批工人的两种雇佣</h3>
-<p>云端模型最强、按用量付费、你的数据要出门；本地模型在自己电脑里跑（吃你的内存和 GPU，第 10 章），数据不出门，能力弱一档。选择就是第 10 章光谱的 AI 版：敏感与能力之间的取舍。</p>
-<h2>三、怎么办</h2>
-<p>核验习惯：重要事实必须出口对证。凡是事实性的东西——函数名是否存在、参数是什么、某个说法的出处——用文档或搜索引擎对照一次再采用。它越流畅越笃定，越要核验：流畅和正确是两回事。</p>
-<p>知道它擅长与不擅长的边界。擅长：改写、总结、翻译、起稿、写代码、解释概念（这本书全靠它配合写成）。不擅长：精确计算（会算但可能算错，重要数字自己算）、新鲜事实（知识有截止日）、你的私事（它没见过你的数据）、任何「必须百分百正确」的场景。</p>
-<p>把「它在预测」当心法用。当它的回答读起来特别像套路套话时，警惕——套路是模式最强的信号。反过来，你给它的信息越具体、越有约束（第 5 章的验收标准），预测的「合理路径」就越接近你想要的。</p>
-<h2>四、带走的问题</h2>
+<h2>五、从模型到 Agent</h2>
+<p>多模态（Multimodal）模型可以处理多种数据模态，例如文本、图像或音频，具体输入输出能力取决于模型。</p>
+<p>Agent 将模型与工具调用、任务状态、执行环境等结合。搜索、运行代码和更新文件是由外部工具或宿主系统实际执行的操作，而不是模型参数本身的能力。第 12 章将进一步解释权限与验证。</p>
+<p>本地推理和云端推理是运行位置的区别，不直接决定模型能力。选择时应考虑模型质量、硬件资源、延迟、成本、数据传输和遥测设置。即使使用本地模型，联网工具也可能传输数据。</p>
+<h2>六、实践：区分生成与证据</h2>
+<p>准备一份虚构的 API 文档，其中明确规定 POST /orders 返回 201。先询问 AI 一个未提供文档的接口行为，再提供该文档要求引用对应段落回答。比较两次输出，并检查回答是否准确区分已知事实和假设。</p>
+<p>实验旨在展示上下文证据如何影响回答，不保证第一次必然错误或第二次必然正确。不要使用包含真实密钥的项目文档。</p>
+<h2>七、与 Agent 协作</h2>
+<p>请根据指定版本的官方文档检查接口是否存在、参数类型与返回值。若需要外部检索，请标明来源；无法确认时明确说明。生成代码后执行最小测试，并提供实际运行结果。不要把模型推测当作文档事实。</p>
+<h2>八、知识检验</h2>
 <ul>
-<li>它上一句让我差点信以为真的话，我核验了吗？</li>
-<li>我现在用的模型，知识截止到什么时候？</li>
-<li>我有没有把「流畅」错当成「正确」？</li>
-<li>这顿饭（上下文）里放了什么？该在桌上的都在吗（第 12 章）？</li>
-<li>这个任务，数据可以出门吗？可以，用云端；不可以，本地或其他方案。</li>
+<li>Token 与汉字或单词为什么不是一一对应？</li>
+<li>推理和训练对模型参数的影响有何不同？</li>
+<li>RAG 与模型微调有什么区别？</li>
+<li>模型生成一条工具调用请求为何不等于工具执行成功？</li>
 </ul>
-<p>本章顺便获得的概念：大模型、训练、推理、幻觉、上下文窗口、多模态、Agent、本地模型。</p>
+<p>进阶方向：Transformer、注意力、量化、KV Cache、检索排序、模型评估及结构化输出。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="11-ai-landscape">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+11+%E7%AB%A0+AI+%E5%85%A8%E6%99%AF%EF%BC%9A%E8%AE%A4%E8%AF%86%E4%BD%A0%E9%9B%87%E6%9D%A5%E7%9A%84%E5%B7%A5%E4%BA%BA&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F11-ai-landscape.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+11+%E7%AB%A0+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%EF%BC%9A%E6%A8%A1%E5%9E%8B%E3%80%81%E6%8E%A8%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F11-ai-landscape.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/11-ai-landscape.md">在 GitHub 上编辑本章</a>
@@ -121,9 +95,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/10-cloud.html" class="nav-prev">← 第 10 章 云的地图：程序住处的连续光谱</a>
+  <a href="../ch/10-cloud.html" class="nav-prev">← 第 10 章 云计算：虚拟化、容器与托管服务</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/12-ai-collab.html" class="nav-next">第 12 章 和 AI 分工：把活拆成它接得住的小块 →</a>
+  <a href="../ch/12-ai-collab.html" class="nav-next">第 12 章 与 AI Agent 协作：从需求到交付 →</a>
 </nav>
 </article>
 </main>

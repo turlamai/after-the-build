@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 5 章 编程语言：AI 的母语 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 5 章 编程语言、构建与运行时 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 5 章 编程语言：AI 的母语 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 5 章 编程语言、构建与运行时 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html" class="active">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html" class="active">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,47 +41,53 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第一部 · 世界观</p>
-  <h1>第 5 章 编程语言：AI 的母语</h1>
+  <p class="eyebrow">第一部 · 计算机技术基础</p>
+  <h1>第 5 章 编程语言、构建与运行时</h1>
   <blockquote>
-<p>机器听不懂「随便」「差不多」「大概那样」。它只认无歧义的指令——这既是 AI 会写错的原因，也是你能管住它的杠杆。</p>
+<p>即使由 AI 编写代码，也需要理解代码怎样变成运行中的软件。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>你对 AI 说：「把首页那个按钮改成橙色。」AI 改完，按钮确实是橙色了，但整个页面的排版塌了。你不理解：我就让你改一个颜色，其他的我没让你动啊。</p>
-<p>另一个现场：同一句需求，你昨天说一遍、今天再说一遍，AI 做出来两个东西，都不算错，但都不完全是你想的。你开始怀疑是 AI 变笨了。</p>
-<p>这两件事同根同源：你以为你在说人话，机器以为它在收指令。</p>
-<h2>二、为什么会这样</h2>
-<h3>编程语言是一份合同</h3>
-<p>人说话靠语境，机器执行靠字面。「把这个改一下」对人意味着用上下文判断，对机器意味着什么都不意味着——它不知道「这个」是谁、「一下」是多少。编程语言就是为消灭这种模糊而生的：语法固定、含义固定、没有一词多义。你不需要学它，但要知道它的脾气：极度较真，一字千钧。</p>
-<p>AI 的母语就是这份合同。它把你的人话翻译成合同条文再交给机器执行。翻译就会失真——「按钮改橙色」背后，AI 猜的改动范围可能比你脑子里的范围大。它没有恶意，它只是在没有歧义的世界里尽量走直线。</p>
-<h3>改一处坏另一处：牵连</h3>
-<p>代码不是一堆互不相干的句子，而是互相咬合的齿轮。页面的排版和那个按钮可能共用同一套规则，你让 AI 改按钮颜色，它为了实现目标顺手动了那套共用规则——于是别的跟着塌。</p>
-<p>这叫牵连，是所有软件事故的经典剧本，也是为什么专业人员改代码前要先拍快照（第 18 章讲）。你现在只需要记住结论：任何「就改一点」的操作，都可能牵动看起来无关的部分。这不是 AI 的缺陷，是软件的本性，换人类工程师也一样。</p>
-<h3>语言很多，思想一家</h3>
-<p>Python、JavaScript、Go——编程语言有几百种，就像自然语言有几百种。但它们共享一套底层思想，翻来覆去就三样：变量（给一个值起个名字，方便反复用）、条件（如果怎样，就怎样）、循环（重复做一件事直到满足条件）。你不需要学，但知道这三样，再看任何代码都不会觉得那是天书——它只是把这三样组合了几千次。</p>
-<h2>三、怎么办</h2>
-<p>把需求说成验收标准。少说「做一个好看的页面」，多说「手机上打开不横着滚动；点提交后出现『已收到』字样」。前者逼 AI 猜，后者直接替它省掉猜测。你说得越像「考卷」，它答得越像你要的。</p>
-<p>小步走，每步验收。一次只提一个改动，改完立刻检查，确认没问题再提下一个。连提三个改动再一起看，出了问题你都不知道是哪一步引入的。这是全书最省时间的一条习惯。</p>
-<p>拿我自己家里的一件真事当例子。结婚之后，两个人的信用卡、两个支付宝、两个微信支付，账单拼不到一起，夫妻互转还会被算重。我打开 AI，先说清需求：「分析两个人的家庭账单，处理互转的重复记账」，丢了一个月的账单文件过去。</p>
-<p>第一版跑出来，互转果然被算重了。我把算错的数字贴回去，它修好了；说「加一个月度趋势图」，它加上；说「加一个商家排名」，它补上。一轮一轮下来，一个两千行的家庭财务分析工具就这么长出来了。机器写代码，人负责发现「哪里不对」——在我家，这不是比喻，是每月账单的现实。</p>
-<p>一句话管住改动范围。「只改这个按钮的颜色，不要动其他任何文件的任何部分。」加上这句，塌页面的概率会大幅下降。AI 不会因为这句话而不犯错，但会少很多自由发挥。</p>
-<p>让 AI 解释代码是合法的。看到不懂的代码，直接问：「逐段用大白话解释这段在做什么，我完全不会编程。」它解释得越清楚，你越能发现它哪里理解偏了。验收的本质不是看懂代码，是看懂「它以为它在做什么」。</p>
-<h2>四、带走的问题</h2>
+<h2>一、源代码与语言</h2>
+<p>源代码（Source Code）使用编程语言表达算法、数据和控制逻辑。语法（Syntax）规定合法表达形式，语义（Semantics）规定表达的行为。语法正确并不意味着业务逻辑正确。</p>
+<p>变量（Variable）关联程序中的值或存储位置，数据类型（Data Type）规定值的表示和允许的操作。函数（Function）封装可调用的逻辑，参数传入信息，返回值提供结果。条件与循环决定控制流。</p>
+<p>例如：</p>
+<pre><code class="language-python">def total(price, quantity):
+    return price * quantity
+
+print(total(20, 3))
+</code></pre>
+<p>函数 total 接收两个参数并返回乘积，程序输出 60。它并没有验证数量是否为负数，也没有处理货币精度；这些属于需求及实现约束。</p>
+<h2>二、编译器、解释器与运行时</h2>
+<p>编译器（Compiler）将程序转换为另一种表示，例如机器代码或字节码。解释器（Interpreter）按照程序表示执行其行为。即时编译（Just-in-time Compilation，JIT）可以在运行过程中生成机器代码。</p>
+<p>运行时（Runtime）提供程序执行所需的环境和支持功能，例如内存管理、异常处理或标准库。Python、Java、JavaScript 等实现可能结合编译、解释和 JIT，不能简单按语言划分为互斥类别。</p>
+<p>本机可执行程序也可能依赖动态链接库及操作系统接口。因此，成功编译与在目标系统成功运行是不同的验收条件。</p>
+<h2>三、模块、库与框架</h2>
+<p>模块（Module）组织相关代码；库（Library）提供可复用功能；框架（Framework）通常定义应用的组织方式和执行流程。API 规定组件之间可使用的接口。</p>
+<p>依赖（Dependency）是软件所需的外部组件。包管理器（Package Manager）负责解析、安装和管理软件包。例如 npm、pip 等工具属于不同生态。依赖清单与锁定文件的职责不同，具体机制取决于工具。</p>
+<p>安装依赖可能执行第三方代码，需要检查来源与权限。不要把自动安装成功等同于供应链安全。</p>
+<h2>四、构建与测试</h2>
+<p>构建可能包含编译、链接、资源转换及打包。构建产物（Build Artifact）是流程生成的文件。测试（Test）用于验证行为是否符合预期，不能由构建成功替代。</p>
+<p>静态类型检查、Lint、单元测试、集成测试各自覆盖不同问题。静态检查可能发现不合法的类型或代码模式，但无法证明所有业务行为正确。</p>
+<h2>五、实践：理解代码行为</h2>
+<p>如果已安装 Python 3，将前面的例子保存为 example.py，在测试目录中运行 python example.py（部分系统使用 python3）。将 quantity 改为 -3，观察结果。程序仍然可以合法执行，但它是否应该接受负数量需要业务规则决定。</p>
+<p>请尝试用文字写出约束：数量必须为非负整数，非法输入应产生明确错误。再让 Agent 添加实现及测试，检查正常值、零、负数与非整数输入。</p>
+<h2>六、技术选型与 Agent</h2>
+<p>语言选择应根据目标平台、团队经验、生态、性能、部署和维护约束判断。不要单纯依据语言热门程度，也不要让 Agent 随意更换项目技术栈。</p>
+<p>请 Agent 先识别现有语言、运行时版本、依赖清单、构建与测试入口；在保持接口兼容的前提下实现需求，提供代码差异及实际验证结果。未经授权不进行跨语言重写或大规模依赖升级。</p>
+<h2>七、知识检验</h2>
 <ul>
-<li>我这条需求，AI 有几处必须靠猜？</li>
-<li>这次改动，我说了「不要动其他部分」吗？</li>
-<li>我是攒了几个改动一起验收，还是一步一验？</li>
-<li>它改完之后，我检查的是「改的那个点」，还是「整个东西还正常吗」？</li>
-<li>有没有哪段代码，我该让它讲给我听？</li>
+<li>语法正确为什么不能证明业务逻辑正确？</li>
+<li>编译器与运行时承担什么职责？</li>
+<li>库、框架和 API 有何联系？</li>
+<li>构建成功之后为什么仍需要目标平台测试？</li>
 </ul>
-<p>本章顺便获得的概念：编程语言、源代码、歧义、变量、条件、循环、牵连。</p>
+<p>进阶方向：链接器、ABI、类型系统、垃圾回收、异常处理与依赖解析。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="05-language">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+5+%E7%AB%A0+%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9AAI+%E7%9A%84%E6%AF%8D%E8%AF%AD&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F05-language.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+5+%E7%AB%A0+%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E3%80%81%E6%9E%84%E5%BB%BA%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F05-language.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/05-language.md">在 GitHub 上编辑本章</a>
@@ -89,9 +95,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/04-cli-gui.html" class="nav-prev">← 第 4 章 黑底白字的窗口：GUI 与命令行</a>
+  <a href="../ch/04-cli-gui.html" class="nav-prev">← 第 4 章 用户界面、终端与 Shell</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/06-efficiency.html" class="nav-next">第 6 章 效率与瓶颈：为什么程序会变慢 →</a>
+  <a href="../ch/06-efficiency.html" class="nav-next">第 6 章 性能与算法：复杂度、瓶颈和测量 →</a>
 </nav>
 </article>
 </main>

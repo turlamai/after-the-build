@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 20 章 加密与哈希：锁和指纹 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 20 章 密码学基础：加密、哈希与数字签名 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 20 章 加密与哈希：锁和指纹 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 20 章 密码学基础：加密、哈希与数字签名 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html" class="active">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html" class="active">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,106 +41,89 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第三部 · 判断</p>
-  <h1>第 20 章 加密与哈希：锁和指纹</h1>
+  <p class="eyebrow">第三部 · 安全与工程判断</p>
+  <h1>第 20 章 密码学基础：加密、哈希与数字签名</h1>
   <blockquote>
-<p>「忘记密码」永远只能重置不能找回——这一个细节，藏着密码学最核心的分野：可逆的锁，和不可逆的指纹。</p>
+<p>不同密码学原语提供不同安全属性，不能将加密、哈希和身份认证混为一谈。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>你在某网站点了「忘记密码」，收到重置邮件，设置新密码，登录成功。你突然意识到一件事：从头到尾，网站从来没有把你的旧密码告诉你。它到底知不知道你的密码？</p>
-<p>另一个现场：某平台宣传「数据加密存储」，后来还是泄露了，用户密码照样被破解。加密了怎么还能破？还有一个词你听过很多次：「端到端加密」——到底谁看得到？</p>
-<h2>二、为什么会这样</h2>
-<h3>加密：可逆的锁</h3>
-<p>加密是把内容变成乱码，但拿着钥匙可以还原——它是锁，锁上能开。你用一把钥匙锁上箱子，收件人用另一把（或同一把）钥匙打开。第 9 章的 HTTPS 就是加密：寄密封信，沿途谁都读不了，收件人拆得开。</p>
-<p>互联网的加密有个巧妙的分身术：公开的锁和私有的钥匙配对。任何人都用「公开的锁」给你寄信（所以陌生人也能给你写加密信），只有你手里的私钥能拆。你每次打开 https 网址，浏览器和服务器就在几毫秒内完成这套握手（第 9 章）。</p>
-<h3>哈希：不可逆的指纹</h3>
-<p>哈希是把内容压成一段固定长度的「指纹」：同一份内容永远算出同一枚指纹，但从指纹无法还原内容——它只单向，不可逆。网站存你的密码，存的是指纹而不是密码本身：你登录时，它把你输入的密码再算一次指纹，两枚对得上就放行。</p>
-<p>这就是「忘记密码只能重置」的答案：网站手里只有指纹，它也不知道你的密码。重置的本质是「验证你是你之后，让你设一个新的」。这也是安全的底线：就算数据库被偷，小偷拿到的也是指纹堆，直接登不了录。宣传语里的门道由此而来：「加密存储」被破了还能解，「哈希存储」被破了也登不了——后者才是密码该有的待遇。</p>
-<h3>端到端加密：钥匙只在当事人手里</h3>
-<p>普通加密的信件，平台也有钥匙（它得帮你转发）。端到端加密的意思是：钥匙只在你和对方手里，平台只负责递信，自己都拆不开。聊天软件宣称的「端到端」，含义就是平台看不见内容。代价也随之而来：忘了密码、丢了设备，平台真的救不了你——强加密不给任何后门，包括给你自己的后门。</p>
-<p><svg role="img" aria-label="配图：加密的锁与哈希的指纹" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 440" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="1000" height="440" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">加密是可逆的锁，哈希是不可逆的指纹</text>
-
-  <line x1="500" y1="60" x2="500" y2="380" stroke="#EBE8E0" stroke-width="1.5"/>
-
-  <text x="255" y="70" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">加密：寄密封信（HTTPS 就是它）</text>
-
-  <rect x="60" y="100" width="150" height="56" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="135" y="134" font-size="10" fill="#1a1a1a" text-anchor="middle">原文「你好」</text>
-
-  <rect x="260" y="100" width="150" height="56" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="335" y="128" font-size="10" fill="#1a1a1a" text-anchor="middle">上锁（公钥）</text>
-  <text x="335" y="146" font-size="8" fill="#6a6a6a" text-anchor="middle">谁都能锁上寄给你</text>
-
-  <rect x="260" y="200" width="150" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="335" y="234" font-size="10" fill="#1a1a1a" text-anchor="middle">密文 ×！#?￥…</text>
-
-  <rect x="260" y="300" width="150" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="335" y="328" font-size="10" fill="#1a1a1a" text-anchor="middle">开锁（私钥）</text>
-  <text x="335" y="346" font-size="8" fill="#6a6a6a" text-anchor="middle">只有你有这把钥匙</text>
-
-  <rect x="60" y="300" width="150" height="56" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="135" y="334" font-size="10" fill="#1a1a1a" text-anchor="middle">原文「你好」</text>
-
-  <line x1="210" y1="128" x2="256" y2="128" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="335" y1="156" x2="335" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="335" y1="256" x2="335" y2="296" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="256" y1="328" x2="214" y2="328" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <text x="755" y="70" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">哈希：单向指纹（密码只该存它）</text>
-
-  <rect x="560" y="100" width="150" height="56" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="635" y="134" font-size="10" fill="#1a1a1a" text-anchor="middle">你的密码</text>
-
-  <rect x="760" y="100" width="150" height="56" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="835" y="128" font-size="10" fill="#1a1a1a" text-anchor="middle">指纹机（哈希）</text>
-  <text x="835" y="146" font-size="8" fill="#6a6a6a" text-anchor="middle">同密码永远同指纹</text>
-
-  <rect x="560" y="200" width="150" height="56" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="635" y="234" font-size="10" fill="#1a1a1a" text-anchor="middle">指纹 a1b2c3…</text>
-
-  <rect x="760" y="200" width="150" height="80" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="835" y="232" font-size="10" font-weight="600" fill="#ffffff" text-anchor="middle">从指纹回不去原文</text>
-  <text x="835" y="254" font-size="8" fill="#ffffff" text-anchor="middle">所以网站只能「重置」密码</text>
-
-  <rect x="560" y="300" width="150" height="56" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="635" y="328" font-size="10" fill="#1a1a1a" text-anchor="middle">登录时再算一次</text>
-  <text x="635" y="346" font-size="8" fill="#6a6a6a" text-anchor="middle">指纹对得上就放行</text>
-
-  <line x1="710" y1="128" x2="756" y2="128" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="835" y1="156" x2="835" y2="196" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="756" y1="228" x2="714" y2="228" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="635" y1="256" x2="635" y2="296" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <text x="40" y="414" font-size="9" fill="#6a6a6a">泄露后果因此不同：「加密存储」被破还能解，「哈希存储」被破也登不了录。读懂这个分叉，就读得懂安全声明。</text>
-</svg>
+<h2>一、密码学解决哪些问题</h2>
+<p>加密（Encryption）使用算法及密钥将明文转换为密文，解密恢复明文。密码学哈希（Cryptographic Hash）将任意长度输入映射为固定长度摘要。数字签名（Digital Signature）用于验证消息完整性及签名者持有相应私钥的事实。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>机制</th>
+<th>主要用途</th>
+<th>常见实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>对称加密</td>
+<td>保护数据机密性</td>
+<td>AES-GCM、ChaCha20-Poly1305</td>
+</tr>
+<tr>
+<td>公钥密码机制</td>
+<td>密钥建立、签名或特定加密用途</td>
+<td>X25519、Ed25519、RSA</td>
+</tr>
+<tr>
+<td>密码学哈希</td>
+<td>内容摘要及完整性相关操作</td>
+<td>SHA-256</td>
+</tr>
+<tr>
+<td>消息认证码（MAC）</td>
+<td>使用共享秘密验证消息真实性和完整性</td>
+<td>HMAC-SHA-256</td>
+</tr>
+<tr>
+<td>密码哈希</td>
+<td>提高离线密码猜测成本</td>
+<td>Argon2id、scrypt、bcrypt</td>
+</tr>
+</tbody></table></div>
+<p>哈希本身不能证明数据来源。如果攻击者能同时替换文件与摘要，仅比较摘要不能建立可信来源。</p>
+<p><svg role="img" aria-label="配图：密码学原语及其安全属性" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="system-ui, sans-serif"><rect width="760" height="460" rx="12" fill="#FAF9F6"/><text x="32" y="42" font-size="22" font-weight="600" fill="#2A2820">密码学原语及其安全属性</text><rect x="32" y="66" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="91" font-size="17" font-weight="600" fill="#2A2820">认证加密 AEAD</text><text x="49" y="113" font-size="15" fill="#4A4740">密钥 + nonce → 密文及认证标签</text><path d="M380 128 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="149" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="174" font-size="17" font-weight="600" fill="#2A2820">哈希 SHA-256</text><text x="49" y="196" font-size="15" fill="#4A4740">消息 → 固定长度摘要</text><path d="M380 211 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="232" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="257" font-size="17" font-weight="600" fill="#2A2820">消息认证码 HMAC</text><text x="49" y="279" font-size="15" fill="#4A4740">共享秘密 + 消息 → 认证码</text><path d="M380 294 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="315" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="340" font-size="17" font-weight="600" fill="#2A2820">数字签名</text><text x="49" y="362" font-size="15" fill="#4A4740">私钥签名；可信公钥验证</text><text x="32" y="428" font-size="13" fill="#4A4740">摘要不证明来源；密码保存需要专用密码哈希与独立盐。</text></svg>
 </p>
-<h2>三、怎么办</h2>
-<p>读懂安全声明的一个分叉。看到「你的数据是加密的」，追问一句：是加密（可逆，平台有钥匙）还是哈希（不可逆）？密码类应该哈希；文件类通常是加密。泄露后果完全不同。</p>
-<p>选服务时看一眼加密层级。涉及私密对话和敏感笔记的服务，优先选有端到端加密的；但开了端到端，第 17 章的备份纪律要执行得更严——平台帮不了你。</p>
-<p>密码管理器为什么可信，现在你能说清原理了：它把你的所有密码加密在一个保险库里，钥匙是你唯一需要记住的主密码（第 19 章）。它不是多记了一堆密码，是把你从「记密码」里解放出来去记住一把钥匙。</p>
-<h2>四、带走的问题</h2>
+<h2>二、对称加密与公钥机制</h2>
+<p>对称加密（Symmetric Encryption）使用共享秘密密钥。现代应用通常采用认证加密（Authenticated Encryption with Associated Data，AEAD），同时提供机密性和完整性保护。</p>
+<p>Nonce 是某次密码学操作使用的数值，其唯一性或随机性要求由算法决定。例如 AES-GCM 在同一密钥下重复使用 nonce 会破坏重要安全保证。应使用成熟密码库及其推荐接口，而不是自行设计加密协议。</p>
+<p>公钥密码学（Public-key Cryptography）使用相关联的公钥和私钥。并非所有公钥算法都支持加密与签名两种操作。例如 Ed25519 用于签名，X25519 用于密钥协商。</p>
+<p>现代 TLS 通常使用密钥协商建立会话秘密，通过证书及签名认证服务器，并使用对称认证加密保护应用数据。不能将现代 HTTPS 简化为浏览器使用服务器公钥加密全部数据。</p>
+<h2>三、哈希、密码保存与数字签名</h2>
+<p>密码学哈希需要具备抗原像、抗第二原像和抗碰撞等安全属性。抗原像意味着从摘要寻找对应输入在计算上应当困难，并不意味着低熵输入无法被猜测。不同输入也可能产生相同摘要，这是固定长度输出的数学限制。</p>
+<p>用户密码不应直接采用快速通用哈希保存。密码哈希算法使用独立随机盐（Salt）及可配置的计算成本，降低预计算和大规模离线猜测的效率。盐通常不需要保密。即使数据库保存的是密码哈希，弱密码仍可能被破解，因此还需要合理的认证和访问保护措施。</p>
+<p>数字签名使用私钥生成签名，使用公钥验证。验证成功并不自动证明公钥属于预期主体，还需要可信的公钥分发或证书机制。</p>
+<h2>四、传输加密、静态加密与端到端加密</h2>
+<p>传输加密（Encryption in Transit）保护网络传输过程；静态数据加密（Encryption at Rest）保护存储中的数据。二者均不能自动阻止有权限的应用读取明文。</p>
+<p>端到端加密（End-to-end Encryption，E2EE）要求预期通信端点控制解密能力，中间服务通常不持有解密消息内容所需的密钥。实际保证取决于协议、客户端实现、密钥管理、设备信任和备份机制。元数据未必受到相同保护。</p>
+<p>密钥恢复、设备迁移与数据备份必须结合具体产品设计评估。不能假设所有端到端加密产品具有相同的恢复能力。</p>
+<h2>五、实践：观察摘要变化</h2>
+<p>如果安装了 Python 3，可以运行：</p>
+<pre><code class="language-python">import hashlib
+
+for value in (b&quot;hello&quot;, b&quot;hello!&quot;):
+    print(hashlib.sha256(value).hexdigest())
+</code></pre>
+<p>观察两组固定长度的十六进制摘要。这个实验展示输入变化会产生不同摘要的常见情况，不证明哈希绝对不会碰撞，也不是密码存储示例。</p>
+<p>下载可信软件时，可比较通过可信渠道获得的官方 SHA-256 摘要与本地文件摘要，验证内容是否一致。若需要验证发布者身份，应进一步检查可信数字签名。</p>
+<h2>六、与 Agent 协作</h2>
+<p>请分别说明项目中传输数据、存储文件、用户密码和签名验证使用的安全机制。检查是否采用成熟密码库、适当的密码哈希、密钥管理及证书验证。不得自行设计密码算法，不得把真实私钥输出到日志。</p>
+<h2>七、知识检验</h2>
 <ul>
-<li>我常用的服务，密码存的是指纹还是原文？</li>
-<li>这个服务宣称的加密，是锁还是端到端？平台看得见我的内容吗？</li>
-<li>我的主密码，是唯一需要我记住的钥匙吗？</li>
-<li>我能解释「为什么忘记密码只能重置」了吗？</li>
-<li>我的东西开 了端到端，备份纪律跟上了吗（第 17 章）？</li>
+<li>为什么 SHA-256 不能直接作为用户密码的推荐存储方案？</li>
+<li>哈希与数字签名提供的安全属性有什么不同？</li>
+<li>TLS 为什么同时使用公钥机制与对称加密？</li>
+<li>为什么静态数据加密不能代替授权？</li>
 </ul>
-<p>本章顺便获得的概念：加密、哈希、端到端加密、公钥与私钥、重置与找回。</p>
+<p>进阶方向：AEAD、PKI、证书链、密钥派生函数、前向保密、密码学协议分析。参考 RFC 8446、RFC 9106 和 FIPS 180-4。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="20-crypto">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+20+%E7%AB%A0+%E5%8A%A0%E5%AF%86%E4%B8%8E%E5%93%88%E5%B8%8C%EF%BC%9A%E9%94%81%E5%92%8C%E6%8C%87%E7%BA%B9&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F20-crypto.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+20+%E7%AB%A0+%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8A%A0%E5%AF%86%E3%80%81%E5%93%88%E5%B8%8C%E4%B8%8E%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F20-crypto.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/20-crypto.md">在 GitHub 上编辑本章</a>
@@ -148,9 +131,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/19-security.html" class="nav-prev">← 第 19 章 它安全吗：把门关好</a>
+  <a href="../ch/19-security.html" class="nav-prev">← 第 19 章 信息安全：威胁模型、身份与访问控制</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/21-privacy.html" class="nav-next">第 21 章 隐私与追踪：谁在看你 →</a>
+  <a href="../ch/21-privacy.html" class="nav-next">第 21 章 隐私工程：数据流、追踪与授权 →</a>
 </nav>
 </article>
 </main>

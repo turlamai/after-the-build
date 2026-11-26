@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 10 章 云的地图：程序住处的连续光谱 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 10 章 云计算：虚拟化、容器与托管服务 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 10 章 云的地图：程序住处的连续光谱 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 10 章 云计算：虚拟化、容器与托管服务 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html" class="active">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html" class="active">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,90 +41,69 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第一部 · 世界观</p>
-  <h1>第 10 章 云的地图：程序住处的连续光谱</h1>
+  <p class="eyebrow">第一部 · 计算机技术基础</p>
+  <h1>第 10 章 云计算：虚拟化、容器与托管服务</h1>
   <blockquote>
-<p>「云」不是天上的东西，是别人的电脑加一套自动化。从你自己的笔记本到无人机房，是一条连续的光谱。</p>
+<p>云计算涉及资源供给、运行隔离与运维责任划分，不能用单一的控制程度描述全部技术。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>朋友跟你炫耀「我的数据都在云上，绝对安全」，你不知道该放心还是警惕。有人聊起「我在本地跑了个模型」，另一人说「我们用 Serverless」，三个词把天聊死。你自己的东西还躺在免费托管平台（第 13 章）上，不知道要不要「上云」。</p>
-<h2>二、为什么会这样</h2>
-<h3>云 = 别人的电脑 + 自动化</h3>
-<p>把「云」祛魅只需一句话：云就是别人帮你维护的、随开随用的电脑，外加一套自动化（坏了自动换、忙了自动加）。第 13 章的托管平台是最温和的一档云。它解决了真问题——不用买机器、不用管它死活、用多少付多少；也带来一个你早就熟悉的代价——东西长在别人的地基上（第 17 章的平台锁定）。</p>
-<h3>从笔记本到机房：一条连续的光谱</h3>
-<p>光谱的一端是你自己的电脑：全权控制，但停电关机全世界就找不到你。往外走是虚拟机——服务商把一台大机器切成很多隔间，你租一个，想装什么装什么，坏了服务商换一个给你。再往外是容器——更轻的隔间，行话叫集装箱：把程序和它的全部行李打成一个标准箱子，搬到哪都能原样运行。托管平台站在再外面：隔间配管家，你只管交代码。最远处是 Serverless——连隔间都看不见了，你的程序被拆成一个个函数，有人调用才运行，按次计费。</p>
-<p>光谱越往外，越省心、越弹性、但控制越少；越往内，控制越多、越操心。没有正确答案，只有取舍。</p>
-<h3>「本地 AI」和「云端 AI」也在同一条光谱上</h3>
-<p>用 AI 的方式同样排成这条线：云端大模型（最强、按 token 付费、数据要出门，第 15 章）到本地小模型（在自己电脑里跑，数据不出门，能力弱一截，吃你的内存和 GPU——第 2 章）。第 12 章讲怎么选。</p>
-<p><svg role="img" aria-label="配图：程序住处的光谱——从全权控制到全托付" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="1000" height="400" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">程序住处的光谱：从全权控制到全托付</text>
-
-  <rect x="40" y="90" width="170" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="125" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">你的电脑</text>
-  <text x="125" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">全权控制，自己维护</text>
-  <text x="125" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">关机 = 世界找不到你</text>
-
-  <rect x="240" y="90" width="170" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="325" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">虚拟机</text>
-  <text x="325" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">大机器切出的隔间</text>
-  <text x="325" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">想装什么装什么</text>
-
-  <rect x="440" y="90" width="170" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="525" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">容器</text>
-  <text x="525" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">程序+行李打包成箱</text>
-  <text x="525" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">搬到哪都能原样运行</text>
-
-  <rect x="640" y="90" width="170" height="110" rx="12" fill="#9dd4c7" stroke="#d97757" stroke-width="2"/>
-  <text x="725" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">托管平台</text>
-  <text x="725" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">隔间配好管家</text>
-  <text x="725" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">你只管交代码（第 12 章）</text>
-
-  <rect x="840" y="90" width="120" height="110" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="900" y="132" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">Serverless</text>
-  <text x="900" y="156" font-size="8" fill="#6a6a6a" text-anchor="middle">看不见隔间</text>
-  <text x="900" y="174" font-size="8" fill="#6a6a6a" text-anchor="middle">按次付费</text>
-
-  <line x1="212" y1="145" x2="236" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="412" y1="145" x2="436" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="612" y1="145" x2="636" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="812" y1="145" x2="836" y2="145" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <line x1="60" y1="260" x2="940" y2="260" stroke="#d97757" stroke-width="1.5" stroke-dasharray="8,4"/>
-  <text x="120" y="288" font-size="10" fill="#6a6a6a" text-anchor="middle">← 控制多、操心多</text>
-  <text x="880" y="288" font-size="10" fill="#6a6a6a" text-anchor="middle">省心多、控制少 →</text>
-
-  <rect x="380" y="310" width="240" height="44" rx="8" fill="#f4e4c1" stroke="#d97757" stroke-width="1.5"/>
-  <text x="500" y="338" font-size="10" fill="#1a1a1a" text-anchor="middle">本地 AI 与云端 AI 也在同一条光谱上</text>
-
-  <text x="40" y="382" font-size="9" fill="#6a6a6a">选位置只问三件事：数据敏不敏感、要多少控制、愿意维护多少——三个答案的交集就是你的位置。</text>
-</svg>
-</p>
-<h2>三、怎么办</h2>
-<p>选位置只问三个问题。数据敏不敏感：越敏感越往内（本地、自托管）；需要多少控制：越要定制越往内；愿意维护多少：越不想维护越往外。三个答案的交集就是你的位置——对本书的读者，答案通常落在托管平台这一格，已经够了。</p>
-<p>读云宣传页自带一台翻译机。「弹性」= 忙时自动多开机器，闲时自动关掉省钱；「高可用」= 坏了自动换一台，你基本感知不到；「按量计费」= 用一次付一次，但超额自动扣款的那颗雷（第 16 章）也在「按量」里。翻译完再做决定。</p>
-<p>一个清醒的提醒。光谱上的位置不是终身制：先从托管平台起步，等数据敏感度或用户量变化了再迁移——第 17 章的导出权就是你的迁移通行证。</p>
-<h2>四、带走的问题</h2>
+<h2>一、部署位置与服务模型</h2>
+<p>自托管（Self-hosting）指使用者自行负责系统运行环境，可以部署在本地设备、租用服务器或私有云。云计算（Cloud Computing）通常提供通过网络按需获得的共享计算、存储和网络资源，并支持自动化管理和计量。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>服务模型</th>
+<th>使用者主要负责</th>
+<th>提供方主要负责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IaaS（基础设施即服务）</td>
+<td>操作系统、应用和数据</td>
+<td>物理基础设施与虚拟化</td>
+</tr>
+<tr>
+<td>PaaS（平台即服务）</td>
+<td>应用、配置和数据</td>
+<td>平台运行环境及基础设施</td>
+</tr>
+<tr>
+<td>SaaS（软件即服务）</td>
+<td>使用、配置及业务数据治理</td>
+<td>软件服务及运行平台</td>
+</tr>
+</tbody></table></div>
+<p>责任分界取决于合同和产品配置。使用托管服务不意味着自动获得备份、高可用或安全合规。</p>
+<h2>二、虚拟机和容器</h2>
+<p>虚拟机（Virtual Machine，VM）通过虚拟化监控程序（Hypervisor）运行独立的客户操作系统。多个虚拟机可以共享物理主机资源。</p>
+<p>容器（Container）通常使用宿主操作系统内核，并通过命名空间、资源控制和文件系统等机制隔离应用。容器镜像（Container Image）描述运行所需的文件与配置，容器是镜像的运行实例。</p>
+<p>镜像不是任意平台都能运行的完整机器备份。CPU 架构、内核能力、设备访问和环境配置都可能影响兼容性。容器内的可写层也不适合保存需要独立持久化的重要数据。</p>
+<p>虚拟机可以运行容器；容器可以部署到自托管服务器或托管平台。它们是不同的隔离和交付机制，并非必然逐级替换的服务层级。</p>
+<h2>三、应用服务、存储和网络</h2>
+<p>一个典型 Web 系统包含前端静态资源、后端 API、数据库和对象存储（Object Storage）。对象存储按对象键保存数据，常用于图片、备份等文件；关系型数据库适合结构化查询和事务处理。</p>
+<p>负载均衡器（Load Balancer）将请求分配到多个后端实例。内容分发网络（Content Delivery Network，CDN）可在靠近用户的节点缓存或分发内容。反向代理（Reverse Proxy）接收客户端请求并转发给上游服务。这些组件的功能可能由同一产品提供，但概念并不相同。</p>
+<h2>四、Serverless 与扩展</h2>
+<p>无服务器计算（Serverless Computing）通常由服务商管理服务器和运行资源。函数即服务（Function as a Service，FaaS）是一种常见形式，但 Serverless 不仅包括函数，也可以包括其他按需托管服务。</p>
+<p>自动扩缩容（Auto Scaling）根据负载调整资源数量。水平扩展增加实例，垂直扩展增加单个实例资源。冷启动（Cold Start）、连接数、状态管理和服务配额都可能成为限制。</p>
+<p>可用性（Availability）衡量服务在约定时间内可用的程度。高可用需要考虑故障域、冗余、健康检查及故障切换；自动扩缩容不等于高可用。</p>
+<h2>五、实践：分析应用部署结构</h2>
+<p>选择一个自己创建的测试网站，记录静态资源托管位置、API 运行环境、数据库类型、文件存储和域名。画出请求与数据流，并为每个组件标注管理责任、凭据和恢复方法。静态站点可能没有后端和数据库，不必为练习额外部署付费服务。</p>
+<h2>六、与 Agent 协作</h2>
+<p>请根据用户规模、数据敏感度、可用性目标、预算和维护能力，比较静态托管、托管应用、虚拟机与容器部署方案。说明数据库持久化、备份、TLS、监控和迁移成本；给出最小可用方案及未来扩展条件，不自动购买资源。</p>
+<h2>七、知识检验</h2>
 <ul>
-<li>我的东西现在住在这条光谱的哪一格？</li>
-<li>我的数据敏不敏感？答案有没有让我想往内挪一格？</li>
-<li>我愿意维护多少？诚实的答案是什么？</li>
-<li>「本地跑 AI」这个选项，我的电脑配置撑得住吗（第 2 章）？</li>
-<li>我读得懂云厂商宣传页里的那些词吗？</li>
+<li>为什么容器可以在虚拟机内部运行？</li>
+<li>PaaS 使用者仍需承担哪些责任？</li>
+<li>CDN、反向代理与负载均衡有何区别？</li>
+<li>为什么自动扩缩容不能代替备份？</li>
 </ul>
-<p>本章顺便获得的概念：云、虚拟机、容器、Serverless、自托管、本地模型。</p>
+<p>进阶方向：容器编排、基础设施即代码（IaC）、服务等级目标（SLO）、多可用区与灾难恢复。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="10-cloud">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+10+%E7%AB%A0+%E4%BA%91%E7%9A%84%E5%9C%B0%E5%9B%BE%EF%BC%9A%E7%A8%8B%E5%BA%8F%E4%BD%8F%E5%A4%84%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%85%89%E8%B0%B1&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F10-cloud.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+10+%E7%AB%A0+%E4%BA%91%E8%AE%A1%E7%AE%97%EF%BC%9A%E8%99%9A%E6%8B%9F%E5%8C%96%E3%80%81%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F10-cloud.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/10-cloud.md">在 GitHub 上编辑本章</a>
@@ -132,9 +111,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/09-network.html" class="nav-prev">← 第 9 章 一次点击的旅程：网络是什么</a>
+  <a href="../ch/09-network.html" class="nav-prev">← 第 9 章 计算机网络：从地址到应用协议</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/11-ai-landscape.html" class="nav-next">第 11 章 AI 全景：认识你雇来的工人 →</a>
+  <a href="../ch/11-ai-landscape.html" class="nav-next">第 11 章 人工智能基础：模型、推理与应用架构 →</a>
 </nav>
 </article>
 </main>
