@@ -176,6 +176,13 @@ pre code { background: none; color: var(--code-ink); padding: 0; font-size: 0.87
 .copy-btn:hover { background: rgba(250, 249, 246, 0.22); }
 .copy-btn.done { color: #7FB88A; border-color: #3E7D4E; }
 strong { color: var(--ink); }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 20px 0; border: 1px solid var(--line-strong); border-radius: 6px; }
+article.chapter table { border-collapse: collapse; width: 100%; font-size: 0.92em; line-height: 1.65; }
+article.chapter th, article.chapter td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+article.chapter th { background: var(--raised); color: var(--ink); font-weight: 600; }
+article.chapter tr:last-child td { border-bottom: 0; }
+article.chapter p, article.chapter li { overflow-wrap: anywhere; }
+article.chapter pre { padding-top: 42px; }
 article.chapter svg { display: block; max-width: 100%; height: auto; margin: 24px auto; border: 1px solid var(--line); border-radius: 8px; cursor: zoom-in; }
 
 /* Lightbox: click a diagram to enlarge it to the viewport limit. */

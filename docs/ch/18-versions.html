@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 18 章 昨天还能用，今天怎么就坏了：版本与依赖 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 18 章 版本控制、依赖管理与可复现构建 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 18 章 昨天还能用，今天怎么就坏了：版本与依赖 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 18 章 版本控制、依赖管理与可复现构建 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html" class="active">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html" class="active">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,92 +41,79 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第二部 · 六件手艺</p>
-  <h1>第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</h1>
+  <p class="eyebrow">第二部 · 工程实践</p>
+  <h1>第 18 章 版本控制、依赖管理与可复现构建</h1>
   <blockquote>
-<p>后悔药是真实存在的，它的行话叫版本控制。学会它之前，你每次「就改一点」都是在走钢丝。</p>
+<p>每一次软件变更都应能够定位、审查、验证并在适当条件下恢复。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>你让 AI 改三处：一处颜色、一处文案、一处逻辑。改完，坏了两处。你想回到今天早上的版本——发现没有「今天早上」，你一路都是直接改在原文件上的，旧的已经没了。你只能让 AI 对着现状猜哪里改坏了，越猜越乱。</p>
-<p>另一个现场更冤：你一个字都没改，东西自己坏了。你跟 AI 说「没人动过啊」，语气理直气壮。AI 半信半疑地开始排查。</p>
-<p>两个现场共享同一个教训：软件是活的，变化才是常态，而你需要一套对付变化的方法。</p>
-<h2>二、为什么会这样</h2>
-<h3>「没人动过」的三种真相</h3>
-<p>第一种真相：依赖自己变了。你的东西是用一堆别人写的零件拼起来的，行话叫依赖——比如某个做界面的零件库。那些零件的作者也在更新、修改、停止维护，他们一动，你这边可能跟着晃。你没有动任何东西，但世界动了。</p>
-<p>第二种真相：环境变了。服务器的系统更新了、平台的免费政策改了、浏览器升级了。你的程序没变，但它脚下的地面变了。</p>
-<p>第三种真相：确实有人动过，只是忘了。包括未来的你自己。三条路里，这条其实最常见，但当事人永远不信。版本控制的第二个好处因此浮现：它不光是后悔药，还是记忆——谁在什么时候改了什么，白纸黑字。</p>
-<h3>版本控制：给整个项目拍快照</h3>
-<p>备份保的是数据，版本控制保的是「工作过程」：每次改动完成，给整个项目拍一张快照，写一句「这次改了什么」。想回任何时刻，翻出那张快照恢复即可。行话叫 Git，听起来吓人，对普通人的用法其实就一个动作：改完，拍一张。</p>
-<p>快照和「另存为」的区别：另存为复制整个文件，快照记录整个项目的完整历史，而且只存差异，几乎不占地方。「最终版 2」「打死不改版」这种文件名，就是没有版本控制时人肉发明的快照——你其实早就需要它了，只是用了最疼的方式在实现。</p>
-<p><svg role="img" aria-label="配图：提交快照时间线与回滚" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 400" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="1000" height="400" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">每次提交，都是一张能回去的照片</text>
-
-  <rect x="60" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="145" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">提交一</text>
-  <text x="145" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">完好，可回退</text>
-
-  <rect x="300" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
-  <text x="385" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">提交二</text>
-  <text x="385" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">最后一个好版本</text>
-
-  <rect x="540" y="155" width="170" height="70" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="625" y="184" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">提交三</text>
-  <text x="625" y="206" font-size="8" fill="#ffffff" text-anchor="middle">就改一点，结果坏了</text>
-
-  <rect x="780" y="155" width="170" height="70" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="865" y="184" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">现在</text>
-  <text x="865" y="206" font-size="8" fill="#6a6a6a" text-anchor="middle">越修越乱中</text>
-
-  <line x1="145" y1="225" x2="145" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
-  <line x1="385" y1="225" x2="385" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
-  <line x1="625" y1="225" x2="625" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
-  <line x1="865" y1="225" x2="865" y2="241" stroke="#4a4a4a" stroke-width="1.5"/>
-
-  <circle cx="145" cy="250" r="9" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <circle cx="385" cy="250" r="9" fill="#e8e6e3" stroke="#d97757" stroke-width="2"/>
-  <circle cx="625" cy="250" r="9" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
-  <circle cx="865" cy="250" r="9" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-
-  <line x1="156" y1="250" x2="374" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="396" y1="250" x2="614" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="636" y1="250" x2="854" y2="250" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <path d="M 865 261 C 820 330 430 330 385 261" fill="none" stroke="#d97757" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-  <text x="625" y="322" font-size="10" fill="#d97757" text-anchor="middle">回滚：整个项目退回提交二，服务先活着</text>
-
-  <text x="40" y="374" font-size="9" fill="#6a6a6a">规矩：大改动之前先提交一次，改完验收通过再提交一次——任何一次翻车，损失最多是一步。</text>
-</svg>
+<h2>一、Git 的基本模型</h2>
+<p>版本控制（Version Control）记录文件变更及其历史。Git 是分布式版本控制系统；GitHub 是提供 Git 仓库托管及协作功能的平台，二者不能混为一谈。</p>
+<p>Git 提交（Commit）记录所跟踪文件的快照、父提交和相关元数据。Git 可以复用相同对象，并在存储层采用压缩等方式节省空间，但不能简单描述为每次只保存差异。</p>
+<p>工作区（Working Tree）包含当前文件，暂存区（Staging Area 或 Index）记录准备提交的内容，本地仓库（Repository）保存提交及其他 Git 对象。远程仓库（Remote Repository）是用于交换提交的另一仓库。</p>
+<p><svg role="img" aria-label="配图：Git 的工作状态与远程协作" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="system-ui, sans-serif"><rect width="760" height="460" rx="12" fill="#FAF9F6"/><text x="32" y="42" font-size="22" font-weight="600" fill="#2A2820">Git 的工作状态与远程协作</text><rect x="32" y="66" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="91" font-size="17" font-weight="600" fill="#2A2820">工作区 Working Tree</text><text x="49" y="113" font-size="15" fill="#4A4740">当前文件及未提交修改</text><path d="M380 128 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="149" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="174" font-size="17" font-weight="600" fill="#2A2820">暂存区 Index</text><text x="49" y="196" font-size="15" fill="#4A4740">准备提交的文件快照</text><path d="M380 211 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="232" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="257" font-size="17" font-weight="600" fill="#2A2820">本地仓库 Repository</text><text x="49" y="279" font-size="15" fill="#4A4740">Commit + 父提交 + 对象</text><path d="M380 294 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="315" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="340" font-size="17" font-weight="600" fill="#2A2820">远程仓库 Remote</text><text x="49" y="362" font-size="15" fill="#4A4740">通过 push / fetch 交换对象及引用</text><text x="32" y="428" font-size="13" fill="#4A4740">git add 更新暂存区，commit 创建提交，push 更新远程引用。</text></svg>
 </p>
-<h3>为什么 AI 时代更需要它</h3>
-<p>AI 改东西又快又猛，一分钟可以改十处。快，意味着你手动「另存为」永远追不上它；猛，意味着回滚的需求比人肉时代高得多。解法很自然：让 AI 替你拍快照。改完一处，让它「提交一次」（行话 commit），一秒钟的事。快照系统的门槛曾经拦住了普通人，现在 AI 把门槛替你踩平了。</p>
-<h2>三、怎么办</h2>
-<p>最低限度只需要三个动作，全可以让 AI 代劳。第一，初始化：让 AI「给这个项目加上 Git 版本控制」。第二，提交：每次改动验收通过后说「提交一次，说明是改了什么」。第三，回滚：「回到昨天那次提交的状态」，或者「回到上上次」。你甚至不需要背任何命令，这三句话就是全部接口。</p>
-<p>节奏规矩：先拍快照，再大改。任何大改动之前，先让 AI 提交一次，确保当前状态是完好的、可回退的。改完再提交一次。这样任何一次翻车，损失最多是「一次改动」，而不是「整个项目」。</p>
-<p>一个帮你记住节奏的比喻：像玩游戏一样勤存档。AI 改得又快又猛，存档就是在它每次「热情发挥」后面放一张安全网。很多 AI 编程工具已经内置了自动存档，行话叫检查点，好用；但别只依赖它——工具的检查点和你的快照是两套保险柜，独立一层的版本控制才是真保险。</p>
-<p>仓库和备份的关系再理一遍：GitHub 既是托管平台对接的地方（第 13 章），本身也是一份异地副本——推上去的代码等于存在了云端。所以对你的项目而言，用上 Git 加 GitHub，程序部分的备份自动完成，你只需要额外操心数据部分（第 17 章）。</p>
-<p>「就改一点」也要走流程。恰恰是「就改一点」最容易出事，因为你为大改动会紧张，为小改动会松懈，而软件的牵连不看你紧不紧张。规矩面前无小改。</p>
-<h2>四、带走的问题</h2>
+<h2>二、分支与协作</h2>
+<p>分支（Branch）是指向提交的可移动引用。开发者在独立分支上完成工作后，可以通过合并（Merge）整合历史。变基（Rebase）则通常将提交重新应用到新的基点上，产生新的提交标识。</p>
+<p>Pull Request（PR）是在托管平台发起的变更审查请求，不是 Git 本身的基础对象。它通常结合差异审查、CI 检查和讨论，帮助团队确认变更可接受。</p>
+<p>常用只读命令如下：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git status</td>
+<td>检查当前工作区与暂存状态</td>
+</tr>
+<tr>
+<td>git diff</td>
+<td>查看尚未暂存的差异</td>
+</tr>
+<tr>
+<td>git diff --staged</td>
+<td>查看暂存差异</td>
+</tr>
+<tr>
+<td>git log --oneline</td>
+<td>查看提交历史</td>
+</tr>
+<tr>
+<td>git show HEAD</td>
+<td>查看当前提交内容</td>
+</tr>
+</tbody></table></div>
+<p>提交不会自动推送到远程。push 用于推送引用及对象，fetch 获取远程更新，pull 通常获取并整合远程变更。</p>
+<h2>三、恢复与变更控制</h2>
+<p>git revert 通过新增提交撤销指定提交的影响，适合在共享历史中保留变更记录。git restore 用于恢复工作区或暂存区文件，可能丢弃未提交修改；git reset 可以改变分支及相关状态，其中某些模式会丢失工作区变更。</p>
+<p>不能保证所有文件和状态都能通过 Git 找回。未跟踪文件、未提交内容、外部数据库及未推送提交可能不在远程仓库中。强制推送会重写共享引用，应受严格控制。</p>
+<h2>四、软件版本与依赖</h2>
+<p>语义化版本（Semantic Versioning，SemVer）约定 MAJOR.MINOR.PATCH 分别用于不兼容 API 变更、向后兼容功能添加及向后兼容修复，具体项目未必完全遵守。</p>
+<p>依赖清单（Dependency Manifest）表达项目需要的包和版本约束；锁定文件（Lockfile）记录解析后的具体依赖版本等信息。直接依赖由项目声明，传递依赖由其他依赖引入。</p>
+<p>依赖范围可能导致重新解析时选择不同版本。锁定文件、运行时版本、构建工具链和环境配置有助于可复现构建（Reproducible Build），但不足以保证字节级完全一致。</p>
+<p>软件物料清单（Software Bill of Materials，SBOM）记录软件组件及版本信息，用于依赖追踪和供应链管理。升级依赖应检查兼容性、安全公告、许可证及测试结果。</p>
+<h2>五、实践：在临时仓库观察提交</h2>
+<p>确认安装 Git，在新建且独立的测试目录中初始化仓库。创建一个 README.md，运行 git status 查看未跟踪文件，再用 git add README.md 暂存并运行 git diff --staged。配置好练习身份后执行 git commit -m &quot;Add initial README&quot;。</p>
+<p>修改 README 内容，运行 git diff，观察提交前后的差异。不要在现有项目中执行破坏性恢复命令作为练习。可以进一步提交修改，在临时仓库通过 git revert HEAD 观察新增撤销提交的行为。</p>
+<h2>六、与 Agent 协作</h2>
+<p>请先检查当前分支、工作区状态、基准提交及已有变更，保留用户未提交内容。在独立分支完成最小范围修改，执行测试和构建，提供可审查的提交差异。更新依赖时解释版本选择及锁定文件变化。未经授权不强制推送、不重写共享历史、不合并未验证 PR。</p>
+<h2>七、知识检验</h2>
 <ul>
-<li>我的项目有版本控制吗？最近一次提交是什么时候？</li>
-<li>我知道现在这个状态能回退到哪个版本吗？</li>
-<li>大改动之前，我拍快照了吗？</li>
-<li>「没人动过啊」这句话说完之前，我排查过依赖和环境吗？</li>
-<li>我的代码在 GitHub 上有一份异地副本吗？</li>
+<li>Git 与 GitHub 有何区别？</li>
+<li>暂存区与工作区有什么关系？</li>
+<li>revert 与 reset 的风险为何不同？</li>
+<li>锁定文件为什么不能独自保证完全可复现构建？</li>
+<li>为什么远程 Git 仓库不能代替数据库备份？</li>
 </ul>
-<p>本章顺便获得的概念：依赖、版本控制、Git、提交（commit）、回滚、仓库。</p>
+<p>进阶方向：Git 对象模型、冲突解决、SemVer 规范、构建证明、SBOM 与软件供应链安全。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="18-versions">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+18+%E7%AB%A0+%E6%98%A8%E5%A4%A9%E8%BF%98%E8%83%BD%E7%94%A8%EF%BC%8C%E4%BB%8A%E5%A4%A9%E6%80%8E%E4%B9%88%E5%B0%B1%E5%9D%8F%E4%BA%86%EF%BC%9A%E7%89%88%E6%9C%AC%E4%B8%8E%E4%BE%9D%E8%B5%96&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F18-versions.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+18+%E7%AB%A0+%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E3%80%81%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E4%B8%8E%E5%8F%AF%E5%A4%8D%E7%8E%B0%E6%9E%84%E5%BB%BA&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F18-versions.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/18-versions.md">在 GitHub 上编辑本章</a>
@@ -134,9 +121,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/17-data.html" class="nav-prev">← 第 17 章 数据丢了怎么办：备份与搬家</a>
+  <a href="../ch/17-data.html" class="nav-prev">← 第 17 章 数据存储、数据库与灾难恢复</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/19-security.html" class="nav-next">第三部 · 第 19 章 它安全吗：把门关好 →</a>
+  <a href="../ch/19-security.html" class="nav-next">第三部 · 第 19 章 信息安全：威胁模型、身份与访问控制 →</a>
 </nav>
 </article>
 </main>

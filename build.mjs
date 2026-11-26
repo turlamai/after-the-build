@@ -13,11 +13,32 @@ const BOOK = 'AI 时代的基本功';
 
 const TOC = [
   { part: '', files: ['00-prologue.md'] },
-  { part: '第一部 · 世界观', desc: '从比特与字节到 AI——动手之前先看见机器世界的全景', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-efficiency.md', '07-os.md', '08-data-shapes.md', '09-network.md', '10-cloud.md', '11-ai-landscape.md', '12-ai-collab.md'] },
-  { part: '第二部 · 六件手艺', desc: '踩着世界观长出的手艺：部署、验收、密钥、成本、数据、版本', files: ['13-deploy.md', '14-debug.md', '15-secrets.md', '16-cost.md', '17-data.md', '18-versions.md'] },
-  { part: '第三部 · 判断', desc: '以动手为前提的判断力：安全、加密、隐私、找人、维护', files: ['19-security.md', '20-crypto.md', '21-privacy.md', '22-ask-for-help.md', '23-maintenance.md'] },
-  { part: '第四部 · 一页纸与工具箱', desc: '五十个问题、黑话词典、问 AI 模板与全书概念地图', files: ['24-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
+  { part: '第一部 · 计算机技术基础', desc: '计算机、软件、操作系统、网络、云计算与 AI 的工作原理', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-efficiency.md', '07-os.md', '08-data-shapes.md', '09-network.md', '10-cloud.md', '11-ai-landscape.md', '12-ai-collab.md'] },
+  { part: '第二部 · 工程实践', desc: '部署、测试、凭据、成本、数据库与版本管理', files: ['13-deploy.md', '14-debug.md', '15-secrets.md', '16-cost.md', '17-data.md', '18-versions.md'] },
+  { part: '第三部 · 安全与工程判断', desc: '信息安全、密码学、隐私工程、技术决策与可靠性', files: ['19-security.md', '20-crypto.md', '21-privacy.md', '22-ask-for-help.md', '23-maintenance.md'] },
+  { part: '第四部 · 综合验证与参考', desc: '五十个知识与验收问题、技术术语索引、Agent 协作模板及学习路线', files: ['24-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
 ];
+
+const LEGACY = {
+  "06-os": "07-os",
+  "07-data-shapes": "08-data-shapes",
+  "08-network": "09-network",
+  "09-cloud": "10-cloud",
+  "10-ai-landscape": "11-ai-landscape",
+  "11-ai-collab": "12-ai-collab",
+  "12-deploy": "13-deploy",
+  "13-debug": "14-debug",
+  "14-secrets": "15-secrets",
+  "15-cost": "16-cost",
+  "16-data": "17-data",
+  "17-versions": "18-versions",
+  "18-security": "19-security",
+  "19-crypto": "20-crypto",
+  "20-privacy": "21-privacy",
+  "21-ask-for-help": "22-ask-for-help",
+  "22-maintenance": "23-maintenance",
+  "23-50-questions": "24-50-questions"
+};
 
 const slug = (name) => name.replace(/\.md$/, '');
 const titleOf = (f) => readFileSync(join('chapters', f), 'utf8').match(/^# (.+)$/m)?.[1] ?? f;
@@ -88,6 +109,7 @@ const pageUrlOf = (target) => (target ? `ch/${target.slug}.html` : 'index.html')
 const bodyFor = (e) => {
   const md = readFileSync(join('chapters', e.file), 'utf8');
   return marked.parse(md)
+    .replace(/<table>[\s\S]*?<\/table>/g, (table) => '<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0">' + table + '</div>')
     .replace(/^<h1>[\s\S]*?<\/h1>\n/, '') // chapter title comes from the page template, not the body
     .replace(
       /<img src="\.\.\/assets\/([\w-]+\.svg)" alt="([^"]*)"\s*\/?>/g,
@@ -109,7 +131,7 @@ const sidebar = (activeSlug, root) => {
   }).join('');
   return `<nav id="toc" aria-label="目录">
   <a class="book" href="${root}index.html">${BOOK}</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
@@ -303,6 +325,13 @@ pre code { background: none; color: var(--code-ink); padding: 0; font-size: 0.87
 .copy-btn:hover { background: rgba(250, 249, 246, 0.22); }
 .copy-btn.done { color: #7FB88A; border-color: #3E7D4E; }
 strong { color: var(--ink); }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 20px 0; border: 1px solid var(--line-strong); border-radius: 6px; }
+article.chapter table { border-collapse: collapse; width: 100%; font-size: 0.92em; line-height: 1.65; }
+article.chapter th, article.chapter td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+article.chapter th { background: var(--raised); color: var(--ink); font-weight: 600; }
+article.chapter tr:last-child td { border-bottom: 0; }
+article.chapter p, article.chapter li { overflow-wrap: anywhere; }
+article.chapter pre { padding-top: 42px; }
 article.chapter svg { display: block; max-width: 100%; height: auto; margin: 24px auto; border: 1px solid var(--line); border-radius: 8px; cursor: zoom-in; }
 
 /* Lightbox: click a diagram to enlarge it to the viewport limit. */
@@ -422,13 +451,13 @@ const appJs = `
   /* Resume memory: chapter pages remember themselves; home offers the way back. */
   if (PAGE && PAGE !== '00-prologue') {
     var t = document.querySelector('h1');
-    try { localStorage.setItem('atb:last', JSON.stringify({ url: ROOT + 'ch/' + PAGE + '.html', title: t ? t.textContent : PAGE })); } catch (e) {}
+    try { localStorage.setItem('atb:last', JSON.stringify({ url: 'ch/' + PAGE + '.html', title: t ? t.textContent : PAGE })); } catch (e) {}
   }
   var last = null;
   try { last = JSON.parse(localStorage.getItem('atb:last') || 'null'); } catch (e) {}
   if (!PAGE && last && last.url) {
     var rt = $('#resume-top');
-    if (rt) { rt.innerHTML = '上次读到：<a href="' + last.url + '">' + last.title + ' →</a>'; rt.classList.add('show'); }
+    if (rt) { var entry = (window.SEARCH_INDEX || []).find(function (it) { return last.url === it.url || last.url === '../' + it.url; }); if (entry) { var link = document.createElement('a'); link.href = ROOT + entry.url; link.textContent = entry.title + ' →'; rt.textContent = '上次读到：'; rt.appendChild(link); rt.classList.add('show'); } }
   }
 
   /* Sidebar collapse (desktop, chapter pages) — racket parity. */
@@ -565,7 +594,7 @@ const appJs = `
     btn.textContent = '复制';
     btn.setAttribute('aria-label', '复制代码');
     btn.addEventListener('click', function () {
-      navigator.clipboard.writeText(pre.innerText.replace(/\\n$/, '')).then(function () {
+      navigator.clipboard.writeText(pre.querySelector('code').textContent.replace(/\\n$/, '')).then(function () {
         btn.textContent = '✓ 已复制';
         btn.classList.add('done');
         setTimeout(function () { btn.textContent = '复制'; btn.classList.remove('done'); }, 1600);
@@ -648,7 +677,7 @@ const appJs = `
     function renderBox() {
       if (!source) return;
       var vb = (source.getAttribute('viewBox') || '').split(/\\s+/);
-      clone_ = holder.querySelector('svg');
+      var clone_ = holder.querySelector('svg');
       if (vb.length === 4) {
         var ratio = vb[2] / vb[3];
         var maxW = window.innerWidth * 0.94;
@@ -688,7 +717,8 @@ const appJs = `
 
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
-    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === location.hash; }))[0];
+    var legacy = ${JSON.stringify(LEGACY)};
+    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === (legacy[location.hash.slice(1)] ? '#' + legacy[location.hash.slice(1)] : location.hash); }))[0];
     if (target) location.replace(ROOT + target.url);
   }
 })();
@@ -697,11 +727,11 @@ const appJs = `
 const head = (title, root) => `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
 <meta property="og:title" content="${title}">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="${SITE}">
 <meta property="og:image" content="${SITE}/og.png">
@@ -736,8 +766,8 @@ const homeMain = `<div id="cover">
   <div id="resume-top"></div>
   <p class="eyebrow">An online book</p>
   <h1>${BOOK}</h1>
-  <p class="lead">AI 替你造出了东西，这本书教你把它真正拿在手里。</p>
-  <p class="tagline">写给用 AI 造东西的非程序员：机器、网络、云与 AI 的常识，<br>加上动手之前就该有的判断力。免费在线阅读，无需注册。</p>
+  <p class="lead">理解技术原理，掌握工程方法，准确与 AI Agent 协作。</p>
+  <p class="tagline">面向非计算机专业人士的技术基础教材，也为工程师提供跨领域知识入口。<br>标准术语、真实机制、实践实验与工程验收。免费在线阅读，无需注册。</p>
   <p class="author">吉人 著</p>
   <div class="cta">
     <a class="btn btn-primary" href="ch/00-prologue.html">开始阅读 →</a>
@@ -788,7 +818,7 @@ const chapterPages = entries.map((e, i) => {
 });
 
 const homeHtml = pageShell({
-  title: `${BOOK} — 普通人开发缺失的一课`,
+  title: `${BOOK} — 面向 AI 时代的计算机技术基础`,
   root: '',
   activeSlug: '',
   page: '',
@@ -804,4 +834,9 @@ writeFileSync(join('docs', 'app.js'), appJs);
 writeFileSync(join('docs', 'search.js'), `window.SEARCH_INDEX = ${SEARCH_INDEX};\n`);
 writeFileSync(join('docs', 'index.html'), homeHtml);
 chapterPages.forEach((p) => writeFileSync(p.path, p.html));
+for (const [oldSlug, newSlug] of Object.entries(LEGACY)) {
+  if (entries.some((e) => e.slug === oldSlug) || !entries.some((e) => e.slug === newSlug)) throw new Error('Invalid legacy chapter alias: ' + oldSlug);
+  const target = newSlug + '.html';
+  writeFileSync(join('docs', 'ch', oldSlug + '.html'), '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=' + target + '"><link rel="canonical" href="' + SITE + '/ch/' + target + '"><title>章节已迁移</title></head><body><p>章节已迁移：<a href="' + target + '">阅读新版章节</a></p></body></html>\n');
+}
 console.log(`site written: index.html + ${chapterPages.length} chapter pages (style.css, app.js, search.js)`);

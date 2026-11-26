@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 9 章 一次点击的旅程：网络是什么 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 9 章 计算机网络：从地址到应用协议 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 9 章 一次点击的旅程：网络是什么 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 9 章 计算机网络：从地址到应用协议 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html" class="active">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html" class="active">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,85 +41,101 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第一部 · 世界观</p>
-  <h1>第 9 章 一次点击的旅程：网络是什么</h1>
+  <p class="eyebrow">第一部 · 计算机技术基础</p>
+  <h1>第 9 章 计算机网络：从地址到应用协议</h1>
   <blockquote>
-<p>序章那扇打不开的门，谜底在这一章。你不需要懂协议，只需要记住一张地图：谁在敲门，谁住在门后。</p>
+<p>理解一次网络请求的完整路径，才能区分地址、连接、协议和应用故障。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>先把序章的案子结了。我太太把 localhost 开头的网址发给朋友，朋友打不开——因为那个网址的意思是「这台电脑自己」，它压根不是一个能发给别人的地址。这个案子第 13 章会给出完整的解法，但谜底先在这里揭开。</p>
-<p>第二个场景。你做的网页昨天还好好的，今天打开是一片空白。你问 AI，AI 回了一堆，你越看越乱。「网站挂了」这四个字，你天天听说，但从没人给你拆开讲过：挂的是什么？</p>
-<p>网络是全书所有问题的公共底座。这一章只讲一张地图，但值得多花点心思。</p>
-<h2>二、为什么会这样</h2>
-<h3>客户端和服务器：敲门的和开门的</h3>
-<p>每一次你在浏览器里打开一个网页，背后都发生同一件事：你的设备（行话叫客户端）向另一台电脑（行话叫服务器）发出请求，服务器把网页内容寄回来，你的浏览器把它画出来。你看到的一切网页，都是这个「敲门—开门—寄包裹」的过程。</p>
-<p>服务器不是什么神秘的东西，就是一台不关机、专门负责应答的电脑。它可能在美国的数据中心，也可能就坐在你对面的桌子底下。你用 AI 造的东西将来也住进某台服务器——那就是「上线」两个字的本义。</p>
-<h3>IP、域名和 DNS：门牌、名字和查号台</h3>
-<p>每台联网的电脑都有一个门牌号，叫 IP 地址，长这样：142.250.71.14。机器认门牌号没问题，人不认——你记不住几万个门牌号。所以有了域名（比如 google.com，好记的名字）和 DNS（一个遍布世界的查号台，负责把名字翻译成门牌号）。</p>
-<p>你在浏览器输入网址后发生的事：先去查号台查这个名字对应的门牌号，再按门牌号去敲门。理解了这条链，你就理解了一大类故障：查号台被劫持、门牌号变了、门牌号对应的服务器没开机——任何一个环节断掉，表现都是「打不开」。</p>
-<p><svg role="img" aria-label="配图：一次点击的旅程，从客户端到 DNS 到服务器再寄回" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 430" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="1000" height="430" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">一次点击的旅程</text>
-
-  <rect x="40" y="90" width="210" height="90" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="145" y="126" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">你的浏览器</text>
-  <text x="145" y="148" font-size="9" fill="#1a1a1a" text-anchor="middle">客户端：敲门的一方</text>
-
-  <rect x="350" y="90" width="210" height="90" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="455" y="126" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">DNS 查号台</text>
-  <text x="455" y="148" font-size="9" fill="#1a1a1a" text-anchor="middle">把名字翻译成门牌号</text>
-
-  <rect x="660" y="90" width="240" height="90" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="780" y="126" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">服务器</text>
-  <text x="780" y="148" font-size="9" fill="#1a1a1a" text-anchor="middle">开门的一方：不关机的电脑</text>
-
-  <line x1="250" y1="135" x2="346" y2="135" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="300" y="122" font-size="9" fill="#6a6a6a" text-anchor="middle">① 输入网址</text>
-
-  <line x1="560" y1="135" x2="656" y2="135" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="610" y="122" font-size="9" fill="#6a6a6a" text-anchor="middle">② 查到 IP 门牌号</text>
-
-  <path d="M 780 180 L 780 270 L 145 270 L 145 184" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="462" y="262" font-size="9" fill="#6a6a6a" text-anchor="middle">③ 网页内容寄回来，浏览器负责把它画出来</text>
-
-  <rect x="350" y="320" width="320" height="60" rx="12" fill="#e8e6e3" stroke="#d97757" stroke-width="1.5" stroke-dasharray="8,4"/>
-  <text x="510" y="345" font-size="10" fill="#1a1a1a" text-anchor="middle">localhost：只指向设备自己</text>
-  <text x="510" y="366" font-size="9" fill="#d97757" text-anchor="middle">发给别人 = 让朋友去敲他自己家的门</text>
-
-  <text x="40" y="414" font-size="9" fill="#6a6a6a">序章悬案的谜底：那个地址从来不是「你的网页的地址」，而是每台设备自己的地址。</text>
-</svg>
+<h2>一、网络通信的基本模型</h2>
+<p>客户端（Client）发起服务请求，服务器（Server）提供服务。两者是通信角色，不是硬件分类。同一台计算机上的浏览器和 Web 服务进程也可以形成客户端与服务器的关系；一个后端服务还可以作为客户端访问数据库。</p>
+<p>网络通信需要约定数据格式和交互规则，这类约定称为协议（Protocol）。互联网使用 TCP/IP 协议族。不同层次承担不同职责：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>层次</th>
+<th>常见协议</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>HTTP、DNS</td>
+<td>定义应用数据及交互方式</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>TCP、UDP</td>
+<td>区分通信端点，提供进程间通信</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>IPv4、IPv6</td>
+<td>寻址与跨网络路由</td>
+</tr>
+<tr>
+<td>链路层</td>
+<td>Ethernet、Wi-Fi</td>
+<td>在当前链路上传输数据</td>
+</tr>
+</tbody></table></div>
+<p>发送时，上层数据通常被封装进下层协议的数据单元；接收时逆向解析。路由器根据 IP 地址和路由表决定下一跳。协议分层使应用程序不必直接控制网卡，但链路、路由、传输和应用均可能发生故障。</p>
+<p><svg role="img" aria-label="配图：TCP/IP 封装关系（以 HTTP/1.1 over TLS 为例）" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="system-ui, sans-serif"><rect width="760" height="460" rx="12" fill="#FAF9F6"/><text x="32" y="42" font-size="22" font-weight="600" fill="#2A2820">TCP/IP 封装关系（以 HTTP/1.1 over TLS 为例）</text><rect x="32" y="66" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="91" font-size="17" font-weight="600" fill="#2A2820">应用层</text><text x="49" y="113" font-size="15" fill="#4A4740">HTTP 请求 → TLS 记录</text><path d="M380 128 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="149" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="174" font-size="17" font-weight="600" fill="#2A2820">传输层</text><text x="49" y="196" font-size="15" fill="#4A4740">TCP 首部 + 数据</text><path d="M380 211 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="232" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="257" font-size="17" font-weight="600" fill="#2A2820">网络层</text><text x="49" y="279" font-size="15" fill="#4A4740">IP 首部 + TCP 段</text><path d="M380 294 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="315" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="340" font-size="17" font-weight="600" fill="#2A2820">链路层</text><text x="49" y="362" font-size="15" fill="#4A4740">帧首部 + IP 数据报 + 帧尾</text><text x="32" y="428" font-size="13" fill="#4A4740">示意为逻辑封装，不表示各层数据单元严格一一对应。</text></svg>
 </p>
-<h3>localhost：自言自语的门牌号</h3>
-<p>localhost 是一个特殊的名字，翻译过来是「本机」。它的门牌号指向设备自己。你在自己电脑上访问 localhost，敲的是自己家的门，AI 写的程序就住在里面，所以你这边一切正常。朋友在他的设备上访问同一个地址，敲的是他自己家的门——他家门后什么都没有。</p>
-<p>这就是序章悬案的全部谜底：那个地址从来不是「你的网页的地址」，而是「每台设备自己的地址」。你要给朋友的，是一个全世界都能查到门牌号、门后住着你的程序的名字。这件事怎么做到，第 13 章讲。</p>
-<h3>HTTPS：明信片和密封信</h3>
-<p>网址开头有两种：http 和 https。区别一句话：前者是寄明信片，沿途谁都能看内容；后者是寄密封信，只有收件人能拆。网址旁边那把小锁，意思是这封信是密封的。现在正经网站都用密封信，浏览器对用明信片的网站会标注「不安全」。你上线自己的东西时，这也是一条硬标准。</p>
-<h2>三、怎么办</h2>
-<p>「打不开」的三个自查，按顺序做。第一，只有我打不开，还是所有人都打不开？用手机流量（关掉 Wi-Fi）再开一次，两种网络结果不同，问题多半在本地网络。第二，最近是不是改过什么、动过什么？第三，是不是钱或者额度的问题——托管服务欠费、免费额度用完，服务器会直接闭门谢客。</p>
-<p>「网站挂了」通常是三种死法之一：服务器那台电脑没电了或出故障了；服务器活着但上面你的程序死了；服务器和程序都活着，但网络路断了。你不需要会修，只需要在求助 AI 时说清现象，让它帮你定位是哪一种。</p>
-<p>向 AI 描述网络问题的模板：「我的网址是什么，我在什么设备什么网络下访问，看到什么现象（空白/报错文字/转圈超时），什么时候开始这样的，最近做过什么改动。」现象说得越具体，定位越快。</p>
-<p>顺带一个生活常识：同一 Wi-Fi 下家人的设备全断了，多半是路由器问题，重启路由器能解决世界上百分之几十的网络玄学——这条和 AI 无关，但能救命。</p>
-<h2>四、带走的问题</h2>
+<h2>二、IP 地址、端口和域名</h2>
+<p>IP 地址（Internet Protocol Address）用于网络层寻址，通常配置在网络接口上。一台设备可以有多个地址。IPv4 使用 32 位地址，IPv6 使用 128 位地址。常见的 IPv4 私有地址如 192.168.1.20，不能直接在公共互联网中路由。</p>
+<p>端口（Port）是 TCP 或 UDP 首部中用于标识通信端点的 16 位编号。例如一个 Web 服务可以监听 TCP 8080，另一个监听 TCP 3000。操作系统根据协议、地址和端口将收到的数据交给相应的套接字（Socket）。</p>
+<p>域名（Domain Name）是层级化名称。域名系统（Domain Name System，DNS）提供多种记录的查询功能；A 记录表示 IPv4 地址，AAAA 记录表示 IPv6 地址，CNAME 表示名称别名。域名不等于网站，也不一定只对应一个 IP 地址。解析结果可能来自缓存。</p>
+<p>localhost 通常解析为回环地址（Loopback Address）127.0.0.1 或 ::1。发送到回环地址的数据由本机网络协议栈处理，而不需要经过外部网络。若服务只监听回环地址，其他设备不能直接连接该服务。监听 0.0.0.0 则通常表示接受所有本机 IPv4 接口上的连接；实际可达性仍受防火墙、路由和网络地址转换（NAT）限制。</p>
+<p>因此，序章中的问题不是网页没有生成，而是访问地址和部署范围不符合分享需求。</p>
+<h2>三、TCP、UDP 与 TLS</h2>
+<p>传输控制协议（Transmission Control Protocol，TCP）提供可靠、有序的字节流。建立连接通常经过三次握手；数据丢失时可以重传，并通过流量控制和拥塞控制限制发送行为。TCP 不保留应用消息边界，应用协议需要自行定义消息格式。</p>
+<p>用户数据报协议（User Datagram Protocol，UDP）传输独立的数据报，本身不保证送达、顺序或重传。实时媒体、DNS 等应用常使用 UDP。QUIC 在 UDP 之上实现可靠传输、安全连接等能力，HTTP/3 使用 QUIC。</p>
+<p>传输层安全协议（Transport Layer Security，TLS）提供加密、完整性保护及对端认证。浏览器访问 HTTPS 时通常验证服务器证书与目标主机名，并协商会话密钥。HTTPS 是受到 TLS 等安全传输机制保护的 HTTP；它不能证明网站内容可信，也不能替代应用层的身份认证和权限控制。</p>
+<h2>四、HTTP 请求和响应</h2>
+<p>统一资源定位符（Uniform Resource Locator，URL）描述资源的位置与访问方式。例如：</p>
+<pre><code class="language-text">https://example.com:443/api/orders?id=123
+</code></pre>
+<p>其中 https 是方案（Scheme），example.com 是主机名（Host），443 是端口，/api/orders 是路径（Path），id=123 是查询字符串（Query）。</p>
+<p>超文本传输协议（Hypertext Transfer Protocol，HTTP）定义请求与响应的语义。下面是一个简化的 HTTP/1.1 请求：</p>
+<pre><code class="language-http">GET /api/orders?id=123 HTTP/1.1
+Host: example.com
+Accept: application/json
+</code></pre>
+<p>GET 表示获取资源，Host 指明目标主机，Accept 表示期望的响应媒体类型。POST 常用于提交数据或触发处理；PUT、PATCH、DELETE 分别有不同的更新或删除语义。具体行为由应用接口定义，不能只看方法名就假定请求安全。</p>
+<p>服务器可能返回：</p>
+<pre><code class="language-http">HTTP/1.1 200 OK
+Content-Type: application/json
+
+{&quot;id&quot;:123,&quot;status&quot;:&quot;paid&quot;}
+</code></pre>
+<p>状态码（Status Code）表示请求处理结果。200 表示成功，401 表示缺少有效认证凭据，403 表示拒绝请求，404 表示资源未找到或不愿披露，500 表示服务器内部错误，502 表示网关收到无效上游响应。HTTP/2 和 HTTP/3 使用不同的传输表示，但共享这些基本语义。</p>
+<p>在没有可用缓存或已有连接的典型 HTTPS 请求中，浏览器解析 URL，查询 DNS，建立 TCP 连接并完成 TLS 握手（HTTP/1.1 或 HTTP/2），发送 HTTP 请求，接收并处理响应。实际系统可能复用连接、经过代理、CDN 或负载均衡器。</p>
+<h2>五、可复现实验：观察网络请求</h2>
+<p>打开浏览器开发者工具（Developer Tools）的 Network 面板，访问 <a href="https://example.com">https://example.com</a> 并刷新。选择文档请求，观察 URL、请求方法、响应状态、响应头和 Timing。不同浏览器显示方式可能不同。</p>
+<p>若已安装 curl，可在终端运行：</p>
+<pre><code class="language-sh">curl -v https://example.com/
+</code></pre>
+<p>观察解析地址、连接过程、TLS 信息和 HTTP 响应。不要将包含 Cookie、Authorization 或其他凭据的日志直接公开。</p>
+<p>如果本机安装了 Python 3，在一个仅含测试文件的临时目录运行 python -m http.server 8000 --bind 127.0.0.1（部分系统使用 python3 或 py），再访问 <a href="http://127.0.0.1:8000%E3%80%82%E5%81%9C%E6%AD%A2%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%87%8D%E6%96%B0%E8%AE%BF%E9%97%AE%EF%BC%8C%E6%AF%94%E8%BE%83%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E4%B8%8E">http://127.0.0.1:8000。停止服务后重新访问，比较连接失败与</a> HTTP 404 的区别。实验结束按 Ctrl+C 停止服务。</p>
+<h2>六、与 Agent 协作：按层定位故障</h2>
+<p>当网站无法访问时，先区分 DNS 解析错误、连接拒绝、连接超时、证书验证失败、HTTP 错误和页面脚本异常。这些现象不能相互替代，也不一定直接说明根因。</p>
+<p>可以这样提出任务：请在不修改生产环境的前提下，检查目标域名的 DNS 记录、目标端口的连接、TLS 证书有效性及 HTTP 状态码。若收到 502，检查反向代理日志与上游服务健康状态。列出每一步的证据、尚未确认的假设和建议的最小修复。日志中不得包含访问令牌。</p>
+<h2>七、知识检验与拓展</h2>
 <ul>
-<li>我访问一个网址时，是谁在敲门、谁住在门后？</li>
-<li>localhost 指向哪台设备？</li>
-<li>我的域名是什么？它现在指向哪个门牌号？</li>
-<li>我的网址开头是 http 还是 https？</li>
-<li>「打不开」的时候，我先做了哪三个自查？</li>
+<li>同一台设备为什么可以运行多个 Web 服务？IP 与端口分别承担什么职责？</li>
+<li>DNS 查询成功为什么不代表网站可用？</li>
+<li>HTTPS 为什么不能代替应用权限控制？</li>
+<li>HTTP 404 与 TCP 连接拒绝分别发生在哪个层次？</li>
+<li>为什么把监听地址改为 0.0.0.0 仍不一定能从公网访问？</li>
 </ul>
-<p>本章顺便获得的概念：客户端、服务器、IP 地址、域名、DNS、localhost、HTTPS、明信片与密封信。</p>
+<p>进一步阅读：RFC 9110（HTTP 语义）、RFC 9293（TCP）、RFC 8446（TLS 1.3）。本章为第 10 章云计算、第 13 章部署和第 14 章排错提供基础。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="09-network">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+9+%E7%AB%A0+%E4%B8%80%E6%AC%A1%E7%82%B9%E5%87%BB%E7%9A%84%E6%97%85%E7%A8%8B%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%98%AF%E4%BB%80%E4%B9%88&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F09-network.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+9+%E7%AB%A0+%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BB%8E%E5%9C%B0%E5%9D%80%E5%88%B0%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F09-network.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/09-network.md">在 GitHub 上编辑本章</a>
@@ -127,9 +143,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/08-data-shapes.html" class="nav-prev">← 第 8 章 数据的样子：字节、编码与格式</a>
+  <a href="../ch/08-data-shapes.html" class="nav-prev">← 第 8 章 数据表示、编码与文件格式</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/10-cloud.html" class="nav-next">第 10 章 云的地图：程序住处的连续光谱 →</a>
+  <a href="../ch/10-cloud.html" class="nav-next">第 10 章 云计算：虚拟化、容器与托管服务 →</a>
 </nav>
 </article>
 </main>

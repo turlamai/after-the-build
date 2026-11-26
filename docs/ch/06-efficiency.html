@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 6 章 效率与瓶颈：为什么程序会变慢 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 6 章 性能与算法：复杂度、瓶颈和测量 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 6 章 效率与瓶颈：为什么程序会变慢 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 6 章 性能与算法：复杂度、瓶颈和测量 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html" class="active">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html" class="active">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,100 +41,87 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第一部 · 世界观</p>
-  <h1>第 6 章 效率与瓶颈：为什么程序会变慢</h1>
+  <p class="eyebrow">第一部 · 计算机技术基础</p>
+  <h1>第 6 章 性能与算法：复杂度、瓶颈和测量</h1>
   <blockquote>
-<p>机器每秒做几十亿次动作，但「次数」会让快变成慢。效率不是玄学，是一道乘法算术题。</p>
+<p>优化的依据是可复现的性能数据，而不是对代码速度的直觉。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>报名工具上线那天秒开，朋友们都说好用。半年后记录涨到了几百条，列表开始转圈；涨到几千条，要等五六秒才出内容。你没改过任何东西——只是数据在长大。</p>
-<p>另一个现场：家庭账单从记一个月到记了三年，图表页面拖拖拽拽卡成了幻灯片。你问 AI「能不能优化一下」，它回了一大段你看不懂的词，改完有时快了，有时没快，还有一次把功能改坏了。</p>
-<h2>二、为什么会这样</h2>
-<h3>机器很快，但次数会爆炸</h3>
-<p>第 2 章说过，CPU 每秒做几十亿次简单动作，单次动作快到无法感知。效率问题的根源不在单次快慢，在<strong>次数</strong>：一个「把所有记录翻一遍找出符合条件的」动作，一百条数据就是一百次，一万条就是一万次，十万条就是十万次。单次百万分之一秒，乘上十万次，就是肉眼可见的几秒等待。数据小的时候哪种写法都快，数据一大，次数的差距才拉开——所以这个问题总在你最没防备的时候出现。</p>
-<h3>次数的算术：三种典型</h3>
-<p>把工程师的效率世界压缩成三句话。<strong>翻一遍</strong>：数据翻十倍，时间翻十倍——正常，多数程序这样。<strong>每条再翻一遍</strong>：处理每条数据时，又把全部数据翻一遍——数据翻十倍，时间翻一百倍，指数级恶化，这是 AI 写的代码里最常见的事故。<strong>留了快捷方式</strong>：给常用的查找建一个直达通道（工程师叫它索引），不管多少数据，几次动作直达——这是标准解法。</p>
-<p><svg role="img" aria-label="配图：效率的算术——同样的活，不同写法差一万倍" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 1000 440" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="1000" height="440" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">效率的算术：数据 ×10，时间 ×10 还是 ×10000</text>
-
-  <text x="150" y="80" font-size="10" fill="#1a1a1a" text-anchor="middle">数据量</text>
-  <text x="470" y="80" font-size="10" fill="#1a1a1a" text-anchor="middle">翻一遍（线性）</text>
-  <text x="800" y="80" font-size="10" fill="#1a1a1a" text-anchor="middle">每条再翻一遍（平方）</text>
-
-  <rect x="60" y="100" width="180" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="150" y="126" font-size="10" fill="#1a1a1a" text-anchor="middle">一百条</text>
-  <text x="150" y="148" font-size="9" fill="#6a6a6a" text-anchor="middle">小工具起步</text>
-
-  <rect x="60" y="190" width="180" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="150" y="216" font-size="10" fill="#1a1a1a" text-anchor="middle">一万条</text>
-  <text x="150" y="238" font-size="9" fill="#6a6a6a" text-anchor="middle">用了半年</text>
-
-  <rect x="60" y="280" width="180" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="150" y="306" font-size="10" fill="#1a1a1a" text-anchor="middle">十万条</text>
-  <text x="150" y="328" font-size="9" fill="#6a6a6a" text-anchor="middle">用了几年</text>
-
-  <rect x="360" y="100" width="220" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="470" y="126" font-size="10" fill="#1a1a1a" text-anchor="middle">一百次动作</text>
-  <text x="470" y="148" font-size="9" fill="#6a6a6a" text-anchor="middle">瞬间</text>
-
-  <rect x="360" y="190" width="220" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="470" y="216" font-size="10" fill="#1a1a1a" text-anchor="middle">一万次动作</text>
-  <text x="470" y="238" font-size="9" fill="#6a6a6a" text-anchor="middle">依然流畅</text>
-
-  <rect x="360" y="280" width="220" height="64" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="470" y="306" font-size="10" fill="#1a1a1a" text-anchor="middle">十万次动作</text>
-  <text x="470" y="328" font-size="9" fill="#6a6a6a" text-anchor="middle">开始有感</text>
-
-  <rect x="690" y="100" width="220" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="800" y="126" font-size="10" fill="#1a1a1a" text-anchor="middle">一万次动作</text>
-  <text x="800" y="148" font-size="9" fill="#6a6a6a" text-anchor="middle">瞬间</text>
-
-  <rect x="690" y="190" width="220" height="64" rx="12" fill="#f4e4c1" stroke="#d97757" stroke-width="1.5"/>
-  <text x="800" y="216" font-size="10" fill="#1a1a1a" text-anchor="middle">一亿次动作</text>
-  <text x="800" y="238" font-size="9" fill="#d97757" text-anchor="middle">肉眼可见的等待</text>
-
-  <rect x="690" y="280" width="220" height="64" rx="12" fill="#d97757" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="800" y="306" font-size="10" fill="#ffffff" text-anchor="middle">一百亿次动作</text>
-  <text x="800" y="328" font-size="9" fill="#ffffff" text-anchor="middle">像死机一样</text>
-
-  <line x1="240" y1="132" x2="356" y2="132" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="240" y1="222" x2="356" y2="222" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="240" y1="312" x2="356" y2="312" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="580" y1="132" x2="686" y2="132" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="580" y1="222" x2="686" y2="222" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="580" y1="312" x2="686" y2="312" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <text x="40" y="384" font-size="9" fill="#6a6a6a">数据小的时候两种写法没有区别——所以问题总在你最没防备的时候出现。解法只有两个：改成翻一遍，或给常用的查找留快捷方式（索引）。</text>
-</svg>
-</p>
-<h3>瓶颈通常只有一个</h3>
-<p>变慢的程序里，九成的等待来自同一处：重复次数最多的那个动作。工程师的说法叫找到瓶颈。对普通人的推论很实际：别对 AI 说「帮我优化一下」（它可能到处小修小补），要问对那一个地方。</p>
-<h2>三、怎么办</h2>
-<p>变慢时的三个问题，按顺序问。第一，数据涨了多少？记录从一百涨到一万，变慢几乎必然是次数的算术，不是机器坏了也不是 AI 退步了。第二，把现象和数据量一起告诉 AI：「三千条记录时列表要五秒，如果涨到三万条会不会更糟？现在的写法是不是每次都在翻全部数据？」——让 AI 替你算次数。第三，只要两个具体方案：「改成翻一遍就能出结果的写法」「给常用的查找留快捷方式（索引）」，一次一个，改完用真实数据量验收。</p>
-<p>预防只要一句话：数据会长大。造工具时多问 AI 一句「数据涨到一万条时它会变慢吗」——一句话的成本，免掉半年后的卡顿和一轮危险的大改。</p>
-<p>什么时候不用管：几十条数据的工具，怎么写都快；为它提前优化，是把钱花在用不上的地方——和第 16 章的成本思维是同一件事：先有真实的量，再谈优化的投入。</p>
-<h2>四、带走的问题</h2>
+<h2>一、性能指标</h2>
+<p>延迟（Latency）表示一次操作从开始到完成所需的时间；吞吐量（Throughput）表示单位时间内完成的工作量。并发数（Concurrency）表示同时进行的任务数量，不等于物理并行执行数量。</p>
+<p>例如一个 API 平均响应时间为 100 ms，并不意味着每次都在 100 ms 内返回。P95 延迟为 300 ms 表示约 95% 的观测值不超过 300 ms。平均值可能掩盖少量极慢的请求，因此服务性能常同时观察吞吐量、P50、P95、P99 和错误率。</p>
+<h2>二、算法复杂度</h2>
+<p>算法（Algorithm）是解决问题的一组明确步骤。时间复杂度（Time Complexity）描述输入规模增大时操作成本的增长趋势。大 O 记号（Big O Notation）给出渐近增长上界，不直接表示秒数。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>复杂度</th>
+<th>典型操作</th>
+<th>n 增加十倍时的代表性增长</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O(1)</td>
+<td>按数组下标读取</td>
+<td>约不变</td>
+</tr>
+<tr>
+<td>O(log n)</td>
+<td>有序数组二分查找</td>
+<td>增加少量步骤</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>遍历全部记录</td>
+<td>约十倍</td>
+</tr>
+<tr>
+<td>O(n log n)</td>
+<td>典型归并排序</td>
+<td>超过十倍</td>
+</tr>
+<tr>
+<td>O(n²)</td>
+<td>比较所有记录对</td>
+<td>约百倍</td>
+</tr>
+<tr>
+<td>O(2^n)</td>
+<td>枚举所有子集</td>
+<td>远超过百倍</td>
+</tr>
+</tbody></table></div>
+<p>O(n²) 是平方级复杂度，不是指数级复杂度。真实时间还取决于常数开销、数据分布、缓存和 I/O。</p>
+<p>例如查找名单中重复的用户，可以逐对比较，也可以将已出现的用户标识保存在哈希集合（Hash Set）中。后者在常见哈希实现的平均条件下可将时间复杂度从 O(n²) 降至 O(n)，但需要额外空间。最坏情况仍依赖实现和输入。</p>
+<h2>三、数据库索引与缓存</h2>
+<p>索引（Index）是支持查询的数据结构。数据库常使用 B-tree 等结构组织索引，从而减少扫描范围。索引也消耗存储空间并增加写入维护成本，不能保证每个查询都更快。</p>
+<p>缓存（Cache）保存可以复用的结果，减少重复计算或远程请求。需要定义缓存键、过期时间和失效策略；否则可能返回过期数据。索引改变查询路径，缓存减少实际查询，两者解决的问题不同。</p>
+<h2>四、定位瓶颈</h2>
+<p>性能分析（Profiling）通过测量 CPU 时间、内存分配、I/O 或调用路径发现高成本区域。基准测试（Benchmark）在受控条件下比较实现；负载测试（Load Test）模拟不同请求规模和并发水平。</p>
+<p>一次页面加载可能同时受数据库查询、网络往返、后端处理和浏览器渲染影响。数据库的 N+1 查询问题是典型例子：获取一组记录后又为每条记录单独发起查询，导致远程访问次数随记录量增加。仅优化本地循环无法解决这类问题。</p>
+<h2>五、实践：测量而不是猜测</h2>
+<p>在测试环境准备 100、1000、10000 条结构一致的虚构记录。对同一查询分别测量至少数次，记录数据规模、运行环境、是否预热、响应时间和结果正确性。</p>
+<p>如果安装了 Python 3，可使用 timeit 模块测量简单查找：</p>
+<pre><code class="language-sh">python -m timeit -s &quot;a=list(range(10000))&quot; &quot;9999 in a&quot;
+python -m timeit -s &quot;a=set(range(10000))&quot; &quot;9999 in a&quot;
+</code></pre>
+<p>部分系统使用 python3。这里构造容器的成本被排除在计时之外，因此结果只比较查找，不代表完整业务总耗时。将规模增加后重复实验。</p>
+<h2>六、与 Agent 协作</h2>
+<p>请在相同硬件、数据集和并发条件下建立性能基线，使用 profiler 或查询执行计划定位瓶颈。比较优化前后的延迟分位数、吞吐量、错误率和资源消耗，确保输出一致。不要为了性能删除必要的权限检查或数据校验。</p>
+<h2>七、知识检验</h2>
 <ul>
-<li>它变慢，是在数据长大之后吗？涨了多少倍？</li>
-<li>现在这个动作，数据翻十倍时时间会翻十倍还是一百倍？</li>
-<li>我问过 AI「数据到一万条会怎样」吗？</li>
-<li>瓶颈找到了吗，还是在对的地方之外乱改？</li>
-<li>这个工具的数据量，配得上为它操心效率吗？</li>
+<li>延迟与吞吐量为何可能同时变化？</li>
+<li>O(n²) 与 O(2^n) 有什么区别？</li>
+<li>索引为何可能降低写入性能？</li>
+<li>为什么只测一次平均响应时间不足以验收优化？</li>
 </ul>
-<p>本章顺便获得的概念：效率、次数、瓶颈、线性、索引。</p>
+<p>进阶方向：摊还复杂度、查询执行计划、缓存失效、Amdahl 定律、分布式链路追踪。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="06-efficiency">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+6+%E7%AB%A0+%E6%95%88%E7%8E%87%E4%B8%8E%E7%93%B6%E9%A2%88%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A8%8B%E5%BA%8F%E4%BC%9A%E5%8F%98%E6%85%A2&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F06-efficiency.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+6+%E7%AB%A0+%E6%80%A7%E8%83%BD%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%A4%8D%E6%9D%82%E5%BA%A6%E3%80%81%E7%93%B6%E9%A2%88%E5%92%8C%E6%B5%8B%E9%87%8F&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F06-efficiency.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/06-efficiency.md">在 GitHub 上编辑本章</a>
@@ -142,9 +129,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/05-language.html" class="nav-prev">← 第 5 章 编程语言：AI 的母语</a>
+  <a href="../ch/05-language.html" class="nav-prev">← 第 5 章 编程语言、构建与运行时</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/07-os.html" class="nav-next">第 7 章 操作系统：住在电脑里的管家 →</a>
+  <a href="../ch/07-os.html" class="nav-next">第 7 章 操作系统：进程、内存与资源管理 →</a>
 </nav>
 </article>
 </main>

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 4 章 黑底白字的窗口：GUI 与命令行 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 4 章 用户界面、终端与 Shell · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 4 章 黑底白字的窗口：GUI 与命令行 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 4 章 用户界面、终端与 Shell · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html" class="active">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html" class="active">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,83 +41,60 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第一部 · 世界观</p>
-  <h1>第 4 章 黑底白字的窗口：GUI 与命令行</h1>
+  <p class="eyebrow">第一部 · 计算机技术基础</p>
+  <h1>第 4 章 用户界面、终端与 Shell</h1>
   <blockquote>
-<p>命令行不是黑客工具，只是另一扇跟电脑说话的窗户。你会用鼠标，就一定会用键盘跟它说话。</p>
+<p>命令行不是机器指令，而是可组合、可记录的软件交互接口。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>AI 做完东西，最后跟你说：「在终端里运行 npm install，然后 npm run dev。」你找到这个叫「终端」的程序，打开，一片黑，光标一闪一闪，像在等你说暗号。你把那行字敲进去，回车，屏幕哗哗滚出一堆英文，有红有白。你不知道这是成功了还是在骂你。</p>
-<p>另一个常见现场：你把那条命令复制下来，粘回 AI 的对话框里，问「这是什么意思」。AI 老老实实解释了半天——但你的东西还停在原地没跑起来。</p>
-<p>这两个现场的共同点：你和电脑之间隔着一层你从没意识到存在的翻译层。</p>
-<h2>二、为什么会这样</h2>
-<h3>你熟悉的电脑，是一层翻译</h3>
-<p>平时你用电脑，点点图标、按按按钮，这种「看得见、摸得着」的操作方式叫 GUI，图形用户界面，就是把机器的语言翻译成人能看的图。你的每一次点击，翻译到底层都是一条明确的指令。</p>
-<p>GUI 好懂，但有天花板：它只提供开发者做出来的按钮。没有按钮的事，GUI 就做不了。而 AI 给你的很多指令——安装依赖、启动程序、部署上线——恰恰是没有按钮的事。</p>
-<h3>命令行：跳过翻译，直接说话</h3>
-<p>命令行就是跳过图，直接用打字跟电脑说话的方式。那个黑底白字的窗口叫终端，你敲进去的一行字叫命令，每个命令是一个明确的动作：安装、列出、移动、删除。</p>
-<p>开发者偏爱它有三个原因，对你也成立。第一，精确：一条命令写清楚，不会点错地方。第二，可复制：命令是文字，能发消息、能进文档、能贴给 AI——这就是为什么 AI 总给你命令而不是给你画路径图。第三，可重复：同一条命令明天再敲一遍，结果一样。</p>
-<p>黑底白字不等于危险。它危险与否，取决于里面跑的那行字是什么，就像刀危险与否取决于谁拿、往哪切。</p>
-<h3>那些红色文字，多数不是骂你</h3>
-<p>终端输出哗哗滚动的白字，是正常的工作汇报。红色文字有两种：一种是报错，一种是进度提示（有些工具用红色写「正在下载」）。判断办法很简单：把最后一行复制给 AI，问「这是报错吗」。永远不要自己对着满屏英文吓自己。</p>
-<p><svg role="img" aria-label="配图：GUI 与命令行是同一台机器的两条话路" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 900 380" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="900" height="380" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">两种说法，同一台机器</text>
-
-  <rect x="40" y="80" width="230" height="80" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="155" y="112" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">GUI 图形界面</text>
-  <text x="155" y="136" font-size="9" fill="#1a1a1a" text-anchor="middle">按钮、图标，看得见摸得着</text>
-
-  <rect x="40" y="230" width="230" height="80" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="155" y="262" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">命令行</text>
-  <text x="155" y="286" font-size="9" fill="#1a1a1a" text-anchor="middle">黑底白字窗口，打字下指令</text>
-
-  <rect x="430" y="140" width="200" height="100" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="530" y="182" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">电脑的核心</text>
-  <text x="530" y="206" font-size="9" fill="#1a1a1a" text-anchor="middle">只认真指令，不认语境</text>
-
-  <rect x="700" y="140" width="160" height="100" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="780" y="182" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">结果</text>
-  <text x="780" y="206" font-size="9" fill="#6a6a6a" text-anchor="middle">机器做完给你看</text>
-
-  <path d="M 270 120 L 350 120 L 350 172 L 426 172" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="310" y="108" font-size="9" fill="#6a6a6a" text-anchor="middle">点击 = 一条指令</text>
-
-  <path d="M 270 270 L 350 270 L 350 208 L 426 208" fill="none" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="310" y="296" font-size="9" fill="#6a6a6a" text-anchor="middle">打字 = 一条指令</text>
-
-  <line x1="630" y1="190" x2="696" y2="190" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <text x="40" y="356" font-size="9" fill="#6a6a6a">GUI 好懂但有天花板：没有按钮的事它做不了。AI 给你的很多指令，恰好是没有按钮的事。</text>
-</svg>
-</p>
-<h2>三、怎么办</h2>
-<p>找到你的终端。苹果电脑：按 Command 加空格，输入「终端」，回车。Windows：点击开始菜单，输入 PowerShell 或「终端」，回车。记住这个打开方式，你接下来和 AI 协作的一切都从这里开始。</p>
-<p>你只需要会五个动作：打开终端、粘贴命令、回车、看最后一行输出、把输出复制走。就这五个，没有第六个。AI 让你运行什么，你粘贴、回车、把结果原样带回来给它——你就是 AI 的手，AI 是你的嘴，这个配合方式会贯穿全书。</p>
-<p>粘贴陌生命令前的三秒检查。看动词：命令里有没有删除类的词，Linux 和苹果上常见的 rm、Windows 上的 del 或 Remove-Item，有的话先问 AI「这条会删什么」。看权限：命令以 sudo 开头（苹果、Linux）或者运行后弹出要管理员密码的框，意味着它要动系统级的东西，确认这是你主动要做的。看来源：命令是 AI 给你的，还是群聊里陌生人发的？前者可以查证后执行，后者直接不理。</p>
-<p> sudo 和管理员权限意味着什么？系统把「可能影响整机安全」的操作单独设了一道闸，需要你额外确认。闸是对的。习惯是：不是你主动发起的操作要密码，一律不给。</p>
-<p>把输出完整带回来。求 AI 排错时，贴「最后 20 行左右」而不是只贴一行，更不要自己转述「大概是说少了什么东西」。转述丢掉的信息，常常正是答案所在。</p>
-<h2>四、带走的问题</h2>
+<h2>一、GUI 与 CLI</h2>
+<p>图形用户界面（Graphical User Interface，GUI）通过窗口、控件等接收用户操作。命令行界面（Command-line Interface，CLI）通过文本参数接受操作请求。两者最终都由程序处理输入，并可能调用同一业务逻辑。</p>
+<p>终端（Terminal）提供文本输入输出环境。Shell 是解释命令、处理变量和启动程序的软件。常见 Shell 包括 Bash、Zsh 和 PowerShell。终端窗口与 Shell 并非同一个概念。</p>
+<h2>二、命令的组成</h2>
+<p>以读取 Git 状态的命令为例：</p>
+<pre><code class="language-sh">git status --short
+</code></pre>
+<p>git 是程序名称，status 是子命令，--short 是选项。Shell 处理引号、变量展开和参数等语法后启动程序。不同 Shell 的语法可能不同，不能假设 Bash 命令可以原样用于 PowerShell。</p>
+<p>PATH 环境变量通常用于查找可执行程序。当提示 command not found 时，可能是程序未安装、路径未配置或名称错误。它与程序启动后返回的业务错误不同。</p>
+<h2>三、输入、输出与退出状态</h2>
+<p>标准输入（Standard Input，stdin）、标准输出（Standard Output，stdout）和标准错误（Standard Error，stderr）是常见的进程输入输出通道。输出文字颜色不是成功与失败的可靠指标。</p>
+<p>退出码（Exit Code）用于报告进程结束状态。许多 CLI 工具以 0 表示成功、非零表示失败，但具体含义应查阅工具文档。成功退出也不代表业务结果一定符合要求。</p>
+<p>管道（Pipe）可以将一个程序的输出传给下一个程序。重定向（Redirection）可以将输出写入文件。Shell 中的 &gt; 常常会覆盖目标文件，因此执行前应检查目标路径。</p>
+<h2>四、环境与权限</h2>
+<p>环境变量（Environment Variable）是传递给进程的名称与值。PATH、语言区域和服务配置都可能通过环境变量影响程序行为。当前工作目录也会影响相对路径。</p>
+<p>sudo 可以在类 Unix 系统中以其他用户身份执行命令，常用于获得更高权限；Windows 具有不同的权限提升机制。权限提升不应该是普通故障的默认解决方案。</p>
+<p>不要执行未经理解的远程脚本、删除命令或包含真实凭据的命令。命令历史与日志可能保存参数，秘密不应随意出现在其中。</p>
+<h2>五、实践：查看工作目录与退出码</h2>
+<p>先打开终端。在 macOS 或 Linux 的 Bash/Zsh 中执行：</p>
+<pre><code class="language-sh">pwd
+ls -la
+git --version
+echo $?
+</code></pre>
+<p>在 PowerShell 中执行：</p>
+<pre><code class="language-powershell">Get-Location
+Get-ChildItem -Force
+git --version
+$LASTEXITCODE
+</code></pre>
+<p>git --version 需要预先安装 Git。若程序没有安装，应记录错误，不必为了练习安装额外软件。退出码应紧接目标外部命令读取；PowerShell 的 $LASTEXITCODE 不适用于解释所有 cmdlet 的结果。</p>
+<h2>六、自动化与 Agent</h2>
+<p>CLI 的优势在于参数可记录、输出可检查、操作可自动化，而不是同一命令永远产生同一结果。文件状态、环境变量和网络资源变化都可能影响执行。</p>
+<p>请 Agent 明确目标操作系统、Shell、当前目录、依赖版本和命令目的；优先执行只读检查。执行后提供完整相关错误信息、退出码及产物路径，而非只根据最后一行日志判断成功。</p>
+<h2>七、知识检验</h2>
 <ul>
-<li>我的终端在哪里，怎么打开？</li>
-<li>这条命令里有没有删除类的词？</li>
-<li>它要不要管理员密码？为什么需要？</li>
-<li>输出的最后一行说了什么？我能原样复制给 AI 吗？</li>
-<li>这条命令是我主动要的，还是别人塞给我的？</li>
+<li>终端、Shell、CLI 程序分别负责什么？</li>
+<li>PATH 如何影响命令查找？</li>
+<li>stderr 中出现文字是否必然代表失败？</li>
+<li>为什么重定向与权限提升需要额外检查？</li>
 </ul>
-<p>本章顺便获得的概念：GUI、命令行、终端、命令、输出、管理员权限、sudo。</p>
+<p>进阶方向：Shell 脚本、参数解析、进程环境、管道、幂等性与自动化接口。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="04-cli-gui">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+4+%E7%AB%A0+%E9%BB%91%E5%BA%95%E7%99%BD%E5%AD%97%E7%9A%84%E7%AA%97%E5%8F%A3%EF%BC%9AGUI+%E4%B8%8E%E5%91%BD%E4%BB%A4%E8%A1%8C&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F04-cli-gui.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+4+%E7%AB%A0+%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E3%80%81%E7%BB%88%E7%AB%AF%E4%B8%8E+Shell&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F04-cli-gui.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/04-cli-gui.md">在 GitHub 上编辑本章</a>
@@ -125,9 +102,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/03-files.html" class="nav-prev">← 第 3 章 你的东西住在哪里：文件与文件夹</a>
+  <a href="../ch/03-files.html" class="nav-prev">← 第 3 章 文件系统、路径与项目结构</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/05-language.html" class="nav-next">第 5 章 编程语言：AI 的母语 →</a>
+  <a href="../ch/05-language.html" class="nav-next">第 5 章 编程语言、构建与运行时 →</a>
 </nav>
 </article>
 </main>

@@ -24,13 +24,13 @@
   /* Resume memory: chapter pages remember themselves; home offers the way back. */
   if (PAGE && PAGE !== '00-prologue') {
     var t = document.querySelector('h1');
-    try { localStorage.setItem('atb:last', JSON.stringify({ url: ROOT + 'ch/' + PAGE + '.html', title: t ? t.textContent : PAGE })); } catch (e) {}
+    try { localStorage.setItem('atb:last', JSON.stringify({ url: 'ch/' + PAGE + '.html', title: t ? t.textContent : PAGE })); } catch (e) {}
   }
   var last = null;
   try { last = JSON.parse(localStorage.getItem('atb:last') || 'null'); } catch (e) {}
   if (!PAGE && last && last.url) {
     var rt = $('#resume-top');
-    if (rt) { rt.innerHTML = '上次读到：<a href="' + last.url + '">' + last.title + ' →</a>'; rt.classList.add('show'); }
+    if (rt) { var entry = (window.SEARCH_INDEX || []).find(function (it) { return last.url === it.url || last.url === '../' + it.url; }); if (entry) { var link = document.createElement('a'); link.href = ROOT + entry.url; link.textContent = entry.title + ' →'; rt.textContent = '上次读到：'; rt.appendChild(link); rt.classList.add('show'); } }
   }
 
   /* Sidebar collapse (desktop, chapter pages) — racket parity. */
@@ -167,7 +167,7 @@
     btn.textContent = '复制';
     btn.setAttribute('aria-label', '复制代码');
     btn.addEventListener('click', function () {
-      navigator.clipboard.writeText(pre.innerText.replace(/\n$/, '')).then(function () {
+      navigator.clipboard.writeText(pre.querySelector('code').textContent.replace(/\n$/, '')).then(function () {
         btn.textContent = '✓ 已复制';
         btn.classList.add('done');
         setTimeout(function () { btn.textContent = '复制'; btn.classList.remove('done'); }, 1600);
@@ -250,7 +250,7 @@
     function renderBox() {
       if (!source) return;
       var vb = (source.getAttribute('viewBox') || '').split(/\s+/);
-      clone_ = holder.querySelector('svg');
+      var clone_ = holder.querySelector('svg');
       if (vb.length === 4) {
         var ratio = vb[2] / vb[3];
         var maxW = window.innerWidth * 0.94;
@@ -290,7 +290,8 @@
 
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
-    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === location.hash; }))[0];
+    var legacy = {"06-os":"07-os","07-data-shapes":"08-data-shapes","08-network":"09-network","09-cloud":"10-cloud","10-ai-landscape":"11-ai-landscape","11-ai-collab":"12-ai-collab","12-deploy":"13-deploy","13-debug":"14-debug","14-secrets":"15-secrets","15-cost":"16-cost","16-data":"17-data","17-versions":"18-versions","18-security":"19-security","19-crypto":"20-crypto","20-privacy":"21-privacy","21-ask-for-help":"22-ask-for-help","22-maintenance":"23-maintenance","23-50-questions":"24-50-questions"};
+    var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === (legacy[location.hash.slice(1)] ? '#' + legacy[location.hash.slice(1)] : location.hash); }))[0];
     if (target) location.replace(ROOT + target.url);
   }
 })();

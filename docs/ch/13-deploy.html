@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第 13 章 上线：把 localhost 变成一个真正的网址 · AI 时代的基本功</title>
-<meta name="description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<title>第 13 章 软件部署：从构建产物到生产服务 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
-<meta property="og:title" content="第 13 章 上线：把 localhost 变成一个真正的网址 · AI 时代的基本功">
-<meta property="og:description" content="答案免费，问题稀缺。AI 替你造出了东西，这本书教你把它真正拿在手里。">
+<meta property="og:title" content="第 13 章 软件部署：从构建产物到生产服务 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://fundamentals.jrtx.site">
 <meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
@@ -24,12 +24,12 @@
 <div class="toc-overlay" aria-hidden="true"></div>
 <nav id="toc" aria-label="目录">
   <a class="book" href="../index.html">AI 时代的基本功</a>
-  <div class="book-sub">普通人开发缺失的一课</div>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
   <div class="search">
     <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
     <div id="search-results" aria-live="polite"></div>
   </div>
-  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 世界观</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 手机软件、桌面软件和网页，不是一回事</a></li><li><a href="../ch/02-machine.html">第 2 章 机器的解剖：比特、CPU、内存与硬盘</a></li><li><a href="../ch/03-files.html">第 3 章 你的东西住在哪里：文件与文件夹</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 黑底白字的窗口：GUI 与命令行</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言：AI 的母语</a></li><li><a href="../ch/06-efficiency.html">第 6 章 效率与瓶颈：为什么程序会变慢</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：住在电脑里的管家</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据的样子：字节、编码与格式</a></li><li><a href="../ch/09-network.html">第 9 章 一次点击的旅程：网络是什么</a></li><li><a href="../ch/10-cloud.html">第 10 章 云的地图：程序住处的连续光谱</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 AI 全景：认识你雇来的工人</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 和 AI 分工：把活拆成它接得住的小块</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 六件手艺</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html" class="active">第 13 章 上线：把 localhost 变成一个真正的网址</a></li><li><a href="../ch/14-debug.html">第 14 章 AI 说改好了，为什么还是坏的：验收与排错</a></li><li><a href="../ch/15-secrets.html">第 15 章 打死不能发出去的东西：密钥与隐私</a></li><li><a href="../ch/16-cost.html">第 16 章 这个月为什么扣了我两百块：钱都花在哪</a></li><li><a href="../ch/17-data.html">第 17 章 数据丢了怎么办：备份与搬家</a></li><li><a href="../ch/18-versions.html">第 18 章 昨天还能用，今天怎么就坏了：版本与依赖</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 它安全吗：把门关好</a></li><li><a href="../ch/20-crypto.html">第 20 章 加密与哈希：锁和指纹</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私与追踪：谁在看你</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 什么时候该花钱找人：自己做的边界</a></li><li><a href="../ch/23-maintenance.html">第 23 章 让它活过三个月：维护的日课</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 一页纸与工具箱</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：把这本书装进一页纸</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 黑话词典</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B 问 AI 的模板库</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书概念地图</a></li></ul>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 计算机技术基础</span></button><ul data-part-ul="p1"><li><a href="../ch/01-platforms.html">第 1 章 软件平台、应用架构与交付方式</a></li><li><a href="../ch/02-machine.html">第 2 章 计算机硬件：数据、指令与存储层次</a></li><li><a href="../ch/03-files.html">第 3 章 文件系统、路径与项目结构</a></li><li><a href="../ch/04-cli-gui.html">第 4 章 用户界面、终端与 Shell</a></li><li><a href="../ch/05-language.html">第 5 章 编程语言、构建与运行时</a></li><li><a href="../ch/06-efficiency.html">第 6 章 性能与算法：复杂度、瓶颈和测量</a></li><li><a href="../ch/07-os.html">第 7 章 操作系统：进程、内存与资源管理</a></li><li><a href="../ch/08-data-shapes.html">第 8 章 数据表示、编码与文件格式</a></li><li><a href="../ch/09-network.html">第 9 章 计算机网络：从地址到应用协议</a></li><li><a href="../ch/10-cloud.html">第 10 章 云计算：虚拟化、容器与托管服务</a></li><li><a href="../ch/11-ai-landscape.html">第 11 章 人工智能基础：模型、推理与应用架构</a></li><li><a href="../ch/12-ai-collab.html">第 12 章 与 AI Agent 协作：从需求到交付</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 工程实践</span></button><ul data-part-ul="p2"><li><a href="../ch/13-deploy.html" class="active">第 13 章 软件部署：从构建产物到生产服务</a></li><li><a href="../ch/14-debug.html">第 14 章 软件质量：测试、调试与可观测性</a></li><li><a href="../ch/15-secrets.html">第 15 章 凭据管理：API Key、Token 与秘密生命周期</a></li><li><a href="../ch/16-cost.html">第 16 章 技术成本：资源计量、容量规划与预算控制</a></li><li><a href="../ch/17-data.html">第 17 章 数据存储、数据库与灾难恢复</a></li><li><a href="../ch/18-versions.html">第 18 章 版本控制、依赖管理与可复现构建</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 安全与工程判断</span></button><ul data-part-ul="p3"><li><a href="../ch/19-security.html">第 19 章 信息安全：威胁模型、身份与访问控制</a></li><li><a href="../ch/20-crypto.html">第 20 章 密码学基础：加密、哈希与数字签名</a></li><li><a href="../ch/21-privacy.html">第 21 章 隐私工程：数据流、追踪与授权</a></li><li><a href="../ch/22-ask-for-help.html">第 22 章 工程决策：风险评估、技术选型与专业协作</a></li><li><a href="../ch/23-maintenance.html">第 23 章 软件运行与维护：可靠性、事故处理和生命周期</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 综合验证与参考</span></button><ul data-part-ul="p4"><li><a href="../ch/24-50-questions.html">第 24 章 五十个问题：技术理解与工程验收</a></li><li><a href="../ch/appendix-a-glossary.html">附录 A 计算机技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">附录 B AI Agent 工程协作模板</a></li><li><a href="../ch/appendix-c-concept-map.html">附录 C 全书知识体系与学习路线</a></li></ul>
   <div class="toc-foot">
     <div class="fs-ctl">
       <button id="fs-dec" aria-label="缩小正文字号">A−</button>
@@ -41,83 +41,88 @@
 <button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
 <main>
 <article class="chapter">
-  <p class="eyebrow">第二部 · 六件手艺</p>
-  <h1>第 13 章 上线：把 localhost 变成一个真正的网址</h1>
+  <p class="eyebrow">第二部 · 工程实践</p>
+  <h1>第 13 章 软件部署：从构建产物到生产服务</h1>
   <blockquote>
-<p>部署听起来像专业术语，本质就一句话：把程序从你的电脑，搬进全世界都能敲门的服务器，再给它一个好记的地址。</p>
+<p>部署不是复制代码，而是将特定版本的产物、配置和运行环境组合成可访问、可验证、可恢复的服务。</p>
 </blockquote>
-<h2>一、翻车现场</h2>
-<p>序章的案子现在正式开庭。我太太的网页需要让朋友打开，解决办法只有一个：上线。她打开 AI 生成的项目，里面有个说明文件写着两条命令，还有英文单词 deploy（部署）。她盯着那两行字不敢动手——上一个她敢直接跑的东西还是微波炉。</p>
-<p>另一个常见现场：搜索「怎么把网页给别人看」，出来十种方案、二十个平台、五十篇互相矛盾的教程，每一篇都默认你已经有某方面的背景知识。你收藏了五篇，一篇都没读完。</p>
-<h2>二、为什么会这样</h2>
-<h3>部署的两半</h3>
-<p>把「上线」拆开，是两个动作。第一半，搬家：把程序连同它的家当，从你的电脑复制到一台二十四小时开机、有公网门牌号的服务器上。第二半，上牌：给这台服务器上的程序一个稳定、好记的地址，比如 myapp.example.com。</p>
-<p>序章的问题出在第二半都没有。程序住在你电脑里，地址又是 localhost 这个自言自语的门牌号——两头都不通向「别人能访问」。</p>
-<p><svg role="img" aria-label="配图：从 localhost 到全世界的部署五步" xmlns="http://www.w3.org/2000/svg" width="650" viewBox="0 0 760 660" font-family="PingFang SC, Microsoft YaHei, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4a4a"/>
-    </marker>
-  </defs>
-  <rect width="760" height="660" fill="#f8f6f3"/>
-  <text x="40" y="34" font-size="13" font-weight="600" fill="#1a1a1a">从 localhost 到全世界的五步</text>
-
-  <rect x="230" y="70" width="300" height="64" rx="12" fill="#a8c5e6" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="380" y="96" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">① 你的电脑</text>
-  <text x="380" y="118" font-size="9" fill="#1a1a1a" text-anchor="middle">程序只活在本地，别人敲不到门</text>
-
-  <rect x="230" y="190" width="300" height="64" rx="12" fill="#e8e6e3" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="380" y="216" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">② GitHub 仓库</text>
-  <text x="380" y="238" font-size="9" fill="#1a1a1a" text-anchor="middle">代码有了云端的窝，还顺手成了备份</text>
-
-  <rect x="230" y="310" width="300" height="64" rx="12" fill="#9dd4c7" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="380" y="336" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">③ 托管平台</text>
-  <text x="380" y="358" font-size="9" fill="#1a1a1a" text-anchor="middle">监听仓库，拿到最新代码自动构建</text>
-
-  <rect x="230" y="430" width="300" height="64" rx="12" fill="#f4e4c1" stroke="#4a4a4a" stroke-width="1.5"/>
-  <text x="380" y="456" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">④ 服务器 + 网址</text>
-  <text x="380" y="478" font-size="9" fill="#1a1a1a" text-anchor="middle">搬进机房，发一个全世界能查到的地址</text>
-
-  <rect x="230" y="550" width="300" height="64" rx="12" fill="#a8c5e6" stroke="#d97757" stroke-width="2"/>
-  <text x="380" y="576" font-size="11" font-weight="600" fill="#1a1a1a" text-anchor="middle">⑤ 全世界</text>
-  <text x="380" y="598" font-size="9" fill="#1a1a1a" text-anchor="middle">任何人打开网址就能用——序章问题的正面解</text>
-
-  <line x1="380" y1="134" x2="380" y2="186" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="380" y1="254" x2="380" y2="306" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="380" y1="374" x2="380" y2="426" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="380" y1="494" x2="380" y2="546" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-  <text x="40" y="644" font-size="9" fill="#6a6a6a">全程你只需要点几次按钮——十年前的专业活，已经被托管平台封装好了。</text>
-</svg>
+<h2>一、开发环境与生产环境</h2>
+<p>开发环境（Development Environment）用于编写和调试代码，测试环境（Test Environment）用于验证行为，预发布环境（Staging Environment）尽量模拟生产条件，生产环境（Production Environment）承担真实用户请求。环境的区别主要在配置、数据、权限和运行目标，而不是目录名称。</p>
+<p>例如报名系统在开发环境使用本地测试数据库，在生产环境使用独立数据库和正式凭据。将开发数据库直接暴露给公网，或将真实用户数据复制到不受保护的测试环境，都会引入风险。</p>
+<p>构建（Build）产生可交付文件，发布（Release）标识可分发版本，部署（Deployment）使某个版本进入目标环境并运行。发布版本不一定已经部署，部署成功也不意味着功能正确。</p>
+<h2>二、选择与架构相符的部署方式</h2>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>系统形态</th>
+<th>部署对象</th>
+<th>需要确认</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>静态站点</td>
+<td>HTML、CSS、JavaScript、图片</td>
+<td>构建目录、资源路径、缓存</td>
+</tr>
+<tr>
+<td>Web 后端</td>
+<td>服务进程或容器</td>
+<td>运行时、端口、健康检查、配置</td>
+</tr>
+<tr>
+<td>数据库应用</td>
+<td>应用与持久化数据库</td>
+<td>数据库连接、迁移、备份</td>
+</tr>
+<tr>
+<td>桌面应用</td>
+<td>针对平台的安装包</td>
+<td>架构、签名、更新机制</td>
+</tr>
+</tbody></table></div>
+<p>静态托管无需为每次请求运行独立业务进程，但浏览器仍可能通过 API 访问其他服务。涉及私密凭据、业务权限或数据库写入时，应判断这些逻辑是否需要服务端实现。</p>
+<p>托管平台可以从 Git 仓库获取源码，也可以接收已构建产物或容器镜像。GitHub 不是部署的必需条件。使用任何平台前应核对构建命令、输出目录、支持的运行时版本和实际责任分界。</p>
+<h2>三、持续集成和部署流水线</h2>
+<p>持续集成（Continuous Integration，CI）是在代码变更后自动执行构建、检查及测试。持续交付（Continuous Delivery）使通过验证的版本保持可发布状态；持续部署（Continuous Deployment）进一步自动将符合条件的变更部署至目标环境。</p>
+<p>典型流水线包括：</p>
+<ol>
+<li>获取指定 Git Commit，按锁定文件安装依赖。</li>
+<li>执行静态检查、测试和构建。</li>
+<li>为产物记录版本及完整性信息。</li>
+<li>部署至测试环境并执行健康检查、端到端测试。</li>
+<li>按授权和发布策略部署生产环境，持续观察错误率与延迟。</li>
+</ol>
+<p>流水线本身也需要最小权限。来自不受信任分支的构建任务不应自动获得生产凭据。</p>
+<p><svg role="img" aria-label="配图：从提交到部署的工程流水线" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="system-ui, sans-serif"><rect width="760" height="460" rx="12" fill="#FAF9F6"/><text x="32" y="42" font-size="22" font-weight="600" fill="#2A2820">从提交到部署的工程流水线</text><rect x="32" y="66" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="91" font-size="17" font-weight="600" fill="#2A2820">源代码版本</text><text x="49" y="113" font-size="15" fill="#4A4740">Git Commit + 锁定依赖</text><path d="M380 128 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="149" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="174" font-size="17" font-weight="600" fill="#2A2820">CI 构建与测试</text><text x="49" y="196" font-size="15" fill="#4A4740">静态检查 · 测试 · 构建</text><path d="M380 211 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="232" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="257" font-size="17" font-weight="600" fill="#2A2820">预发布环境</text><text x="49" y="279" font-size="15" fill="#4A4740">产物版本 · 健康检查 · 验收</text><path d="M380 294 v15 m-5 -5 l5 5 5 -5" stroke="#C4683F" stroke-width="2" fill="none"/><rect x="32" y="315" width="696" height="62" rx="7" fill="#FFFFFF" stroke="#D9D3C7"/><text x="49" y="340" font-size="17" font-weight="600" fill="#2A2820">生产环境</text><text x="49" y="362" font-size="15" fill="#4A4740">受控发布 · 监控 · 恢复方案</text><text x="32" y="428" font-size="13" fill="#4A4740">应尽量复用已验证产物；生产发布需考虑配置、权限与数据库兼容性。</text></svg>
 </p>
-<h3>托管平台：把专业活变成几次点击</h3>
-<p>十年前，部署是专业运维的活：租服务器、装系统、配防火墙，每一步都能出错。现在有一类服务叫托管平台（如 Vercel、Netlify、Cloudflare Pages 这类），它们把整套专业操作封装起来：你把项目交出去，点几次按钮，它替你完成搬家、上牌、续命（自动重启、自动加密）。</p>
-<p>它的商业模式也顺手讲清：免费档限制流量和功能，用的人多了或要求高了再付费。对你早期能造的东西，免费档通常绰绰有余。平台不是慈善，但你的规模确实在它的免单线以下，这是双赢。</p>
-<h3>域名：要不要买</h3>
-<p>托管平台会免费送你一个地址，形如 yourapp.vercel.app，能用，难记，且明示了平台归属。域名就是自己买一个名字（一年几十到几百块），指到你的东西上。什么时候值得买：要长期维护、要给正式的场合用、或者就是想要一个属于自己的门牌。买域名本身在哪个平台买都行（阿里云、腾讯云、Cloudflare 等），记好两件事：续费日期，和「域名是租的，不是买的」——不续费就回收。</p>
-<h2>三、怎么办</h2>
-<p>三条路线，按你现在的阶段排序。第一，纯网页（没有登录、没有数据库），用一键托管平台，免费、最快。第二，带后端逻辑的（要存用户数据、要登录），用带后端的一体化平台（Replit、Railway 这类），配置多一点但还在「点击」的范畴。第三，传统云服务商（阿里云、AWS），是给专业团队的，现阶段绕行——不是说不好，是它把所有自由度和所有责任一起交给你，你还没有需要它的那个规模。</p>
-<p>如果你想要的根本不是网址，而是一个能安装的桌面工具——那是打包的活，不是部署的活，走第 1 章的安装包路线：让 AI 打包，用网盘或 GitHub Releases 分发。本章的主线是网页，因为对大多数人，网页省掉了安装与信任两步，是阻力最小的交付形态。</p>
-<p>通用五步，任何托管平台都长这样。第一步，连仓库：把项目代码放到 GitHub 这类代码仓库里（下一节讲为什么绕不开它）。第二步，选项目：在托管平台导入这个仓库。第三步，给钥匙：如果项目用到了密钥（第 15 章），把它们填进平台的设置里。第四步，点部署：等它搬完家，会给你一个网址。第五步，全流程试一遍：用你从没登录过的浏览器（或无痕模式）访问，把每个功能点一遍。</p>
-<p>GitHub 这一步为什么绕不开：托管平台需要能随时拿到你的最新代码，仓库（GitHub）就是那个「代码的家」，平台监听它，你一更新它就自动重新部署。这也是你第一次真正用上「版本控制」这个概念，第 18 章展开。</p>
-<p>上线不是终点，是第一次真正的验收。用陌生浏览器走完全流程，等于第一次站在「别人」的位置看你的东西——很多只在你电脑上成立的事，会在这时现形。</p>
-<h2>四、带走的问题</h2>
+<h2>四、网络入口与配置</h2>
+<p>后端服务通常监听某个地址和端口。反向代理可以接收公网 HTTPS 请求，再转发至内部服务。DNS 将域名解析到目标地址或别名，TLS 证书用于验证目标服务身份并建立安全连接。</p>
+<p>服务在本机能够访问不等于公网可达。应检查监听地址、防火墙、路由、代理配置与域名解析。公开服务之前先确认认证、授权和数据暴露范围。</p>
+<p>配置（Configuration）决定应用在环境中的具体行为，例如数据库地址、日志级别和允许访问的来源。凭据应通过受控配置注入；前端构建产物中不得包含仅供服务端使用的秘密。</p>
+<h2>五、健康检查与回滚</h2>
+<p>健康检查（Health Check）用于判断实例是否存活或具备接收请求的条件。进程存在、端口可连接、健康接口返回正常是不同层次的证据；关键业务还需要功能测试。</p>
+<p>滚动发布（Rolling Deployment）逐步替换实例，蓝绿部署（Blue-green Deployment）通过两套环境切换流量，灰度发布（Canary Deployment）先让小部分流量进入新版本。是否采用这些机制取决于系统规模与风险。</p>
+<p>回滚（Rollback）恢复已知可用版本，但数据库结构和外部状态可能已经改变。数据库迁移应考虑向后兼容、备份及恢复演练，不能只依赖重新部署旧代码。</p>
+<h2>六、实践：验证静态站点部署</h2>
+<p>选择仅包含公开测试内容的静态项目，检查 README 中的构建命令与输出目录。若为 Node.js 项目且存在适用锁定文件，按项目文档安装依赖并执行构建；不要对不可信项目直接运行安装脚本。</p>
+<p>在本地预览构建目录，检查入口页面、子路径、资源加载、刷新行为和浏览器控制台。部署后使用另一网络环境或未登录浏览器验证公开访问，再核对实际运行版本是否对应预期提交。无需为练习购买域名。</p>
+<h2>七、与 Agent 协作</h2>
+<p>请识别项目类型、构建入口、产物目录和运行时版本；建立 CI，在测试环境验证关键页面与 API。检查生产配置是否泄露凭据、是否需要数据库迁移、能否回滚。输出部署版本、验证证据和未解决风险，未经授权不修改生产域名或数据库。</p>
+<h2>八、知识检验</h2>
 <ul>
-<li>我的东西有没有后端（存数据、登录）？属于哪条路线？</li>
-<li>我的代码在 GitHub 上吗？仓库地址是什么？</li>
-<li>我的项目需要哪些钥匙？填到平台的哪里了？</li>
-<li>部署完拿到的网址是什么？我收藏了吗？</li>
-<li>我用无痕模式完整试过一遍吗？</li>
-<li>我的域名（如果买了）什么时候续费？</li>
+<li>CI、持续交付、持续部署有何区别？</li>
+<li>为什么构建成功不代表部署成功？</li>
+<li>为什么数据库迁移可能使代码回滚失效？</li>
+<li>静态托管是否意味着浏览器不会访问后端？</li>
 </ul>
-<p>本章顺便获得的概念：部署、托管平台、域名、仓库、GitHub、无痕验收。</p>
+<p>进阶方向：不可变产物、GitOps、基础设施即代码、供应链证明与零停机迁移。</p>
 
   <div class="feedback">
   <p class="fb-q">这一章读下来还顺利吗？</p>
   <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
   <div class="fb-actions">
     <button type="button" class="fb-helpful" data-key="13-deploy">有帮助</button>
-    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+13+%E7%AB%A0+%E4%B8%8A%E7%BA%BF%EF%BC%9A%E6%8A%8A+localhost+%E5%8F%98%E6%88%90%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%BD%91%E5%9D%80&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F13-deploy.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E7%AC%AC+13+%E7%AB%A0+%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2%EF%BC%9A%E4%BB%8E%E6%9E%84%E5%BB%BA%E4%BA%A7%E7%89%A9%E5%88%B0%E7%94%9F%E4%BA%A7%E6%9C%8D%E5%8A%A1&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F13-deploy.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
   </div>
   <div class="fb-links">
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/13-deploy.md">在 GitHub 上编辑本章</a>
@@ -125,9 +130,9 @@
   </div>
 </div>
   <nav class="chapter-nav" aria-label="章节导航">
-  <a href="../ch/12-ai-collab.html" class="nav-prev">← 第一部 · 第 12 章 和 AI 分工：把活拆成它接得住的小块</a>
+  <a href="../ch/12-ai-collab.html" class="nav-prev">← 第一部 · 第 12 章 与 AI Agent 协作：从需求到交付</a>
   <a href="../index.html" class="nav-toc">返回目录</a>
-  <a href="../ch/14-debug.html" class="nav-next">第 14 章 AI 说改好了，为什么还是坏的：验收与排错 →</a>
+  <a href="../ch/14-debug.html" class="nav-next">第 14 章 软件质量：测试、调试与可观测性 →</a>
 </nav>
 </article>
 </main>
