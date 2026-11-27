@@ -4,7 +4,7 @@ import { join, dirname, resolve } from 'node:path';
 import { Script } from 'node:vm';
 const read = p => readFileSync(p, 'utf8');
 const chapters = readdirSync('chapters').filter(p => p.endsWith('.md')).sort();
-assert.equal(chapters.length, 28);
+assert.equal(chapters.length, 91);
 const search = JSON.parse(read('docs/search.js').replace(/^window\.SEARCH_INDEX = /, '').replace(/;\s*$/, ''));
 assert.equal(search.length, chapters.length);
 assert.equal(new Set(search.map(e => e.slug)).size, chapters.length);
@@ -39,5 +39,5 @@ for (const file of readdirSync('docs/ch').filter(p => p.endsWith('.html'))) {
 }
 new Script(read('docs/app.js'));
 new Script(read('docs/search.js'));
-assert.equal((read('chapters/24-50-questions.md').match(/^\d+\. /gm)||[]).length,50);
-console.log('Verified 28 chapters, search, navigation, local links, legacy redirects, JavaScript syntax and 50 questions.');
+assert.equal((read('chapters/appendix-d-review.md').match(/^\d+\. /gm)||[]).length,50);
+console.log('Verified 91 pages, search, navigation, local links, legacy redirects, JavaScript syntax and 50 questions.');

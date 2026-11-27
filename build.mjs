@@ -12,32 +12,219 @@ const SITE = 'https://fundamentals.jrtx.site';
 const BOOK = 'AI 时代的基本功';
 
 const TOC = [
-  { part: '', files: ['00-prologue.md'] },
-  { part: '第一部 · 计算机技术基础', desc: '计算机、软件、操作系统、网络、云计算与 AI 的工作原理', files: ['01-platforms.md', '02-machine.md', '03-files.md', '04-cli-gui.md', '05-language.md', '06-efficiency.md', '07-os.md', '08-data-shapes.md', '09-network.md', '10-cloud.md', '11-ai-landscape.md', '12-ai-collab.md'] },
-  { part: '第二部 · 工程实践', desc: '部署、测试、凭据、成本、数据库与版本管理', files: ['13-deploy.md', '14-debug.md', '15-secrets.md', '16-cost.md', '17-data.md', '18-versions.md'] },
-  { part: '第三部 · 安全与工程判断', desc: '信息安全、密码学、隐私工程、技术决策与可靠性', files: ['19-security.md', '20-crypto.md', '21-privacy.md', '22-ask-for-help.md', '23-maintenance.md'] },
-  { part: '第四部 · 综合验证与参考', desc: '五十个知识与验收问题、技术术语索引、Agent 协作模板及学习路线', files: ['24-50-questions.md', 'appendix-a-glossary.md', 'appendix-b-ai-templates.md', 'appendix-c-concept-map.md'] },
+  {
+    "part": "",
+    "files": [
+      "00-prologue.md"
+    ]
+  },
+  {
+    "part": "第一部 · 信息与计算",
+    "desc": "从信息、位和编码到计算规则",
+    "files": [
+      "01-information.md",
+      "02-binary.md",
+      "03-bytes.md",
+      "04-text-encoding.md",
+      "05-computation.md"
+    ]
+  },
+  {
+    "part": "第二部 · 计算机内部",
+    "desc": "数字电路、指令、处理器与存储",
+    "files": [
+      "06-digital-logic.md",
+      "07-storing-state.md",
+      "08-memory-addresses.md",
+      "09-instructions.md",
+      "10-processor.md",
+      "11-storage-hierarchy.md"
+    ]
+  },
+  {
+    "part": "第三部 · 程序与操作系统",
+    "desc": "语言、运行环境、内核、进程和文件",
+    "files": [
+      "12-programming-language.md",
+      "13-programming-rules.md",
+      "14-code-to-execution.md",
+      "15-computer-startup.md",
+      "16-operating-system.md",
+      "17-processes-threads.md",
+      "18-virtual-memory.md",
+      "19-files-and-directories.md",
+      "20-system-permissions.md",
+      "21-terminal-shell.md"
+    ]
+  },
+  {
+    "part": "第四部 · 应用软件",
+    "desc": "界面、模块、构建及平台",
+    "files": [
+      "22-input-output-events.md",
+      "23-graphical-interface.md",
+      "24-software-modules.md",
+      "25-libraries-frameworks.md",
+      "26-build-packaging.md",
+      "27-platforms-compatibility.md",
+      "28-software-updates.md"
+    ]
+  },
+  {
+    "part": "第五部 · 网络与 Web",
+    "desc": "从设备通信到浏览器与网络应用",
+    "files": [
+      "29-network-communication.md",
+      "30-local-network.md",
+      "31-ip-addresses.md",
+      "32-routing-internet.md",
+      "33-tcp-udp.md",
+      "34-ports-sockets.md",
+      "35-dns.md",
+      "36-http.md",
+      "37-browser.md",
+      "38-frontend-backend.md",
+      "39-localhost-deployment.md"
+    ]
+  },
+  {
+    "part": "第六部 · 数据与数据库",
+    "desc": "数据格式、查询、事务与恢复",
+    "files": [
+      "40-data-formats.md",
+      "41-structured-data.md",
+      "42-relational-database.md",
+      "43-sql.md",
+      "44-database-indexes.md",
+      "45-database-transactions.md",
+      "46-data-durability.md"
+    ]
+  },
+  {
+    "part": "第七部 · 服务器与云计算",
+    "desc": "部署、虚拟化、云服务与容量",
+    "files": [
+      "47-server-environment.md",
+      "48-hosting-and-domains.md",
+      "49-virtual-machines.md",
+      "50-containers.md",
+      "51-cloud-services.md",
+      "52-load-balancing-cdn.md",
+      "53-capacity-and-cost.md"
+    ]
+  },
+  {
+    "part": "第八部 · 软件工程",
+    "desc": "需求、测试、版本、发布与可靠性",
+    "files": [
+      "54-requirements.md",
+      "55-algorithms-and-measurement.md",
+      "56-software-testing.md",
+      "57-debugging.md",
+      "58-git-version-control.md",
+      "59-ci-build-pipeline.md",
+      "60-release-and-rollback.md",
+      "61-observability.md",
+      "62-software-reliability.md"
+    ]
+  },
+  {
+    "part": "第九部 · 安全与隐私",
+    "desc": "身份、密码学、HTTPS 与数据保护",
+    "files": [
+      "63-authentication-authorization.md",
+      "64-security-boundaries.md",
+      "65-cryptographic-hash.md",
+      "66-symmetric-encryption.md",
+      "67-public-key-cryptography.md",
+      "68-signatures-certificates.md",
+      "69-tls-https.md",
+      "70-secret-management.md",
+      "71-data-privacy.md"
+    ]
+  },
+  {
+    "part": "第十部 · AI 与 Agent",
+    "desc": "模型、上下文、检索与可验证执行",
+    "files": [
+      "72-models-and-data.md",
+      "73-training-inference.md",
+      "74-tokens.md",
+      "75-context-and-attention.md",
+      "76-embeddings-retrieval.md",
+      "77-rag.md",
+      "78-tool-calling.md",
+      "79-tool-protocols.md",
+      "80-agent-execution.md",
+      "81-agent-verification.md"
+    ]
+  },
+  {
+    "part": "第十一部 · 从想法到产品",
+    "desc": "完整教学项目与工程验收",
+    "files": [
+      "82-product-requirements.md",
+      "83-product-architecture.md",
+      "84-running-the-project.md",
+      "85-product-verification.md",
+      "86-maintaining-a-product.md"
+    ]
+  },
+  {
+    "part": "附录 · 参考与复习",
+    "desc": "术语索引、Agent 协作模板、知识路线与五十个问题",
+    "files": [
+      "appendix-a-glossary.md",
+      "appendix-b-ai-templates.md",
+      "appendix-c-concept-map.md",
+      "appendix-d-review.md"
+    ]
+  }
 ];
 
 const LEGACY = {
-  "06-os": "07-os",
-  "07-data-shapes": "08-data-shapes",
-  "08-network": "09-network",
-  "09-cloud": "10-cloud",
-  "10-ai-landscape": "11-ai-landscape",
-  "11-ai-collab": "12-ai-collab",
-  "12-deploy": "13-deploy",
-  "13-debug": "14-debug",
-  "14-secrets": "15-secrets",
-  "15-cost": "16-cost",
-  "16-data": "17-data",
-  "17-versions": "18-versions",
-  "18-security": "19-security",
-  "19-crypto": "20-crypto",
-  "20-privacy": "21-privacy",
-  "21-ask-for-help": "22-ask-for-help",
-  "22-maintenance": "23-maintenance",
-  "23-50-questions": "24-50-questions"
+  "01-platforms": "27-platforms-compatibility",
+  "02-machine": "10-processor",
+  "03-files": "19-files-and-directories",
+  "04-cli-gui": "21-terminal-shell",
+  "05-language": "12-programming-language",
+  "06-efficiency": "55-algorithms-and-measurement",
+  "07-os": "16-operating-system",
+  "08-data-shapes": "41-structured-data",
+  "09-network": "29-network-communication",
+  "10-cloud": "51-cloud-services",
+  "11-ai-landscape": "72-models-and-data",
+  "12-ai-collab": "80-agent-execution",
+  "13-deploy": "47-server-environment",
+  "14-debug": "57-debugging",
+  "15-secrets": "70-secret-management",
+  "16-cost": "53-capacity-and-cost",
+  "17-data": "42-relational-database",
+  "18-versions": "58-git-version-control",
+  "19-security": "64-security-boundaries",
+  "20-crypto": "65-cryptographic-hash",
+  "21-privacy": "71-data-privacy",
+  "22-ask-for-help": "81-agent-verification",
+  "23-maintenance": "86-maintaining-a-product",
+  "24-50-questions": "appendix-d-review",
+  "06-os": "16-operating-system",
+  "07-data-shapes": "41-structured-data",
+  "08-network": "29-network-communication",
+  "09-cloud": "51-cloud-services",
+  "10-ai-landscape": "72-models-and-data",
+  "11-ai-collab": "80-agent-execution",
+  "12-deploy": "47-server-environment",
+  "13-debug": "57-debugging",
+  "14-secrets": "70-secret-management",
+  "15-cost": "53-capacity-and-cost",
+  "16-data": "42-relational-database",
+  "17-versions": "58-git-version-control",
+  "18-security": "64-security-boundaries",
+  "19-crypto": "65-cryptographic-hash",
+  "20-privacy": "71-data-privacy",
+  "21-ask-for-help": "81-agent-verification",
+  "22-maintenance": "86-maintaining-a-product",
+  "23-50-questions": "appendix-d-review"
 };
 
 const slug = (name) => name.replace(/\.md$/, '');
@@ -344,7 +531,7 @@ article.chapter svg { display: block; max-width: 100%; height: auto; margin: 24p
 .lightbox.open { display: flex; }
 .lightbox svg {
   display: block; border: none; border-radius: 8px; margin: 0 auto;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35); background: #f8f6f3;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35); background: var(--surface); color: var(--ink);
 }
 .lightbox .lb-caption { margin-top: 14px; color: #EDEAE3; font-size: 13px; text-align: center; max-width: 80vw; }
 
@@ -484,7 +671,7 @@ const appJs = `
 
   /* Per-part collapse in the sidebar (racket parity). */
   $$('.part-toggle').forEach(function (btn) {
-    var key = 'atb:part:' + btn.dataset.part;
+    var key = 'atb:v2:part:' + btn.dataset.part;
     var ul = document.querySelector('[data-part-ul="' + btn.dataset.part + '"]');
     if (!ul) return;
     try { if (localStorage.getItem(key) === 'collapsed') { ul.classList.add('collapsed'); btn.setAttribute('aria-expanded', 'false'); } } catch (e) {}
@@ -767,7 +954,7 @@ const homeMain = `<div id="cover">
   <p class="eyebrow">An online book</p>
   <h1>${BOOK}</h1>
   <p class="lead">理解技术原理，掌握工程方法，准确与 AI Agent 协作。</p>
-  <p class="tagline">面向非计算机专业人士的技术基础教材，也为工程师提供跨领域知识入口。<br>标准术语、真实机制、实践实验与工程验收。免费在线阅读，无需注册。</p>
+  <p class="tagline">从零建立计算机知识网络，也为工程师提供跨领域知识入口。<br>十一部、八十六章：从信息与计算到 AI Agent 和完整软件项目。</p>
   <p class="author">吉人 著</p>
   <div class="cta">
     <a class="btn btn-primary" href="ch/00-prologue.html">开始阅读 →</a>
@@ -784,7 +971,7 @@ ${TOC.map(({ part, desc, files }, gi) => {
   ${desc ? `<p class="ht-desc">${desc}</p>` : ''}
   <ul>${files.map((f) => {
     const e = entryOf(f);
-    const num = String(TOC.flatMap((p) => p.files).indexOf(f) + 1).padStart(2, '0');
+    const num = (/^\d\d-/.test(f) ? f.slice(0,2) : f.match(/^appendix-([a-d])/)?.[1].toUpperCase() ?? '');
     return `<li><a href="ch/${e.slug}.html"><span class="ht-num">${num}</span><span>${e.title}</span><span class="ht-arrow">→</span></a></li>`;
   }).join('')}</ul>
 </div>`;
