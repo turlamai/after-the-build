@@ -77,11 +77,11 @@ Content-Length: 1
 <pre><code class="language-http">POST /api/registrations HTTP/1.1
 Host: localhost:8000
 Content-Type: application/json
-Content-Length: 14
+Content-Length: 15
 
-{&quot;name&quot;:&quot;Lin&quot;}
+{&quot;name&quot;: &quot;Lin&quot;}
 </code></pre>
-<p>最后一行的 JSON 文本包含 14 个 ASCII 字节（不包含展示时附加的换行）。Content-Length 表示消息体的字节长度，不是字符数量。</p>
+<p>最后一行采用 JSON 格式（一种用文本组织字段和值的约定，第 41 章将详细介绍），其中冒号之后包含一个空格。整行包含 15 个 ASCII 字节（不包含展示时附加的换行）。Content-Length 表示消息体的字节长度，不是字符数量。</p>
 <p>对于非 ASCII 文字，需要先按照约定编码成字节再计算长度，例如中文姓名使用 UTF-8 后可能占用更多字节。</p>
 <p>HTTP/1.1 也可以采用其他合法的消息定界方式。接收程序需要正确处理消息边界，不能假定一次 TCP 读取正好返回一条请求。</p>
 <p>还要区分 HTTP 状态与业务状态。例如返回 201 通常表示资源已创建，409 可以表示业务状态冲突，但具体业务规则仍由 API 契约规定。客户端不能因为连接成功就直接显示报名成功。</p>

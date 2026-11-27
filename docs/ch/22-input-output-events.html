@@ -60,7 +60,7 @@
 <h2>事件如何排队，又如何找到处理函数</h2>
 <p>假设用户连续输入两个字符，然后点击确认按钮。应用可能先后收到三条事件记录。保存尚待处理事件的结构通常称为事件队列（Event Queue）。队列通常按进入顺序取出元素，但实际事件系统还可能合并事件、设置优先级或采用多个队列。</p>
 <p>应用可以事先登记某种事件发生时应调用的函数。这类交给其他代码、等待适当时机调用的函数称为回调（Callback）。</p>
-<p>下面用一个有限队列模拟事件分派。它不是实际窗口系统，也不需要真实键盘：</p>
+<p>下面用一个有限队列模拟事件分派。它不是实际窗口系统，也不需要真实键盘。先认识这里会使用的两种数据结构：元组（Tuple）用圆括号组织一组值，例如 (&quot;input&quot;, &quot;小林&quot;)；字典（Dictionary）用键和值建立查找关系，例如 {&quot;name&quot;: &quot;小林&quot;}，可以用 state[&quot;name&quot;] 取得对应的值。Python 允许函数作为值保存，因此我们也可以将事件名称与处理函数组织成字典。第 41 章会继续研究这些结构怎样表示和交换。</p>
 <pre><code class="language-python">from collections import deque
 
 events = deque([(&quot;input&quot;, &quot;小林&quot;), (&quot;submit&quot;, None)])
