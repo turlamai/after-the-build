@@ -60,6 +60,24 @@
 <p>例如，三个信息值分别为 10、20、30，权重分别为 0.1、0.2、0.7，那么加权结果为 26。这个简单算术例子不是完整的注意力算法，只说明不同输入能够对计算结果产生不同程度的影响。</p>
 <p>实际注意力机制根据学习得到的变换及当前输入计算相关表示，并受到位置和可访问范围等规则限制。许多生成式模型采用限制对未来位置访问的机制。</p>
 <p><svg role="img" aria-label="从多个位置取得数值表示并按权重组合的教学模型" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 270" width="600" height="270"><title>加权组合的简化计算</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="35" y="20" width="170" height="50" rx="6" fill="none" stroke="currentColor"/><text x="120" y="50" text-anchor="middle">信息值 10</text><rect x="215" y="20" width="170" height="50" rx="6" fill="none" stroke="currentColor"/><text x="300" y="50" text-anchor="middle">信息值 20</text><rect x="395" y="20" width="170" height="50" rx="6" fill="none" stroke="currentColor"/><text x="480" y="50" text-anchor="middle">信息值 30</text><text x="120" y="105" text-anchor="middle">权重 0.1</text><path d="M120 70V85M120 115V140H300V165" stroke="currentColor" stroke-width="1.6" fill="none"/><text x="300" y="105" text-anchor="middle">权重 0.2</text><path d="M300 70V85M300 115V140H300V165" stroke="currentColor" stroke-width="1.6" fill="none"/><text x="480" y="105" text-anchor="middle">权重 0.7</text><path d="M480 70V85M480 115V140H300V165" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="150" y="165" width="300" height="55" rx="6" fill="none" stroke="currentColor"/><text x="300" y="197.5" text-anchor="middle">10×0.1 + 20×0.2 + 30×0.7 = 26</text><text x="300" y="250" font-size="14" text-anchor="middle">仅示意加权组合，不是完整注意力算法</text></g></svg></p>
+<h2>Query、Key 和 Value 到底是什么</h2>
+<p>在常见的点积注意力中，每个位置的向量经过学习得到的变换，形成查询向量（Query）、键向量（Key）和值向量（Value）。</p>
+<p>对某个处理位置，可以计算它的 Query 与各个可访问位置的 Key 的点积。点积是对应数值相乘再求和。经过缩放和 Softmax 后得到权重，再对各位置的 Value 加权求和。</p>
+<pre><code class="language-python">from math import exp, sqrt
+query = [1.0, 0.0]
+keys = [[1.0, 0.0], [0.0, 1.0]]
+values = [10.0, 30.0]
+scores = [sum(a*b for a, b in zip(query, k)) / sqrt(2)
+          for k in keys]
+weights = [exp(s) for s in scores]
+weights = [w / sum(weights) for w in weights]
+result = sum(w*v for w, v in zip(weights, values))
+assert weights[0] &gt; weights[1]
+assert 10 &lt; result &lt; 20
+</code></pre>
+<p>本例假设两个位置均可访问，并使用标量 Value 简化计算。真实模型有许多维度、多组注意力头、多个网络层及位置相关机制。</p>
+<p><svg role="img" aria-label="简化点积注意力的计算顺序" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 310" width="640" height="310"><title>简化点积注意力计算</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="20" width="180" height="48" rx="4" stroke="currentColor" fill="none"/><text x="110" y="49" text-anchor="middle" >Query</text><rect x="230" y="20" width="180" height="48" rx="4" stroke="currentColor" fill="none"/><text x="320" y="49" text-anchor="middle" >Keys</text><rect x="440" y="20" width="180" height="48" rx="4" stroke="currentColor" fill="none"/><text x="530" y="49" text-anchor="middle" >Values</text><rect x="125" y="115" width="220" height="45" rx="4" stroke="currentColor" fill="none"/><text x="235" y="142.5" text-anchor="middle" >点积与缩放</text><path d="M110 68L190 115" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(190 115) rotate(30.434235753443414)" stroke="currentColor" fill="none"/><path d="M320 68L280 115" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(280 115) rotate(130.39990433373674)" stroke="currentColor" fill="none"/><rect x="125" y="200" width="220" height="45" rx="4" stroke="currentColor" fill="none"/><text x="235" y="227.5" text-anchor="middle" >Softmax 权重</text><path d="M235 160L235 200" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(235 200) rotate(90)" stroke="currentColor" fill="none"/><rect x="390" y="200" width="230" height="45" rx="4" stroke="currentColor" fill="none"/><text x="505" y="227.5" text-anchor="middle" >加权组合 Values</text><path d="M345 222L390 222" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(390 222) rotate(0)" stroke="currentColor" fill="none"/><path d="M530 68L530 200" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(530 200) rotate(90)" stroke="currentColor" fill="none"/><text x="320" y="285" text-anchor="middle" font-size='14'>实际模型还包含掩码、多个注意力头与网络层</text></g></svg></p>
+<p>生成过程中的因果掩码（Causal Mask）可以限制当前位置访问未来 Token。注意力权重是模型内部计算的一部分，并不必然是可直接解释的事实依据或推理证据。</p>
 <h2>对话记忆可以在模型之外实现</h2>
 <p>应用可以将用户偏好、项目说明或历史决策保存在数据库中，并在后续任务中检索相关内容。</p>
 <p>这里的长期记忆是应用层的数据保存及检索能力，不必意味着语言模型参数发生了更新。</p>
