@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>活动报名 · 教学示例</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif}
+body{max-width:36rem;margin:3rem auto;padding:0 1.2rem;line-height:1.7}
+form{display:grid;gap:.8rem}
+input,button{font:inherit;padding:.55rem;border:1px solid #888;border-radius:.35rem}
+button{cursor:pointer}
+small{opacity:.8}
+</style>
+</head>
+<body>
+<h1>活动报名</h1>
+<p>仅供本机教学，请使用虚构姓名。</p>
+<p id="status" aria-live="polite">正在读取名额…</p>
+<form id="form">
+<label for="name">姓名</label>
+<input id="name" maxlength="80" required autocomplete="off">
+<button id="submit">确认报名</button>
+</form>
+<p id="message" role="status"></p>
+<small>网络失败后，保持姓名不变再次提交将沿用同一个请求标识。</small>
+<script>
+const form = document.querySelector("#form");
+const nameInput = document.querySelector("#name");
+const submit = document.querySelector("#submit");
+const message = document.querySelector("#message");
+const statusText = document.querySelector("#status");
+let pending = null;
+async function refresh() {
+  const response = await fetch("/api/status");
+  if (!response.ok) throw new Error("status unavailable");
+  const value = await response.json();
+  statusText.textContent = "总名额：" + value.capacity +
+    "；已报名：" + value.registered + "；剩余：" + value.remaining;
+}
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  const name = nameInput.value.trim();
+  if (!name) return;
+  if (!pending || pending.name !== name) {
+    pending = {name, request_id: crypto.randomUUID()};
+  }
+  submit.disabled = true;
+  try {
+    const response = await fetch("/api/registrations", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(pending)
+    });
+    const result = await response.json();
+    if (response.ok) {
+      message.textContent = "报名成功，编号：" + result.id;
+      pending = null;
+      form.reset();
+    } else if (response.status >= 500) {
+      message.textContent = "暂时无法确认结果，请保持姓名不变后重试。";
+    } else {
+      message.textContent = ({
+        capacity_full: "名额已满。",
+        request_conflict: "请求标识冲突，请重新提交。",
+        invalid_name: "请检查姓名。"
+      })[result.error] || "报名未成功。";
+      pending = null;
+    }
+    try { await refresh(); } catch {
+      statusText.textContent = "暂时无法刷新名额，请稍后重新加载页面。";
+    }
+  } catch {
+    message.textContent = "网络异常，结果未确认，请保持姓名不变后重试。";
+  } finally {
+    submit.disabled = false;
+  }
+});
+refresh().catch(() => {statusText.textContent = "无法读取当前名额。";});
+</script>
+</body>
+</html>
