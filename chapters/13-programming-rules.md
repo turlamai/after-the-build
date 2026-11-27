@@ -68,4 +68,38 @@ print(remaining(30, 12))
 
 这些机制并非 Python 独有。不同语言使用不同语法，但数据、判断、重复和组织计算规则是许多语言共同面对的问题。
 
+## 函数调用与局部状态
+
+一个函数可以调用另一个函数。先看一个很小的例子：
+
+```python
+def remaining(total, registered):
+    return total - registered
+
+def can_register(total, registered):
+    available = remaining(total, registered)
+    return available > 0
+
+assert can_register(20, 19) is True
+assert can_register(20, 20) is False
+```
+
+执行 can_register 时，它调用 remaining，等待其结果返回，再完成比较。每次调用都需要保存返回后继续执行的位置，以及本次调用使用的有关数据。
+
+很多执行环境将这些调用信息组织成调用栈（Call Stack）：最后开始的尚未结束的调用，通常最先返回。栈（Stack）是一种后进先出的组织方式。局部变量的具体保存方式由语言及其实现决定，不一定都直接位于机器栈中。
+
+## 运行期间也可能遇到错误
+
+例如整数除以零，在 Python 中会产生异常（Exception），而不是一个普通的计算结果。程序可以明确处理某些可预期的异常：
+
+```python
+try:
+    number = int("abc")
+except ValueError:
+    number = None
+assert number is None
+```
+
+这里 int 尝试把文字转换为整数，失败时产生 ValueError。except 指定如何处理这种异常。真实报名程序不能因为输入不是数字就无声地接受错误记录，也不应随意忽略所有异常。
+
 现在我们已经写出了机器指令之外的另一种程序表达形式。接下来要回答的是：谁来执行这些文字？
