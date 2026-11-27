@@ -36,6 +36,31 @@ TCP 与 UDP 的端口空间分别管理。一个 TCP 端口与相同数字的 UD
 
 实际套接字绑定、地址复用以及网络隔离机制会影响端口使用规则，因此不能简单认为全系统一个数字端口只能被一个程序使用。
 
+## 在自己的电脑观察一次套接字通信
+
+下面使用 Python 标准库在本机创建一个临时 TCP 监听端口，并让客户端连接它。全部通信只在回环地址 127.0.0.1 上发生，不依赖互联网。
+
+```python
+import socket
+
+with socket.socket() as server:
+    server.bind(("127.0.0.1", 0))
+    server.listen()
+    with socket.create_connection(server.getsockname(), timeout=3) as client:
+        connection, peer = server.accept()
+        with connection:
+            connection.settimeout(3)
+            client.sendall(b"A")
+            assert connection.recv(1) == b"A"
+            print("收到一个字节")
+```
+
+绑定端口 0 表示让系统分配可用端口，而不是建立一个实际端口号为 0 的服务。listen 建立监听状态；accept 取得已经建立的连接对应的套接字；sendall 尝试发送全部指定数据；recv 请求接收至多指定长度的字节。
+
+本例只发送一个字节，因此不需要实现完整消息的多次读取逻辑。对于更长消息，应用仍然必须处理部分读取与连接关闭等情况。
+
+若运行环境禁止创建网络套接字，则实验不能执行。这属于环境限制，不代表代码所描述的网络机制不存在。
+
 ## 为什么服务启动后仍然不能访问
 
 程序可能没有成功监听，可能只监听本机地址，可能因防火墙规则拒绝通信，或者客户端根本没有到达正确设备。
