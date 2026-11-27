@@ -34,6 +34,38 @@
 
 服务还可以在资源不足时拒绝部分新工作，或者暂停非关键功能，以保护仍能正常运行的核心能力。这类在异常条件下维持部分功能的设计常称为降级（Degradation）。
 
+## 怎样给重试设置边界
+
+假设调用方最多进行三次尝试，第一次等待失败后延迟 100 毫秒，第二次失败后延迟 200 毫秒，第三次失败则停止。逐步扩大等待间隔称为退避（Backoff）；在间隔中引入随机变化称为抖动（Jitter）。
+
+这不是推荐给所有服务的固定数值。必须考虑调用的总时间预算、服务端提供的重试提示及操作是否安全重试。若多层服务都独立重试，还可能放大下游负载。
+
+对于持续故障的依赖，可以采用熔断器（Circuit Breaker）等机制，在满足条件时暂时拒绝调用，再通过受控探测判断是否恢复。熔断器不负责修复依赖本身。
+
+## 用实验理解幂等请求的边界
+
+```python
+processed = {}
+registrations = []
+
+def register(request_id, name):
+    if request_id in processed:
+        previous = processed[request_id]
+        if previous != name:
+            return "conflict"
+        return "accepted"
+    registrations.append(name)
+    processed[request_id] = name
+    return "accepted"
+
+assert register("demo-1", "小林") == "accepted"
+assert register("demo-1", "小林") == "accepted"
+assert register("demo-1", "小王") == "conflict"
+assert registrations == ["小林"]
+```
+
+这个有限内存模型仅展示重复标识及内容冲突的语义，不能用于真实并发或进程重启场景。实际项目需要在持久化事务中协调记录创建与请求标识，并规定失败、身份范围及保留时间。
+
 ## 可用性需要明确测量方式
 
 可用性（Availability）描述系统在规定条件下能够提供服务的程度。对于在线服务，可以按照时间比例或有效请求成功比例建立指标，但必须明确口径。

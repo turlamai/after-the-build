@@ -35,6 +35,31 @@
 
 错误信息中也可能包含异常发生位置及相关调用路径。阅读这些信息比立即修改大量代码更有价值。
 
+## 从错误调用路径缩小问题
+
+考虑下面的故意失败的教学例子。它在实验内部捕获异常，避免整个示例异常退出：
+
+```python
+import traceback
+
+def parse_capacity(value):
+    return int(value)
+
+def remaining(value):
+    return parse_capacity(value) - 17
+
+try:
+    remaining("not-a-number")
+except ValueError:
+    frames = traceback.extract_tb(__import__("sys").exc_info()[2])
+    assert [f.name for f in frames][-2:] == ["remaining", "parse_capacity"]
+    print("转换失败的位置：", frames[-1].name)
+```
+
+错误发生在 parse_capacity，调用它的是 remaining。但定位到产生异常的函数不等于已经确定根本原因。还需要判断调用者是否应该传入该值、输入边界是否遗漏验证，以及程序应当怎样报告非法输入。
+
+调试时应区分根因（Root Cause）和表现。若只捕获异常并返回一个随意的默认人数，可能隐藏错误并破坏报名规则。
+
 ## 通过实验验证假设
 
 假设我们怀疑数据库连接失败。可以先检查同一运行环境是否能够建立数据库连接。如果连接成功，原来的假设就需要进一步缩小，而不能直接宣布数据库没有任何问题。

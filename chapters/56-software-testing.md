@@ -41,6 +41,39 @@ assert 是 Python 中用于检查条件的语句。正常执行时，条件成�
 
 尤其是只剩一个名额时，同时发出两个报名请求，必须验证最终数据没有超过容量。这比顺序调用两次函数更接近真正需要保护的约束。
 
+## 让测试真正报告失败
+
+Python 标准库 unittest 可以组织独立测试用例：
+
+```python
+import unittest
+
+def remaining(total, registered):
+    if not 0 <= registered <= total:
+        raise ValueError("invalid count")
+    return total - registered
+
+class CapacityTests(unittest.TestCase):
+    def test_last_slot(self):
+        self.assertEqual(remaining(20, 19), 1)
+
+    def test_full(self):
+        self.assertEqual(remaining(20, 20), 0)
+
+    def test_invalid(self):
+        with self.assertRaises(ValueError):
+            remaining(20, 21)
+
+suite = unittest.defaultTestLoader.loadTestsFromTestCase(CapacityTests)
+result = unittest.TextTestRunner().run(suite)
+assert result.testsRun == 3
+assert result.wasSuccessful()
+```
+
+测试运行器负责执行用例、收集错误并报告结果。这里额外检查了实际执行的测试数量，避免没有发现任何测试却误以为检查成功。
+
+测试替身（Test Double）是用来替代某些真实依赖的测试组件。例如可以用一个受控对象模拟数据库失败，以检查应用如何报告错误。但模拟通过不能证明真实数据库也正常，仍应安排适当的集成测试。
+
 ## 测试通过不等于没有缺陷
 
 测试只能够提供关于已检查条件的证据。测试用例可能漏掉情形，也可能将错误行为写成预期结果。
