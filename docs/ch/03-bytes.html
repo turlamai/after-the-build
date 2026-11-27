@@ -83,7 +83,65 @@
 <p>十六进制不是另一种物理存储方式，而是人们查看同一组数据时采用的记法。以后看到文件内容、网络数据和设备调试信息里的一串十六进制数字，就不必感到陌生。</p>
 <h2>为什么一个字节不能表示所有数字</h2>
 <p>一个字节表示无符号整数时最多到 255。如果需要表示 256，可以使用更多的位。两个字节共有 16 位，可以表示 0 到 65535；四个字节共有 32 位，可以表示更大的数。</p>
-<p>实际应用还需要负数、小数等。它们有各自的表示规则，不能简单地把任何二进制序列都解释成无符号整数。我们将在后面专门研究。</p>
+<p>实际应用还需要负数、小数等。它们有各自的表示规则，不能简单地把任何二进制序列都解释成无符号整数。下面就来研究这些表示。</p>
+<h2>怎样表示负数</h2>
+<p>现在规定只使用八个位。我们可以拿出一部分组合表示负数，但必须首先确定规则。现代计算机表示固定宽度的有符号整数时，广泛使用二进制补码（Two&#39;s Complement）。</p>
+<p>八位补码的最左边一位权重为 -128，其余七个位权重仍为 64、32、16、8、4、2、1。因此：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>八位表示</th>
+<th align="right">补码整数</th>
+<th align="right">无符号整数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00000000</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>00000101</td>
+<td align="right">5</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td>01111111</td>
+<td align="right">127</td>
+<td align="right">127</td>
+</tr>
+<tr>
+<td>10000000</td>
+<td align="right">-128</td>
+<td align="right">128</td>
+</tr>
+<tr>
+<td>11111011</td>
+<td align="right">-5</td>
+<td align="right">251</td>
+</tr>
+<tr>
+<td>11111111</td>
+<td align="right">-1</td>
+<td align="right">255</td>
+</tr>
+</tbody></table></div>
+<p>例如 11111011 的补码数值是 -128 + 64 + 32 + 16 + 8 + 2 + 1 = -5。同样的位组合，使用不同规则解释，会得到不同数值。</p>
+<p><svg role="img" aria-label="八位补码的每一位权重" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210" width="640" height="210"><title>八位补码</title><g font-family="system-ui,sans-serif" fill="currentColor" font-size="16"><rect x="48" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="82" y="87" text-anchor="middle" >1</text><rect x="116" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="150" y="87" text-anchor="middle" >1</text><rect x="184" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="218" y="87" text-anchor="middle" >1</text><rect x="252" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="286" y="87" text-anchor="middle" >1</text><rect x="320" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="354" y="87" text-anchor="middle" >1</text><rect x="388" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="422" y="87" text-anchor="middle" >0</text><rect x="456" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="490" y="87" text-anchor="middle" >1</text><rect x="524" y="62" width="68" height="38" rx="2" stroke="currentColor" fill="none"/><text x="558" y="87" text-anchor="middle" >1</text><text x="82" y="43" text-anchor="middle" fill='#c4683f'>-128</text><text x="150" y="43" text-anchor="middle" >64</text><text x="218" y="43" text-anchor="middle" >32</text><text x="286" y="43" text-anchor="middle" >16</text><text x="354" y="43" text-anchor="middle" >8</text><text x="422" y="43" text-anchor="middle" >4</text><text x="490" y="43" text-anchor="middle" >2</text><text x="558" y="43" text-anchor="middle" >1</text><text x="320" y="140" text-anchor="middle" font-size='15'>−128 + 64 + 32 + 16 + 8 + 0 + 2 + 1 = −5</text><text x="320" y="178" text-anchor="middle" font-size='14'>最左位采用负权重；其余位权重不变</text></g></svg></p>
+<p>一种得到负数补码的方法是：先写出相应正数的固定宽度二进制表示，将每个位的 0 与 1 互换，再加 1，保留规定宽度内的位。5 的表示为 00000101，反转得到 11111010，再加 1 得到 11111011。</p>
+<p>八位补码的范围是 -128 到 127。它不需要为正零和负零分别保留一种组合。</p>
+<h2>计算结果超出范围怎么办</h2>
+<p>如果八位无符号整数 255 加 1，数学结果是 256，需要九个位表示。如果只保留低八位，就得到 00000000。这叫回绕（Wraparound）。</p>
+<p>如果以八位补码解释 01111111，再加 1 并只保留八位，就得到 10000000，解释为 -128，而不是数学结果 128。</p>
+<p>当数学结果超出所选数值表示的范围时，称为溢出（Overflow）。实际编程语言和运算环境可能采取不同处理方式：回绕、报告错误、使用更宽的表示，或者对某些运算不保证结果。不能认为所有语言都会自动回绕。</p>
+<h2>小数又怎样表示</h2>
+<p>十进制的小数点右侧每一位的权重是前一位的十分之一。二进制小数点右侧则依次是 1/2、1/4、1/8 等。例如二进制 10.101 等于 2 + 1/2 + 1/8，也就是十进制的 2.625。</p>
+<p>可以事先约定小数点位置，这称为定点表示（Fixed-point）。但如果希望同一种表示既容纳非常小的数，也容纳非常大的数，就可以采用类似科学计数法的结构。</p>
+<p>例如十进制的 6250 可以表示为 6.25 × 10³。二进制的 10.101 可以表示为 1.0101 × 2¹。这种将有效数字与指数分开保存的思想称为浮点表示（Floating-point）。</p>
+<p>常见 IEEE 754 单精度二进制浮点格式使用 32 位：1 位符号、8 位指数编码、23 位小数部分。对于普通规格化的有限非零数，有效数字还包含一个未直接保存的前导 1。特殊编码另有零、非规格化数、无穷大和非数值（NaN）等规则。</p>
+<p><svg role="img" aria-label="单精度浮点数的字段与普通规格化数值" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210" width="640" height="210"><title>IEEE 754 单精度字段</title><g font-family="system-ui,sans-serif" fill="currentColor" font-size="16"><rect x="25" y="30" width="100" height="65" rx="3" stroke="currentColor" fill="none"/><text x="75" y="58" text-anchor="middle" >符号 s</text><text x="75" y="82" text-anchor="middle" font-size='13'>1 位</text><rect x="125" y="30" width="190" height="65" rx="3" stroke="currentColor" fill="none"/><text x="220" y="58" text-anchor="middle" >指数编码 E</text><text x="220" y="82" text-anchor="middle" font-size='13'>8 位</text><rect x="315" y="30" width="300" height="65" rx="3" stroke="currentColor" fill="none"/><text x="465" y="58" text-anchor="middle" >小数部分 f</text><text x="465" y="82" text-anchor="middle" font-size='13'>23 位</text><text x="320" y="137" text-anchor="middle" font-size='14'>普通规格化有限非零数：</text><text x="320" y="166" text-anchor="middle" >(−1)ˢ × (1 + f) × 2⁽ᴱ⁻¹²⁷⁾</text><text x="320" y="191" text-anchor="middle" font-size='13'>特殊指数编码适用其他规则</text></g></svg></p>
+<p>由于有限的二进制位不能精确表示所有小数，十进制 0.1 在常见二进制浮点格式中只能近似保存。连续计算也可能积累误差。涉及金额时，常采用整数最小货币单位或适当的十进制定点表示，并规定舍入规则。</p>
+<p>现在不必记住完整的 IEEE 754 公式。重要的是理解：数值的表示范围、精度与运算规则，取决于所选择的格式。后续编程时会用到这一事实。</p>
 <h2>为什么文件大小有时看起来不一样</h2>
 <p>当我们保存大量数据时，就需要用更大的单位计量字节数。</p>
 <p>按照十进制单位，1 kB 等于 1000 字节，1 MB 等于 1000000 字节，1 GB 等于 1000000000 字节。按照二进制单位，1 KiB 等于 1024 字节，1 MiB 等于 1048576 字节，1 GiB 等于 1073741824 字节。</p>

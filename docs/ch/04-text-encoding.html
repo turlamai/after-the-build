@@ -73,6 +73,62 @@
 <p>例如，大写 A 的码点为 U+0041，汉字「中」的码点为 U+4E2D。</p>
 <p>Unicode 码点说明字符在统一编号体系中的位置，却还没有说明编号要怎样转换成连续字节。UTF-8 是其中一种实际编码方式，它规定怎样使用一到四个字节表示一个 Unicode 标量值。</p>
 <p>在 UTF-8 中，A 使用一个字节 41，而「中」使用三个字节 E4 B8 AD。</p>
+<h2>UTF-8 怎样将码点变成字节</h2>
+<p>ASCII 的全称是 American Standard Code for Information Interchange（美国信息交换标准代码）。UTF-8 保留了 ASCII 的单字节编码，并为更大范围的 Unicode 码点安排多字节表示。</p>
+<p>UTF-8 只编码 Unicode 标量值：从 U+0000 到 U+10FFFF，排除为 UTF-16 保留的代理码点 U+D800 到 U+DFFF。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>码点范围</th>
+<th>字节结构</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>U+0000 至 U+007F</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>U+0080 至 U+07FF</td>
+<td>110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>U+0800 至 U+FFFF（排除代理码点）</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>U+10000 至 U+10FFFF</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody></table></div>
+<p>表中 x 是用来填入码点二进制数据的位置。字节开头的固定位则帮助读取程序识别一个编码序列的结构。</p>
+<p>以「中」为例，码点 0x4E2D 的 16 位表示为 0100111000101101。它属于三字节范围。将二进制从右向左分成 6 位、6 位、4 位，即 0100、111000、101101，再填入 1110xxxx、10xxxxxx、10xxxxxx：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>字节</th>
+<th>填入之后</th>
+<th>十六进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一字节</td>
+<td>11100100</td>
+<td>E4</td>
+</tr>
+<tr>
+<td>第二字节</td>
+<td>10111000</td>
+<td>B8</td>
+</tr>
+<tr>
+<td>第三字节</td>
+<td>10101101</td>
+<td>AD</td>
+</tr>
+</tbody></table></div>
+<p><svg role="img" aria-label="汉字码点的位如何分布到三个 UTF-8 字节" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210" width="640" height="210"><title>中 的 UTF-8 编码</title><g font-family="system-ui,sans-serif" fill="currentColor" font-size="16"><text x="320" y="25" text-anchor="middle" >U+4E2D = 0100 111000 101101</text><path d="M172 38L116 78" stroke="currentColor" fill="none"/><rect x="24" y="78" width="184" height="60" rx="4" stroke="currentColor" fill="none"/><text x="116" y="103" text-anchor="middle" >1110 | 0100</text><text x="116" y="128" text-anchor="middle" fill='#c4683f'>E4</text><path d="M320 38L320 78" stroke="currentColor" fill="none"/><rect x="228" y="78" width="184" height="60" rx="4" stroke="currentColor" fill="none"/><text x="320" y="103" text-anchor="middle" >10 | 111000</text><text x="320" y="128" text-anchor="middle" fill='#c4683f'>B8</text><path d="M468 38L524 78" stroke="currentColor" fill="none"/><rect x="432" y="78" width="184" height="60" rx="4" stroke="currentColor" fill="none"/><text x="524" y="103" text-anchor="middle" >10 | 101101</text><text x="524" y="128" text-anchor="middle" fill='#c4683f'>AD</text><text x="320" y="180" text-anchor="middle" font-size='14'>固定前缀 | 来自码点的有效位</text></g></svg></p>
+<p>读取程序依照相反方向组合有效位，恢复码点。实际解码还要检查序列是否完整、是否合法，以及是否使用了正确的最短编码形式。</p>
+<p>UTF-8 的变长表示解释了为什么同一份文本中，英文字母与汉字所占字节数可能不同。</p>
 <h2>字符、码点、字节和屏幕上的形状不是一回事</h2>
 <p>一个字符可能需要多个字节。有些用户看到的一个完整符号，也可能由多个码点组成。例如某些带附加符号的字母或者组合表情。</p>
 <p>屏幕上最终显示的形状还受到字体等因素影响。字体提供文字显示所需的字形信息，而字符编码负责记录文字的表示。这是两种不同的工作。</p>
