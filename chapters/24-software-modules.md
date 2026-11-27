@@ -37,6 +37,38 @@ def register(total, registered):
 
 应用程序编程接口（Application Programming Interface，API）是软件向其他程序部分提供的可调用能力与相关约定。它可以是本机的函数接口，也可以是通过网络使用的服务接口。API 并不专指 HTTP 接口。
 
+## 接口约定还必须描述失败情况
+
+例如 register 接收两个整数，返回新人数及是否成功。我们还必须规定总名额是否允许为负数、已报名人数能否大于总名额，以及非法输入应该如何报告。
+
+如果只写出函数名称，而没有规定这些条件，两位开发者可能分别实现出不同的行为，却都认为自己遵守了接口。
+
+一个完整的接口通常需要说明输入、输出、错误条件与副作用。副作用（Side Effect）是指除了返回结果以外还改变外部状态的行为，例如修改文件或数据库记录。一个只计算剩余名额的函数和一个实际保存报名记录的函数，不能因为都返回人数就视为具有相同契约。
+
+## 用一个小实验检查模块边界
+
+```python
+def register(total, registered):
+    if not 0 <= registered <= total:
+        raise ValueError("invalid capacity")
+    if registered == total:
+        return registered, False
+    return registered + 1, True
+
+assert register(20, 19) == (20, True)
+assert register(20, 20) == (20, False)
+try:
+    register(20, 21)
+except ValueError:
+    pass
+else:
+    raise AssertionError("invalid input must be rejected")
+```
+
+该教学函数只接受符合约定的整数，并检查数值范围；它没有执行完整的运行时类型检查，也没有保存记录。界面或网络层需要按照自身边界补充输入验证。
+
+这样组织代码，可以先在没有界面和数据库的情况下检查核心计算，再针对实际数据保存与交互进行其他测试。
+
 ## 为什么接口需要稳定
 
 如果我们把 register 的返回值从两个结果变成一个字符串，调用它的界面代码可能无法继续正确工作。

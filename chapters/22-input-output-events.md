@@ -28,6 +28,43 @@
 
 ![从输入事件到处理函数，再到界面更新](../assets/intro-event-cycle.svg)
 
+## 事件如何排队，又如何找到处理函数
+
+假设用户连续输入两个字符，然后点击确认按钮。应用可能先后收到三条事件记录。保存尚待处理事件的结构通常称为事件队列（Event Queue）。队列通常按进入顺序取出元素，但实际事件系统还可能合并事件、设置优先级或采用多个队列。
+
+应用可以事先登记某种事件发生时应调用的函数。这类交给其他代码、等待适当时机调用的函数称为回调（Callback）。
+
+下面用一个有限队列模拟事件分派。它不是实际窗口系统，也不需要真实键盘：
+
+```python
+from collections import deque
+
+events = deque([("input", "小林"), ("submit", None)])
+state = {"name": "", "registered": 19}
+
+def on_input(value):
+    state["name"] = value
+
+def on_submit(_):
+    if state["name"] and state["registered"] < 20:
+        state["registered"] += 1
+
+handlers = {"input": on_input, "submit": on_submit}
+while events:
+    kind, value = events.popleft()
+    handlers[kind](value)
+
+assert state["registered"] == 20
+```
+
+这里的队列耗尽后程序退出。真实界面通常会继续等待新事件，并由框架或操作系统协调等待与分派。
+
+## 异步处理不等于创建一个新线程
+
+如果读取报名记录需要等待较慢的设备，应用可以在请求完成之后再处理结果，而不是一直阻塞当前事件处理函数。这类允许任务发起后在适当时刻继续处理结果的组织方式称为异步（Asynchronous）处理。
+
+异步任务可能利用系统的非阻塞接口、其他线程或其他进程，也可能在同一个事件循环中交替推进。不能从「异步」这个词推断代码必然在不同 CPU 核心上执行。涉及界面更新时还要遵守相应工具对线程及状态访问的约束。
+
 ## 把以前学过的规则接入事件处理
 
 我们可以把报名计算规则组织成下面的函数：
