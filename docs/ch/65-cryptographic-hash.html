@@ -66,6 +66,18 @@ assert digest == &quot;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f
 <p>假设可信渠道已经提供正确摘要，我们就可以计算下载文件的摘要并比较。不同摘要能够证明输入不相同；匹配则在适当的算法及信任条件下为内容一致提供很强的证据。</p>
 <p>但如果文件和摘要都来自同一个已被篡改的页面，修改者可以重新计算新摘要。因此普通哈希并不能单独证明文件来自真正的发布者。</p>
 <p>后面讲解数字签名时，我们会建立验证来源的机制。</p>
+<h2>共享秘密怎样帮助验证消息</h2>
+<p>如果通信双方已经安全取得同一个秘密密钥，可以利用消息认证码（Message Authentication Code，MAC）验证消息与密钥之间的关系。这里的 MAC 与网络章节中的 MAC 地址是不同概念。</p>
+<p>HMAC 是使用哈希函数构造消息认证码的一类标准机制。下面使用公开的教学密钥验证消息变化会导致认证失败：</p>
+<pre><code class="language-python">import hmac
+key = b&quot;public-teaching-example&quot;
+message = b&quot;capacity=20&quot;
+tag = hmac.digest(key, message, &quot;sha256&quot;)
+expected = hmac.digest(key, b&quot;capacity=21&quot;, &quot;sha256&quot;)
+assert not hmac.compare_digest(tag, expected)
+assert hmac.compare_digest(tag, hmac.digest(key, message, &quot;sha256&quot;))
+</code></pre>
+<p>真实密钥必须通过合适的机制生成和保护。HMAC 不隐藏消息，也不能区分多个共享同一密钥的参与者。已经合法认证的旧消息还可能被重复发送，因此需要根据协议检查请求标识、序号、时间或其他新鲜性条件。这就是防重放（Replay Protection）需要解决的问题。</p>
 <h2>密码为什么不能直接用普通哈希保存</h2>
 <p>服务端需要验证输入密码是否正确，但不应该直接保存可供读取的原始密码。</p>
 <p>简单使用 SHA-256 处理密码仍然不够，因为人类选择的密码往往可以被猜测，而普通哈希通常计算得很快。</p>

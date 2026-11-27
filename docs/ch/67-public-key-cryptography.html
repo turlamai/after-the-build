@@ -60,6 +60,17 @@
 <p>双方不必直接在网络上传送最终共同秘密。随后，密钥派生函数（Key Derivation Function，KDF）可以按协议规则从相应秘密材料产生用于不同目的的密钥。</p>
 <p><svg role="img" aria-label="双方交换公开信息并分别计算共同秘密材料" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 285" width="600" height="285"><title>协商共同秘密的简化模型</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="15" width="200" height="48" rx="6" fill="none" stroke="currentColor"/><text x="120" y="44" text-anchor="middle">客户端秘密 a</text><rect x="380" y="15" width="200" height="48" rx="6" fill="none" stroke="currentColor"/><text x="480" y="44" text-anchor="middle">服务端秘密 b</text><rect x="20" y="85" width="200" height="48" rx="6" fill="none" stroke="currentColor"/><text x="120" y="114" text-anchor="middle">公开信息 A</text><rect x="380" y="85" width="200" height="48" rx="6" fill="none" stroke="currentColor"/><text x="480" y="114" text-anchor="middle">公开信息 B</text><path d="M120 63L120 85" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(120 85) rotate(90)" stroke="currentColor" fill="none"/><path d="M480 63L480 85" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(480 85) rotate(90)" stroke="currentColor" fill="none"/><path d="M220 96L380 96" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(380 96) rotate(0)" stroke="currentColor" fill="none"/><path d="M380 122L220 122" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(220 122) rotate(180)" stroke="currentColor" fill="none"/><rect x="20" y="185" width="200" height="55" rx="6" fill="none" stroke="currentColor"/><text x="120" y="217.5" text-anchor="middle">计算共同秘密</text><rect x="380" y="185" width="200" height="55" rx="6" fill="none" stroke="currentColor"/><text x="480" y="217.5" text-anchor="middle">计算共同秘密</text><path d="M120 133V185M480 133V185" stroke="currentColor" stroke-width="1.6" fill="none"/><text x="300" y="176" font-size="14" text-anchor="middle">交换公开信息</text><text x="300" y="263" font-size="13" text-anchor="middle">身份认证和密钥派生仍由完整协议提供</text></g></svg></p>
 <p>现代协议常使用椭圆曲线相关的密钥协商方案。这里不提前要求读者学习相关数学，只理解双方持有的秘密、公开交换的信息及最终建立的密钥是不同事物。</p>
+<h2>用小数字观察密钥协商的数学关系</h2>
+<p>为了理解 Diffie–Hellman 的基本等式，选择公开的教学参数 p=23、g=5。双方分别选择秘密整数 a=6、b=15。第一方计算 g 的 a 次方除以 p 的余数 A，第二方同样得到 B，再交换 A 和 B。</p>
+<pre><code class="language-python">p, g = 23, 5
+a, b = 6, 15
+A = pow(g, a, p)
+B = pow(g, b, p)
+assert (A, B) == (8, 19)
+assert pow(B, a, p) == pow(A, b, p) == 2
+</code></pre>
+<p>双方最终得到相同结果，是因为两个计算都对应 g 的 ab 次方取模。实际安全协议不会使用这些极小参数；它们可以被轻易穷举。这里的结果 2 不是可用于真实通信的密钥。本例仅用于说明共同秘密为什么不必直接发送。</p>
+<p>真实协议还必须验证参数与公开值、认证通信对端，并按规定派生会话密钥。请使用经过审查的协议实现，而不是将本例扩展成自己的加密协议。</p>
 <h2>为什么还需要验证对方身份</h2>
 <p>假如有人能够介入通信，并分别与两端建立独立的密钥协商，那么两端可能误以为自己正在直接与对方通信。</p>
 <p>这类情况称为中间人攻击（Man-in-the-Middle Attack）。</p>
