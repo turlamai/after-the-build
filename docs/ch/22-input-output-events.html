@@ -57,6 +57,33 @@
 <p>负责反复取得并分派事件的机制通常称为事件循环（Event Loop）。当发生某种事件时，程序执行与它相关联的处理函数，这种函数通常称为事件处理器（Event Handler）。</p>
 <p>这种根据事件决定执行行为的程序组织方式叫事件驱动（Event-driven Programming）。</p>
 <p><svg role="img" aria-label="从输入事件到处理函数，再到界面更新" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" width="600" height="260"><title>事件驱动的简化流程</title><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor"/></marker></defs><g stroke="currentColor" stroke-width="1.4" fill="none"><rect x="20" y="30" width="165" height="62" rx="7"/><rect x="215" y="30" width="165" height="62" rx="7"/><rect x="410" y="30" width="170" height="62" rx="7"/><rect x="410" y="165" width="170" height="62" rx="7"/><rect x="215" y="165" width="165" height="62" rx="7"/><path d="M185 61H215" marker-end="url(#arrow)"/><path d="M380 61H410" marker-end="url(#arrow)"/><path d="M495 92V165" marker-end="url(#arrow)"/><path d="M410 196H380" marker-end="url(#arrow)"/></g><g fill="currentColor" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17"><text x="102.5" y="67">用户输入</text><text x="297.5" y="67">事件循环</text><text x="495" y="67">处理函数</text><text x="495" y="202">更新应用状态</text><text x="297.5" y="202">更新界面</text></g></svg></p>
+<h2>事件如何排队，又如何找到处理函数</h2>
+<p>假设用户连续输入两个字符，然后点击确认按钮。应用可能先后收到三条事件记录。保存尚待处理事件的结构通常称为事件队列（Event Queue）。队列通常按进入顺序取出元素，但实际事件系统还可能合并事件、设置优先级或采用多个队列。</p>
+<p>应用可以事先登记某种事件发生时应调用的函数。这类交给其他代码、等待适当时机调用的函数称为回调（Callback）。</p>
+<p>下面用一个有限队列模拟事件分派。它不是实际窗口系统，也不需要真实键盘：</p>
+<pre><code class="language-python">from collections import deque
+
+events = deque([(&quot;input&quot;, &quot;小林&quot;), (&quot;submit&quot;, None)])
+state = {&quot;name&quot;: &quot;&quot;, &quot;registered&quot;: 19}
+
+def on_input(value):
+    state[&quot;name&quot;] = value
+
+def on_submit(_):
+    if state[&quot;name&quot;] and state[&quot;registered&quot;] &lt; 20:
+        state[&quot;registered&quot;] += 1
+
+handlers = {&quot;input&quot;: on_input, &quot;submit&quot;: on_submit}
+while events:
+    kind, value = events.popleft()
+    handlers[kind](value)
+
+assert state[&quot;registered&quot;] == 20
+</code></pre>
+<p>这里的队列耗尽后程序退出。真实界面通常会继续等待新事件，并由框架或操作系统协调等待与分派。</p>
+<h2>异步处理不等于创建一个新线程</h2>
+<p>如果读取报名记录需要等待较慢的设备，应用可以在请求完成之后再处理结果，而不是一直阻塞当前事件处理函数。这类允许任务发起后在适当时刻继续处理结果的组织方式称为异步（Asynchronous）处理。</p>
+<p>异步任务可能利用系统的非阻塞接口、其他线程或其他进程，也可能在同一个事件循环中交替推进。不能从「异步」这个词推断代码必然在不同 CPU 核心上执行。涉及界面更新时还要遵守相应工具对线程及状态访问的约束。</p>
 <h2>把以前学过的规则接入事件处理</h2>
 <p>我们可以把报名计算规则组织成下面的函数：</p>
 <pre><code class="language-python">def register(total, registered):

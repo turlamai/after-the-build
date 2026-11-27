@@ -55,6 +55,13 @@
 <p>这也是为什么 Linux 上的本机程序并不必然能在 Windows 上直接执行。</p>
 <p>程序与系统在二进制层面需要遵守的调用规则等约定，通常称为应用程序二进制接口（Application Binary Interface，ABI）。</p>
 <p>ABI 与前面学习过的 API 有关，但关注层次不同。API 描述怎样调用功能；ABI 还涉及已经转换成机器可执行形式的程序如何进行兼容的交互。</p>
+<h2>为什么函数名称一样还可能无法在二进制层协作</h2>
+<p>假设一个已经编译的函数接受两个整数，并返回它们的和。调用者与函数实现必须对如何传递这两个整数达成一致。</p>
+<p>在一种虚构的调用规则中，第一个参数放在 R1，第二个放在 R2，结果放在 R1。另一种规则可能把参数放在栈中的指定位置。即使两边都使用名为 add 的函数，若已经编译的调用者和实现采用不同规则，就可能取得错误的参数。</p>
+<p>这类约定称为调用约定（Calling Convention），是 ABI 的重要组成部分。ABI 还可能规定数据类型的大小、对齐、符号表示以及其他二进制交互细节。</p>
+<p><svg role="img" aria-label="同一 API 可以具有不同的二进制调用约定" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250"><title>同一函数接口与不同调用约定</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><text x="320" y="25" text-anchor="middle" >API: add(3, 5) → 8</text><rect x="20" y="65" width="290" height="50" rx="5" stroke="currentColor" fill="none"/><text x="165" y="95" text-anchor="middle" >规则 A：参数放寄存器</text><rect x="330" y="65" width="290" height="50" rx="5" stroke="currentColor" fill="none"/><text x="475" y="95" text-anchor="middle" >规则 B：参数放栈</text><rect x="25" y="145" width="135" height="45" rx="5" stroke="currentColor" fill="none"/><text x="92.5" y="172.5" text-anchor="middle" >R1 = 3</text><rect x="170" y="145" width="135" height="45" rx="5" stroke="currentColor" fill="none"/><text x="237.5" y="172.5" text-anchor="middle" >R2 = 5</text><rect x="335" y="145" width="135" height="45" rx="5" stroke="currentColor" fill="none"/><text x="402.5" y="172.5" text-anchor="middle" >栈槽 0 = 3</text><rect x="480" y="145" width="135" height="45" rx="5" stroke="currentColor" fill="none"/><text x="547.5" y="172.5" text-anchor="middle" >栈槽 1 = 5</text><path d="M165 115L92 145" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(92 145) rotate(157.6593520400059)" stroke="currentColor" fill="none"/><path d="M165 115L237 145" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(237 145) rotate(22.619864948040426)" stroke="currentColor" fill="none"/><path d="M475 115L402 145" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(402 145) rotate(157.6593520400059)" stroke="currentColor" fill="none"/><path d="M475 115L547 145" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(547 145) rotate(22.619864948040426)" stroke="currentColor" fill="none"/><text x="320" y="230" text-anchor="middle" font-size='14'>二进制调用者与实现必须采用一致规则</text></g></svg></p>
+<p>这里的寄存器规则是教学假设，不对应真实处理器 ABI。真实项目应按目标平台的文档与工具链配置检查。</p>
+<p>因此，源码级接口兼容不必然意味着已经编译的程序能够直接替换底层库。</p>
 <h2>第三层：运行环境和依赖是否存在</h2>
 <p>一些程序依赖特定版本的运行时或动态链接库。动态链接库是一类能够在程序装载或执行期间按需使用的已编译代码组件。</p>
 <p>即使处理器和操作系统都符合要求，如果缺少所需组件，程序也可能无法启动。</p>
