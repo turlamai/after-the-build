@@ -27,3 +27,27 @@ jobs:
         with:
           name: book-site
           path: docs/
+  sync-preview:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/editorial/zero-to-understanding'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: editorial/zero-to-understanding
+      - name: Ensure source revision has not moved
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - uses: actions/download-artifact@v4
+        with:
+          name: book-site
+          path: docs/
+      - name: Commit validated preview
+        run: |
+          git add docs/
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Synchronize validated second-edition site"
+          git push origin HEAD:editorial/zero-to-understanding
