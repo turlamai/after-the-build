@@ -66,6 +66,20 @@
 <p>为了让同一个应用组织多条执行路径，现代操作系统通常提供线程（Thread）。同一个进程中的线程通常共享地址空间和部分资源，但具有各自的执行位置及相关运行状态。</p>
 <p>在许多现代系统中，线程是处理器调度的重要单位。</p>
 <p>共享数据既能方便协作，也会引入风险。例如两个线程同时读取报名人数 19，都决定增加 1，最后可能发生更新丢失。后续讨论数据库和可靠性时，我们会深入研究如何控制这种操作顺序。</p>
+<h2>为什么等待中的任务不应该占用整个处理器</h2>
+<p>可以先用三个简化状态理解调度：</p>
+<ul>
+<li>就绪（Ready）：具备继续执行的条件，等待处理器。</li>
+<li>运行（Running）：正在获得处理器执行机会。</li>
+<li>阻塞（Blocked）：正在等待某个条件，例如读取完成。</li>
+</ul>
+<p>运行任务可能因为等待输入而进入阻塞状态。条件满足后，它进入就绪状态，再由调度器选择执行。系统也可以在任务尚未主动让出处理器时，通过时钟中断等机制重新取得控制并安排其他任务。这类调度方式称为抢占（Preemption）。</p>
+<p><svg role="img" aria-label="任务的就绪、运行与阻塞状态转换" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 245" width="640" height="245"><title>简化任务状态机</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="25" y="45" width="155" height="55" rx="4" fill="none" stroke="currentColor"/><text x="102.5" y="77.5" text-anchor="middle" >就绪</text><rect x="450" y="45" width="165" height="55" rx="4" fill="none" stroke="currentColor"/><text x="532.5" y="77.5" text-anchor="middle" >运行</text><rect x="240" y="165" width="160" height="55" rx="4" fill="none" stroke="currentColor"/><text x="320" y="197.5" text-anchor="middle" >阻塞</text><path d="M180 60L450 60" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(450 60) rotate(0)" stroke="currentColor" fill="none"/><text x="315" y="49" text-anchor="middle" font-size='14'>调度</text><path d="M450 85L180 85" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(180 85) rotate(180)" stroke="currentColor" fill="none"/><text x="315" y="108" text-anchor="middle" font-size='14'>抢占或让出</text><path d="M505 100L400 165" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(400 165) rotate(148.2405199151872)" stroke="currentColor" fill="none"/><text x="490" y="144" text-anchor="middle" font-size='14'>等待</text><path d="M240 192L100 100" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(100 100) rotate(-146.6893691754392)" stroke="currentColor" fill="none"/><text x="125" y="178" text-anchor="middle" font-size='14'>条件满足</text></g></svg></p>
+<p>具体系统还可能区分更多状态。这个模型帮助解释为什么一个程序已经启动，却不一定正在使用 CPU。</p>
+<h2>共享状态为什么需要同步</h2>
+<p>假设两个线程都要将共享计数 19 增加 1。若两者先分别读取 19，再分别写回 20，就丢失了一次更新。</p>
+<p>临界区（Critical Section）是需要受到适当协调的一段操作。互斥锁（Mutex）可以让遵守同一锁规则的线程轮流进入临界区。</p>
+<p>但互斥不自动等于业务正确：即使两个报名操作依次执行，仍需在受保护的范围内检查容量并更新记录。在多进程或多台服务器之间，还需要选择能覆盖实际共享资源的协调机制。第四十五章将用数据库事务解决这类问题。</p>
 <h2>亲自观察运行状态</h2>
 <p>Windows 用户可以打开任务管理器，macOS 用户可以打开活动监视器。尝试找到一个正在运行的应用，观察其进程编号、CPU 使用情况和内存占用。</p>
 <p>启动应用和退出应用后，观察相关进程变化。一个应用可能包含多个进程，也可能退出窗口后仍有后台进程，不应仅凭窗口数量判断进程数量。</p>

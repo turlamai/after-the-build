@@ -54,6 +54,13 @@
 <p>生成机器代码的过程中，还可能需要将不同部分的代码和已有功能组织起来。将相关代码及其引用关系组合、解析的过程称为链接（Linking）。</p>
 <p>最终生成的文件可能是可以由操作系统装载并运行的可执行文件（Executable）。</p>
 <p>注意，编译器的目标不一定是机器代码。它也可以将源代码转换成供另一套执行系统使用的中间表示。</p>
+<h2>一个可执行文件是怎样组成的</h2>
+<p>以常见的 C 语言工具链为例，程序可能由两个源文件组成：一个负责程序入口，另一个提供计算函数。</p>
+<p>编译器可以分别将它们转换为目标文件（Object File）。目标文件可能包含机器代码、数据，以及尚待确定的引用。例如入口函数调用了另一个文件中定义的函数，但此时还没有确定那个函数最终放在哪里。</p>
+<p>链接器（Linker）将需要的目标文件和库组合，解析这些引用，并根据目标格式安排代码和数据。若必要的定义不存在，链接就可能失败，即使每个源文件都已经成功编译。</p>
+<p>静态链接可以将所需库代码的一部分纳入最终产物；动态链接则允许程序在装载时或运行期间使用独立提供的共享库。两者可以组合使用。</p>
+<p><svg role="img" aria-label="从多个源文件到目标文件及可执行文件" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250"><title>分开编译与链接</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="15" y="18" width="160" height="44" rx="4" fill="none" stroke="currentColor"/><text x="95" y="45" text-anchor="middle" >main.c</text><rect x="15" y="95" width="160" height="44" rx="4" fill="none" stroke="currentColor"/><text x="95" y="122" text-anchor="middle" >calc.c</text><rect x="220" y="18" width="160" height="44" rx="4" fill="none" stroke="currentColor"/><text x="300" y="45" text-anchor="middle" >main.o</text><rect x="220" y="95" width="160" height="44" rx="4" fill="none" stroke="currentColor"/><text x="300" y="122" text-anchor="middle" >calc.o</text><path d="M175 40L220 40" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(220 40) rotate(0)" stroke="currentColor" fill="none"/><path d="M175 117L220 117" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(220 117) rotate(0)" stroke="currentColor" fill="none"/><rect x="450" y="57" width="170" height="44" rx="4" fill="none" stroke="currentColor"/><text x="535" y="84" text-anchor="middle" >链接器</text><path d="M380 40H416V79H450M380 117H416V79" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="450" y="160" width="170" height="44" rx="4" fill="none" stroke="currentColor"/><text x="535" y="187" text-anchor="middle" >可执行文件</text><path d="M535 101L535 160" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(535 160) rotate(90)" stroke="currentColor" fill="none"/><text x="197" y="175" text-anchor="middle" font-size='14'>编译生成目标文件</text><text x="320" y="230" text-anchor="middle" font-size='14'>链接解析跨文件引用</text></g></svg></p>
+<p>操作系统启动可执行文件时，还要按照文件格式建立运行环境并进入规定的程序入口。目标文件与最终可执行文件并不是同一种产物。</p>
 <h2>由另一个程序负责执行</h2>
 <p>另一种办法是让一个已经能够运行的程序读取我们写下的代码，根据语言规则实施相应的计算。这种按程序表示执行其行为的方式称为解释（Interpretation），承担这项工作的软件常称为解释器（Interpreter）。</p>
 <p>例如常见的 CPython 实现通常先把 Python 源代码转换为内部字节码，再由执行系统处理这些字节码。这里的字节码（Bytecode）是一种面向特定执行系统的指令表示，不等于 CPU 的机器指令。</p>
