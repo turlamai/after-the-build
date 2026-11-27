@@ -60,12 +60,12 @@ GET 可以用来读取剩余名额，POST 可以用于向服务提交报名信�
 POST /api/registrations HTTP/1.1
 Host: localhost:8000
 Content-Type: application/json
-Content-Length: 14
+Content-Length: 15
 
-{"name":"Lin"}
+{"name": "Lin"}
 ```
 
-最后一行的 JSON 文本包含 14 个 ASCII 字节（不包含展示时附加的换行）。Content-Length 表示消息体的字节长度，不是字符数量。
+最后一行采用 JSON 格式（一种用文本组织字段和值的约定，第 41 章将详细介绍），其中冒号之后包含一个空格。整行包含 15 个 ASCII 字节（不包含展示时附加的换行）。Content-Length 表示消息体的字节长度，不是字符数量。
 
 对于非 ASCII 文字，需要先按照约定编码成字节再计算长度，例如中文姓名使用 UTF-8 后可能占用更多字节。
 
