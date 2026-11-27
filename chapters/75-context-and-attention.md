@@ -34,6 +34,32 @@
 
 ![从多个位置取得数值表示并按权重组合的教学模型](../assets/intro-attention-weights.svg)
 
+## Query、Key 和 Value 到底是什么
+
+在常见的点积注意力中，每个位置的向量经过学习得到的变换，形成查询向量（Query）、键向量（Key）和值向量（Value）。
+
+对某个处理位置，可以计算它的 Query 与各个可访问位置的 Key 的点积。点积是对应数值相乘再求和。经过缩放和 Softmax 后得到权重，再对各位置的 Value 加权求和。
+
+```python
+from math import exp, sqrt
+query = [1.0, 0.0]
+keys = [[1.0, 0.0], [0.0, 1.0]]
+values = [10.0, 30.0]
+scores = [sum(a*b for a, b in zip(query, k)) / sqrt(2)
+          for k in keys]
+weights = [exp(s) for s in scores]
+weights = [w / sum(weights) for w in weights]
+result = sum(w*v for w, v in zip(weights, values))
+assert weights[0] > weights[1]
+assert 10 < result < 20
+```
+
+本例假设两个位置均可访问，并使用标量 Value 简化计算。真实模型有许多维度、多组注意力头、多个网络层及位置相关机制。
+
+![简化点积注意力的计算顺序](../assets/intro-attention-qkv.svg)
+
+生成过程中的因果掩码（Causal Mask）可以限制当前位置访问未来 Token。注意力权重是模型内部计算的一部分，并不必然是可直接解释的事实依据或推理证据。
+
 ## 对话记忆可以在模型之外实现
 
 应用可以将用户偏好、项目说明或历史决策保存在数据库中，并在后续任务中检索相关内容。

@@ -39,6 +39,31 @@
 
 模型获得内容后可以继续分析。如果工具返回文件不存在，它就不能将自己猜测的 README 内容当成实际读取结果。
 
+## 工具参数也需要独立验证
+
+工具可以声明参数的类型与范围，但模型生成符合格式的请求并不等于操作已经获得授权。
+
+下面用一个仅包含虚构内容的内存字典模拟只读工具。它不读取真实文件：
+
+```python
+documents = {"README.md": "registration demo"}
+
+def read_file(arguments):
+    if not isinstance(arguments, dict):
+        return {"error": "invalid arguments"}
+    path = arguments.get("path")
+    if not isinstance(path, str) or path not in documents:
+        return {"error": "not allowed"}
+    return {"content": documents[path]}
+
+assert read_file({"path": "README.md"})["content"] == "registration demo"
+assert "error" in read_file({"path": "private.txt"})
+```
+
+这里通过固定允许列表约束读取范围。真实文件工具还需要依据实际文件系统和权限模型处理路径解析、符号链接及访问范围，不能简单照搬这个内存模型。
+
+工具结果还应区分成功、错误、超时与部分完成，尤其不能把工具接受请求当作操作成功的证据。
+
 ## 工具声明与实际能力不能混为一谈
 
 告诉模型存在一个 run_tests 工具，不等于工具一定能够正常使用。执行环境可能缺少依赖、没有权限，或者目标项目根本没有测试配置。
