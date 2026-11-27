@@ -80,6 +80,11 @@
 <p><svg role="img" aria-label="浏览器与后端通过 HTTP 交换请求及响应" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220"><title>前端后端共享业务状态</title><defs><marker id="intro-web-architecture-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor"/></marker></defs><g stroke="currentColor" stroke-width="1.5" fill="none"><rect x="10" y="40" width="175" height="70" rx="7"/><text x="97.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">浏览器：用户交互</text><rect x="210" y="40" width="175" height="70" rx="7"/><text x="297.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">HTTP API：请求响应</text><rect x="410" y="40" width="175" height="70" rx="7"/><text x="497.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">后端：业务和数据</text><path d="M185 75H210M390 75H415" marker-end="url(#intro-web-architecture-arrow)"/></g><text x="300" y="155" text-anchor="middle" fill="currentColor" font-family="system-ui,sans-serif" font-size="15">前端后端共享业务状态</text></svg></p>
 <p>设想前端点击确认后发送报名请求。后端取得申请信息，执行规则并返回结果。前端依据结果更新显示，而不是无条件地增加人数。</p>
 <p>这才是多设备共享同一业务状态的基础。</p>
+<h2>一次报名请求中的责任边界</h2>
+<p>浏览器首先可以检查姓名输入框是否为空，以减少无效操作。但用户并不只能通过这个页面调用接口，其他程序也可能直接构造请求。因此后端不能相信前端已经完成验证。</p>
+<p>后端需要独立检查消息格式、字段范围及业务约束。对于具有账户系统的产品，还需要验证请求者身份及相关权限。</p>
+<p>当服务端成功保存报名后，再返回明确的业务结果。若通信在保存之后、客户端收到响应之前中断，客户端就无法单凭网络异常判断报名是否成功。</p>
+<p>这种不确定性将在数据库事务、幂等性和可靠性章节继续处理。它不是通过让前端显示一个更清楚的错误提示就能彻底解决的问题。</p>
 <h2>为什么后端还需要更可靠的数据管理</h2>
 <p>假设两位申请者同时报名，而活动只剩一个名额。两个后端执行任务可能同时看到尚有名额，分别完成报名。</p>
 <p>我们在进程和线程章节已经遇到共享状态的竞争问题。仅把判断放到后端，还不足以确保总人数不会超限。</p>

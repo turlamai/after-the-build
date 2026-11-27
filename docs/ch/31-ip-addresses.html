@@ -57,6 +57,33 @@
 <p>在这个例子中，A 和 B 的前 24 位相同。它们所在的普通直连子网可表示为 192.168.1.0/24。</p>
 <p>子网掩码（Subnet Mask）是另一种表示 IPv4 前缀范围的方法。/24 对应 255.255.255.0。</p>
 <p>注意，不能仅看两个 IP 地址的前几个数字就判断是否属于同一个子网，必须结合前缀及系统实际的网络配置。</p>
+<h2>用一次地址计算判断是否在同一子网</h2>
+<p>IPv4 地址有 32 位，通常用四个十进制数展示，每个数对应八位。例如 192.168.1.20。</p>
+<p>假设本机地址为 192.168.1.20/24。斜线后的 24 表示前 24 位是网络前缀。对应的子网掩码（Subnet Mask）为 255.255.255.0，也就是前三个字节全部为 1、最后一个字节为 0。</p>
+<p>通过按位与，可以取得网络地址：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>地址</th>
+<th>与掩码 255.255.255.0 运算后的结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.1.20</td>
+<td>192.168.1.0</td>
+</tr>
+<tr>
+<td>192.168.1.80</td>
+<td>192.168.1.0</td>
+</tr>
+<tr>
+<td>192.168.2.80</td>
+<td>192.168.2.0</td>
+</tr>
+</tbody></table></div>
+<p>在这个简单直连网络模型中，前两个地址属于同一子网，第三个地址不属于本机的 /24 子网。实际系统还需要依据路由表选择发送接口与下一跳。</p>
+<p><svg role="img" aria-label="通过前缀及按位与取得 IPv4 网络地址" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230"><title>IPv4 /24 前缀</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><text x="65" y="50" text-anchor="middle" >地址</text><text x="65" y="105" text-anchor="middle" >掩码</text><text x="65" y="160" text-anchor="middle" >网络</text><rect x="120" y="25" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="175" y="50" text-anchor="middle" >192</text><rect x="245" y="25" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="300" y="50" text-anchor="middle" >168</text><rect x="370" y="25" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="425" y="50" text-anchor="middle" >1</text><rect x="495" y="25" width="110" height="40" stroke="currentColor" fill="none" fill-opacity=".08"/><text x="550" y="50" text-anchor="middle" >20</text><rect x="120" y="80" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="175" y="105" text-anchor="middle" >255</text><rect x="245" y="80" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="300" y="105" text-anchor="middle" >255</text><rect x="370" y="80" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="425" y="105" text-anchor="middle" >255</text><rect x="495" y="80" width="110" height="40" stroke="currentColor" fill="none" fill-opacity=".08"/><text x="550" y="105" text-anchor="middle" >0</text><rect x="120" y="135" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="175" y="160" text-anchor="middle" >192</text><rect x="245" y="135" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="300" y="160" text-anchor="middle" >168</text><rect x="370" y="135" width="110" height="40" stroke="currentColor" fill="#c4683f" fill-opacity=".08"/><text x="425" y="160" text-anchor="middle" >1</text><rect x="495" y="135" width="110" height="40" stroke="currentColor" fill="none" fill-opacity=".08"/><text x="550" y="160" text-anchor="middle" >0</text><text x="295" y="205" text-anchor="middle" font-size='14'>前 24 位：网络前缀</text><text x="550" y="205" text-anchor="middle" font-size='14'>剩余 8 位</text></g></svg></p>
+<p>不要把 /24 当成所有网络的固定配置。前缀可以在不同位数处结束，因此不能始终只比较前三个十进制数字。</p>
 <h2>IP 数据如何交给以太网</h2>
 <p>IP 协议组织的数据单元常称为 IP 包（IP Packet）。如果当前一段通信使用以太网，IP 包通常作为以太网帧承载的数据之一。</p>
 <p>这样，一份传输数据同时具有两个层次的地址：以太网帧中的 MAC 地址，用于当前链路上的交付；IP 包中的 IP 地址，用于 IP 网络中的寻址与转发。</p>

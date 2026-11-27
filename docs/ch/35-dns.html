@@ -56,6 +56,35 @@
 <p>在需要进行完整 DNS 查询时，递归解析器可以沿域名体系寻找负责相应名称的权威服务器，取得记录并返回结果。</p>
 <p>A 记录用于提供 IPv4 地址，AAAA 记录用于提供 IPv6 地址。DNS 还支持许多其他记录类型，因此不能把它理解为只会返回 IP 地址的简单表格。</p>
 <p><svg role="img" aria-label="解析器查询域名记录并返回地址" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220"><title>DNS 解析简化路径</title><defs><marker id="intro-dns-resolution-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor"/></marker></defs><g stroke="currentColor" stroke-width="1.5" fill="none"><rect x="10" y="40" width="175" height="70" rx="7"/><text x="97.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">应用：查询名称</text><rect x="210" y="40" width="175" height="70" rx="7"/><text x="297.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">解析器：取得记录</text><rect x="410" y="40" width="175" height="70" rx="7"/><text x="497.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">返回 IP 地址</text><path d="M185 75H210M390 75H415" marker-end="url(#intro-dns-resolution-arrow)"/></g><text x="300" y="155" text-anchor="middle" fill="currentColor" font-family="system-ui,sans-serif" font-size="15">DNS 解析简化路径</text></svg></p>
+<h2>域名查询的完整分工</h2>
+<p>假设本地缓存未命中，客户端把查询交给递归解析器（Recursive Resolver）。在一个简化的无缓存过程中，解析器可以依次向根服务器、顶级域服务器和目标域名的权威服务器询问，逐步找到最终答案。实际解析器可以利用缓存、转发服务和其他机制省略部分查询。</p>
+<p>常见记录类型包括：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>IPv4 地址</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>IPv6 地址</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>指向另一个规范域名的别名</td>
+</tr>
+<tr>
+<td>NS</td>
+<td>指定有关域的名称服务器</td>
+</tr>
+</tbody></table></div>
+<p>DNS 返回的地址不必只有一个。一个域名可以对应多个地址，客户端随后还需要选择如何建立连接。</p>
+<p>DNS 记录不会告诉浏览器某条 HTTP 业务路径一定存在。普通网页 URL 中显式给出的端口也不是通过 A 记录取得的。地址查询与应用服务的实际连接是不同阶段。</p>
 <h2>为什么修改记录不会立刻影响所有用户</h2>
 <p>DNS 结果可能被不同层次的系统缓存。记录中通常包含生存时间（Time To Live，TTL），表示该记录在缓存中允许保留的时间相关信息。</p>
 <p>如果某个解析器之前已经获得旧记录，修改权威记录后，它可能仍在一段时间内使用尚未过期的结果。</p>

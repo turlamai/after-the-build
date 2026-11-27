@@ -53,6 +53,44 @@
 <p>路由器收到 IP 包后，根据自己的路由表（Routing Table）选择下一段路径。在通常的 IP 转发中，每经过一段以太网链路，链路层地址会按该段通信需要重新组织，而 IP 目标地址通常保持不变，除非涉及地址转换等机制。</p>
 <p><svg role="img" aria-label="跨网络时每段链路的接收方与最终 IP 目标不同" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220"><title>IP 包跨越多个网络</title><defs><marker id="intro-ip-routing-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="currentColor"/></marker></defs><g stroke="currentColor" stroke-width="1.5" fill="none"><rect x="10" y="40" width="175" height="70" rx="7"/><text x="97.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">本机 192.168.1.23</text><rect x="210" y="40" width="175" height="70" rx="7"/><text x="297.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">网关 192.168.1.1</text><rect x="410" y="40" width="175" height="70" rx="7"/><text x="497.5" y="80" text-anchor="middle" fill="currentColor" stroke="none" font-family="system-ui,sans-serif" font-size="14">远端 203.0.113.10</text><path d="M185 75H210M390 75H415" marker-end="url(#intro-ip-routing-arrow)"/></g><text x="300" y="155" text-anchor="middle" fill="currentColor" font-family="system-ui,sans-serif" font-size="15">IP 包跨越多个网络</text></svg></p>
 <p>图中的公网地址使用专门保留给文档示例的地址，不代表真实可访问的服务器。</p>
+<h2>经过路由器时，哪些地址会改变</h2>
+<p>设有一个教学网络：</p>
+<p>设备 A 的 IP 为 192.168.1.20，服务器 B 的 IP 为 192.168.2.80。路由器分别连接两个子网。A 通过本地路由规则确定下一跳为路由器的接口 192.168.1.1。</p>
+<p>A 需要取得该下一跳接口的 MAC 地址，再构造以太网帧。帧内的 IP 数据包仍然把 192.168.2.80 作为目的 IP。</p>
+<p>路由器收到帧后，按照 IP 路由规则决定输出接口，减少 IPv4 的 TTL（Time To Live，生存时间字段），并为下一段以太网重新构造链路层头部。</p>
+<p><svg role="img" aria-label="通过路由器时，链路层地址改变，而普通路由中的端到端 IP 地址保持" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="640" height="280"><title>两个以太网链路上的 IP 转发</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="15" y="25" width="170" height="52" rx="4" stroke="currentColor" fill="none"/><text x="100" y="56" text-anchor="middle" >设备 A</text><rect x="235" y="25" width="170" height="52" rx="4" stroke="currentColor" fill="none"/><text x="320" y="56" text-anchor="middle" >路由器</text><rect x="455" y="25" width="170" height="52" rx="4" stroke="currentColor" fill="none"/><text x="540" y="56" text-anchor="middle" >服务器 B</text><path d="M185 51L235 51" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(235 51) rotate(0)" stroke="currentColor" fill="none"/><path d="M405 51L455 51" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(455 51) rotate(0)" stroke="currentColor" fill="none"/><text x="100" y="99" text-anchor="middle" font-size='13'>192.168.1.20</text><text x="540" y="99" text-anchor="middle" font-size='13'>192.168.2.80</text><rect x="20" y="125" width="290" height="42" rx="4" stroke="currentColor" fill="none"/><text x="165" y="151" text-anchor="middle" >MAC：A → 路由器入口</text><rect x="330" y="125" width="290" height="42" rx="4" stroke="currentColor" fill="none"/><text x="475" y="151" text-anchor="middle" >MAC：路由器出口 → B</text><rect x="20" y="180" width="290" height="48" rx="4" stroke="currentColor" fill="none"/><text x="165" y="209" text-anchor="middle" >IP：A → B</text><rect x="330" y="180" width="290" height="48" rx="4" stroke="currentColor" fill="none"/><text x="475" y="209" text-anchor="middle" >IP：A → B</text><text x="320" y="257" text-anchor="middle" font-size='14'>普通路由，不考虑 NAT；TTL 递减</text></g></svg></p>
+<p>在不考虑 NAT 等地址改写机制的普通路由中：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>A 到路由器</th>
+<th>路由器到 B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>源 MAC</td>
+<td>A 的接口</td>
+<td>路由器输出接口</td>
+</tr>
+<tr>
+<td>目的 MAC</td>
+<td>路由器输入接口</td>
+<td>B 的接口</td>
+</tr>
+<tr>
+<td>源 IP</td>
+<td>192.168.1.20</td>
+<td>192.168.1.20</td>
+</tr>
+<tr>
+<td>目的 IP</td>
+<td>192.168.2.80</td>
+<td>192.168.2.80</td>
+</tr>
+</tbody></table></div>
+<p>TTL 在转发时递减，耗尽时数据包会被丢弃，以避免数据在路由环路中无限传播。</p>
+<p>路由查找通常使用最长前缀匹配。例如同时存在 192.168.2.0/24 和默认路由 0.0.0.0/0 时，匹配前者的目的地址通常选择更具体的 /24 路由。在相同前缀长度下，还需要考虑系统的路由选择规则。</p>
 <h2>互联网不是一台中央交换机</h2>
 <p>互联网（Internet）是由大量相互连接的网络组成的系统。不同组织管理自己的网络，并通过相应的路由机制交换可达信息。</p>
 <p>发送者通常不必预先列出每一台经过的路由器。路径由网络中的转发决定，并且可能随着网络状态变化。</p>
