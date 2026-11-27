@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>计算机为什么会出现乱码 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="计算机为什么会出现乱码 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="04-text-encoding" data-prev="ch/03-bytes.html" data-next="ch/05-computation.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 信息与计算</span></button><ul data-part-ul="p1"><li><a href="../ch/01-information.html">信息为什么需要一种表示方式</a></li><li><a href="../ch/02-binary.html">为什么计算机喜欢用 0 和 1</a></li><li><a href="../ch/03-bytes.html">从一个比特到一份数据</a></li><li><a href="../ch/04-text-encoding.html" class="active">计算机为什么会出现乱码</a></li><li><a href="../ch/05-computation.html">什么叫作计算</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 计算机内部</span></button><ul data-part-ul="p2"><li><a href="../ch/06-digital-logic.html">电路怎样完成一次判断</a></li><li><a href="../ch/07-storing-state.html">计算机怎样记住一个数字</a></li><li><a href="../ch/08-memory-addresses.html">存储器怎么知道我们要读取哪个数字</a></li><li><a href="../ch/09-instructions.html">一串数字怎样成为程序</a></li><li><a href="../ch/10-processor.html">CPU 怎样一步一步执行程序</a></li><li><a href="../ch/11-storage-hierarchy.html">为什么计算机同时需要内存和硬盘</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 程序与操作系统</span></button><ul data-part-ul="p3"><li><a href="../ch/12-programming-language.html">为什么我们不直接编写机器指令</a></li><li><a href="../ch/13-programming-rules.html">怎样用程序表达一项计算规则</a></li><li><a href="../ch/14-code-to-execution.html">源代码怎样变成计算机可以执行的程序</a></li><li><a href="../ch/15-computer-startup.html">按下开机键之后，计算机在做什么</a></li><li><a href="../ch/16-operating-system.html">为什么计算机需要操作系统</a></li><li><a href="../ch/17-processes-threads.html">一台计算机怎样同时运行多个程序</a></li><li><a href="../ch/18-virtual-memory.html">为什么程序不能随意访问其他程序的内存</a></li><li><a href="../ch/19-files-and-directories.html">文件为什么不只是硬盘中的一串数字</a></li><li><a href="../ch/20-system-permissions.html">为什么有些文件可以打开，有些却没有权限</a></li><li><a href="../ch/21-terminal-shell.html">终端、Shell 和命令行究竟是什么</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 应用软件</span></button><ul data-part-ul="p4"><li><a href="../ch/22-input-output-events.html">软件怎样知道你点击了按钮</a></li><li><a href="../ch/23-graphical-interface.html">窗口、按钮和输入框是怎样构成的</a></li><li><a href="../ch/24-software-modules.html">为什么不能把所有代码写在一起</a></li><li><a href="../ch/25-libraries-frameworks.html">为什么开发软件不需要每次从头开始</a></li><li><a href="../ch/26-build-packaging.html">源代码为什么不等于安装包</a></li><li><a href="../ch/27-platforms-compatibility.html">为什么同一个软件不能在所有设备上运行</a></li><li><a href="../ch/28-software-updates.html">软件更新为什么不只是替换一个文件</a></li></ul><button type="button" class="part-toggle" data-part="p5" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第五部 · 网络与 Web</span></button><ul data-part-ul="p5"><li><a href="../ch/29-network-communication.html">两台计算机怎样交换数据</a></li><li><a href="../ch/30-local-network.html">同一个网络中的设备怎样找到彼此</a></li><li><a href="../ch/31-ip-addresses.html">为什么有了 MAC 地址还需要 IP 地址</a></li><li><a href="../ch/32-routing-internet.html">数据怎样跨越不同的网络</a></li><li><a href="../ch/33-tcp-udp.html">数据可能丢失，程序怎样继续通信</a></li><li><a href="../ch/34-ports-sockets.html">一台计算机怎样同时运行多个网络服务</a></li><li><a href="../ch/35-dns.html">输入一个名字，计算机怎样找到网络地址</a></li><li><a href="../ch/36-http.html">HTTP 究竟规定了什么</a></li><li><a href="../ch/37-browser.html">浏览器怎样把网络数据变成网页</a></li><li><a href="../ch/38-frontend-backend.html">前端、后端与 API 怎样组成一个应用</a></li><li><a href="../ch/39-localhost-deployment.html">为什么 localhost 只能访问自己的设备</a></li></ul><button type="button" class="part-toggle" data-part="p6" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第六部 · 数据与数据库</span></button><ul data-part-ul="p6"><li><a href="../ch/40-data-formats.html">文件能够保存字节，为什么还需要数据格式</a></li><li><a href="../ch/41-structured-data.html">怎样保存具有内部结构的数据</a></li><li><a href="../ch/42-relational-database.html">已经有文件了，为什么还需要数据库</a></li><li><a href="../ch/43-sql.html">怎样告诉数据库我们想要哪些数据</a></li><li><a href="../ch/44-database-indexes.html">数据库为什么能够快速找到记录</a></li><li><a href="../ch/45-database-transactions.html">只剩一个名额，两个人同时报名怎么办</a></li><li><a href="../ch/46-data-durability.html">数据已经保存，为什么还要备份</a></li></ul><button type="button" class="part-toggle" data-part="p7" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第七部 · 服务器与云计算</span></button><ul data-part-ul="p7"><li><a href="../ch/47-server-environment.html">为什么自己电脑上的程序还需要部署</a></li><li><a href="../ch/48-hosting-and-domains.html">网站究竟被放在什么地方</a></li><li><a href="../ch/49-virtual-machines.html">一台计算机怎样运行多个操作系统</a></li><li><a href="../ch/50-containers.html">容器为什么不等于一台小型虚拟机</a></li><li><a href="../ch/51-cloud-services.html">云计算究竟把哪些工作交给了别人</a></li><li><a href="../ch/52-load-balancing-cdn.html">为什么一个网站背后可能有许多台机器</a></li><li><a href="../ch/53-capacity-and-cost.html">怎样判断应用需要多少服务器资源</a></li></ul><button type="button" class="part-toggle" data-part="p8" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第八部 · 软件工程</span></button><ul data-part-ul="p8"><li><a href="../ch/54-requirements.html">怎样判断一个软件做对了</a></li><li><a href="../ch/55-algorithms-and-measurement.html">得到正确答案之后，为什么还要考虑算法</a></li><li><a href="../ch/56-software-testing.html">软件测试不是打开程序看一眼</a></li><li><a href="../ch/57-debugging.html">程序出错时，应该怎样寻找原因</a></li><li><a href="../ch/58-git-version-control.html">为什么不能靠复制文件来管理软件版本</a></li><li><a href="../ch/59-ci-build-pipeline.html">为什么每次提交都应该自动检查</a></li><li><a href="../ch/60-release-and-rollback.html">软件发布为什么不是上传一个安装包</a></li><li><a href="../ch/61-observability.html">服务正在运行，我们怎样知道它是否正常</a></li><li><a href="../ch/62-software-reliability.html">为什么软件需要考虑失败之后会发生什么</a></li></ul><button type="button" class="part-toggle" data-part="p9" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第九部 · 安全与隐私</span></button><ul data-part-ul="p9"><li><a href="../ch/63-authentication-authorization.html">知道一个人是谁，为什么还不够</a></li><li><a href="../ch/64-security-boundaries.html">软件究竟在防止什么</a></li><li><a href="../ch/65-cryptographic-hash.html">怎样知道文件有没有发生变化</a></li><li><a href="../ch/66-symmetric-encryption.html">怎样让只有掌握密钥的人能够读取数据</a></li><li><a href="../ch/67-public-key-cryptography.html">两台没有共享密码的计算机怎样建立安全通信</a></li><li><a href="../ch/68-signatures-certificates.html">怎样验证数据确实来自预期的发布者</a></li><li><a href="../ch/69-tls-https.html">HTTPS 怎样保护浏览器与服务器之间的通信</a></li><li><a href="../ch/70-secret-management.html">程序需要使用秘密，怎样才能不把秘密公开</a></li><li><a href="../ch/71-data-privacy.html">数据可以收集，是否就应该收集</a></li></ul><button type="button" class="part-toggle" data-part="p10" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十部 · AI 与 Agent</span></button><ul data-part-ul="p10"><li><a href="../ch/72-models-and-data.html">为什么计算机能够根据数据作出判断</a></li><li><a href="../ch/73-training-inference.html">模型怎样从数据中学习，又怎样被使用</a></li><li><a href="../ch/74-tokens.html">模型读取的不是直接可理解的文字</a></li><li><a href="../ch/75-context-and-attention.html">为什么模型不是永远记得以前说过的话</a></li><li><a href="../ch/76-embeddings-retrieval.html">怎样找到意思相关、但文字并不完全相同的资料</a></li><li><a href="../ch/77-rag.html">怎样让模型根据自己的项目资料回答问题</a></li><li><a href="../ch/78-tool-calling.html">AI 怎样从生成文字发展到真正操作软件</a></li><li><a href="../ch/79-tool-protocols.html">为什么 AI 工具之间也需要协议</a></li><li><a href="../ch/80-agent-execution.html">Agent 怎样完成一项包含多个步骤的任务</a></li><li><a href="../ch/81-agent-verification.html">怎样判断 Agent 的工作是不是真的完成了</a></li></ul><button type="button" class="part-toggle" data-part="p11" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十一部 · 从想法到产品</span></button><ul data-part-ul="p11"><li><a href="../ch/82-product-requirements.html">从一个想法开始，怎样确定要做什么</a></li><li><a href="../ch/83-product-architecture.html">怎样把需求变成可以运行的结构</a></li><li><a href="../ch/84-running-the-project.html">亲自运行一个完整的小型 Web 应用</a></li><li><a href="../ch/85-product-verification.html">怎样证明这个应用满足了最初的要求</a></li><li><a href="../ch/86-maintaining-a-product.html">软件能够运行之后，真正的工作才开始</a></li></ul><button type="button" class="part-toggle" data-part="p12" aria-expanded="true"><span class="chev">‹</span><span class="part-name">附录 · 参考与复习</span></button><ul data-part-ul="p12"><li><a href="../ch/appendix-a-glossary.html">技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">与 Agent 协作的任务模板</a></li><li><a href="../ch/appendix-c-concept-map.html">全书知识路线</a></li><li><a href="../ch/appendix-d-review.html">五十个复习与验收问题</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第一部 · 信息与计算</p>
+  <h1>计算机为什么会出现乱码</h1>
+  <p>在纸上写一个 A，我们可以直接认出它。但计算机内部保存的是二进制状态，并没有一个物理部件专门存放字母 A 的形状。</p>
+<p>因此，必须制定一种规则，把文字中的字符转换成数字，再将数字表示成二进制。</p>
+<h2>从给字符编号开始</h2>
+<p>早期有许多不同的文字编码约定。ASCII 是其中一项重要的标准，它定义了 128 个编码值，对应英文字母、数字字符、标点以及一些控制用途。</p>
+<p>例如，大写 A 对应十进制 65，小写 a 对应 97，数字字符 0 对应 48。</p>
+<p>这里必须区分数字 0 和文字中的字符 0。前者在某种数值表示中可以使用全为零的位；后者按 ASCII 编码，其编码值是 48，即十六进制 0x30。</p>
+<p>如果按照 ASCII 规则记录文字 A0，就得到两个字节：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>字节的十六进制表示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>41</td>
+</tr>
+<tr>
+<td>0</td>
+<td>30</td>
+</tr>
+</tbody></table></div>
+<p>把这两个字节当成数字进行计算，与按照 ASCII 把它们还原成文字，是两种不同的操作。</p>
+<h2>只有 128 个编号显然不够</h2>
+<p>汉字、日语、阿拉伯文字和其他语言所需要的字符，远远超过 ASCII 的范围。不同地区曾使用不同的扩展编码。如果两台计算机使用的约定不同，交换文字就可能产生问题。</p>
+<p>为了让世界各地的文字在统一的体系中得到表示，产生了 Unicode 标准。它为字符分配编号，这种编号称为码点（Code Point）。</p>
+<p>例如，大写 A 的码点为 U+0041，汉字「中」的码点为 U+4E2D。</p>
+<p>Unicode 码点说明字符在统一编号体系中的位置，却还没有说明编号要怎样转换成连续字节。UTF-8 是其中一种实际编码方式，它规定怎样使用一到四个字节表示一个 Unicode 标量值。</p>
+<p>在 UTF-8 中，A 使用一个字节 41，而「中」使用三个字节 E4 B8 AD。</p>
+<h2>字符、码点、字节和屏幕上的形状不是一回事</h2>
+<p>一个字符可能需要多个字节。有些用户看到的一个完整符号，也可能由多个码点组成。例如某些带附加符号的字母或者组合表情。</p>
+<p>屏幕上最终显示的形状还受到字体等因素影响。字体提供文字显示所需的字形信息，而字符编码负责记录文字的表示。这是两种不同的工作。</p>
+<p>因此，不能简单地用字节数量计算文本中用户看到的字符数量。</p>
+<h2>乱码是怎样发生的</h2>
+<p>假设一份文字按 UTF-8 保存，读取它的程序却按另一种编码解释这些字节。读取过程可能得到完全不同的字符，也可能遇到无法解释的序列。</p>
+<p>这就是常见乱码产生的机制之一。还有一种情况是编码读取正确，但设备缺少能够显示相应字符的字体。两种问题看起来都可能是文字显示异常，却需要不同的解决方法。</p>
+<p>尤其不要把已经错误解码的文字直接覆盖保存。重新保存可能改变原有字节，使问题更难恢复。</p>
+<p>如果有一天你让 AI 帮你处理一份包含中文姓名的记录，不妨明确告诉它：输入和输出采用 UTF-8，保留原始数据，并用包含中文和特殊字符的样例验证结果。</p>
+<p>我们此时已经有足够的知识理解文字是怎样被记录的。接下来要研究的是，计算机如何对这些表示进行处理。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="04-text-encoding">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F04-text-encoding.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/04-text-encoding.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/03-bytes.html" class="nav-prev">← 从一个比特到一份数据</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/05-computation.html" class="nav-next">什么叫作计算 →</a>
+</nav>
+</article>
+</main>
+<div id="lightbox" class="lightbox" aria-hidden="true"><div class="lb-holder"></div><p class="lb-caption"></p></div>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

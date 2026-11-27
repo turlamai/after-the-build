@@ -57,7 +57,7 @@
 
   /* Per-part collapse in the sidebar (racket parity). */
   $$('.part-toggle').forEach(function (btn) {
-    var key = 'atb:part:' + btn.dataset.part;
+    var key = 'atb:v2:part:' + btn.dataset.part;
     var ul = document.querySelector('[data-part-ul="' + btn.dataset.part + '"]');
     if (!ul) return;
     try { if (localStorage.getItem(key) === 'collapsed') { ul.classList.add('collapsed'); btn.setAttribute('aria-expanded', 'false'); } } catch (e) {}
@@ -290,7 +290,7 @@
 
   /* Home: deep links from the old single-page era -> chapter pages */
   if (!PAGE && window.SEARCH_INDEX && location.hash.length > 1) {
-    var legacy = {"06-os":"07-os","07-data-shapes":"08-data-shapes","08-network":"09-network","09-cloud":"10-cloud","10-ai-landscape":"11-ai-landscape","11-ai-collab":"12-ai-collab","12-deploy":"13-deploy","13-debug":"14-debug","14-secrets":"15-secrets","15-cost":"16-cost","16-data":"17-data","17-versions":"18-versions","18-security":"19-security","19-crypto":"20-crypto","20-privacy":"21-privacy","21-ask-for-help":"22-ask-for-help","22-maintenance":"23-maintenance","23-50-questions":"24-50-questions"};
+    var legacy = {"01-platforms":"27-platforms-compatibility","02-machine":"10-processor","03-files":"19-files-and-directories","04-cli-gui":"21-terminal-shell","05-language":"12-programming-language","06-efficiency":"55-algorithms-and-measurement","07-os":"16-operating-system","08-data-shapes":"41-structured-data","09-network":"29-network-communication","10-cloud":"51-cloud-services","11-ai-landscape":"72-models-and-data","12-ai-collab":"80-agent-execution","13-deploy":"47-server-environment","14-debug":"57-debugging","15-secrets":"70-secret-management","16-cost":"53-capacity-and-cost","17-data":"42-relational-database","18-versions":"58-git-version-control","19-security":"64-security-boundaries","20-crypto":"65-cryptographic-hash","21-privacy":"71-data-privacy","22-ask-for-help":"81-agent-verification","23-maintenance":"86-maintaining-a-product","24-50-questions":"appendix-d-review","06-os":"16-operating-system","07-data-shapes":"41-structured-data","08-network":"29-network-communication","09-cloud":"51-cloud-services","10-ai-landscape":"72-models-and-data","11-ai-collab":"80-agent-execution","12-deploy":"47-server-environment","13-debug":"57-debugging","14-secrets":"70-secret-management","15-cost":"53-capacity-and-cost","16-data":"42-relational-database","17-versions":"58-git-version-control","18-security":"64-security-boundaries","19-crypto":"65-cryptographic-hash","20-privacy":"71-data-privacy","21-ask-for-help":"81-agent-verification","22-maintenance":"86-maintaining-a-product","23-50-questions":"appendix-d-review"};
     var target = (window.SEARCH_INDEX.filter(function (it) { return '#' + it.slug === (legacy[location.hash.slice(1)] ? '#' + legacy[location.hash.slice(1)] : location.hash); }))[0];
     if (target) location.replace(ROOT + target.url);
   }

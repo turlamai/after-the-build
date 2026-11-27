@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>按下开机键之后，计算机在做什么 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="按下开机键之后，计算机在做什么 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="15-computer-startup" data-prev="ch/14-code-to-execution.html" data-next="ch/16-operating-system.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 信息与计算</span></button><ul data-part-ul="p1"><li><a href="../ch/01-information.html">信息为什么需要一种表示方式</a></li><li><a href="../ch/02-binary.html">为什么计算机喜欢用 0 和 1</a></li><li><a href="../ch/03-bytes.html">从一个比特到一份数据</a></li><li><a href="../ch/04-text-encoding.html">计算机为什么会出现乱码</a></li><li><a href="../ch/05-computation.html">什么叫作计算</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 计算机内部</span></button><ul data-part-ul="p2"><li><a href="../ch/06-digital-logic.html">电路怎样完成一次判断</a></li><li><a href="../ch/07-storing-state.html">计算机怎样记住一个数字</a></li><li><a href="../ch/08-memory-addresses.html">存储器怎么知道我们要读取哪个数字</a></li><li><a href="../ch/09-instructions.html">一串数字怎样成为程序</a></li><li><a href="../ch/10-processor.html">CPU 怎样一步一步执行程序</a></li><li><a href="../ch/11-storage-hierarchy.html">为什么计算机同时需要内存和硬盘</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 程序与操作系统</span></button><ul data-part-ul="p3"><li><a href="../ch/12-programming-language.html">为什么我们不直接编写机器指令</a></li><li><a href="../ch/13-programming-rules.html">怎样用程序表达一项计算规则</a></li><li><a href="../ch/14-code-to-execution.html">源代码怎样变成计算机可以执行的程序</a></li><li><a href="../ch/15-computer-startup.html" class="active">按下开机键之后，计算机在做什么</a></li><li><a href="../ch/16-operating-system.html">为什么计算机需要操作系统</a></li><li><a href="../ch/17-processes-threads.html">一台计算机怎样同时运行多个程序</a></li><li><a href="../ch/18-virtual-memory.html">为什么程序不能随意访问其他程序的内存</a></li><li><a href="../ch/19-files-and-directories.html">文件为什么不只是硬盘中的一串数字</a></li><li><a href="../ch/20-system-permissions.html">为什么有些文件可以打开，有些却没有权限</a></li><li><a href="../ch/21-terminal-shell.html">终端、Shell 和命令行究竟是什么</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 应用软件</span></button><ul data-part-ul="p4"><li><a href="../ch/22-input-output-events.html">软件怎样知道你点击了按钮</a></li><li><a href="../ch/23-graphical-interface.html">窗口、按钮和输入框是怎样构成的</a></li><li><a href="../ch/24-software-modules.html">为什么不能把所有代码写在一起</a></li><li><a href="../ch/25-libraries-frameworks.html">为什么开发软件不需要每次从头开始</a></li><li><a href="../ch/26-build-packaging.html">源代码为什么不等于安装包</a></li><li><a href="../ch/27-platforms-compatibility.html">为什么同一个软件不能在所有设备上运行</a></li><li><a href="../ch/28-software-updates.html">软件更新为什么不只是替换一个文件</a></li></ul><button type="button" class="part-toggle" data-part="p5" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第五部 · 网络与 Web</span></button><ul data-part-ul="p5"><li><a href="../ch/29-network-communication.html">两台计算机怎样交换数据</a></li><li><a href="../ch/30-local-network.html">同一个网络中的设备怎样找到彼此</a></li><li><a href="../ch/31-ip-addresses.html">为什么有了 MAC 地址还需要 IP 地址</a></li><li><a href="../ch/32-routing-internet.html">数据怎样跨越不同的网络</a></li><li><a href="../ch/33-tcp-udp.html">数据可能丢失，程序怎样继续通信</a></li><li><a href="../ch/34-ports-sockets.html">一台计算机怎样同时运行多个网络服务</a></li><li><a href="../ch/35-dns.html">输入一个名字，计算机怎样找到网络地址</a></li><li><a href="../ch/36-http.html">HTTP 究竟规定了什么</a></li><li><a href="../ch/37-browser.html">浏览器怎样把网络数据变成网页</a></li><li><a href="../ch/38-frontend-backend.html">前端、后端与 API 怎样组成一个应用</a></li><li><a href="../ch/39-localhost-deployment.html">为什么 localhost 只能访问自己的设备</a></li></ul><button type="button" class="part-toggle" data-part="p6" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第六部 · 数据与数据库</span></button><ul data-part-ul="p6"><li><a href="../ch/40-data-formats.html">文件能够保存字节，为什么还需要数据格式</a></li><li><a href="../ch/41-structured-data.html">怎样保存具有内部结构的数据</a></li><li><a href="../ch/42-relational-database.html">已经有文件了，为什么还需要数据库</a></li><li><a href="../ch/43-sql.html">怎样告诉数据库我们想要哪些数据</a></li><li><a href="../ch/44-database-indexes.html">数据库为什么能够快速找到记录</a></li><li><a href="../ch/45-database-transactions.html">只剩一个名额，两个人同时报名怎么办</a></li><li><a href="../ch/46-data-durability.html">数据已经保存，为什么还要备份</a></li></ul><button type="button" class="part-toggle" data-part="p7" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第七部 · 服务器与云计算</span></button><ul data-part-ul="p7"><li><a href="../ch/47-server-environment.html">为什么自己电脑上的程序还需要部署</a></li><li><a href="../ch/48-hosting-and-domains.html">网站究竟被放在什么地方</a></li><li><a href="../ch/49-virtual-machines.html">一台计算机怎样运行多个操作系统</a></li><li><a href="../ch/50-containers.html">容器为什么不等于一台小型虚拟机</a></li><li><a href="../ch/51-cloud-services.html">云计算究竟把哪些工作交给了别人</a></li><li><a href="../ch/52-load-balancing-cdn.html">为什么一个网站背后可能有许多台机器</a></li><li><a href="../ch/53-capacity-and-cost.html">怎样判断应用需要多少服务器资源</a></li></ul><button type="button" class="part-toggle" data-part="p8" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第八部 · 软件工程</span></button><ul data-part-ul="p8"><li><a href="../ch/54-requirements.html">怎样判断一个软件做对了</a></li><li><a href="../ch/55-algorithms-and-measurement.html">得到正确答案之后，为什么还要考虑算法</a></li><li><a href="../ch/56-software-testing.html">软件测试不是打开程序看一眼</a></li><li><a href="../ch/57-debugging.html">程序出错时，应该怎样寻找原因</a></li><li><a href="../ch/58-git-version-control.html">为什么不能靠复制文件来管理软件版本</a></li><li><a href="../ch/59-ci-build-pipeline.html">为什么每次提交都应该自动检查</a></li><li><a href="../ch/60-release-and-rollback.html">软件发布为什么不是上传一个安装包</a></li><li><a href="../ch/61-observability.html">服务正在运行，我们怎样知道它是否正常</a></li><li><a href="../ch/62-software-reliability.html">为什么软件需要考虑失败之后会发生什么</a></li></ul><button type="button" class="part-toggle" data-part="p9" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第九部 · 安全与隐私</span></button><ul data-part-ul="p9"><li><a href="../ch/63-authentication-authorization.html">知道一个人是谁，为什么还不够</a></li><li><a href="../ch/64-security-boundaries.html">软件究竟在防止什么</a></li><li><a href="../ch/65-cryptographic-hash.html">怎样知道文件有没有发生变化</a></li><li><a href="../ch/66-symmetric-encryption.html">怎样让只有掌握密钥的人能够读取数据</a></li><li><a href="../ch/67-public-key-cryptography.html">两台没有共享密码的计算机怎样建立安全通信</a></li><li><a href="../ch/68-signatures-certificates.html">怎样验证数据确实来自预期的发布者</a></li><li><a href="../ch/69-tls-https.html">HTTPS 怎样保护浏览器与服务器之间的通信</a></li><li><a href="../ch/70-secret-management.html">程序需要使用秘密，怎样才能不把秘密公开</a></li><li><a href="../ch/71-data-privacy.html">数据可以收集，是否就应该收集</a></li></ul><button type="button" class="part-toggle" data-part="p10" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十部 · AI 与 Agent</span></button><ul data-part-ul="p10"><li><a href="../ch/72-models-and-data.html">为什么计算机能够根据数据作出判断</a></li><li><a href="../ch/73-training-inference.html">模型怎样从数据中学习，又怎样被使用</a></li><li><a href="../ch/74-tokens.html">模型读取的不是直接可理解的文字</a></li><li><a href="../ch/75-context-and-attention.html">为什么模型不是永远记得以前说过的话</a></li><li><a href="../ch/76-embeddings-retrieval.html">怎样找到意思相关、但文字并不完全相同的资料</a></li><li><a href="../ch/77-rag.html">怎样让模型根据自己的项目资料回答问题</a></li><li><a href="../ch/78-tool-calling.html">AI 怎样从生成文字发展到真正操作软件</a></li><li><a href="../ch/79-tool-protocols.html">为什么 AI 工具之间也需要协议</a></li><li><a href="../ch/80-agent-execution.html">Agent 怎样完成一项包含多个步骤的任务</a></li><li><a href="../ch/81-agent-verification.html">怎样判断 Agent 的工作是不是真的完成了</a></li></ul><button type="button" class="part-toggle" data-part="p11" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十一部 · 从想法到产品</span></button><ul data-part-ul="p11"><li><a href="../ch/82-product-requirements.html">从一个想法开始，怎样确定要做什么</a></li><li><a href="../ch/83-product-architecture.html">怎样把需求变成可以运行的结构</a></li><li><a href="../ch/84-running-the-project.html">亲自运行一个完整的小型 Web 应用</a></li><li><a href="../ch/85-product-verification.html">怎样证明这个应用满足了最初的要求</a></li><li><a href="../ch/86-maintaining-a-product.html">软件能够运行之后，真正的工作才开始</a></li></ul><button type="button" class="part-toggle" data-part="p12" aria-expanded="true"><span class="chev">‹</span><span class="part-name">附录 · 参考与复习</span></button><ul data-part-ul="p12"><li><a href="../ch/appendix-a-glossary.html">技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">与 Agent 协作的任务模板</a></li><li><a href="../ch/appendix-c-concept-map.html">全书知识路线</a></li><li><a href="../ch/appendix-d-review.html">五十个复习与验收问题</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第三部 · 程序与操作系统</p>
+  <h1>按下开机键之后，计算机在做什么</h1>
+  <p>计算机断电后，通常使用的主内存无法继续保留原来的状态。但是，重新开机后，我们仍然能够进入熟悉的桌面。</p>
+<p>如果处理器需要取得指令才能工作，而主内存刚刚失去了原来的内容，第一批指令又在哪里？</p>
+<h2>处理器从规定的位置开始</h2>
+<p>处理器复位时，其内部状态会按照硬件规定初始化。它可以从规定的地址或启动机制开始获取指令。</p>
+<p>这个位置通常能够访问预先保存在非易失性存储器里的启动代码。因此，不需要等人先打开某个应用，处理器就已经有指令可以执行。</p>
+<p>与硬件初始化及设备控制密切相关、存放在设备中的软件，通常称为固件（Firmware）。</p>
+<p>不同计算机的启动机制有所不同。例如某些微控制器从内部闪存启动，而现代个人电脑通常包含支持较复杂启动流程的固件。</p>
+<h2>先让必要的硬件能够工作</h2>
+<p>刚刚通电时，有些硬件还未完成初始化。启动代码需要按照设备要求建立运行所需的基本条件，例如初始化内存控制相关部件、检查必要的硬件状态，并确定从哪里取得后续程序。</p>
+<p>现代个人电脑常使用 UEFI 固件接口。我们现在不必学习 UEFI 的具体实现，只需要知道它为启动过程提供一套约定，使后续程序能够在适当条件下接管运行。</p>
+<h2>怎样启动更大的系统</h2>
+<p>个人电脑上的主要系统软件通常保存在 SSD 等持久化设备中，不会全部包含在最初的固件里。</p>
+<p>因此，启动过程需要找到后续启动程序，将所需内容加载或安排进入内存，然后把执行控制交给它。</p>
+<p>负责协助启动操作系统的程序常称为引导加载程序（Bootloader）。实际设备可能存在多个启动阶段，也可能将某些阶段合并。</p>
+<p><svg role="img" aria-label="固件、引导程序、操作系统与普通应用的简化启动顺序" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300"><title>典型个人电脑启动过程的简化顺序</title><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="150" y="12" width="300" height="45" rx="6"/><rect x="150" y="87" width="300" height="45" rx="6"/><rect x="150" y="162" width="300" height="45" rx="6"/><rect x="150" y="237" width="300" height="45" rx="6"/><path d="M300 57V87m-6-7 6 7 6-7M300 132V162m-6-7 6 7 6-7M300 207V237m-6-7 6 7 6-7"/></g><g text-anchor="middle" fill="currentColor" font-size="18" font-family="system-ui,sans-serif"><text x="300" y="40">复位后执行固件</text><text x="300" y="115">初始化并选择引导程序</text><text x="300" y="190">启动操作系统</text><text x="300" y="265">按需运行普通应用</text></g></svg></p>
+<h2>开机与启动应用是两件事情</h2>
+<p>系统启动完成后，用户才可以通过桌面、终端或者其他界面请求运行普通应用。</p>
+<p>启动应用通常不需要重新初始化整台机器，而是由已经运行的系统软件准备必要资源，再使处理器执行应用所需的指令。</p>
+<p>因此，某个应用打不开，不代表电脑无法启动；电脑无法启动，也不一定意味着应用文件被删除。两者涉及不同层次的问题。</p>
+<p>下一章将解释，这个在普通应用之前启动、并持续管理它们的软件系统，为什么在现代计算机中如此重要。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="15-computer-startup">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E6%8C%89%E4%B8%8B%E5%BC%80%E6%9C%BA%E9%94%AE%E4%B9%8B%E5%90%8E%EF%BC%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F15-computer-startup.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/15-computer-startup.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/14-code-to-execution.html" class="nav-prev">← 源代码怎样变成计算机可以执行的程序</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/16-operating-system.html" class="nav-next">为什么计算机需要操作系统 →</a>
+</nav>
+</article>
+</main>
+<div id="lightbox" class="lightbox" aria-hidden="true"><div class="lb-holder"></div><p class="lb-caption"></p></div>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

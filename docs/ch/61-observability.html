@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>服务正在运行，我们怎样知道它是否正常 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="服务正在运行，我们怎样知道它是否正常 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="61-observability" data-prev="ch/60-release-and-rollback.html" data-next="ch/62-software-reliability.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 信息与计算</span></button><ul data-part-ul="p1"><li><a href="../ch/01-information.html">信息为什么需要一种表示方式</a></li><li><a href="../ch/02-binary.html">为什么计算机喜欢用 0 和 1</a></li><li><a href="../ch/03-bytes.html">从一个比特到一份数据</a></li><li><a href="../ch/04-text-encoding.html">计算机为什么会出现乱码</a></li><li><a href="../ch/05-computation.html">什么叫作计算</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 计算机内部</span></button><ul data-part-ul="p2"><li><a href="../ch/06-digital-logic.html">电路怎样完成一次判断</a></li><li><a href="../ch/07-storing-state.html">计算机怎样记住一个数字</a></li><li><a href="../ch/08-memory-addresses.html">存储器怎么知道我们要读取哪个数字</a></li><li><a href="../ch/09-instructions.html">一串数字怎样成为程序</a></li><li><a href="../ch/10-processor.html">CPU 怎样一步一步执行程序</a></li><li><a href="../ch/11-storage-hierarchy.html">为什么计算机同时需要内存和硬盘</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 程序与操作系统</span></button><ul data-part-ul="p3"><li><a href="../ch/12-programming-language.html">为什么我们不直接编写机器指令</a></li><li><a href="../ch/13-programming-rules.html">怎样用程序表达一项计算规则</a></li><li><a href="../ch/14-code-to-execution.html">源代码怎样变成计算机可以执行的程序</a></li><li><a href="../ch/15-computer-startup.html">按下开机键之后，计算机在做什么</a></li><li><a href="../ch/16-operating-system.html">为什么计算机需要操作系统</a></li><li><a href="../ch/17-processes-threads.html">一台计算机怎样同时运行多个程序</a></li><li><a href="../ch/18-virtual-memory.html">为什么程序不能随意访问其他程序的内存</a></li><li><a href="../ch/19-files-and-directories.html">文件为什么不只是硬盘中的一串数字</a></li><li><a href="../ch/20-system-permissions.html">为什么有些文件可以打开，有些却没有权限</a></li><li><a href="../ch/21-terminal-shell.html">终端、Shell 和命令行究竟是什么</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 应用软件</span></button><ul data-part-ul="p4"><li><a href="../ch/22-input-output-events.html">软件怎样知道你点击了按钮</a></li><li><a href="../ch/23-graphical-interface.html">窗口、按钮和输入框是怎样构成的</a></li><li><a href="../ch/24-software-modules.html">为什么不能把所有代码写在一起</a></li><li><a href="../ch/25-libraries-frameworks.html">为什么开发软件不需要每次从头开始</a></li><li><a href="../ch/26-build-packaging.html">源代码为什么不等于安装包</a></li><li><a href="../ch/27-platforms-compatibility.html">为什么同一个软件不能在所有设备上运行</a></li><li><a href="../ch/28-software-updates.html">软件更新为什么不只是替换一个文件</a></li></ul><button type="button" class="part-toggle" data-part="p5" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第五部 · 网络与 Web</span></button><ul data-part-ul="p5"><li><a href="../ch/29-network-communication.html">两台计算机怎样交换数据</a></li><li><a href="../ch/30-local-network.html">同一个网络中的设备怎样找到彼此</a></li><li><a href="../ch/31-ip-addresses.html">为什么有了 MAC 地址还需要 IP 地址</a></li><li><a href="../ch/32-routing-internet.html">数据怎样跨越不同的网络</a></li><li><a href="../ch/33-tcp-udp.html">数据可能丢失，程序怎样继续通信</a></li><li><a href="../ch/34-ports-sockets.html">一台计算机怎样同时运行多个网络服务</a></li><li><a href="../ch/35-dns.html">输入一个名字，计算机怎样找到网络地址</a></li><li><a href="../ch/36-http.html">HTTP 究竟规定了什么</a></li><li><a href="../ch/37-browser.html">浏览器怎样把网络数据变成网页</a></li><li><a href="../ch/38-frontend-backend.html">前端、后端与 API 怎样组成一个应用</a></li><li><a href="../ch/39-localhost-deployment.html">为什么 localhost 只能访问自己的设备</a></li></ul><button type="button" class="part-toggle" data-part="p6" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第六部 · 数据与数据库</span></button><ul data-part-ul="p6"><li><a href="../ch/40-data-formats.html">文件能够保存字节，为什么还需要数据格式</a></li><li><a href="../ch/41-structured-data.html">怎样保存具有内部结构的数据</a></li><li><a href="../ch/42-relational-database.html">已经有文件了，为什么还需要数据库</a></li><li><a href="../ch/43-sql.html">怎样告诉数据库我们想要哪些数据</a></li><li><a href="../ch/44-database-indexes.html">数据库为什么能够快速找到记录</a></li><li><a href="../ch/45-database-transactions.html">只剩一个名额，两个人同时报名怎么办</a></li><li><a href="../ch/46-data-durability.html">数据已经保存，为什么还要备份</a></li></ul><button type="button" class="part-toggle" data-part="p7" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第七部 · 服务器与云计算</span></button><ul data-part-ul="p7"><li><a href="../ch/47-server-environment.html">为什么自己电脑上的程序还需要部署</a></li><li><a href="../ch/48-hosting-and-domains.html">网站究竟被放在什么地方</a></li><li><a href="../ch/49-virtual-machines.html">一台计算机怎样运行多个操作系统</a></li><li><a href="../ch/50-containers.html">容器为什么不等于一台小型虚拟机</a></li><li><a href="../ch/51-cloud-services.html">云计算究竟把哪些工作交给了别人</a></li><li><a href="../ch/52-load-balancing-cdn.html">为什么一个网站背后可能有许多台机器</a></li><li><a href="../ch/53-capacity-and-cost.html">怎样判断应用需要多少服务器资源</a></li></ul><button type="button" class="part-toggle" data-part="p8" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第八部 · 软件工程</span></button><ul data-part-ul="p8"><li><a href="../ch/54-requirements.html">怎样判断一个软件做对了</a></li><li><a href="../ch/55-algorithms-and-measurement.html">得到正确答案之后，为什么还要考虑算法</a></li><li><a href="../ch/56-software-testing.html">软件测试不是打开程序看一眼</a></li><li><a href="../ch/57-debugging.html">程序出错时，应该怎样寻找原因</a></li><li><a href="../ch/58-git-version-control.html">为什么不能靠复制文件来管理软件版本</a></li><li><a href="../ch/59-ci-build-pipeline.html">为什么每次提交都应该自动检查</a></li><li><a href="../ch/60-release-and-rollback.html">软件发布为什么不是上传一个安装包</a></li><li><a href="../ch/61-observability.html" class="active">服务正在运行，我们怎样知道它是否正常</a></li><li><a href="../ch/62-software-reliability.html">为什么软件需要考虑失败之后会发生什么</a></li></ul><button type="button" class="part-toggle" data-part="p9" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第九部 · 安全与隐私</span></button><ul data-part-ul="p9"><li><a href="../ch/63-authentication-authorization.html">知道一个人是谁，为什么还不够</a></li><li><a href="../ch/64-security-boundaries.html">软件究竟在防止什么</a></li><li><a href="../ch/65-cryptographic-hash.html">怎样知道文件有没有发生变化</a></li><li><a href="../ch/66-symmetric-encryption.html">怎样让只有掌握密钥的人能够读取数据</a></li><li><a href="../ch/67-public-key-cryptography.html">两台没有共享密码的计算机怎样建立安全通信</a></li><li><a href="../ch/68-signatures-certificates.html">怎样验证数据确实来自预期的发布者</a></li><li><a href="../ch/69-tls-https.html">HTTPS 怎样保护浏览器与服务器之间的通信</a></li><li><a href="../ch/70-secret-management.html">程序需要使用秘密，怎样才能不把秘密公开</a></li><li><a href="../ch/71-data-privacy.html">数据可以收集，是否就应该收集</a></li></ul><button type="button" class="part-toggle" data-part="p10" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十部 · AI 与 Agent</span></button><ul data-part-ul="p10"><li><a href="../ch/72-models-and-data.html">为什么计算机能够根据数据作出判断</a></li><li><a href="../ch/73-training-inference.html">模型怎样从数据中学习，又怎样被使用</a></li><li><a href="../ch/74-tokens.html">模型读取的不是直接可理解的文字</a></li><li><a href="../ch/75-context-and-attention.html">为什么模型不是永远记得以前说过的话</a></li><li><a href="../ch/76-embeddings-retrieval.html">怎样找到意思相关、但文字并不完全相同的资料</a></li><li><a href="../ch/77-rag.html">怎样让模型根据自己的项目资料回答问题</a></li><li><a href="../ch/78-tool-calling.html">AI 怎样从生成文字发展到真正操作软件</a></li><li><a href="../ch/79-tool-protocols.html">为什么 AI 工具之间也需要协议</a></li><li><a href="../ch/80-agent-execution.html">Agent 怎样完成一项包含多个步骤的任务</a></li><li><a href="../ch/81-agent-verification.html">怎样判断 Agent 的工作是不是真的完成了</a></li></ul><button type="button" class="part-toggle" data-part="p11" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十一部 · 从想法到产品</span></button><ul data-part-ul="p11"><li><a href="../ch/82-product-requirements.html">从一个想法开始，怎样确定要做什么</a></li><li><a href="../ch/83-product-architecture.html">怎样把需求变成可以运行的结构</a></li><li><a href="../ch/84-running-the-project.html">亲自运行一个完整的小型 Web 应用</a></li><li><a href="../ch/85-product-verification.html">怎样证明这个应用满足了最初的要求</a></li><li><a href="../ch/86-maintaining-a-product.html">软件能够运行之后，真正的工作才开始</a></li></ul><button type="button" class="part-toggle" data-part="p12" aria-expanded="true"><span class="chev">‹</span><span class="part-name">附录 · 参考与复习</span></button><ul data-part-ul="p12"><li><a href="../ch/appendix-a-glossary.html">技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">与 Agent 协作的任务模板</a></li><li><a href="../ch/appendix-c-concept-map.html">全书知识路线</a></li><li><a href="../ch/appendix-d-review.html">五十个复习与验收问题</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第八部 · 软件工程</p>
+  <h1>服务正在运行，我们怎样知道它是否正常</h1>
+  <p>报名服务已经部署。某天用户报告页面变慢，但当开发者打开网站时，页面又恢复了正常。</p>
+<p>如果系统没有留下足够的信息，我们就很难了解刚才发生过什么。</p>
+<h2>日志记录事件</h2>
+<p>日志（Log）是程序或系统对相关运行事件的记录。例如一次请求的接收时间、处理结果、错误原因和请求标识。</p>
+<pre><code class="language-text">request_id=demo-17 operation=register result=capacity_full
+</code></pre>
+<p>这条虚构日志表达了某次报名被拒绝，原因是名额已满。它不需要记录用户的真实姓名、密码或完整请求内容。</p>
+<p>结构化日志使用稳定字段表达信息，使程序能够按照请求标识或错误类别搜索和统计。</p>
+<p>日志需要适当的访问控制、保存期限和数据保护。记录越多不一定越好。</p>
+<h2>指标描述系统的整体表现</h2>
+<p>上一部已经学习 RPS、延迟和吞吐量。我们可以持续记录这些量，以及错误率、内存占用和数据库连接情况。</p>
+<p>这类能够随时间测量的数值通常称为指标（Metric）。</p>
+<p>例如，某段时间内收到 1000 个请求，其中有 20 个符合我们定义的错误条件，错误率就是 2%。需要提前明确哪些响应属于错误：因为活动满员而正确拒绝报名，不一定是服务故障。</p>
+<p>监控（Monitoring）利用这些信息观察已知运行条件，并可以在满足适当条件时产生告警（Alert）。</p>
+<h2>一次请求跨越多个组件时怎样寻找慢点</h2>
+<p>一次报名可能先经过访问入口，再进入后端，并调用数据库。如果只知道整个请求用了 800 毫秒，就还不知道时间花在了哪里。</p>
+<p>分布式追踪（Distributed Tracing）通过在相互关联的操作中传播及记录相关标识，帮助重建一次请求经过的组件及其耗时关系。</p>
+<p><svg role="img" aria-label="一次请求经过入口、后端和数据库的耗时示意" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250"><title>一次请求的嵌套耗时</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><g font-size="14"><text x="15" y="55">入口</text><text x="15" y="105">后端</text><text x="15" y="155">数据库</text></g><rect x="100" y="35" width="460" height="30" rx="4" fill="#c4683f" fill-opacity=".17" stroke="currentColor" stroke-opacity=".6"/><text x="330" y="55" text-anchor="middle" font-size="14">800 ms</text><rect x="140" y="85" width="360" height="30" rx="4" fill="#c4683f" fill-opacity=".17" stroke="currentColor" stroke-opacity=".6"/><text x="320" y="105" text-anchor="middle" font-size="14">626 ms</text><rect x="190" y="135" width="230" height="30" rx="4" fill="#c4683f" fill-opacity=".17" stroke="currentColor" stroke-opacity=".6"/><text x="305" y="155" text-anchor="middle" font-size="14">400 ms</text><path d="M100 195H560m-7-5 7 5-7 5" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="560" y="220" text-anchor="end" font-size="14">时间</text><text x="300" y="243" font-size="12" text-anchor="middle">假设耗时；嵌套区间不可直接相加</text></g></svg></p>
+<p>在采用相应工具的系统中，日志、指标和追踪可以互相补充。它们是实现可观测性（Observability）的常见手段。可观测性的目标是利用系统产生的证据理解内部状态，而不只是制作很多图表。</p>
+<h2>告警应该对应行动</h2>
+<p>如果每次正常拒绝报名都触发严重告警，维护者最终可能忽略真正的故障。</p>
+<p>应当按照业务影响、持续时间和实际处置能力设计告警，并记录出现故障后需要检查什么。</p>
+<p>下一章将这些观察能力与故障处理结合起来，讨论怎样让系统在异常条件下仍尽可能提供正确服务。</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="61-observability">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E6%9C%8D%E5%8A%A1%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%EF%BC%8C%E6%88%91%E4%BB%AC%E6%80%8E%E6%A0%B7%E7%9F%A5%E9%81%93%E5%AE%83%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F61-observability.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/61-observability.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/60-release-and-rollback.html" class="nav-prev">← 软件发布为什么不是上传一个安装包</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/62-software-reliability.html" class="nav-next">为什么软件需要考虑失败之后会发生什么 →</a>
+</nav>
+</article>
+</main>
+<div id="lightbox" class="lightbox" aria-hidden="true"><div class="lb-holder"></div><p class="lb-caption"></p></div>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>

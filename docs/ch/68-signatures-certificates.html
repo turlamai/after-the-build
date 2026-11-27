@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>怎样验证数据确实来自预期的发布者 · AI 时代的基本功</title>
+<meta name="description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF9F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1C1A16">
+<meta property="og:title" content="怎样验证数据确实来自预期的发布者 · AI 时代的基本功">
+<meta property="og:description" content="理解计算机技术的真实机制，准确指导 AI Agent，独立验证软件交付。">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://fundamentals.jrtx.site">
+<meta property="og:image" content="https://fundamentals.jrtx.site/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C4683F'/%3E%3Crect x='14' y='16' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='28' width='36' height='8' rx='2' fill='%23FAF9F6'/%3E%3Crect x='14' y='40' width='24' height='8' rx='2' fill='%23FAF9F6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body id="top" class="" data-root="../" data-page="68-signatures-certificates" data-prev="ch/67-public-key-cryptography.html" data-next="ch/69-tls-https.html">
+<div id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <button id="toc-toggle" aria-label="打开目录" aria-expanded="false">☰</button>
+  <span class="tb-title">AI 时代的基本功</span>
+</header>
+<div class="toc-overlay" aria-hidden="true"></div>
+<nav id="toc" aria-label="目录">
+  <a class="book" href="../index.html">AI 时代的基本功</a>
+  <div class="book-sub">面向 AI 时代的计算机技术基础</div>
+  <div class="search">
+    <input id="search-input" type="search" placeholder="搜索全书　（⌘K 或 /）" aria-label="搜索全书">
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <div class="part"><span class="part-name">开篇</span></div><ul data-part-ul="p0"><li><a href="../ch/00-prologue.html">序章 一个只有你自己能打开的网页</a></li></ul><button type="button" class="part-toggle" data-part="p1" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第一部 · 信息与计算</span></button><ul data-part-ul="p1"><li><a href="../ch/01-information.html">信息为什么需要一种表示方式</a></li><li><a href="../ch/02-binary.html">为什么计算机喜欢用 0 和 1</a></li><li><a href="../ch/03-bytes.html">从一个比特到一份数据</a></li><li><a href="../ch/04-text-encoding.html">计算机为什么会出现乱码</a></li><li><a href="../ch/05-computation.html">什么叫作计算</a></li></ul><button type="button" class="part-toggle" data-part="p2" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第二部 · 计算机内部</span></button><ul data-part-ul="p2"><li><a href="../ch/06-digital-logic.html">电路怎样完成一次判断</a></li><li><a href="../ch/07-storing-state.html">计算机怎样记住一个数字</a></li><li><a href="../ch/08-memory-addresses.html">存储器怎么知道我们要读取哪个数字</a></li><li><a href="../ch/09-instructions.html">一串数字怎样成为程序</a></li><li><a href="../ch/10-processor.html">CPU 怎样一步一步执行程序</a></li><li><a href="../ch/11-storage-hierarchy.html">为什么计算机同时需要内存和硬盘</a></li></ul><button type="button" class="part-toggle" data-part="p3" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第三部 · 程序与操作系统</span></button><ul data-part-ul="p3"><li><a href="../ch/12-programming-language.html">为什么我们不直接编写机器指令</a></li><li><a href="../ch/13-programming-rules.html">怎样用程序表达一项计算规则</a></li><li><a href="../ch/14-code-to-execution.html">源代码怎样变成计算机可以执行的程序</a></li><li><a href="../ch/15-computer-startup.html">按下开机键之后，计算机在做什么</a></li><li><a href="../ch/16-operating-system.html">为什么计算机需要操作系统</a></li><li><a href="../ch/17-processes-threads.html">一台计算机怎样同时运行多个程序</a></li><li><a href="../ch/18-virtual-memory.html">为什么程序不能随意访问其他程序的内存</a></li><li><a href="../ch/19-files-and-directories.html">文件为什么不只是硬盘中的一串数字</a></li><li><a href="../ch/20-system-permissions.html">为什么有些文件可以打开，有些却没有权限</a></li><li><a href="../ch/21-terminal-shell.html">终端、Shell 和命令行究竟是什么</a></li></ul><button type="button" class="part-toggle" data-part="p4" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第四部 · 应用软件</span></button><ul data-part-ul="p4"><li><a href="../ch/22-input-output-events.html">软件怎样知道你点击了按钮</a></li><li><a href="../ch/23-graphical-interface.html">窗口、按钮和输入框是怎样构成的</a></li><li><a href="../ch/24-software-modules.html">为什么不能把所有代码写在一起</a></li><li><a href="../ch/25-libraries-frameworks.html">为什么开发软件不需要每次从头开始</a></li><li><a href="../ch/26-build-packaging.html">源代码为什么不等于安装包</a></li><li><a href="../ch/27-platforms-compatibility.html">为什么同一个软件不能在所有设备上运行</a></li><li><a href="../ch/28-software-updates.html">软件更新为什么不只是替换一个文件</a></li></ul><button type="button" class="part-toggle" data-part="p5" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第五部 · 网络与 Web</span></button><ul data-part-ul="p5"><li><a href="../ch/29-network-communication.html">两台计算机怎样交换数据</a></li><li><a href="../ch/30-local-network.html">同一个网络中的设备怎样找到彼此</a></li><li><a href="../ch/31-ip-addresses.html">为什么有了 MAC 地址还需要 IP 地址</a></li><li><a href="../ch/32-routing-internet.html">数据怎样跨越不同的网络</a></li><li><a href="../ch/33-tcp-udp.html">数据可能丢失，程序怎样继续通信</a></li><li><a href="../ch/34-ports-sockets.html">一台计算机怎样同时运行多个网络服务</a></li><li><a href="../ch/35-dns.html">输入一个名字，计算机怎样找到网络地址</a></li><li><a href="../ch/36-http.html">HTTP 究竟规定了什么</a></li><li><a href="../ch/37-browser.html">浏览器怎样把网络数据变成网页</a></li><li><a href="../ch/38-frontend-backend.html">前端、后端与 API 怎样组成一个应用</a></li><li><a href="../ch/39-localhost-deployment.html">为什么 localhost 只能访问自己的设备</a></li></ul><button type="button" class="part-toggle" data-part="p6" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第六部 · 数据与数据库</span></button><ul data-part-ul="p6"><li><a href="../ch/40-data-formats.html">文件能够保存字节，为什么还需要数据格式</a></li><li><a href="../ch/41-structured-data.html">怎样保存具有内部结构的数据</a></li><li><a href="../ch/42-relational-database.html">已经有文件了，为什么还需要数据库</a></li><li><a href="../ch/43-sql.html">怎样告诉数据库我们想要哪些数据</a></li><li><a href="../ch/44-database-indexes.html">数据库为什么能够快速找到记录</a></li><li><a href="../ch/45-database-transactions.html">只剩一个名额，两个人同时报名怎么办</a></li><li><a href="../ch/46-data-durability.html">数据已经保存，为什么还要备份</a></li></ul><button type="button" class="part-toggle" data-part="p7" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第七部 · 服务器与云计算</span></button><ul data-part-ul="p7"><li><a href="../ch/47-server-environment.html">为什么自己电脑上的程序还需要部署</a></li><li><a href="../ch/48-hosting-and-domains.html">网站究竟被放在什么地方</a></li><li><a href="../ch/49-virtual-machines.html">一台计算机怎样运行多个操作系统</a></li><li><a href="../ch/50-containers.html">容器为什么不等于一台小型虚拟机</a></li><li><a href="../ch/51-cloud-services.html">云计算究竟把哪些工作交给了别人</a></li><li><a href="../ch/52-load-balancing-cdn.html">为什么一个网站背后可能有许多台机器</a></li><li><a href="../ch/53-capacity-and-cost.html">怎样判断应用需要多少服务器资源</a></li></ul><button type="button" class="part-toggle" data-part="p8" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第八部 · 软件工程</span></button><ul data-part-ul="p8"><li><a href="../ch/54-requirements.html">怎样判断一个软件做对了</a></li><li><a href="../ch/55-algorithms-and-measurement.html">得到正确答案之后，为什么还要考虑算法</a></li><li><a href="../ch/56-software-testing.html">软件测试不是打开程序看一眼</a></li><li><a href="../ch/57-debugging.html">程序出错时，应该怎样寻找原因</a></li><li><a href="../ch/58-git-version-control.html">为什么不能靠复制文件来管理软件版本</a></li><li><a href="../ch/59-ci-build-pipeline.html">为什么每次提交都应该自动检查</a></li><li><a href="../ch/60-release-and-rollback.html">软件发布为什么不是上传一个安装包</a></li><li><a href="../ch/61-observability.html">服务正在运行，我们怎样知道它是否正常</a></li><li><a href="../ch/62-software-reliability.html">为什么软件需要考虑失败之后会发生什么</a></li></ul><button type="button" class="part-toggle" data-part="p9" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第九部 · 安全与隐私</span></button><ul data-part-ul="p9"><li><a href="../ch/63-authentication-authorization.html">知道一个人是谁，为什么还不够</a></li><li><a href="../ch/64-security-boundaries.html">软件究竟在防止什么</a></li><li><a href="../ch/65-cryptographic-hash.html">怎样知道文件有没有发生变化</a></li><li><a href="../ch/66-symmetric-encryption.html">怎样让只有掌握密钥的人能够读取数据</a></li><li><a href="../ch/67-public-key-cryptography.html">两台没有共享密码的计算机怎样建立安全通信</a></li><li><a href="../ch/68-signatures-certificates.html" class="active">怎样验证数据确实来自预期的发布者</a></li><li><a href="../ch/69-tls-https.html">HTTPS 怎样保护浏览器与服务器之间的通信</a></li><li><a href="../ch/70-secret-management.html">程序需要使用秘密，怎样才能不把秘密公开</a></li><li><a href="../ch/71-data-privacy.html">数据可以收集，是否就应该收集</a></li></ul><button type="button" class="part-toggle" data-part="p10" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十部 · AI 与 Agent</span></button><ul data-part-ul="p10"><li><a href="../ch/72-models-and-data.html">为什么计算机能够根据数据作出判断</a></li><li><a href="../ch/73-training-inference.html">模型怎样从数据中学习，又怎样被使用</a></li><li><a href="../ch/74-tokens.html">模型读取的不是直接可理解的文字</a></li><li><a href="../ch/75-context-and-attention.html">为什么模型不是永远记得以前说过的话</a></li><li><a href="../ch/76-embeddings-retrieval.html">怎样找到意思相关、但文字并不完全相同的资料</a></li><li><a href="../ch/77-rag.html">怎样让模型根据自己的项目资料回答问题</a></li><li><a href="../ch/78-tool-calling.html">AI 怎样从生成文字发展到真正操作软件</a></li><li><a href="../ch/79-tool-protocols.html">为什么 AI 工具之间也需要协议</a></li><li><a href="../ch/80-agent-execution.html">Agent 怎样完成一项包含多个步骤的任务</a></li><li><a href="../ch/81-agent-verification.html">怎样判断 Agent 的工作是不是真的完成了</a></li></ul><button type="button" class="part-toggle" data-part="p11" aria-expanded="true"><span class="chev">‹</span><span class="part-name">第十一部 · 从想法到产品</span></button><ul data-part-ul="p11"><li><a href="../ch/82-product-requirements.html">从一个想法开始，怎样确定要做什么</a></li><li><a href="../ch/83-product-architecture.html">怎样把需求变成可以运行的结构</a></li><li><a href="../ch/84-running-the-project.html">亲自运行一个完整的小型 Web 应用</a></li><li><a href="../ch/85-product-verification.html">怎样证明这个应用满足了最初的要求</a></li><li><a href="../ch/86-maintaining-a-product.html">软件能够运行之后，真正的工作才开始</a></li></ul><button type="button" class="part-toggle" data-part="p12" aria-expanded="true"><span class="chev">‹</span><span class="part-name">附录 · 参考与复习</span></button><ul data-part-ul="p12"><li><a href="../ch/appendix-a-glossary.html">技术术语索引</a></li><li><a href="../ch/appendix-b-ai-templates.html">与 Agent 协作的任务模板</a></li><li><a href="../ch/appendix-c-concept-map.html">全书知识路线</a></li><li><a href="../ch/appendix-d-review.html">五十个复习与验收问题</a></li></ul>
+  <div class="toc-foot">
+    <div class="fs-ctl">
+      <button id="fs-dec" aria-label="缩小正文字号">A−</button>
+      <button id="fs-inc" aria-label="放大正文字号">A＋</button>
+    </div>
+    <a href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F" target="_blank" rel="noopener noreferrer">问题反馈</a>
+  </div>
+</nav>
+<button type="button" id="toc-collapse" class="toc-toggle-btn" aria-label="收起或展开目录" aria-expanded="true">‹</button>
+<main>
+<article class="chapter">
+  <p class="eyebrow">第九部 · 安全与隐私</p>
+  <h1>怎样验证数据确实来自预期的发布者</h1>
+  <p>第 65 章已经指出，普通哈希能够检查内容是否与可信摘要相符，却不能单独证明摘要是谁提供的。</p>
+<p>假设报名软件的作者希望发布安装包，并让使用者能够验证文件是否经过自己的确认。</p>
+<h2>数字签名不是把文字手写在文件上</h2>
+<p>数字签名（Digital Signature）是一种密码学机制。签名者使用私钥，按照签名算法处理指定消息，得到签名结果。验证者使用对应公钥、消息和签名判断验证是否通过。</p>
+<p>实际签名方案会根据算法规则处理消息及摘要等信息。不能把数字签名普遍描述为「用私钥加密哈希」。</p>
+<p>签名通常不隐藏被签名的内容。其目的在于提供消息完整性及与相应签名密钥关联的真实性证据。</p>
+<p><svg role="img" aria-label="私钥生成签名，公钥验证消息与签名" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 270" width="600" height="270"><title>数字签名的生成与验证</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="15" width="150" height="50" rx="6" fill="none" stroke="currentColor"/><text x="95" y="45" text-anchor="middle">指定消息</text><rect x="20" y="95" width="150" height="50" rx="6" fill="none" stroke="currentColor"/><text x="95" y="125" text-anchor="middle">签名私钥</text><rect x="220" y="55" width="145" height="65" rx="6" fill="none" stroke="currentColor"/><text x="292.5" y="92.5" text-anchor="middle">签名算法</text><rect x="410" y="55" width="170" height="65" rx="6" fill="none" stroke="currentColor"/><text x="495" y="92.5" text-anchor="middle">签名结果</text><path d="M170 40H190V75H220M170 120H190V100H220" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M365 87L410 87" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(410 87) rotate(0)" stroke="currentColor" fill="none"/><rect x="20" y="190" width="200" height="55" rx="6" fill="none" stroke="currentColor"/><text x="120" y="222.5" text-anchor="middle">消息与验证公钥</text><rect x="265" y="190" width="145" height="55" rx="6" fill="none" stroke="currentColor"/><text x="337.5" y="222.5" text-anchor="middle">验证算法</text><rect x="455" y="190" width="125" height="55" rx="6" fill="none" stroke="currentColor"/><text x="517.5" y="222.5" text-anchor="middle">通过 / 失败</text><path d="M220 217L265 217" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(265 217) rotate(0)" stroke="currentColor" fill="none"/><path d="M495 120V163H338V190" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M410 217L455 217" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(455 217) rotate(0)" stroke="currentColor" fill="none"/></g></svg></p>
+<p>如果安装包内容改变，原来的有效签名通常不能继续验证这份新内容。</p>
+<p>然而，验证通过只说明签名与相应公钥及消息匹配，并不保证软件没有缺陷，也不能独立证明这个公钥属于真正作者。</p>
+<h2>公钥为什么还需要身份信息</h2>
+<p>假设我们下载到一个公钥，旁边写着「报名网站的公钥」。任何人都可以制作这样的文字。</p>
+<p>我们需要能够验证身份与公钥之间的联系。</p>
+<p>数字证书（Digital Certificate）可以按照规定格式包含公钥、身份相关信息、有效时间以及签发者的签名等内容。</p>
+<p>在常见 Web 公钥基础设施（Public Key Infrastructure，PKI）中，证书颁发机构（Certificate Authority，CA）根据适用规则验证申请条件，并签发相应证书。</p>
+<h2>信任怎样建立</h2>
+<p>浏览器或操作系统通常维护一组受到信任的根证书。服务器提供的证书可能由中间 CA 签发，中间 CA 又可以沿相应链条连接到可信根。</p>
+<p>验证者需要检查证书链的签名、使用限制、有效时间，以及目标域名是否符合证书身份等条件。还需要根据实现及适用规则处理其他验证信息。</p>
+<p><svg role="img" aria-label="从可信根到服务器证书的信任链" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 295" width="600" height="295"><title>证书链验证的信任起点</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="140" y="12" width="320" height="52" rx="6" fill="none" stroke="currentColor"/><text x="300" y="43" text-anchor="middle">可信根证书</text><rect x="140" y="103" width="320" height="52" rx="6" fill="none" stroke="currentColor"/><text x="300" y="134" text-anchor="middle">中间 CA 证书</text><rect x="140" y="194" width="320" height="52" rx="6" fill="none" stroke="currentColor"/><text x="300" y="225" text-anchor="middle">服务器证书</text><path d="M300 64L300 103" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(300 103) rotate(90)" stroke="currentColor" fill="none"/><path d="M300 155L300 194" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(300 194) rotate(90)" stroke="currentColor" fill="none"/><text x="325" y="87" font-size="13">签发关系</text><text x="325" y="178" font-size="13">签发关系</text><text x="300" y="276" text-anchor="middle" font-size="14">还需验证域名、时间及其他适用条件</text></g></svg></p>
+<p>根证书受到信任，并不单纯是因为它能验证自己的签名，而是因为它已经通过相应信任配置被选作信任起点。</p>
+<p>常见 HTTPS 域名验证证书主要帮助证明相应域名与证书密钥之间的联系，不代表网站经营者的所有陈述都真实，也不代表网站业务本身值得信任。</p>
+<h2>软件签名与网站证书的联系</h2>
+<p>软件发布签名和 HTTPS 证书都利用公钥密码学建立验证能力，但它们的证书用途、身份要求和验证政策可能不同。</p>
+<p>至此，我们已经建立哈希、认证加密、密钥协商、数字签名与证书的基本知识，可以回到第五部留下的问题：HTTPS 究竟怎样保护网络上的 HTTP 请求？</p>
+
+  <div class="feedback">
+  <p class="fb-q">这一章读下来还顺利吗？</p>
+  <p class="fb-sub">发现错误、没讲清楚、例子跑不起来——都欢迎告诉我们，这本书会持续修订。</p>
+  <div class="fb-actions">
+    <button type="button" class="fb-helpful" data-key="68-signatures-certificates">有帮助</button>
+    <a class="fb-issue" target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues/new?title=%E3%80%90%E5%8F%8D%E9%A6%88%E3%80%91%E6%80%8E%E6%A0%B7%E9%AA%8C%E8%AF%81%E6%95%B0%E6%8D%AE%E7%A1%AE%E5%AE%9E%E6%9D%A5%E8%87%AA%E9%A2%84%E6%9C%9F%E7%9A%84%E5%8F%91%E5%B8%83%E8%80%85&body=%E7%AB%A0%E8%8A%82%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps%3A%2F%2Ffundamentals.jrtx.site%2Fch%2F68-signatures-certificates.html%0A%0A%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A">反馈问题或建议</a>
+  </div>
+  <div class="fb-links">
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/edit/main/chapters/68-signatures-certificates.md">在 GitHub 上编辑本章</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/turlamai/fundamentals/issues?q=is%3Aissue">查看读者的反馈</a>
+  </div>
+</div>
+  <nav class="chapter-nav" aria-label="章节导航">
+  <a href="../ch/67-public-key-cryptography.html" class="nav-prev">← 两台没有共享密码的计算机怎样建立安全通信</a>
+  <a href="../index.html" class="nav-toc">返回目录</a>
+  <a href="../ch/69-tls-https.html" class="nav-next">HTTPS 怎样保护浏览器与服务器之间的通信 →</a>
+</nav>
+</article>
+</main>
+<div id="lightbox" class="lightbox" aria-hidden="true"><div class="lb-holder"></div><p class="lb-caption"></p></div>
+<script src="../search.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>
