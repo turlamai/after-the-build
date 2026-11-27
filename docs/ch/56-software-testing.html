@@ -67,6 +67,33 @@ assert register(20, 0) == (1, True)
 <h2>测试应该主动寻找边界</h2>
 <p>对于最多 20 人的报名系统，0、19、20 都是有意义的测试数据。还需要根据接口约定检查非法数据、重复请求、并发请求、数据库失败和程序重启等情况。</p>
 <p>尤其是只剩一个名额时，同时发出两个报名请求，必须验证最终数据没有超过容量。这比顺序调用两次函数更接近真正需要保护的约束。</p>
+<h2>让测试真正报告失败</h2>
+<p>Python 标准库 unittest 可以组织独立测试用例：</p>
+<pre><code class="language-python">import unittest
+
+def remaining(total, registered):
+    if not 0 &lt;= registered &lt;= total:
+        raise ValueError(&quot;invalid count&quot;)
+    return total - registered
+
+class CapacityTests(unittest.TestCase):
+    def test_last_slot(self):
+        self.assertEqual(remaining(20, 19), 1)
+
+    def test_full(self):
+        self.assertEqual(remaining(20, 20), 0)
+
+    def test_invalid(self):
+        with self.assertRaises(ValueError):
+            remaining(20, 21)
+
+suite = unittest.defaultTestLoader.loadTestsFromTestCase(CapacityTests)
+result = unittest.TextTestRunner().run(suite)
+assert result.testsRun == 3
+assert result.wasSuccessful()
+</code></pre>
+<p>测试运行器负责执行用例、收集错误并报告结果。这里额外检查了实际执行的测试数量，避免没有发现任何测试却误以为检查成功。</p>
+<p>测试替身（Test Double）是用来替代某些真实依赖的测试组件。例如可以用一个受控对象模拟数据库失败，以检查应用如何报告错误。但模拟通过不能证明真实数据库也正常，仍应安排适当的集成测试。</p>
 <h2>测试通过不等于没有缺陷</h2>
 <p>测试只能够提供关于已检查条件的证据。测试用例可能漏掉情形，也可能将错误行为写成预期结果。</p>
 <p>代码覆盖率（Code Coverage）描述哪些代码或分支在测试中被执行过。覆盖率高并不能证明每种行为都经过正确验证。</p>

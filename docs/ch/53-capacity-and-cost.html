@@ -57,6 +57,25 @@
 <h2>用测试结果进行容量估算</h2>
 <p>假设在规定的数据规模及请求组成下，一个实例经测试能够稳定处理每秒 30 次请求。面对每秒 50 次请求，两个实例的理论合计能力为每秒 60 次。</p>
 <p>这仍然不是生产保证。共享数据库、网络以及实例故障都可能影响结果。需要通过负载测试（Load Test），在授权且可控的实验环境中生成相应请求，观察整体表现，而不是向未经授权的网站发送大量流量。</p>
+<h2>并发请求数量与处理时间有什么关系</h2>
+<p>在稳定系统中，若使用一致的测量边界，长期平均在处理或等待的请求数量 L，与平均有效到达速率 λ 和平均停留时间 W 满足 L = λ × W。这是 Little 定律（Little&#39;s Law）的常见表达。</p>
+<p>例如每秒进入并完成约 50 次请求，平均每次在系统中停留 0.2 秒，那么系统中的平均请求数量约为 10。这里包含所选边界内正在处理及等待的请求，并不等于必须配置 10 个 CPU 核心。</p>
+<p>当输入速率长期超过系统可持续处理能力时，等待队列可能不断增加，此时不能直接把稳态公式当成容量保证。</p>
+<p><svg role="img" aria-label="请求进入、排队、处理和完成的关系" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250"><title>请求排队与处理</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="15" y="75" width="135" height="60" rx="4" stroke="currentColor" fill="none"/><text x="82.5" y="110" text-anchor="middle" >请求到达</text><rect x="200" y="75" width="180" height="60" rx="4" stroke="currentColor" fill="none"/><text x="290" y="110" text-anchor="middle" >等待队列</text><rect x="430" y="35" width="190" height="48" rx="4" stroke="currentColor" fill="none"/><text x="525" y="64" text-anchor="middle" >处理单元 A</text><rect x="430" y="150" width="190" height="48" rx="4" stroke="currentColor" fill="none"/><text x="525" y="179" text-anchor="middle" >处理单元 B</text><path d="M150 105L200 105" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(200 105) rotate(0)" stroke="currentColor" fill="none"/><path d="M380 100L430 59" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(430 59) rotate(-39.351752626264734)" stroke="currentColor" fill="none"/><path d="M380 115L430 174" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(430 174) rotate(49.720136931043555)" stroke="currentColor" fill="none"/><text x="320" y="225" text-anchor="middle" font-size='14'>平均停留时间包含所选边界内的等待与处理</text></g></svg></p>
+<h2>怎样验证尾部延迟</h2>
+<p>下面使用虚构的 100 个耗时样本计算平均值和采用最近秩方法（Nearest Rank）的 P95、P99：</p>
+<pre><code class="language-python">from math import ceil
+
+samples = sorted([20] * 90 + [100] * 5 + [500] * 5)
+def percentile(p):
+    return samples[ceil(p / 100 * len(samples)) - 1]
+
+assert sum(samples) / len(samples) == 48
+assert percentile(95) == 100
+assert percentile(99) == 500
+</code></pre>
+<p>单位为毫秒。虽然平均耗时为 48 毫秒，但仍存在一批耗时 500 毫秒的请求。百分位数的具体计算方法应与监控或测试工具的定义保持一致。</p>
+<p>真实容量测试还需要观察成功率、实际到达速率、数据库等待及队列增长。不能只对成功的快速请求计算延迟，而忽略超时与失败。</p>
 <h2>费用来自实际使用的资源</h2>
 <p>云服务可能按实例运行时间、请求次数、存储容量、数据传输量等指标计费。</p>
 <p>使用虚构的教学单价：每个实例每小时 0.10 元，两个实例运行 720 小时，则实例费用为 144 元。这个结果尚未包含数据库、网络及备份费用，不代表任何真实云服务报价。</p>

@@ -67,6 +67,10 @@
 <p>当然，项目也可能受到预算、目标平台、组织规定等真实约束。这些条件需要被记录，而不是由开发者或 AI 默默猜测。</p>
 <p><svg role="img" aria-label="从需求到验收证据" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250"><title>需求与验收证据</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="30" width="165" height="65" rx="6" fill="none" stroke="currentColor"/><text x="102.5" y="67.5" text-anchor="middle">需求：不超额</text><rect x="220" y="30" width="160" height="65" rx="6" fill="none" stroke="currentColor"/><text x="300" y="67.5" text-anchor="middle">验收：19→20</text><rect x="415" y="30" width="165" height="65" rx="6" fill="none" stroke="currentColor"/><text x="497.5" y="67.5" text-anchor="middle">测试：再报名</text><path d="M185 62H220m-6-5 6 5-6 5M380 62H415m-6-5 6 5-6 5" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="170" y="155" width="260" height="55" rx="6" fill="none" stroke="currentColor"/><text x="300" y="187.5" text-anchor="middle">证据：拒绝且仍为 20</text><path d="M497 95V125H300V155m-5-6 5 6 5-6" stroke="currentColor" stroke-width="1.5" fill="none"/></g></svg></p>
 <p>向 AI 提交任务时，可以先写清现有行为、目标行为、不允许改变的内容和验收条件。让它说明采用的假设，再用实际结果检查这些假设。</p>
+<h2>验收条件需要覆盖失败路径</h2>
+<p>以容量限制为例，可以用同一个需求建立不同初始状态的实验：空名单接受合法申请；19 人时接受最后一人；20 人时拒绝申请；19 人时同时提交两个不同请求，最终只有一个成功。每次检查都包括返回结果和保存后的记录数。</p>
+<p>这是一种需求追踪（Requirements Traceability）的实践：让需求、实现位置和验证证据之间建立明确联系。若需求改变，就能知道哪些测试需要重新检查。</p>
+<p>对于重复申请，还要区分同一请求的网络重试和同一个人主动再次报名。前者属于请求处理规则，后者涉及身份和业务政策。不要在需求未明确时用一个姓名字段代替用户身份。</p>
 <p>下一章研究一个看似更简单的问题：即使两个程序都能得到正确答案，为什么执行成本仍可能相差很大？</p>
 
   <div class="feedback">

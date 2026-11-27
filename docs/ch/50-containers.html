@@ -69,6 +69,15 @@ CMD [&quot;python&quot;, &quot;app.py&quot;]
 docker run --rm registration-demo
 </code></pre>
 <p>预期程序输出 registration service 后结束。这个实验只是演示镜像与容器的关系，不是真实报名服务器。基础镜像下载需要网络，本实验尚未执行。</p>
+<h2>镜像为什么能够复用已有内容</h2>
+<p>常见容器镜像使用分层组织方式。基础系统文件、应用依赖及应用自身文件可以分别构成不同的层。多个镜像可能共享内容相同的层，不必为每个镜像重新保存全部文件。</p>
+<p>启动容器时，运行工具通常利用镜像的只读内容，再提供容器自己的可写层及必要挂载。不同存储驱动的实现有所区别。</p>
+<p><svg role="img" aria-label="镜像共享层、容器可写层和独立数据卷" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320"><title>容器镜像层与独立数据卷</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="190" y="165" width="260" height="42" rx="4" stroke="currentColor" fill="none"/><text x="320" y="191" text-anchor="middle" >基础系统与运行时</text><rect x="190" y="115" width="260" height="42" rx="4" stroke="currentColor" fill="none"/><text x="320" y="141" text-anchor="middle" >应用依赖与代码</text><rect x="35" y="40" width="230" height="45" rx="4" stroke="currentColor" fill="none"/><text x="150" y="67.5" text-anchor="middle" >容器 A 可写层</text><rect x="375" y="40" width="230" height="45" rx="4" stroke="currentColor" fill="none"/><text x="490" y="67.5" text-anchor="middle" >容器 B 可写层</text><path d="M150 85L255 115" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(255 115) rotate(15.945395900922856)" stroke="currentColor" fill="none"/><path d="M490 85L385 115" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(385 115) rotate(164.05460409907712)" stroke="currentColor" fill="none"/><rect x="15" y="230" width="200" height="40" rx="4" stroke="currentColor" fill="none"/><text x="115" y="255" text-anchor="middle" >独立持久化卷 A</text><rect x="425" y="230" width="200" height="40" rx="4" stroke="currentColor" fill="none"/><text x="525" y="255" text-anchor="middle" >独立持久化卷 B</text><path d="M35 62H10V250H15M605 62H630V250H625" stroke="#c4683f" fill="none"/><text x="320" y="297" text-anchor="middle" font-size='14'>镜像可共享；可写层与卷具有不同生命周期</text></g></svg></p>
+<p>镜像标签（Tag）例如 python:3.12-slim 是便于引用的名称，可能在不同时间指向不同镜像。内容摘要（Digest）可以标识特定内容。需要可重复构建时，应记录实际使用的基础镜像及其他依赖，而不只是记录一个可能变化的标签。</p>
+<h2>容器网络与应用监听地址</h2>
+<p>在具有独立网络环境的容器中，容器内部的 localhost 通常指向该容器自己的网络环境，而非宿主机。即使应用已经在容器内部监听，也不表示宿主机或外部网络可以访问它。</p>
+<p>容器端口发布可以建立宿主入口与容器端口之间的连接关系。但应用仍需监听适当的容器内部接口，宿主入口也需要限制访问范围。</p>
+<p>不要为了使实验服务可访问，就默认将其发布到所有外部接口。真实公开部署必须结合服务身份、网络策略及应用安全设计。</p>
 <h2>为什么容器替换时必须保护数据</h2>
 <p>如果数据库只保存在容器自己的可写层，删除容器时数据可能消失。长期数据应放在具有独立生命周期的持久化存储中，例如通过卷（Volume）或其他挂载机制访问的存储。</p>
 <p>镜像也不应该随意包含用户数据和生产凭据。</p>

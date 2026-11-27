@@ -60,6 +60,30 @@
 <p>如果数据库暂时不可用，而每个请求都立即无限次重试，就可能产生更多积压和压力。</p>
 <p>系统需要合理设置等待时间、重试次数及等待间隔。使用逐步延长的重试间隔，并适当引入随机变化，可以减少大量客户端同时重试的问题。</p>
 <p>服务还可以在资源不足时拒绝部分新工作，或者暂停非关键功能，以保护仍能正常运行的核心能力。这类在异常条件下维持部分功能的设计常称为降级（Degradation）。</p>
+<h2>怎样给重试设置边界</h2>
+<p>假设调用方最多进行三次尝试，第一次等待失败后延迟 100 毫秒，第二次失败后延迟 200 毫秒，第三次失败则停止。逐步扩大等待间隔称为退避（Backoff）；在间隔中引入随机变化称为抖动（Jitter）。</p>
+<p>这不是推荐给所有服务的固定数值。必须考虑调用的总时间预算、服务端提供的重试提示及操作是否安全重试。若多层服务都独立重试，还可能放大下游负载。</p>
+<p>对于持续故障的依赖，可以采用熔断器（Circuit Breaker）等机制，在满足条件时暂时拒绝调用，再通过受控探测判断是否恢复。熔断器不负责修复依赖本身。</p>
+<h2>用实验理解幂等请求的边界</h2>
+<pre><code class="language-python">processed = {}
+registrations = []
+
+def register(request_id, name):
+    if request_id in processed:
+        previous = processed[request_id]
+        if previous != name:
+            return &quot;conflict&quot;
+        return &quot;accepted&quot;
+    registrations.append(name)
+    processed[request_id] = name
+    return &quot;accepted&quot;
+
+assert register(&quot;demo-1&quot;, &quot;小林&quot;) == &quot;accepted&quot;
+assert register(&quot;demo-1&quot;, &quot;小林&quot;) == &quot;accepted&quot;
+assert register(&quot;demo-1&quot;, &quot;小王&quot;) == &quot;conflict&quot;
+assert registrations == [&quot;小林&quot;]
+</code></pre>
+<p>这个有限内存模型仅展示重复标识及内容冲突的语义，不能用于真实并发或进程重启场景。实际项目需要在持久化事务中协调记录创建与请求标识，并规定失败、身份范围及保留时间。</p>
 <h2>可用性需要明确测量方式</h2>
 <p>可用性（Availability）描述系统在规定条件下能够提供服务的程度。对于在线服务，可以按照时间比例或有效请求成功比例建立指标，但必须明确口径。</p>
 <p>例如服务等级目标（Service Level Objective，SLO）可以规定某段时间内符合条件的请求成功比例目标。服务等级协议（Service Level Agreement，SLA）则是服务提供方与使用方之间关于服务水平的约定，可能包含相应责任。</p>

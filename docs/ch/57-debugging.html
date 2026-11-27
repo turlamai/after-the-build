@@ -64,6 +64,25 @@
 <p>断点（Breakpoint）可以在指定条件或位置暂停执行。开发者可以检查变量、逐步执行代码，并查看当前函数由哪些函数调用而来。</p>
 <p>这种调用关系常通过调用栈（Call Stack）展示。它帮助我们理解执行是怎样到达当前代码位置的。</p>
 <p>错误信息中也可能包含异常发生位置及相关调用路径。阅读这些信息比立即修改大量代码更有价值。</p>
+<h2>从错误调用路径缩小问题</h2>
+<p>考虑下面的故意失败的教学例子。它在实验内部捕获异常，避免整个示例异常退出：</p>
+<pre><code class="language-python">import traceback
+
+def parse_capacity(value):
+    return int(value)
+
+def remaining(value):
+    return parse_capacity(value) - 17
+
+try:
+    remaining(&quot;not-a-number&quot;)
+except ValueError:
+    frames = traceback.extract_tb(__import__(&quot;sys&quot;).exc_info()[2])
+    assert [f.name for f in frames][-2:] == [&quot;remaining&quot;, &quot;parse_capacity&quot;]
+    print(&quot;转换失败的位置：&quot;, frames[-1].name)
+</code></pre>
+<p>错误发生在 parse_capacity，调用它的是 remaining。但定位到产生异常的函数不等于已经确定根本原因。还需要判断调用者是否应该传入该值、输入边界是否遗漏验证，以及程序应当怎样报告非法输入。</p>
+<p>调试时应区分根因（Root Cause）和表现。若只捕获异常并返回一个随意的默认人数，可能隐藏错误并破坏报名规则。</p>
 <h2>通过实验验证假设</h2>
 <p>假设我们怀疑数据库连接失败。可以先检查同一运行环境是否能够建立数据库连接。如果连接成功，原来的假设就需要进一步缩小，而不能直接宣布数据库没有任何问题。</p>
 <p><svg role="img" aria-label="从现象到验证的调试循环" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250"><title>调试需要验证而不是猜测</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="25" width="160" height="55" rx="6" fill="none" stroke="currentColor"/><text x="100" y="57.5" text-anchor="middle">记录现象</text><rect x="220" y="25" width="160" height="55" rx="6" fill="none" stroke="currentColor"/><text x="300" y="57.5" text-anchor="middle">建立复现</text><rect x="420" y="25" width="160" height="55" rx="6" fill="none" stroke="currentColor"/><text x="500" y="57.5" text-anchor="middle">提出假设</text><rect x="420" y="150" width="160" height="55" rx="6" fill="none" stroke="currentColor"/><text x="500" y="182.5" text-anchor="middle">执行实验</text><rect x="220" y="150" width="160" height="55" rx="6" fill="none" stroke="currentColor"/><text x="300" y="182.5" text-anchor="middle">检查证据</text><rect x="20" y="150" width="160" height="55" rx="6" fill="none" stroke="currentColor"/><text x="100" y="182.5" text-anchor="middle">修复并回归</text><path d="M180 52H220m-6-5 6 5-6 5M380 52H420m-6-5 6 5-6 5M500 80V150m-5-6 5 6 5-6M420 177H380m6-5-6 5 6 5M220 177H180m6-5-6 5 6 5M300 150V115H500V80" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="390" y="108" text-anchor="middle" font-size="13">证据不支持时重新假设</text></g></svg></p>

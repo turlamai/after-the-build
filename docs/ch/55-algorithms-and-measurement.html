@@ -67,6 +67,23 @@ assert not has_duplicate([17, 18, 19])
 <p>描述算法工作量如何随输入规模增长的概念称为时间复杂度（Time Complexity）。常用大 O 记号描述渐近上界，例如 O(n²) 和 O(n)。它不是具体的毫秒数。</p>
 <p>空间复杂度（Space Complexity）则关注所需额外存储空间随输入规模变化的情况。</p>
 <p><svg role="img" aria-label="线性与平方增长的理论对比" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250"><title>线性与平方工作量理论示意</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><g stroke="currentColor" fill="none"><path d="M70 25V205H565"/><path d="M70 205L535 160" stroke-dasharray="6 3" stroke-width="2"/><path d="M70 205Q300 205 535 28" stroke="#c4683f" stroke-width="3"/></g><text x="9" y="20" font-size="13">工作量</text><text x="550" y="230" text-anchor="end" font-size="14">输入规模 n</text><text x="460" y="52">平方增长</text><text x="450" y="150">线性增长</text><text x="75" y="240" font-size="12">示意曲线，不是实际耗时</text></g></svg></p>
+<h2>集合为什么能加快查找</h2>
+<p>一种常见集合实现采用哈希表（Hash Table）。哈希函数（Hash Function）根据键计算一个数值，用它选择候选存储位置。如果不同键落在同一候选位置，称为冲突（Collision），实现需要继续比较实际键并按规定处理冲突。</p>
+<p>假设一个教学表有八个位置，使用编号除以八的余数选择位置。编号 17 和 25 都得到余数 1，但它们仍是不同编号。不能只凭哈希值判定两个键相同。</p>
+<p><svg role="img" aria-label="哈希表候选位置和冲突的教学模型" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 235" width="640" height="235"><title>哈希候选位置与冲突</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="80" y="15" width="210" height="45" rx="4" stroke="currentColor" fill="none"/><text x="185" y="42.5" text-anchor="middle" >17 mod 8 = 1</text><rect x="350" y="15" width="210" height="45" rx="4" stroke="currentColor" fill="none"/><text x="455" y="42.5" text-anchor="middle" >25 mod 8 = 1</text><path d="M185 60L140 115" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(140 115) rotate(129.28940686250039)" stroke="currentColor" fill="none"/><path d="M455 60L140 115" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(140 115) rotate(170.0958167870261)" stroke="currentColor" fill="none"/><rect x="35" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="71" y="142.5" text-anchor="middle" >—</text><text x="71" y="184" text-anchor="middle" font-size='14'>0</text><rect x="107" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="143" y="142.5" text-anchor="middle" >17 / 25</text><text x="143" y="184" text-anchor="middle" font-size='14'>1</text><rect x="179" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="215" y="142.5" text-anchor="middle" >—</text><text x="215" y="184" text-anchor="middle" font-size='14'>2</text><rect x="251" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="287" y="142.5" text-anchor="middle" >—</text><text x="287" y="184" text-anchor="middle" font-size='14'>3</text><rect x="323" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="359" y="142.5" text-anchor="middle" >—</text><text x="359" y="184" text-anchor="middle" font-size='14'>4</text><rect x="395" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="431" y="142.5" text-anchor="middle" >—</text><text x="431" y="184" text-anchor="middle" font-size='14'>5</text><rect x="467" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="503" y="142.5" text-anchor="middle" >—</text><text x="503" y="184" text-anchor="middle" font-size='14'>6</text><rect x="539" y="115" width="72" height="45" rx="4" stroke="currentColor" fill="none"/><text x="575" y="142.5" text-anchor="middle" >—</text><text x="575" y="184" text-anchor="middle" font-size='14'>7</text><text x="320" y="215" text-anchor="middle" font-size='14'>同一候选位置并不意味着键相等；需处理冲突</text></g></svg></p>
+<p>在合适的哈希分布和容量管理条件下，查找通常具有较好的平均性能，但最坏情况可能不同。这里的普通哈希函数不必具备安全部分将要学习的密码学性质。</p>
+<h2>亲自比较两种算法的工作量</h2>
+<pre><code class="language-python">def pair_checks(n):
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            count += 1
+    return count
+
+assert pair_checks(100) == 4950
+assert pair_checks(200) == 19900
+</code></pre>
+<p>输入数量翻倍，比较次数接近四倍。这个实验统计的是操作次数，不是实际耗时。结合前面索引章节可以看出，选择数据结构的目的通常是改变查找、插入或删除等操作的成本。</p>
 <h2>理论分析不能代替测量</h2>
 <p>一个理论增长速度较好的算法，在很小的数据规模上不一定更快。程序运行还受到硬件、运行时、数据分布、内存访问和其他系统活动的影响。</p>
 <p>进行基准测试（Benchmark）时，应记录输入规模、环境、重复次数与测量指标。不能只运行一次，然后把偶然的结果当成普遍规律。</p>
