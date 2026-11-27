@@ -53,6 +53,11 @@
 <p>HTTP 测试启动只监听本机临时端口的实验服务，验证 JSON 请求与响应，并在测试结束后关闭服务。</p>
 <p><svg role="img" aria-label="从需求到业务测试和 HTTP 测试" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 245" width="600" height="245"><title>从验收要求取得可以重复的测试证据</title><g font-family="system-ui,sans-serif" fill="currentColor" text-anchor="middle" font-size="15"><rect x="15" y="55" width="170" height="65" rx="7" stroke="currentColor" fill="none"/><text x="100" y="92">业务约束</text><rect x="215" y="55" width="170" height="65" rx="7" stroke="currentColor" fill="none"/><text x="300" y="92">数据库与 HTTP 测试</text><rect x="415" y="55" width="170" height="65" rx="7" stroke="currentColor" fill="none"/><text x="500" y="92">检查实际结果</text><path d="M185 87H215m-6-5 6 5-6 5M385 87H415m-6-5 6 5-6 5" stroke="currentColor" fill="none"/><text x="300" y="183" font-size="15">从验收要求取得可以重复的测试证据</text></g></svg></p>
 <p>这些测试的目标是形成可以重复取得的证据，而不是让开发者仅凭界面正常就宣布项目完成。</p>
+<h2>用失败输入及重复请求验证接口边界</h2>
+<p>除了普通成功请求，还应检查错误的 Content-Type、无效 JSON、非对象 JSON、超出长度限制的请求体及不存在的路径。每次失败后都需要确认记录没有增加。</p>
+<p>同一个请求标识也可能由两个线程同时提交。测试应检查只有一条记录被创建，两次合法请求获得相同编号。不同请求标识竞争最后一个名额则应只有一个成功。</p>
+<p>满员之后仍应允许已成功请求的合法重试得到原有结果，因为这不是新的报名。这样的检查可以发现错误的判断顺序，例如先检查容量再查询请求标识。</p>
+<p>测试代码只能证明运行过的具体情形；它不能替代完整故障分析。</p>
 <h2>怎样理解测试结果</h2>
 <p>测试通过意味着本次运行覆盖的条件得到了验证。它不意味着软件已经满足所有可能的生产要求。</p>
 <p>例如，本项目不验证跨设备公网通信、身份认证、真实用户数据保护或大规模负载。它也不能用一次并发测试证明任意环境下的所有并发情况都已正确处理。</p>

@@ -76,6 +76,45 @@
 </tbody></table></div>
 <p>查询返回 JSON 对象，包含 capacity、registered 和 remaining。提交成功返回记录编号以及是否为重复请求；容量不足返回 409，并提供明确的错误字段。</p>
 <p>服务端负责验证请求内容，不依赖浏览器表单的检查。SQLite 负责保存记录，并通过事务约束并发写入。</p>
+<h2>HTTP 接口也是一个契约</h2>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th align="right">状态码</th>
+<th>本项目约定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">200</td>
+<td>查询成功，或返回同一请求的已有报名结果</td>
+</tr>
+<tr>
+<td align="right">201</td>
+<td>新记录已创建</td>
+</tr>
+<tr>
+<td align="right">400</td>
+<td>请求体、姓名或请求标识不符合要求</td>
+</tr>
+<tr>
+<td align="right">404</td>
+<td>不存在的接口路径</td>
+</tr>
+<tr>
+<td align="right">409</td>
+<td>容量已满或请求标识冲突</td>
+</tr>
+<tr>
+<td align="right">415</td>
+<td>不支持的请求内容类型</td>
+</tr>
+<tr>
+<td align="right">503</td>
+<td>数据库操作暂时不可用</td>
+</tr>
+</tbody></table></div>
+<p>服务端只接受 JSON 对象形式的报名请求，并限制请求体大小。错误响应提供具体错误字段，前端不应将所有失败都理解为没有名额。</p>
+<p>这个设计只解决有限的本地教学需求。它没有实现生产级 HTTP 服务器所需的完整请求生命周期限制，也没有认证及授权机制。不要将其作为公网服务模板直接部署。</p>
 <h2>数据库结构</h2>
 <p>报名表包含整数主键、唯一请求标识及姓名。总名额作为服务端的固定业务规则。</p>
 <p>每次尝试报名时，在一个写事务内先检查请求标识，再检查当前记录数，最后在允许的情况下插入记录。</p>
