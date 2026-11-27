@@ -16,6 +16,48 @@
 
 数据库报告事务成功，不等于物理设备永远不会损坏。
 
+## 日志与数据页怎样配合
+
+数据库通常把存储组织为若干数据页（Data Page）。修改一条记录可能涉及数据页、索引及其他内部结构。如果设备在这些修改全部持久化之前发生故障，就需要一种恢复到有效状态的机制。
+
+对于采用传统重做型预写日志的系统，可以用以下简化顺序理解一次修改：先准备恢复所需的日志记录；按照数据库要求使相关日志达到规定的持久化条件；再允许相应的数据页写入；在满足提交所需条件后确认事务成功。
+
+这里的数据页写入与事务提交没有一个适用于所有数据库的固定先后顺序。关键是保证恢复所需的信息不会因数据页提前写入而丢失。检查点（Checkpoint）用于推进或记录恢复所需的状态，减少后续恢复的工作范围，具体行为由数据库实现决定。
+
+SQLite 的 WAL 模式有不同的具体组织方式：修改后的页面可以先追加到独立的 WAL 文件中，提交通过相应记录建立边界；检查点再将适当的页面内容转移到主数据库文件。读取者根据相应快照判断可见页面。
+
+![SQLite WAL 模式中提交、读取与检查点的职责](../assets/intro-sqlite-wal.svg)
+
+不能认为只要使用 WAL 就一定不会丢失最近的事务。同步设置、底层系统对写入的保证及故障类型都会影响持久性。
+
+## 实际验证一次数据库备份与恢复
+
+下面使用 SQLite 支持的备份接口创建一致的数据库副本，再关闭连接并重新打开副本验证数据。实验只使用临时文件。
+
+```python
+import sqlite3
+import tempfile
+from pathlib import Path
+from contextlib import closing
+
+with tempfile.TemporaryDirectory() as directory:
+    source = Path(directory) / "original.db"
+    backup = Path(directory) / "backup.db"
+
+    with closing(sqlite3.connect(source)) as db:
+        with db:
+            db.execute("CREATE TABLE registrations (name TEXT)")
+            db.execute("INSERT INTO registrations VALUES ('小林')")
+        with closing(sqlite3.connect(backup)) as copy:
+            db.backup(copy)
+
+    with closing(sqlite3.connect(backup)) as restored:
+        assert restored.execute("SELECT name FROM registrations").fetchall() == [("小林",)]
+        assert restored.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
+```
+
+integrity_check 用于检查 SQLite 数据库内部结构的部分完整性条件，并不能证明业务数据正确或所有恢复要求都满足。因此还需要结合实际业务查询和恢复时间进行检查。
+
 ## 为什么备份是独立的问题
 
 假设使用者误删除了全部报名记录，或者存储设备发生不可恢复的故障。

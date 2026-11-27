@@ -53,6 +53,46 @@ db.close()
 
 问号是参数占位符。实际值通过数据库接口单独传递，而不是拼接成 SQL 源代码。这有助于避免把外部输入误解释成 SQL 指令，安全部分还会进一步解释这个问题。
 
+## 怎样查询分散在不同表中的信息
+
+上一章将活动和报名记录放在不同的表中。如果想同时显示报名者的姓名和活动标题，就需要按两张表之间的关系组合数据。
+
+```sql
+SELECT r.name, e.title
+FROM registrations AS r
+JOIN events AS e ON r.event_id = e.id
+ORDER BY r.id;
+```
+
+AS 给表指定便于引用的名称。JOIN 表示连接（Join）操作，ON 指定两边的记录如何匹配。这里每条报名记录根据 event_id 寻找对应活动，再返回两张表中的指定列。
+
+如果希望连没有报名者的活动也显示出来，可以使用 LEFT JOIN，并从活动表出发。没有匹配报名记录时，右侧对应列将以 NULL 表示。
+
+```python
+import sqlite3
+
+db = sqlite3.connect(":memory:")
+db.executescript("""
+CREATE TABLE events (id INTEGER PRIMARY KEY, title TEXT);
+CREATE TABLE registrations (id INTEGER PRIMARY KEY, event_id INTEGER);
+INSERT INTO events VALUES (1, '周末活动'), (2, '技术分享');
+INSERT INTO registrations VALUES (17, 1), (18, 1);
+""")
+rows = db.execute("""
+SELECT e.title, COUNT(r.id)
+FROM events AS e
+LEFT JOIN registrations AS r ON r.event_id = e.id
+GROUP BY e.id, e.title
+ORDER BY e.id
+""").fetchall()
+assert rows == [("周末活动", 2), ("技术分享", 0)]
+db.close()
+```
+
+GROUP BY 将符合条件的结果按指定属性分组，COUNT(r.id) 统计各组中该列不是 NULL 的记录。这里若使用 COUNT(*)，没有报名者的活动也可能被计为一行，因此需要理解不同统计表达式的语义。
+
+数据库可以根据条件选择不同的连接和查找策略。SQL 表达的是需要得到的结果，并不是逐行规定底层执行顺序。
+
 ## 怎样统计人数
 
 如果我们不需要所有姓名，只需要报名人数，可以使用：

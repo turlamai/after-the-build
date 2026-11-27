@@ -56,6 +56,27 @@ assert restored == event
 
 预期输出 3。这里 json.dumps 生成 JSON 字符串；若要写入文件或网络，还可以根据约定将字符串编码为字节。
 
+## 程序对象、JSON 文本与网络字节的区别
+
+我们可以沿着一次报名请求观察三个层次。程序中的字典是供程序访问的数据结构；JSON 字符串是按照格式规则生成的文本；UTF-8 字节才是可以交给网络发送接口的一种表示。
+
+```python
+import json
+
+record = {"name": "小林", "id": 17}
+text = json.dumps(record, ensure_ascii=False, separators=(",", ":"))
+payload = text.encode("utf-8")
+assert len(payload) > len(text)
+assert json.loads(payload.decode("utf-8")) == record
+print(len(text), len(payload))
+```
+
+这里的 separators 参数指定分隔符的形式，ensure_ascii=False 使中文可以直接出现在生成的文本中。两种不同的合法 JSON 文本也可能表示同样的数据，因此不能把 JSON 文本的字节完全相等作为数据内容相等的唯一判断方法。
+
+![程序数据、JSON 文本及 UTF-8 字节的转换关系](../assets/intro-serialization-layers.svg)
+
+序列化可以保存约定的数据结构，但不必保存程序对象的全部内部状态。例如两个变量可能引用同一个内存对象，普通 JSON 并不负责恢复这一共享引用关系。
+
 ## 能够解析不代表数据正确
 
 下面的数据符合 JSON 语法：
