@@ -125,6 +125,82 @@
 <p>把实现异或的电路与实现逻辑与的电路组合，就得到了半加器（Half Adder）。它可以计算两个一位数字的和，但没有接收前一位进位的输入。</p>
 <p><svg role="img" aria-label="半加器由异或和与两个逻辑运算构成" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 270" width="600" height="270"><title>半加器的两条独立计算路径</title><g font-family="system-ui,sans-serif" fill="currentColor" font-size="18"><text x="20" y="62">A</text><text x="20" y="102">B</text><text x="460" y="78">S（低位）</text><text x="460" y="198">C（进位）</text><text x="300" y="78" text-anchor="middle">异或 XOR</text><text x="300" y="198" text-anchor="middle">与 AND</text><text x="300" y="252" text-anchor="middle" font-size="15">同一组输入分别计算低位和进位</text></g><g fill="none" stroke="currentColor" stroke-width="2"><rect x="220" y="38" width="160" height="66" rx="8"/><rect x="220" y="158" width="160" height="66" rx="8"/><path d="M45 56H220 M45 96H220 M90 56V176H220 M155 96V206H220 M380 71H448 M380 191H448"/></g><g fill="currentColor"><circle cx="90" cy="56" r="4"/><circle cx="155" cy="96" r="4"/></g></svg></p>
 <p>要计算多位数字，我们还需要能够接收前一位进位的全加器（Full Adder）。多个加法电路可以组成处理较长二进制数的电路。实际处理器常采用更高效的进位设计，但基本的计算要求并没有改变。</p>
+<h2>全加器为什么需要三个输入</h2>
+<p>在第二章的 0101 + 0011 中，每一位除了两个原始数字，还可能收到右边传来的进位。设三个输入为 A、B、Cin（Carry In），两个输出为 S 与 Cout（Carry Out）。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>Cin</th>
+<th>S</th>
+<th>Cout</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table></div>
+<p>可以先用一个半加器计算 A 与 B，再用另一个半加器计算前一次的低位结果与 Cin。两个半加器中任意一个产生进位，就需要向更高位进位。</p>
+<p>因此可以写成：</p>
+<p>S = (A XOR B) XOR Cin</p>
+<p>Cout = (A AND B) OR ((A XOR B) AND Cin)</p>
+<p><svg role="img" aria-label="两个半加器和一个或门构成全加器" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" width="640" height="240"><title>全加器由两个半加器与或门构成</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><text x="35" y="42" text-anchor="middle" >A</text><text x="35" y="85" text-anchor="middle" >B</text><path d="M50 37H110M50 80H110" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="110" y="20" width="135" height="85" rx="4" fill="none" stroke="currentColor"/><text x="177.5" y="67.5" text-anchor="middle" >半加器 1</text><path d="M245 42H310V65H345" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="291" y="33" text-anchor="middle" font-size='13'>S1</text><text x="290" y="115" text-anchor="middle" >Cin</text><path d="M310 110H325V90H345" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="345" y="48" width="135" height="70" rx="4" fill="none" stroke="currentColor"/><text x="412.5" y="88" text-anchor="middle" >半加器 2</text><path d="M480 66H595" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="606" y="71" text-anchor="middle" >S</text><path d="M245 85H265V175H400M480 98H500V195H480" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="400" y="157" width="80" height="55" rx="4" fill="none" stroke="currentColor"/><text x="440" y="189.5" text-anchor="middle" >OR</text><path d="M480 185H595" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="607" y="190" text-anchor="middle" font-size='14'>Cout</text><text x="285" y="166" text-anchor="middle" font-size='13'>C1</text><text x="520" y="145" text-anchor="middle" font-size='13'>C2</text></g></svg></p>
+<p>将四个全加器连接起来，让低位 Cout 成为高位 Cin，就可以实现四位加法。最低位 Cin 取 0。这种逐级传递进位的实现称为行波进位加法器（Ripple Carry Adder）。如果进位需要经过多个电路才能到达最高位，计算结果就必须等待足够长的时间才能稳定。</p>
+<p>减法也可以借助补码与加法完成。例如在八位宽度内计算 5 − 3，使用 5 的编码与 −3 的补码相加，保留低八位，就得到 2。这解释了第三章的补码为什么方便硬件实现整数加减。</p>
 <h2>电路怎样决定做加法还是做其他操作</h2>
 <p>可以设计不同的电路，分别完成加法、按位与、按位或等操作。再用另外一组输入信号决定采用哪一种操作的结果。</p>
 <p>例如，约定选择信号为 0 时取加法结果，为 1 时取按位与的结果。能够从多个输入中选出一个的电路叫多路选择器（Multiplexer，MUX）。</p>

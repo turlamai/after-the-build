@@ -55,6 +55,13 @@
 <p>假设原来保存的值是 0。输入变为 1 后，只要还没有到达指定的时钟边沿，输出仍保持 0。到达边沿后，输出在短暂延迟后更新为 1。即使输入随后变回 0，已经保存的值也不会立即改变。</p>
 <p><svg role="img" aria-label="示意时钟边沿更新保存值，忽略传播延迟" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 270" width="600" height="270"><title>D触发器在上升沿记录输入的理想化波形</title><g fill="currentColor" font-family="system-ui,sans-serif" font-size="17"><text x="14" y="55">时钟</text><text x="14" y="126">输入 D</text><text x="14" y="197">输出 Q</text><text x="110" y="247">时间 →</text><text x="335" y="247">上升沿更新</text></g><g fill="none" stroke="currentColor" stroke-width="2.5"><path d="M110 66H210V34H300V66H390V34H480V66H575"/><path d="M110 137H160V105H330V137H575"/><path d="M110 208H210V176H390V208H575"/></g><g stroke="currentColor" stroke-opacity=".5" stroke-dasharray="5 5"><path d="M210 20V220M390 20V220"/></g></svg></p>
 <p>图中假设输入在时钟边沿前后满足电路对稳定时间的要求。真实电路还需要考虑这些时间约束，现在不用展开。</p>
+<h2>为什么时钟边沿附近不能随意改变输入</h2>
+<p>触发器并不是在没有任何物理时间开销的情况下记录输入。电路通常要求输入在时钟有效边沿之前稳定一段时间，称为建立时间（Setup Time）；在边沿之后仍需稳定一段时间，称为保持时间（Hold Time）。</p>
+<p>从有效边沿到输出形成新的稳定状态也有延迟，常称 Clock-to-Q 延迟。</p>
+<p><svg role="img" aria-label="建立时间、保持时间和输出更新延迟的关系" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250"><title>有效时钟边沿附近的数据稳定窗口</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><text x="55" y="50" text-anchor="middle" >Clock</text><text x="55" y="120" text-anchor="middle" >D</text><text x="55" y="185" text-anchor="middle" >Q</text><path d="M110 64H300V28H470V64H600M110 132H175V98H435V132H600M110 197H350V163H600" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="240" y="80" width="120" height="62" fill="#c4683f" opacity=".13"/><path d="M300 12V218" stroke="#c4683f" stroke-dasharray="5 4"/><text x="270" y="77" text-anchor="middle" font-size='13'>建立</text><text x="330" y="77" text-anchor="middle" font-size='13'>保持</text><path d="M240 87H300M300 87H360M300 213H350" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="325" y="234" text-anchor="middle" font-size='13'>输出延迟</text></g></svg></p>
+<p>如果数据在不满足这些条件的时刻变化，触发器可能进入暂时无法可靠判断为 0 或 1 的状态，这称为亚稳态（Metastability）。因此，来自外部按键、通信线路或其他独立时钟的数据，不能不加考虑地直接交给任意时钟电路。</p>
+<p>工程师使用同步电路等方法降低相关故障概率，而不是假设时钟可以消除全部时间问题。</p>
+<p>对于由寄存器和组合逻辑组成的同步电路，在简化条件下，一个时钟周期需要容纳前一级寄存器输出延迟、组合逻辑传播延迟以及后一级寄存器的建立时间。真实设计还需要考虑时钟偏差、保持时间等约束。这也是为什么时钟不能任意提高频率。</p>
 <h2>保存的不只是一个比特</h2>
 <p>如果我们需要保存八位数字，可以使用多个能够保存一位的电路，在约定的时刻一起更新。这样的电路组合可以构成寄存器（Register）。</p>
 <p>例如，八位寄存器当前保存 00000101，表示无符号整数 5。把下一次要保存的值准备为 00001000，并在允许写入的时刻更新，它就保存了 8。</p>

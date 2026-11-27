@@ -63,6 +63,56 @@
 <p>程序经常重复访问近期使用过的位置，或者访问相邻位置。这些行为分别称为时间局部性和空间局部性。缓存的设计利用了这些常见现象。</p>
 <p><svg role="img" aria-label="寄存器、缓存、主内存与持久化设备的角色和访问关系" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320"><title>处理器内寄存器和缓存与主内存、持久化设备的不同关系</title><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="20" y="20" width="220" height="205" rx="8"/><rect x="40" y="60" width="180" height="60" rx="6"/><rect x="40" y="145" width="180" height="60" rx="6"/><rect x="310" y="110" width="270" height="80" rx="7"/><rect x="310" y="235" width="270" height="65" rx="7"/><path d="M240 160H310 M303 154L310 160 303 166M247 154L240 160 247 166M445 190V235 M439 228L445 235 451 228M439 197L445 190 451 197" stroke-width="2"/></g><g font-family="system-ui,sans-serif" fill="currentColor" text-anchor="middle" font-size="17"><text x="130" y="44">处理器（简化）</text><text x="130" y="85">寄存器</text><text x="130" y="105" font-size="14">正在运算的数据</text><text x="130" y="170">缓存</text><text x="130" y="190" font-size="14">快速访问数据副本</text><text x="445" y="140">主内存 RAM</text><text x="445" y="166" font-size="15">运行中的指令和数据</text><text x="445" y="260">SSD / HDD</text><text x="445" y="283" font-size="15">断电后保留的数据</text><text x="370" y="211" font-size="14">系统管理</text><text x="370" y="228" font-size="14">的读写</text></g></svg></p>
 <p>图中缓存与主内存之间的关系表示典型的数据访问路径；持久化设备则通过系统管理的输入输出路径访问。SSD 不是 CPU 普通缓存的下一级硬件缓存。</p>
+<h2>缓存怎样知道里面保存的是哪一份数据</h2>
+<p>缓存不能只保存数据值，还要知道它对应哪个存储地址。常见缓存按连续地址的一小组字节作为管理单位，称为缓存行（Cache Line）。</p>
+<p>设一个虚构缓存只有两行，每行四字节。我们把内存划分为块：地址 0 到 3 是块 0，地址 4 到 7 是块 1，地址 8 到 11 是块 2。规定偶数块放缓存第 0 行，奇数块放第 1 行。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th align="right">访问地址</th>
+<th align="right">所属块</th>
+<th align="right">缓存行</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>未命中，取得块 0</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>命中</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td>未命中，取得块 1</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td>未命中，替换块 0</td>
+</tr>
+<tr>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>未命中，因为块 0 已被替换</td>
+</tr>
+</tbody></table></div>
+<p><svg role="img" aria-label="两个缓存行的地址映射与替换" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 255" width="640" height="255"><title>直接映射缓存示例</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="20" width="170" height="42" rx="4" fill="none" stroke="currentColor"/><text x="105" y="46" text-anchor="middle" >块 0：地址 0–3</text><rect x="20" y="90" width="170" height="42" rx="4" fill="none" stroke="currentColor"/><text x="105" y="116" text-anchor="middle" >块 1：地址 4–7</text><rect x="20" y="160" width="170" height="42" rx="4" fill="none" stroke="currentColor"/><text x="105" y="186" text-anchor="middle" >块 2：地址 8–11</text><rect x="430" y="45" width="180" height="56" rx="4" fill="none" stroke="currentColor"/><text x="520" y="78" text-anchor="middle" >缓存行 0</text><rect x="430" y="145" width="180" height="56" rx="4" fill="none" stroke="currentColor"/><text x="520" y="178" text-anchor="middle" >缓存行 1</text><path d="M190 41H300V62H430M190 111H330V173H430M190 181H275V85H430" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="355" y="28" text-anchor="middle" font-size='13'>块 0 与块 2 冲突</text><text x="320" y="234" text-anchor="middle" font-size='14'>映射到同一行的块可能相互替换</text></g></svg></p>
+<p>行中保存的标记（Tag）用于区分映射到同一行的不同内存块，还需要有效性信息判断该行是否保存有效数据。这个教学例子采用直接映射（Direct Mapping），实际 CPU 常使用更灵活的组相联等结构。</p>
+<p>缓存还要处理修改数据后怎样更新主内存，以及多个核心访问共享数据时怎样维护一致性。这些是现代计算机的重要问题，不能把缓存理解成一份永远不会过期的简单副本。</p>
+<h2>用访问时间理解缓存的价值</h2>
+<p>假设缓存命中需要 2 纳秒，未命中时在检查缓存之后还要额外等待 100 纳秒。若 100 次访问中有 95 次命中，那么总时间为 100 × 2 + 5 × 100 = 700 纳秒，平均每次 7 纳秒。</p>
+<p>这组数字仅用于说明计算，不是具体 CPU 的实测性能。</p>
+<p>由此可以理解，影响性能的不只有缓存容量，还有访问模式、命中率、未命中代价等条件。访问相邻数据有时比在很大的地址范围内随机访问更快。</p>
 <h2>内存不足和硬盘空间不足是不同的问题</h2>
 <p>如果一个应用需要大量工作内存，可能出现内存压力，即使固态硬盘上还有充足空间。</p>
 <p>反之，如果电脑还有很多空闲内存，但持久化设备已经没有可用空间，应用仍然可能无法保存新的文件。</p>

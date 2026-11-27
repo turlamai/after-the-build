@@ -87,6 +87,56 @@
 <p>LOAD、ADD 和 STORE 是便于阅读的符号名称，并不是硬件直接识别的文字。真实的机器指令会按处理器规定的二进制格式保存。</p>
 <p>上表是为理解机制而定义的教学指令，不对应某个实际处理器的完整语法。</p>
 <p>将这些指令组织起来，就形成了一个简单的程序（Program）。程序是计算过程的一种表达；它可以包含操作要求，以及运行所需的相关数据。</p>
+<h2>亲自规定一种机器指令的编码</h2>
+<p>前面的 LOAD 和 ADD 还是文字。为了看清机器指令的实际含义，我们设计一种虚构的 16 位固定长度教学编码：</p>
+<ul>
+<li>最高 4 位规定操作码：1 表示 LOAD，2 表示 ADD，3 表示 STORE。</li>
+<li>接下来 4 位表示第一个寄存器编号。</li>
+<li>最低 8 位在 LOAD 和 STORE 中表示数据地址，在 ADD 中表示第二个寄存器编号。</li>
+</ul>
+<p>只有本节规定的寄存器和操作码有效。这个格式不是任何真实处理器的 ISA。</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>教学指令</th>
+<th>操作码</th>
+<th>第一寄存器</th>
+<th>地址或第二寄存器</th>
+<th>16 位十六进制编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LOAD R1, 100</td>
+<td>1</td>
+<td>1</td>
+<td>0x64</td>
+<td>0x1164</td>
+</tr>
+<tr>
+<td>LOAD R2, 101</td>
+<td>1</td>
+<td>2</td>
+<td>0x65</td>
+<td>0x1265</td>
+</tr>
+<tr>
+<td>ADD R1, R2</td>
+<td>2</td>
+<td>1</td>
+<td>0x02</td>
+<td>0x2102</td>
+</tr>
+<tr>
+<td>STORE R1, 102</td>
+<td>3</td>
+<td>1</td>
+<td>0x66</td>
+<td>0x3166</td>
+</tr>
+</tbody></table></div>
+<p><svg role="img" aria-label="教学机器指令的字段与二进制编码" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="640" height="220"><title>虚构的16位机器指令</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="35" width="150" height="85" fill="none" stroke="currentColor"/><text x="95" y="63" text-anchor="middle" >操作码</text><text x="95" y="98" text-anchor="middle" font-family='monospace' font-size='22'>0001</text><rect x="170" y="35" width="150" height="85" fill="none" stroke="currentColor"/><text x="245" y="63" text-anchor="middle" >寄存器</text><text x="245" y="98" text-anchor="middle" font-family='monospace' font-size='22'>0001</text><rect x="320" y="35" width="300" height="85" fill="none" stroke="currentColor"/><text x="470" y="63" text-anchor="middle" >数据地址</text><text x="470" y="98" text-anchor="middle" font-family='monospace' font-size='22'>01100100</text><text x="95" y="146" text-anchor="middle" >LOAD (1)</text><text x="245" y="146" text-anchor="middle" >R1</text><text x="470" y="146" text-anchor="middle" >100 (0x64)</text><text x="320" y="198" text-anchor="middle" >0x1164 → LOAD R1, 100</text></g></svg></p>
+<p>例如，0x1164 的二进制形式为 0001 0001 01100100。硬件根据最高四位识别出 LOAD，再根据后面四位选择 R1，并根据最低八位取得地址 100。</p>
+<p>这些编码可以像普通数据一样保存。真正决定它们被解释为指令还是数据的，是处理器在相应时刻进行的操作以及系统的访问规则。真实 ISA 的指令长度、操作数字段和地址计算方式可能更复杂。</p>
 <h2>谁来决定下一条指令</h2>
 <p>如果指令存放在可访问的存储位置中，计算机还需要保存下一次应该去哪里取得指令的信息。</p>
 <p>为此，处理器通常具有与指令位置相关的寄存器，常称程序计数器（Program Counter，PC）。</p>

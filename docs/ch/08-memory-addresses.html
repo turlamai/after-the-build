@@ -82,6 +82,41 @@
 <p>读取时，访问者提供地址，并发出读取要求。存储器选中对应位置，再返回其中的数据。写入时，访问者提供地址和新的数据，并在规定的控制条件下要求存储器保存该值。</p>
 <p>真实硬件可能通过多个步骤传输地址和数据，也可能一次读写多个字节。不同存储器有各自的接口协议。本章只建立「选择位置、传递数据、控制操作」的基本模型。</p>
 <p>一组承担部件之间数据或控制信息传输的连接，可以称为总线（Bus）。后文会再次遇到这个词。它不是一根必然同时承担所有工作的线，现代计算机可能使用复杂的互连结构。</p>
+<h2>地址怎样选择一个实际存储单元</h2>
+<p>以四个可以分别保存一个字节的位置为例。设地址的高位为 A1，低位为 A0。可以根据两个地址位产生四条选择信号：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>A1</th>
+<th>A0</th>
+<th>被选中的位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody></table></div>
+<p>地址译码器（Address Decoder）把这些二进制输入转换为对应位置的选择信号。例如位置 2 的选择条件为 A1 AND NOT A0。</p>
+<p>读取时，可以利用多路选择器，从四组保存值中选出目标数据。写入时，只有同时满足地址选择和写入使能的位置才应更新。</p>
+<p><svg role="img" aria-label="地址译码与读取、写入选择" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" width="640" height="250"><title>地址译码与四个存储位置</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><text x="65" y="38" text-anchor="middle" >A1 A0</text><path d="M65 46V105H120" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="120" y="75" width="145" height="60" rx="4" fill="none" stroke="currentColor"/><text x="192.5" y="110" text-anchor="middle" >地址译码器</text><path d="M265 84H285V30H360" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="360" y="11" width="170" height="38" rx="4" fill="none" stroke="currentColor"/><text x="445" y="35" text-anchor="middle" >位置 0</text><path d="M530 30H550" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M265 97H296V88H360" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="360" y="69" width="170" height="38" rx="4" fill="none" stroke="currentColor"/><text x="445" y="93" text-anchor="middle" >位置 1</text><path d="M530 88H550" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M265 110H307V146H360" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="360" y="127" width="170" height="38" rx="4" fill="none" stroke="currentColor"/><text x="445" y="151" text-anchor="middle" >位置 2</text><path d="M530 146H550" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M265 123H318V204H360" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="360" y="185" width="170" height="38" rx="4" fill="none" stroke="currentColor"/><text x="445" y="209" text-anchor="middle" >位置 3</text><path d="M530 204H550" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="580" y="112" text-anchor="middle" font-size='14'>数据</text><text x="580" y="133" text-anchor="middle" font-size='14'>选择</text></g></svg></p>
+<p>实际大容量存储器不会简单地为每个字节配置一个独立的大型选择器。它们会采用分层译码、存储阵列、行列选择以及其他技术。这里的模型解释的是地址位如何最终参与硬件选择。</p>
 <h2>一个数需要多个字节怎么办</h2>
 <p>我们在第一部已经知道，一个字节表示无符号整数时只能达到 255。较大的数需要多个字节。</p>
 <p>例如 16 位整数 0x1234，可以分成 0x12 和 0x34 两个字节，分别保存在两个相邻地址中。</p>
