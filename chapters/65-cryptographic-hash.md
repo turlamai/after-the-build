@@ -41,6 +41,24 @@ assert digest == "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015
 
 后面讲解数字签名时，我们会建立验证来源的机制。
 
+## 共享秘密怎样帮助验证消息
+
+如果通信双方已经安全取得同一个秘密密钥，可以利用消息认证码（Message Authentication Code，MAC）验证消息与密钥之间的关系。这里的 MAC 与网络章节中的 MAC 地址是不同概念。
+
+HMAC 是使用哈希函数构造消息认证码的一类标准机制。下面使用公开的教学密钥验证消息变化会导致认证失败：
+
+```python
+import hmac
+key = b"public-teaching-example"
+message = b"capacity=20"
+tag = hmac.digest(key, message, "sha256")
+expected = hmac.digest(key, b"capacity=21", "sha256")
+assert not hmac.compare_digest(tag, expected)
+assert hmac.compare_digest(tag, hmac.digest(key, message, "sha256"))
+```
+
+真实密钥必须通过合适的机制生成和保护。HMAC 不隐藏消息，也不能区分多个共享同一密钥的参与者。已经合法认证的旧消息还可能被重复发送，因此需要根据协议检查请求标识、序号、时间或其他新鲜性条件。这就是防重放（Replay Protection）需要解决的问题。
+
 ## 密码为什么不能直接用普通哈希保存
 
 服务端需要验证输入密码是否正确，但不应该直接保存可供读取的原始密码。
