@@ -51,6 +51,36 @@
 <p>发生异常退出后，系统可以利用已经保存的信息恢复到符合事务规则的状态。</p>
 <p>不同数据库的日志、检查点及恢复方式并不完全一样。有些系统使用其他机制。提交时的持久性保证还受到配置、操作系统及设备行为影响。</p>
 <p>数据库报告事务成功，不等于物理设备永远不会损坏。</p>
+<h2>日志与数据页怎样配合</h2>
+<p>数据库通常把存储组织为若干数据页（Data Page）。修改一条记录可能涉及数据页、索引及其他内部结构。如果设备在这些修改全部持久化之前发生故障，就需要一种恢复到有效状态的机制。</p>
+<p>对于采用传统重做型预写日志的系统，可以用以下简化顺序理解一次修改：先准备恢复所需的日志记录；按照数据库要求使相关日志达到规定的持久化条件；再允许相应的数据页写入；在满足提交所需条件后确认事务成功。</p>
+<p>这里的数据页写入与事务提交没有一个适用于所有数据库的固定先后顺序。关键是保证恢复所需的信息不会因数据页提前写入而丢失。检查点（Checkpoint）用于推进或记录恢复所需的状态，减少后续恢复的工作范围，具体行为由数据库实现决定。</p>
+<p>SQLite 的 WAL 模式有不同的具体组织方式：修改后的页面可以先追加到独立的 WAL 文件中，提交通过相应记录建立边界；检查点再将适当的页面内容转移到主数据库文件。读取者根据相应快照判断可见页面。</p>
+<p><svg role="img" aria-label="SQLite WAL 模式中提交、读取与检查点的职责" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 245" width="640" height="245"><title>SQLite WAL 模式简图</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="20" y="20" width="190" height="50" rx="4" stroke="currentColor" fill="none"/><text x="115" y="50" text-anchor="middle" >写事务</text><rect x="430" y="20" width="190" height="50" rx="4" stroke="currentColor" fill="none"/><text x="525" y="50" text-anchor="middle" >读取事务</text><rect x="20" y="120" width="190" height="65" rx="4" stroke="currentColor" fill="none"/><text x="115" y="157.5" text-anchor="middle" >WAL 文件</text><rect x="430" y="120" width="190" height="65" rx="4" stroke="currentColor" fill="none"/><text x="525" y="157.5" text-anchor="middle" >主数据库文件</text><path d="M115 70L115 120" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(115 120) rotate(90)" stroke="currentColor" fill="none"/><text x="200" y="98" text-anchor="middle" font-size='13'>追加页面及提交标记</text><path d="M210 150L430 150" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(430 150) rotate(0)" stroke="currentColor" fill="none"/><text x="320" y="139" text-anchor="middle" font-size='14'>检查点</text><path d="M525 70L525 120" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(525 120) rotate(90)" stroke="currentColor" fill="none"/><path d="M480 70L350 95H230V120" stroke="currentColor" fill="none"/><path d="M225 113l5 7 5-7" stroke="currentColor" fill="none"/><text x="382" y="84" text-anchor="middle" font-size='13'>按快照选择可见内容</text><text x="320" y="221" text-anchor="middle" font-size='14'>持久性还取决于同步配置与底层设备保证</text></g></svg></p>
+<p>不能认为只要使用 WAL 就一定不会丢失最近的事务。同步设置、底层系统对写入的保证及故障类型都会影响持久性。</p>
+<h2>实际验证一次数据库备份与恢复</h2>
+<p>下面使用 SQLite 支持的备份接口创建一致的数据库副本，再关闭连接并重新打开副本验证数据。实验只使用临时文件。</p>
+<pre><code class="language-python">import sqlite3
+import tempfile
+from pathlib import Path
+from contextlib import closing
+
+with tempfile.TemporaryDirectory() as directory:
+    source = Path(directory) / &quot;original.db&quot;
+    backup = Path(directory) / &quot;backup.db&quot;
+
+    with closing(sqlite3.connect(source)) as db:
+        with db:
+            db.execute(&quot;CREATE TABLE registrations (name TEXT)&quot;)
+            db.execute(&quot;INSERT INTO registrations VALUES (&#39;小林&#39;)&quot;)
+        with closing(sqlite3.connect(backup)) as copy:
+            db.backup(copy)
+
+    with closing(sqlite3.connect(backup)) as restored:
+        assert restored.execute(&quot;SELECT name FROM registrations&quot;).fetchall() == [(&quot;小林&quot;,)]
+        assert restored.execute(&quot;PRAGMA integrity_check&quot;).fetchone()[0] == &quot;ok&quot;
+</code></pre>
+<p>integrity_check 用于检查 SQLite 数据库内部结构的部分完整性条件，并不能证明业务数据正确或所有恢复要求都满足。因此还需要结合实际业务查询和恢复时间进行检查。</p>
 <h2>为什么备份是独立的问题</h2>
 <p>假设使用者误删除了全部报名记录，或者存储设备发生不可恢复的故障。</p>
 <p>事务机制可能正确地完成了一次删除，却不会因为这次操作违背使用者的真实意图就自动恢复记录。</p>

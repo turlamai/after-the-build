@@ -63,6 +63,20 @@
 <p>UTF-8 规定怎样将字符编码为字节。CSV 则进一步规定这些字符怎样组成字段和记录。</p>
 <p>知道文件采用 UTF-8，只能帮助我们恢复文字；知道它采用 CSV，才能进一步解释记录的结构。</p>
 <p>这正是为什么一个文件可能能够正常显示文字，却仍然无法被某个应用正确导入。</p>
+<h2>为什么不能直接按照逗号拆分每一行</h2>
+<p>假设报名记录中的姓名字段允许出现逗号。CSV 可以通过引号明确一个字段的边界。字段本身包含双引号时，常见 CSV 规则使用两个连续双引号表示一个双引号。</p>
+<p>下面使用 Python 标准库解析一段内存中的 CSV 文本，不需要创建文件：</p>
+<pre><code class="language-python">import csv
+import io
+
+source = &#39;id,name\n17,&quot;Lin, Alice&quot;\n18,&quot;王&quot;&quot;小明&quot;\n&#39;
+records = list(csv.DictReader(io.StringIO(source)))
+assert records[0][&quot;name&quot;] == &quot;Lin, Alice&quot;
+assert records[1][&quot;name&quot;] == &#39;王&quot;小明&#39;
+assert records[0][&quot;id&quot;] == &quot;17&quot;
+</code></pre>
+<p>DictReader 使用第一行的列名组织记录。请注意，编号 17 在这个例子中仍然是字符串，而不是整数。程序应根据业务规则进行类型转换及验证。</p>
+<p>这一实验说明：解析器必须按照格式规则识别边界；恢复字段之后，还需要决定每个字段的含义。CSV 的不同实现可能使用不同分隔符或引号规则，交换数据前应该确认相应约定。</p>
 <h2>格式并不是所有数据的统一答案</h2>
 <p>对于图片，文件中需要表达图像尺寸、颜色和像素相关信息。对于音频，则需要表达采样和声音数据。每种格式都有自己的结构规则。</p>
 <p>有些格式采用便于人阅读的文本表示，有些采用更紧凑或适合特定处理方式的二进制表示。</p>

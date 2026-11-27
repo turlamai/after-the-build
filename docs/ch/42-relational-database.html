@@ -100,7 +100,66 @@
 <p>能够唯一标识一行记录、并被选定作为主要标识的键，称为主键（Primary Key）。</p>
 <p>报名表中的 id 就可以承担这一职责。不同报名者即使具有相同姓名，仍能拥有不同编号。</p>
 <p>报名表中的 event_id 引用活动表的 id，这样的引用可以通过外键（Foreign Key）约束表达。数据库可以据此检查相关活动是否存在。</p>
-<p><svg role="img" aria-label="通过主键与外键建立两张表之间的关系" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" width="600" height="260"><title>报名记录通过 event_id 引用活动</title><g font-family="system-ui,sans-serif" font-size="17" fill="currentColor"><g fill="none" stroke="currentColor"><rect x="15" y="35" width="250" height="115" rx="5"/><path d="M15 75H265M15 112H265M75 35V150M195 35V150"/><rect x="335" y="35" width="250" height="153" rx="5"/><path d="M335 75H585M335 112H585M335 150H585M390 35V188M495 35V188"/><path d="M390 93H310V215H45V94" stroke-width="2" stroke-dasharray="5 4"/></g><g text-anchor="middle" font-size="15"><text x="140" y="23">活动表</text><text x="460" y="23">报名表</text><text x="45" y="60">id</text><text x="135" y="60">title</text><text x="230" y="60">capacity</text><text x="45" y="99">1</text><text x="135" y="99">周末活动</text><text x="230" y="99">20</text><text x="45" y="137">2</text><text x="135" y="137">技术分享</text><text x="230" y="137">30</text><text x="362" y="60">id</text><text x="442" y="60">event_id</text><text x="540" y="60">name</text><text x="362" y="99">17</text><text x="442" y="99">1</text><text x="540" y="99">小林</text><text x="362" y="137">18</text><text x="442" y="137">1</text><text x="540" y="137">小王</text><text x="362" y="174">19</text><text x="442" y="174">2</text><text x="540" y="174">小陈</text><text x="300" y="245">外键引用主键（虚线示意其中一条引用）</text></g></g></svg></p>
+<p><svg role="img" aria-label="通过主键与外键建立两张表之间的关系" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" width="640" height="290"><title>活动主键与报名外键</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><text x="155" y="24" text-anchor="middle" >events（活动表）</text><text x="480" y="24" text-anchor="middle" >registrations（报名表）</text><rect x="15" y="40" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="61.5" y="64.5" text-anchor="middle" >id</text><rect x="108" y="40" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="154.5" y="64.5" text-anchor="middle" >title</text><rect x="201" y="40" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="247.5" y="64.5" text-anchor="middle" >capacity</text><rect x="15" y="79" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="61.5" y="103.5" text-anchor="middle" >1</text><rect x="108" y="79" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="154.5" y="103.5" text-anchor="middle" >周末活动</text><rect x="201" y="79" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="247.5" y="103.5" text-anchor="middle" >20</text><rect x="15" y="118" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="61.5" y="142.5" text-anchor="middle" >2</text><rect x="108" y="118" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="154.5" y="142.5" text-anchor="middle" >技术分享</text><rect x="201" y="118" width="93" height="39" rx="4" stroke="currentColor" fill="none"/><text x="247.5" y="142.5" text-anchor="middle" >30</text><rect x="340" y="40" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="387.5" y="64.5" text-anchor="middle" >id</text><rect x="435" y="40" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="482.5" y="64.5" text-anchor="middle" >event_id</text><rect x="530" y="40" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="577.5" y="64.5" text-anchor="middle" >name</text><rect x="340" y="79" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="387.5" y="103.5" text-anchor="middle" >17</text><rect x="435" y="79" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="482.5" y="103.5" text-anchor="middle" >1</text><rect x="530" y="79" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="577.5" y="103.5" text-anchor="middle" >小林</text><rect x="340" y="118" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="387.5" y="142.5" text-anchor="middle" >18</text><rect x="435" y="118" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="482.5" y="142.5" text-anchor="middle" >1</text><rect x="530" y="118" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="577.5" y="142.5" text-anchor="middle" >小王</text><rect x="340" y="157" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="387.5" y="181.5" text-anchor="middle" >19</text><rect x="435" y="157" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="482.5" y="181.5" text-anchor="middle" >2</text><rect x="530" y="157" width="95" height="39" rx="4" stroke="currentColor" fill="none"/><text x="577.5" y="181.5" text-anchor="middle" >小陈</text><rect x="15" y="40" width="93" height="39" fill="#c4683f" fill-opacity=".10" stroke="#c4683f"/><rect x="435" y="40" width="95" height="39" fill="#c4683f" fill-opacity=".10" stroke="#c4683f"/><rect x="15" y="205" width="175" height="38" rx="4" stroke="currentColor" fill="none"/><text x="102.5" y="229" text-anchor="middle" >主键 events.id</text><rect x="390" y="205" width="235" height="38" rx="4" stroke="currentColor" fill="none"/><text x="507.5" y="229" text-anchor="middle" >外键 registrations.event_id</text><path d="M390 224L190 224" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(190 224) rotate(180)" stroke="currentColor" fill="none"/><text x="320" y="272" text-anchor="middle" font-size='14'>每条报名记录引用一个已有活动</text></g></svg></p>
+<h2>为什么不把活动名称复制到每条报名记录</h2>
+<p>假设同一次活动有一百条报名记录，每一条都保存了活动名称。如果活动改名，程序就需要更新所有相关记录。若某些记录没有更新，就可能出现同一次活动拥有多个名称的矛盾状态。</p>
+<p>把活动自身的属性保存在活动表，再由报名表通过 event_id 引用活动记录，可以减少这种重复及修改不一致的问题。关系型数据库设计中，对数据关系进行适当组织、减少某些冗余及修改异常的过程称为规范化（Normalization）。</p>
+<p>这并不是说重复数据一定错误。某些历史记录确实需要保存当时的价格或活动名称；某些性能设计也会有意保存可以重新计算的结果。关键是区分数据的含义及更新规则。</p>
+<h2>约束怎样阻止无效记录进入数据库</h2>
+<p>常见关系数据库约束包括：</p>
+<div class="table-scroll" role="region" aria-label="技术表格" tabindex="0"><table>
+<thead>
+<tr>
+<th>约束</th>
+<th>所表达的规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PRIMARY KEY</td>
+<td>主要记录标识</td>
+</tr>
+<tr>
+<td>NOT NULL</td>
+<td>指定列不允许 NULL</td>
+</tr>
+<tr>
+<td>UNIQUE</td>
+<td>对指定列或列组合实施唯一性要求</td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td>对记录的值实施规定的条件</td>
+</tr>
+<tr>
+<td>FOREIGN KEY</td>
+<td>检查指定的引用关系</td>
+</tr>
+</tbody></table></div>
+<p>NULL 表示缺少或未知等情况，具体查询语义由 SQL 规定，不等于空字符串或数字零。不同数据库对 UNIQUE 中 NULL 的处理也可能不同。</p>
+<p>下面的实验显式开启 SQLite 外键检查，并验证错误的活动引用会被拒绝：</p>
+<pre><code class="language-python">import sqlite3
+
+with sqlite3.connect(&quot;:memory:&quot;) as db:
+    db.execute(&quot;PRAGMA foreign_keys = ON&quot;)
+    db.execute(&quot;CREATE TABLE events (id INTEGER PRIMARY KEY)&quot;)
+    db.execute(&quot;&quot;&quot;
+        CREATE TABLE registrations (
+            id INTEGER PRIMARY KEY,
+            event_id INTEGER NOT NULL REFERENCES events(id)
+        )
+    &quot;&quot;&quot;)
+    db.execute(&quot;INSERT INTO events VALUES (1)&quot;)
+    db.execute(&quot;INSERT INTO registrations VALUES (17, 1)&quot;)
+    try:
+        db.execute(&quot;INSERT INTO registrations VALUES (18, 99)&quot;)
+    except sqlite3.IntegrityError:
+        pass
+    else:
+        raise AssertionError(&quot;invalid foreign key accepted&quot;)
+    assert db.execute(&quot;SELECT COUNT(*) FROM registrations&quot;).fetchone()[0] == 1
+db.close()
+</code></pre>
+<p>外键可以保护活动引用，却不能单独保证报名人数不超过容量。跨多行的业务约束还需要适当的事务与并发控制。</p>
 <h2>数据库不只是电子表格</h2>
 <p>表格软件也可以显示一组行和列。关系型数据库的关键并不是这种显示形式，而是通过明确的关系、约束及查询操作管理数据。</p>
 <p>数据库可以拒绝不满足约束的写入。例如，已经存在的主键不能随意重复插入。</p>

@@ -81,6 +81,20 @@ print(restored[&quot;capacity&quot;] - restored[&quot;registered&quot;])
 assert restored == event
 </code></pre>
 <p>预期输出 3。这里 json.dumps 生成 JSON 字符串；若要写入文件或网络，还可以根据约定将字符串编码为字节。</p>
+<h2>程序对象、JSON 文本与网络字节的区别</h2>
+<p>我们可以沿着一次报名请求观察三个层次。程序中的字典是供程序访问的数据结构；JSON 字符串是按照格式规则生成的文本；UTF-8 字节才是可以交给网络发送接口的一种表示。</p>
+<pre><code class="language-python">import json
+
+record = {&quot;name&quot;: &quot;小林&quot;, &quot;id&quot;: 17}
+text = json.dumps(record, ensure_ascii=False, separators=(&quot;,&quot;, &quot;:&quot;))
+payload = text.encode(&quot;utf-8&quot;)
+assert len(payload) &gt; len(text)
+assert json.loads(payload.decode(&quot;utf-8&quot;)) == record
+print(len(text), len(payload))
+</code></pre>
+<p>这里的 separators 参数指定分隔符的形式，ensure_ascii=False 使中文可以直接出现在生成的文本中。两种不同的合法 JSON 文本也可能表示同样的数据，因此不能把 JSON 文本的字节完全相等作为数据内容相等的唯一判断方法。</p>
+<p><svg role="img" aria-label="程序数据、JSON 文本及 UTF-8 字节的转换关系" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 235" width="640" height="235"><title>数据表示的三层转换</title><g font-family="system-ui,sans-serif" font-size="16" fill="currentColor"><rect x="15" y="25" width="185" height="50" rx="4" stroke="currentColor" fill="none"/><text x="107.5" y="55" text-anchor="middle" >程序字典</text><rect x="230" y="25" width="180" height="50" rx="4" stroke="currentColor" fill="none"/><text x="320" y="55" text-anchor="middle" >JSON 字符串</text><rect x="440" y="25" width="185" height="50" rx="4" stroke="currentColor" fill="none"/><text x="532.5" y="55" text-anchor="middle" >UTF-8 字节</text><path d="M200 50L230 50" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(230 50) rotate(0)" stroke="currentColor" fill="none"/><path d="M410 50L440 50" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(440 50) rotate(0)" stroke="currentColor" fill="none"/><text x="215" y="15" text-anchor="middle" font-size='12'>序列化</text><text x="425" y="15" text-anchor="middle" font-size='12'>编码</text><text x="107" y="108" text-anchor="middle" font-size='14'>name → 小林</text><text x="320" y="108" text-anchor="middle" font-size='13'>{"name":"小林"}</text><text x="532" y="108" text-anchor="middle" font-size='14'>7B 22 … 7D</text><path d="M440 150L410 150" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(410 150) rotate(180)" stroke="currentColor" fill="none"/><path d="M230 150L200 150" stroke="currentColor" fill="none"/><path d="M-7 -4L0 0L-7 4" transform="translate(200 150) rotate(180)" stroke="currentColor" fill="none"/><text x="425" y="174" text-anchor="middle" font-size='13'>解码</text><text x="215" y="174" text-anchor="middle" font-size='13'>反序列化</text><text x="320" y="213" text-anchor="middle" font-size='14'>结构、文本格式和字符编码承担不同职责</text></g></svg></p>
+<p>序列化可以保存约定的数据结构，但不必保存程序对象的全部内部状态。例如两个变量可能引用同一个内存对象，普通 JSON 并不负责恢复这一共享引用关系。</p>
 <h2>能够解析不代表数据正确</h2>
 <p>下面的数据符合 JSON 语法：</p>
 <pre><code class="language-json">{&quot;capacity&quot;: -20, &quot;registered&quot;: &quot;很多&quot;}
