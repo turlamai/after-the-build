@@ -6,9 +6,13 @@
 <title>AI 时代的基本功 · 吉人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body data-chapter="true">
 <main><nav aria-label="书籍导航"><a href="../index.html">返回目录</a></nav>
 ◊(->html doc)
+<nav id="chapter-nav" aria-label="章节翻页"></nav>
+<details><summary>全书目录与搜索</summary><label for="book-search">搜索全书</label><input id="book-search" type="search"><p id="book-count" role="status"></p><nav id="book-toc" aria-label="章节目录"></nav></details>
 </main>
+<script src="../chapters.js" defer></script>
+<script src="../reader.js" defer></script>
 </body>
 </html>
