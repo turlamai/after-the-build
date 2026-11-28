@@ -14,7 +14,7 @@
   (define source (file->string (build-path chapters p)))
   ;; Pollen markdown supports command syntax; escape literal lozenges.
   (define escaped (string-replace source "◊" "◊|\"◊\"|"))
-  (display-to-file (string-append "#lang pollen/mode markdown\n" escaped)
+  (display-to-file (string-append "#lang pollen\n" escaped)
                    (build-path output (string-append slug ".html.pmd"))
                    #:exists 'truncate/replace))
 (printf "Staged ~a chapters\n" (length files))
