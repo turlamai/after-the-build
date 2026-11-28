@@ -26,6 +26,7 @@ jobs:
         run: |
           raco pollen render index.html.pm
           for f in ch/*.html.pmd; do raco pollen render "$f"; done
+          test -s chapters.js
           test -s index.html
           for f in ch/*.html.pmd; do test -s "${f%.pmd}"; done
           test "$(find ch -name '*.html.pmd' | wc -l)" -eq "$(find ../chapters -name '*.md' | wc -l)"
@@ -35,5 +36,7 @@ jobs:
           path: |
             pollen-pilot/index.html
             pollen-pilot/style.css
+            pollen-pilot/chapters.js
+            pollen-pilot/reader.js
             pollen-pilot/ch/*.html
             !pollen-pilot/ch/template.html
