@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: pollen-pilot-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -19,6 +22,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y racket
       - name: Install Pollen
         run: raco pkg install --auto --batch pollen
+      - name: Check reader JavaScript syntax
+        run: node --check pollen-pilot/reader.js
       - name: Stage chapters
         run: racket pollen-pilot/stage.rkt
       - name: Render pilot
