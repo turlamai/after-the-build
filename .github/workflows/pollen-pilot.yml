@@ -1,0 +1,39 @@
+name: Pollen pilot
+on:
+  push:
+    branches: [pollen-pilot]
+  pull_request:
+    paths:
+      - 'pollen-pilot/**'
+      - 'chapters/**'
+      - '.github/workflows/pollen-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Racket
+        run: sudo apt-get update && sudo apt-get install -y racket
+      - name: Install Pollen
+        run: raco pkg install --auto --batch pollen
+      - name: Stage chapters
+        run: racket pollen-pilot/stage.rkt
+      - name: Render pilot
+        working-directory: pollen-pilot
+        run: |
+          raco pollen render index.html.pm
+          for f in ch/*.html.pmd; do raco pollen render "$f"; done
+          test -s index.html
+          for f in ch/*.html.pmd; do test -s "${f%.pmd}"; done
+          test "$(find ch -name '*.html.pmd' | wc -l)" -eq "$(find ../chapters -name '*.md' | wc -l)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pollen-preview
+          path: |
+            pollen-pilot/index.html
+            pollen-pilot/style.css
+            pollen-pilot/ch/*.html
+            !pollen-pilot/ch/template.html
