@@ -2,9 +2,13 @@
   "use strict";
   const entries = window.BOOK_CHAPTERS;
   if (!Array.isArray(entries)) return;
+  const config = window.BOOK_CONFIG || {};
   const chapterPage = document.body.dataset.chapter === "true";
-  const prefix = chapterPage ? "../" : "";
-  const current = chapterPage ? decodeURIComponent(location.pathname.split("/").pop()).replace(/\.html$/, "") : "";
+  const prefix = document.body.dataset.root ?? (chapterPage ? "../" : "");
+  const current = document.body.dataset.slug ?? (chapterPage ? decodeURIComponent(location.pathname.split("/").pop()).replace(/\.html$/, "") : "");
+  const bookTitle = config.title || "AI 时代的基本功";
+  const storageKey = config.id || "fundamentals";
+  const repository = config.repository || "turlamai/fundamentals";
   const index = entries.findIndex(e => e.slug === current);
   function link(entry, label) {
     const a = document.createElement("a");
@@ -42,11 +46,11 @@
   if (nav && index >= 0) {
     if (index > 0) nav.append(link(entries[index - 1], "← " + entries[index - 1].title));
     const home = document.createElement("a");
-    home.href = "../index.html";
+    home.href = prefix + "index.html";
     home.textContent = "返回目录";
     nav.append(home);
     if (index + 1 < entries.length) nav.append(link(entries[index + 1], entries[index + 1].title + " →"));
-    document.title = entries[index].title + " · AI 时代的基本功";
+    document.title = entries[index].title + " · " + bookTitle;
   }
   document.addEventListener("keydown", event => {
     if (event.isComposing || event.altKey || event.target?.closest?.("input,textarea,select,button,[contenteditable]")) return;
@@ -54,8 +58,8 @@
       event.preventDefault(); if (search) { const panel = search.closest("details"); if (panel) panel.open = true; search.focus(); }
     }
   });
-  const get = key => { try { return localStorage.getItem("fundamentals:" + key); } catch { return null; } };
-  const save = (key, value) => { try { localStorage.setItem("fundamentals:" + key, value); } catch {} };
+  const get = key => { try { return localStorage.getItem(storageKey + ":" + key); } catch { return null; } };
+  const save = (key, value) => { try { localStorage.setItem(storageKey + ":" + key, value); } catch {} };
   const settings = document.createElement("section");
   settings.className = "reader-settings";
   settings.setAttribute("aria-label", "阅读设置");
@@ -123,13 +127,13 @@
           (selection ? "\n原文摘录：\n" + selection.slice(0, 1500) + "\n" : "") +
           "\n问题描述：\n\n建议修改：\n"
       });
-      return "https://github.com/turlamai/fundamentals/issues/new?" + params.toString();
+      return "https://github.com/" + repository + "/issues/new?" + params.toString();
     }
     const issue = document.createElement("a");
     issue.href = report();
     issue.textContent = "反馈本章问题";
     const edit = document.createElement("a");
-    edit.href = "https://github.com/turlamai/fundamentals/edit/main/chapters/" + encodeURIComponent(current) + ".md";
+    edit.href = "https://github.com/" + repository + "/edit/" + (config.branch || "main") + "/" + (entries[index].source || "chapters/" + encodeURIComponent(current) + ".md");
     edit.textContent = "编辑本章";
     const selected = document.createElement("a");
     selected.hidden = true;
