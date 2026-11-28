@@ -110,4 +110,49 @@
     code.parentElement.before(button);
   }
 
+  if (index >= 0) {
+    const feedback = document.createElement("section");
+    feedback.className = "book-feedback";
+    const heading = document.createElement("h2");
+    heading.textContent = "读者反馈";
+    feedback.append(heading);
+    function report(selection = "") {
+      const params = new URLSearchParams({
+        title: "勘误：" + entries[index].title,
+        body: "章节：" + entries[index].title + "\n路径：" + entries[index].url + "\n" +
+          (selection ? "\n原文摘录：\n" + selection.slice(0, 1500) + "\n" : "") +
+          "\n问题描述：\n\n建议修改：\n"
+      });
+      return "https://github.com/turlamai/fundamentals/issues/new?" + params.toString();
+    }
+    const issue = document.createElement("a");
+    issue.href = report();
+    issue.textContent = "反馈本章问题";
+    const edit = document.createElement("a");
+    edit.href = "https://github.com/turlamai/fundamentals/edit/main/chapters/" + encodeURIComponent(current) + ".md";
+    edit.textContent = "编辑本章";
+    const selected = document.createElement("a");
+    selected.hidden = true;
+    selected.textContent = "反馈选中的文字";
+    feedback.append(issue, edit, selected);
+    nav?.before(feedback);
+    document.addEventListener("selectionchange", () => {
+      const selection = window.getSelection();
+      const text = selection?.toString().trim() || "";
+      const main = document.querySelector("main");
+      const inside = main?.contains(selection?.anchorNode) && main?.contains(selection?.focusNode);
+      selected.hidden = !inside || !text;
+      if (!selected.hidden) selected.href = report(text);
+    });
+  }
+  document.addEventListener("keydown", event => {
+    if (index < 0 || event.defaultPrevented || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey ||
+        event.target?.closest?.("a,input,textarea,select,button,[contenteditable]") || window.getSelection()?.toString()) return;
+    const next = event.key === "ArrowLeft" ? index - 1 : event.key === "ArrowRight" ? index + 1 : -1;
+    if (next >= 0 && next < entries.length && ["ArrowLeft","ArrowRight"].includes(event.key)) {
+      event.preventDefault();
+      location.href = prefix + entries[next].url;
+    }
+  });
+
 })();
