@@ -1,0 +1,20 @@
+#lang racket/base
+(require racket/file racket/path racket/list racket/string racket/runtime-path)
+(define-runtime-path pilot ".")
+(define chapters (build-path pilot 'up "chapters"))
+(define output (build-path pilot "ch"))
+(make-directory* output)
+(define files
+  (sort (filter (lambda (p) (regexp-match? #rx"[.]md$" (path->string p)))
+                (directory-list chapters))
+        string<? #:key path->string))
+(for ([p (in-list files)])
+  (define name (path->string p))
+  (define slug (substring name 0 (- (string-length name) 3)))
+  (define source (file->string (build-path chapters p)))
+  ;; Pollen markdown supports command syntax; escape literal lozenges.
+  (define escaped (string-replace source "◊" "◊|\"◊\"|"))
+  (display-to-file (string-append "#lang pollen/mode markdown\n" escaped)
+                   (build-path output (string-append slug ".html.pmd"))
+                   #:exists 'truncate/replace))
+(printf "Staged ~a chapters\n" (length files))
